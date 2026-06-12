@@ -1,27 +1,24 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="icon" href="assets/favicon.ico">
-<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<link rel="icon" href="../assets/favicon.ico">
+<link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800;900&family=Archivo:wght@300;400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,12..72,300;1,12..72,300&display=swap" rel="stylesheet">
-<title>القَلَم الاصطناعي · Stilus Ingenium — هندسة برمجيات بإتقان الحِرفة</title>
-<meta name="description" content="شركة القَلَم الاصطناعي (Stilus Ingenium) — بيت خبرة سعودي في المدينة المنورة يصمّم ويبني الأنظمة والمنصّات والتطبيقات. حيث تلتقي الحِرفة بالشيفرة.">
-<meta property="og:title" content="القَلَم الاصطناعي · Stilus Ingenium">
-<meta property="og:description" content="هندسة برمجيات بإتقان الحِرفة — أنظمة ومنصّات وتطبيقات تُبنى لتدوم.">
-<meta property="og:url" content="https://stilus-ingenium.com">
-<meta property="og:type" content="website">
-<link rel="canonical" href="https://stilus-ingenium.com/">
+<title>Stilus Ingenium — Software engineered with a craftsman's hand</title>
+<meta property="og:title" content="Stilus Ingenium">
+<meta property="og:image" content="https://stilus-ingenium.com/assets/og.png">
+<link rel="canonical" href="https://stilus-ingenium.com/en/">
 <link rel="alternate" hreflang="ar" href="https://stilus-ingenium.com/">
 <link rel="alternate" hreflang="en" href="https://stilus-ingenium.com/en/">
-<meta property="og:image" content="https://stilus-ingenium.com/assets/og.png">
+<meta name="description" content="Stilus Ingenium is a Saudi software house in Madinah. We design and build systems, platforms and mobile apps — where craft meets code.">
 <style>
 :root{--ink:#0A0A0A;--parchment:#FAF7F2;--saffron:#C8A24B;--brass:#B89765;--charcoal:#1F2125;
   --muted:#6f6a60;--line:rgba(10,10,10,.1);
-  --arabic:'Tajawal',sans-serif;--latin:'Archivo',sans-serif;--serif:'Newsreader',serif}
+  --arabic:'Archivo','Tajawal',sans-serif;--latin:'Archivo',sans-serif;--serif:'Newsreader',serif}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{background:var(--parchment);color:var(--ink);font-family:var(--arabic);
@@ -37,6 +34,8 @@ body{background:var(--parchment);color:var(--ink);font-family:var(--arabic);
 .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:var(--ink)}
 .brand img{width:44px;height:44px}
 .brand .ar{font-weight:800;font-size:18px;letter-spacing:.01em}
+.brand .ar-sub{font-family:'Tajawal',sans-serif;direction:rtl;font-weight:700;font-size:12.5px;
+  letter-spacing:0;color:var(--muted);margin-top:1px;display:inline-block}
 .brand .en{font-family:var(--latin);direction:ltr;font-size:9.5px;letter-spacing:.32em;
   text-transform:uppercase;color:var(--muted);margin-top:1px}
 .links{display:flex;align-items:center;gap:34px}
@@ -50,6 +49,8 @@ body{background:var(--parchment);color:var(--ink);font-family:var(--arabic);
   text-transform:uppercase;color:var(--ink);text-decoration:none;border:1px solid var(--ink);
   padding:7px 16px;border-radius:100px;transition:all .25s}
 .lang:hover{background:var(--ink);color:var(--parchment)}
+.lang.ar-pill{font-family:'Tajawal',sans-serif;direction:rtl;letter-spacing:0;text-transform:none;
+  font-size:13.5px;font-weight:700;padding:5px 16px}
 .burger{display:none;background:none;border:0;cursor:pointer;width:30px;height:22px;position:relative}
 .burger span{position:absolute;inset-inline:0;height:2px;background:var(--ink);transition:.3s}
 .burger span:nth-child(1){top:0}.burger span:nth-child(2){top:10px}.burger span:nth-child(3){top:20px}
@@ -59,8 +60,8 @@ body{background:var(--parchment);color:var(--ink);font-family:var(--arabic);
 .kicker{font-size:13.5px;font-weight:500;letter-spacing:.05em;color:var(--muted);
   display:flex;align-items:center;gap:12px;margin-bottom:34px}
 .kicker::before{content:"";width:38px;height:1px;background:var(--brass)}
-h1.display{font-weight:800;font-size:clamp(36px,5.4vw,72px);line-height:1.3;
-  letter-spacing:-.01em;max-width:28ch}
+h1.display{font-weight:800;font-size:clamp(38px,5vw,68px);line-height:1.18;
+  letter-spacing:-.01em;max-width:22ch}
 h1.display .gold-dot{display:inline-block;width:.14em;height:.14em;border-radius:50%;
   background:var(--saffron);margin-inline-start:.08em}
 .hero .sub{font-size:clamp(16px,1.6vw,20px);color:var(--charcoal);max-width:52ch;
@@ -171,30 +172,29 @@ footer{padding:64px 0 46px}
 <nav class="nav">
   <div class="wrap row">
     <a class="brand" href="#top">
-      <img src="assets/stilus-mark.svg" alt="شعار القلم الاصطناعي">
-      <span><span class="ar">القَلَم الاصطناعي</span><br><span class="en">Stilus Ingenium</span></span>
+      <img src="../assets/stilus-mark.svg" alt="Stilus Ingenium mark">
+      <span><span class="ar" style="font-family:var(--latin);letter-spacing:.06em">STILUS INGENIUM</span><br><span class="ar-sub">القَلَم الاصطناعي</span></span>
     </a>
     <div class="links">
-      <a href="#what">ما نصنع</a>
-      <a href="#hadher">حاضر</a>
-      <a href="#approach">منهجنا</a>
-      <a href="#about">من نحن</a>
-      <a href="#contact">تواصل</a>
-      <a class="lang" href="en/index.html">EN</a>
+      <a href="#what">What we build</a>
+      <a href="#hadher">Hadher</a>
+      <a href="#about">Company</a>
+      <a href="#contact">Contact</a>
+      <a class="lang ar-pill" href="../index.html">عربي</a>
     </div>
-    <button class="burger" aria-label="القائمة"><span></span><span></span><span></span></button>
+    <button class="burger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
 <header class="hero" id="top">
   <div class="wrap">
-    <div class="kicker rv">بيت خبرة سعودي لهندسة البرمجيات · المدينة المنورة</div>
-    <h1 class="display rv">برمجياتٌ تُصاغ بعناية الحِرفي،<br>وتُهندَس بدقّة الآلة<span class="gold-dot"></span></h1>
-    <p class="sub rv">نصمّم ونبني الأنظمة والمنصّات والتطبيقات للجهات التي تأخذ التقنية بجدّية —
-      من الفكرة الأولى إلى التشغيل الكامل، بمعايير لا تعرف أنصاف الحلول.</p>
+    <div class="kicker rv">A Saudi software house · Madinah, Saudi Arabia</div>
+    <h1 class="display rv">Software shaped by a craftsman's hand, engineered with machine precision<span class="gold-dot"></span></h1>
+    <p class="sub rv">We design and build systems, platforms and mobile applications for organisations
+      that take technology seriously — from first idea to full operation, with no half measures.</p>
     <div class="cta-row rv">
-      <a class="btn" href="#contact">ابدأ مشروعك <span class="arr">←</span></a>
-      <a class="ghost" href="#what">اطّلع على ما نصنع</a>
+      <a class="btn" href="#contact">Start a project <span class="arr" style="display:inline-block;transform:scaleX(-1)">←</span></a>
+      <a class="ghost" href="#what">See what we build</a>
     </div>
     <div class="tag-en rv">Where craft meets code.</div>
   </div>
@@ -202,36 +202,29 @@ footer{padding:64px 0 46px}
 
 <div class="band">
   <div class="wrap">
-    <p class="q rv">نؤمن أن البرمجية الجيّدة تُكتب كما يُكتب النصّ الخالد:
-      بصبر، وبأدوات حادّة، وبيدٍ لا ترتجف. <em>— Stilus Ingenium</em></p>
+    <p class="q rv" style="font-family:var(--serif);font-weight:300;font-style:italic">
+      Good software is written the way enduring prose is written — patiently,
+      with sharp tools, and a steady hand. <em>— Stilus Ingenium</em></p>
     <div class="src rv">Our Conviction</div>
   </div>
 </div>
 
 <section class="block" id="what">
   <div class="wrap">
-    <div class="sec-head rv">
-      <h2>ما نصنع</h2><span class="no">What we build · 01</span>
-    </div>
+    <div class="sec-head rv"><h2>What we build</h2><span class="no">01</span></div>
     <div class="svc">
-      <div class="cell rv"><div class="num">01</div>
-        <h3>أنظمة مؤسسية حسب الطلب</h3>
-        <p>أنظمة تشغيل وإدارة تُبنى حول واقع منشأتك — لا قوالب جاهزة. من إدارة الموارد إلى لوحات القرار.</p></div>
-      <div class="cell rv"><div class="num">02</div>
-        <h3>منصّات رقمية ومتاجر</h3>
-        <p>منصّات ويب متكاملة بتجربة استخدام مدروسة، تُبنى لتتحمّل النموّ وتخدم أهداف العمل.</p></div>
-      <div class="cell rv"><div class="num">03</div>
-        <h3>تطبيقات الجوال</h3>
-        <p>تطبيقات iOS وAndroid من قاعدة شيفرة واحدة، بأداءٍ أصيل وتصميم يُحترم.</p></div>
-      <div class="cell rv"><div class="num">04</div>
-        <h3>الأنظمة المتكاملة API</h3>
-        <p>واجهات برمجية موثّقة وآمنة تربط أنظمتك ببعضها وبشركائك دون احتكاك.</p></div>
-      <div class="cell rv"><div class="num">05</div>
-        <h3>استشارات تقنية</h3>
-        <p>خبرة استشارية في البنية والاختيارات التقنية وإدارة المرافق الحاسوبية — قبل أن تستثمر، لا بعده.</p></div>
-      <div class="cell rv"><div class="num">06</div>
-        <h3>تشغيل ودعم مستمر</h3>
-        <p>لا نسلّم ونغيب؛ نراقب ونحدّث ونطوّر، ليبقى النظام حيّاً بعد الإطلاق.</p></div>
+      <div class="cell rv"><div class="num">01</div><h3>Bespoke enterprise systems</h3>
+        <p>Operating and management systems built around your reality — never off-the-shelf templates.</p></div>
+      <div class="cell rv"><div class="num">02</div><h3>Digital platforms</h3>
+        <p>Full web platforms with considered UX, built to absorb growth and serve the business.</p></div>
+      <div class="cell rv"><div class="num">03</div><h3>Mobile applications</h3>
+        <p>iOS and Android from a single codebase, with native-grade performance and respectful design.</p></div>
+      <div class="cell rv"><div class="num">04</div><h3>APIs &amp; integrations</h3>
+        <p>Documented, secure interfaces that connect your systems to each other and to your partners.</p></div>
+      <div class="cell rv"><div class="num">05</div><h3>Technology consulting</h3>
+        <p>Advisory on architecture and technology choices — before you invest, not after.</p></div>
+      <div class="cell rv"><div class="num">06</div><h3>Operation &amp; support</h3>
+        <p>We don't ship and vanish. We monitor, update and evolve — the system stays alive after launch.</p></div>
     </div>
   </div>
 </section>
@@ -240,51 +233,34 @@ footer{padding:64px 0 46px}
   <div class="wrap">
     <div class="product rv">
       <div>
-        <div class="pk">Our Product · حاضر</div>
-        <h3>حاضر — إدارة الحضور والقوى العاملة، بلا تعقيد</h3>
-        <p>منتجنا الأول: نظام متكامل لإدارة الحضور والإجازات والورديات والتقارير،
-          بتطبيق جوال للموظف ولوحة تحكّم للإدارة. صُنع للمنشآت السعودية الصغيرة والمتوسطة.</p>
+        <div class="pk">Our Product</div>
+        <h3>Hadher — attendance &amp; workforce management, minus the complexity</h3>
+        <p>Our first product: attendance, leave, shifts and reporting in one system —
+          a mobile app for staff, a control panel for management. Built for Saudi SMEs.</p>
         <div class="mini">
-          <div><b>تطبيق جوال</b>للموظف والمدير</div>
-          <div><b>لوحة إدارة</b>تقارير وقرارات</div>
-          <div><b>ورديات وإجازات</b>بمرونة كاملة</div>
+          <div><b>Mobile app</b>for staff &amp; managers</div>
+          <div><b>Admin panel</b>reports &amp; decisions</div>
+          <div><b>Shifts &amp; leave</b>fully flexible</div>
         </div>
       </div>
-      <div class="pin"><img src="assets/hadher-pin.png" alt="حاضر" style="width:150px;height:auto"></div>
-    </div>
-  </div>
-</section>
-
-<section class="block" id="approach" style="padding-top:0">
-  <div class="wrap">
-    <div class="sec-head rv"><h2>منهجنا</h2><span class="no">Approach · 02</span></div>
-    <div class="appr">
-      <div class="it rv"><div class="bar"></div>
-        <h3>إتقانٌ لا يساوم</h3>
-        <p>التفاصيل الصغيرة هي المنتج. نراجع، ونختبر، ونعيد — حتى يخرج العمل كما يجب أن يكون.</p></div>
-      <div class="it rv"><div class="bar"></div>
-        <h3>وضوحٌ في كل مرحلة</h3>
-        <p>نطاق مكتوب، وتسعير شفّاف، وتقدّم مرئي. تعرف أين مشروعك في كل لحظة، ولا مفاجآت.</p></div>
-      <div class="it rv"><div class="bar"></div>
-        <h3>شراكة تتجاوز التسليم</h3>
-        <p>نجاح النظام يُقاس بعد إطلاقه. نبقى قريبين: تشغيلاً، ودعماً، وتطويراً مستمراً.</p></div>
+      <div class="pin"><img src="../assets/hadher-pin.png" alt="Hadher" style="width:150px;height:auto"></div>
     </div>
   </div>
 </section>
 
 <section class="block" id="about" style="padding-top:0">
   <div class="wrap">
-    <div class="sec-head rv"><h2>من نحن</h2><span class="no">The Company · 03</span></div>
+    <div class="sec-head rv"><h2>The company</h2><span class="no">02</span></div>
     <div class="about">
-      <p class="lead rv">شركة سعودية متخصّصة في نشر البرمجيات وهندستها والاستشارات التقنية،
-        مقرّها المدينة المنورة. تأسست عام ٢٠٢٦ على قناعة واحدة:
-        السوق لا ينقصه مَن يكتب الشيفرة — ينقصه مَن يُتقنها.</p>
+      <p class="lead rv">A Saudi company specialised in software publishing, engineering and technology
+        consulting, headquartered in Madinah. Founded in 2026 on a single conviction:
+        the market doesn't lack people who write code — it lacks people who master it.</p>
       <div>
         <div class="facts rv">
-          <div><div class="k">الاسم التجاري</div><div class="v">القَلَم الاصطناعي · Stilus Ingenium</div></div>
-          <div><div class="k">المقر الرئيسي</div><div class="v">المدينة المنورة، السعودية</div></div>
-          <div><div class="k">السجل التجاري</div><div class="v en-l">7054527390</div></div>
-          <div><div class="k">الكيان</div><div class="v">شركة ذات مسؤولية محدودة</div></div>
+          <div><div class="k">Brand</div><div class="v">Stilus Ingenium</div></div>
+          <div><div class="k">Headquarters</div><div class="v">Madinah, Saudi Arabia</div></div>
+          <div><div class="k">Commercial registration</div><div class="v">7054527390</div></div>
+          <div><div class="k">Entity</div><div class="v">Limited Liability Company</div></div>
         </div>
       </div>
     </div>
@@ -294,13 +270,13 @@ footer{padding:64px 0 46px}
 <section class="block" id="contact" style="padding-top:0">
   <div class="wrap">
     <div class="contact rv">
-      <h2>مشروعك القادم يستحق<br>أن يُكتب بقلمٍ مُتقن</h2>
+      <h2>Your next project deserves<br>a masterful pen</h2>
       <a class="em" href="mailto:dev@stilus-ingenium.com">dev@stilus-ingenium.com</a>
       <div class="ph">
-        <div>الرئيس التنفيذي · CEO<br><b><a href="tel:+966503410032">+966 50 341 0032</a></b></div>
-        <div>المدير العام · COO<br><b><a href="tel:+966596903662">+966 59 690 3662</a></b></div>
-        <div>الرئيس التقني · CTO<br><b><a href="tel:+966501279177">+966 50 127 9177</a></b></div>
-        <div>شريك مؤسس · Co-founder<br><b><a href="tel:+966554249361">+966 55 424 9361</a></b></div>
+        <div>Chief Executive Officer<br><b><a href="tel:+966503410032">+966 50 341 0032</a></b></div>
+        <div>General Manager · COO<br><b><a href="tel:+966596903662">+966 59 690 3662</a></b></div>
+        <div>Chief Technology Officer<br><b><a href="tel:+966501279177">+966 50 127 9177</a></b></div>
+        <div>Co-founder<br><b><a href="tel:+966554249361">+966 55 424 9361</a></b></div>
       </div>
     </div>
   </div>
@@ -309,13 +285,13 @@ footer{padding:64px 0 46px}
 <footer>
   <div class="wrap">
     <div class="f-row">
-      <div class="f-brand"><img src="assets/stilus-mark.svg" alt=""><span>Stilus Ingenium</span></div>
+      <div class="f-brand"><img src="../assets/stilus-mark.svg" alt=""><span>Stilus Ingenium</span></div>
       <div class="links" style="position:static;transform:none;padding:0;border:0;background:none;flex-direction:row">
-        <a href="#what">ما نصنع</a><a href="#about">من نحن</a><a href="#contact">تواصل</a><a class="lang" href="en/index.html">EN</a>
+        <a href="#what">What we build</a><a href="#about">Company</a><a href="#contact">Contact</a><a class="lang ar-pill" href="../index.html">عربي</a>
       </div>
     </div>
     <div class="hr" style="margin-top:34px"></div>
-    <div class="f-legal">شركة القلم الإصطناعي للتقنيات — سجل تجاري 7054527390 — المدينة المنورة، المملكة العربية السعودية<br>
+    <div class="f-legal">alqalam alisnaai Company For Technologies — CR 7054527390 — Madinah, Saudi Arabia<br>
       <span class="en-l">© 2026 Stilus Ingenium. All rights reserved.</span></div>
   </div>
 </footer>
