@@ -18,6 +18,61 @@
 <link rel="alternate" hreflang="ar" href="https://stilus-ingenium.com/">
 <link rel="alternate" hreflang="en" href="https://stilus-ingenium.com/en/">
 <meta property="og:image" content="https://stilus-ingenium.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="القَلَم الاصطناعي · Stilus Ingenium">
+<meta property="og:site_name" content="القَلَم الاصطناعي · Stilus Ingenium">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="القَلَم الاصطناعي · Stilus Ingenium — هندسة برمجيات بإتقان الحِرفة">
+<meta name="twitter:description" content="بيت خبرة سعودي في المدينة المنورة يصمّم ويبني الأنظمة والمنصّات وتطبيقات الجوال. حيث تلتقي الحِرفة بالشيفرة.">
+<meta name="twitter:image" content="https://stilus-ingenium.com/assets/og.png">
+<meta name="twitter:image:alt" content="القَلَم الاصطناعي · Stilus Ingenium">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<meta name="theme-color" content="#0A0A0A">
+<meta name="author" content="القَلَم الاصطناعي · Stilus Ingenium">
+<meta name="keywords" content="القلم الاصطناعي, Stilus Ingenium, شركة برمجة, تطوير برمجيات, تصميم تطبيقات, تطبيقات جوال, برمجة مواقع, المدينة المنورة, السعودية, software house, Saudi Arabia, Madinah">
+<link rel="alternate" hreflang="x-default" href="https://stilus-ingenium.com/">
+<link rel="sitemap" type="application/xml" href="https://stilus-ingenium.com/sitemap.xml">
+<script type="application/ld+json">
+{
+"@context":"https://schema.org",
+"@graph":[
+{
+"@type":["Organization","ProfessionalService"],
+"@id":"https://stilus-ingenium.com/#org",
+"name":"القَلَم الاصطناعي",
+"alternateName":["Stilus Ingenium","Al-Qalam Al-Istinai","القلم الاصطناعي"],
+"url":"https://stilus-ingenium.com/",
+"logo":"https://stilus-ingenium.com/assets/apple-touch-icon.png",
+"image":"https://stilus-ingenium.com/assets/og.png",
+"email":"dev@stilus-ingenium.com",
+"description":"بيت خبرة سعودي في المدينة المنورة يصمّم ويبني الأنظمة والمنصّات وتطبيقات الجوال للجهات الجادّة في تقنيتها — حيث تلتقي الحِرفة بالشيفرة.",
+"slogan":"حيث تلتقي الحِرفة بالشيفرة",
+"address":{"@type":"PostalAddress","addressLocality":"المدينة المنورة","addressRegion":"منطقة المدينة المنورة","addressCountry":"SA"},
+"areaServed":{"@type":"Country","name":"المملكة العربية السعودية"},
+"knowsAbout":["هندسة البرمجيات","تطوير الويب","تطبيقات الجوال","واجهات برمجة التطبيقات API","الاستشارات التقنية","المتاجر الإلكترونية"],
+"hasOfferCatalog":{"@type":"OfferCatalog","name":"خدمات القَلَم الاصطناعي","itemListElement":[
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"الأنظمة والمنصّات والتطبيقات"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"منصّات رقمية ومتاجر"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"تطبيقات الجوال iOS و Android"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"الأنظمة المتكاملة وواجهات API"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"الاستشارات التقنية"}},
+{"@type":"Offer","itemOffered":{"@type":"Service","name":"التشغيل والدعم المستمر"}}
+]}
+},
+{
+"@type":"WebSite",
+"@id":"https://stilus-ingenium.com/#website",
+"url":"https://stilus-ingenium.com/",
+"name":"القَلَم الاصطناعي · Stilus Ingenium",
+"inLanguage":"ar",
+"publisher":{"@id":"https://stilus-ingenium.com/#org"}
+}
+]
+}
+</script>
 <style>
 :root{--ink:#0A0A0A;--parchment:#FAF7F2;--saffron:#C8A24B;--brass:#B89765;--charcoal:#1F2125;
   --muted:#6f6a60;--line:rgba(10,10,10,.1);
@@ -265,7 +320,7 @@ h1.display .w{display:inline-block;opacity:0;transform:translateY(.35em);
 @media(max-width:980px){
   .svc{grid-template-columns:1fr 1fr}.svc .cell:not(:nth-child(3n)){border-inline-end:0}
   .svc .cell:nth-child(odd){border-inline-end:1px solid var(--line)}
-  
+
   .product{grid-template-columns:1fr;padding:60px 40px}.product .pin{display:none}
   .about{grid-template-columns:1fr;gap:50px}.appr{grid-template-columns:1fr;gap:40px}
   .contact{padding:70px 34px}}
@@ -575,14 +630,15 @@ window.addEventListener('resize', function(){clearTimeout(window.__bt); window._
   function reveal(){ iv.classList.add('done'); document.body.classList.remove('si-intro'); setTimeout(function(){ iv.remove(); },900); }
   function runLoader(){
     iv.classList.remove('introMode'); iv.classList.add('loading');
-    var stopped=false;
+    var stopped=false, t0=Date.now();
     (function cycle(){
       if(stopped)return;
       dots.forEach(function(x){x.style.opacity=0;x.style.transform='scale(.3)';}); nibTo(0,false);
       var i=0;
       (function place(){
         if(stopped)return;
-        if(i>=dots.length){ setTimeout(function(){ if(ready){ stopped=true; reveal(); } else cycle(); },420); return; }
+        if(ready&&Date.now()-t0>650){ stopped=true; reveal(); return; }
+        if(i>=dots.length){ setTimeout(function(){ if(stopped)return; if(ready&&Date.now()-t0>650){ stopped=true; reveal(); } else cycle(); },300); return; }
         nibTo(i,false);
         setTimeout(function(){ if(!stopped) nibTo(i,true); },130);
         setTimeout(function(){ if(!stopped){ dots[i].style.opacity=1; dots[i].style.transform='scale(1)'; } },250);
@@ -599,7 +655,7 @@ window.addEventListener('resize', function(){clearTimeout(window.__bt); window._
     setTimeout(function(){ iv.classList.add('inked'); },1400);
     setTimeout(function(){ iv.classList.remove('go'); iv.classList.remove('inked'); done(); },2350);
   }
-  if(playIntro){ runLogo(reveal); } else { iv.remove(); document.body.classList.remove("si-intro"); }
+  if(playIntro){ runLogo(reveal); } else { runLoader(); }
 })();
 /* قلم التقدم */
 (function(){
@@ -642,4 +698,6 @@ window.addEventListener('resize', function(){clearTimeout(window.__bt); window._
 })();
 
 </script>
-<script>(function(){var c=document.querySelector("#hadher .product");if(!c)return;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;c.classList.add("hd-armed");var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){c.classList.add("hd-draw");io.disconnect();}})},{threshold:0.3})
+<script>(function(){var c=document.querySelector("#hadher .product");if(!c)return;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;c.classList.add("hd-armed");var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){c.classList.add("hd-draw");io.disconnect();}})},{threshold:0.3});io.observe(c);})();</script>
+</body>
+</html>

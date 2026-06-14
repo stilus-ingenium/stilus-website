@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 Disallow: /p/
 Disallow: /t/
+
+Sitemap: https://stilus-ingenium.com/sitemap.xml
