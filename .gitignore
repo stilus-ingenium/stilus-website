@@ -1,0 +1,12 @@
+# حماية المشروع الداخلي من النشر العام (باكاند/أسرار/عروض/تسعير)
+Lavera-Project/
+
+# أسرار
+*.env
+.env
+**/.env
+
+# نظام
+.DS_Store
+Thumbs.db
+node_modules/
