@@ -200,19 +200,22 @@ footer{padding:64px 0 46px}
 .hero{position:relative}
 .hero .wrap{position:relative;z-index:1}
 .hero-art{position:absolute;inset-inline-end:3%;top:50%;transform:translateY(-50%);
-  width:min(38vw,540px);aspect-ratio:1;pointer-events:none;z-index:0}
+  width:min(38vw,540px);aspect-ratio:1;pointer-events:none;z-index:1}
 .hero-art svg{width:100%;height:100%}
 .hero-art .thread{fill:none;stroke:#B89765;stroke-width:1.1;stroke-linecap:round;
   stroke-dasharray:1500;stroke-dashoffset:1500;animation:inkdraw 13s ease-in-out infinite alternate}
 .hero-art .t2{animation-duration:21s;opacity:.65}
 .hero-art .t3{animation-duration:34s;opacity:.4}
-.hero-art .phi{fill:none;stroke:#B89765;stroke-width:.8;opacity:.13}
+.hero-art .phi{fill:none;stroke:var(--saffron);stroke-width:1.4;opacity:.55;stroke-linecap:round;
+  stroke-dasharray:1300;stroke-dashoffset:1300;animation:phiDraw 11s ease-in-out infinite alternate}
 .hero-art .dotg{transform-origin:415px 145px;animation:breathe 6s ease-in-out infinite}
 .hero-art .halo{fill:none;stroke:#C8A24B;opacity:.22}
 @keyframes inkdraw{from{stroke-dashoffset:1500}to{stroke-dashoffset:0}}
 @keyframes breathe{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.08);opacity:1}}
+@keyframes phiDraw{from{stroke-dashoffset:1300}to{stroke-dashoffset:0}}
 @media (prefers-reduced-motion: reduce){
   .hero-art .thread{animation:none;stroke-dashoffset:0}
+  .hero-art .phi{animation:none;stroke-dashoffset:0}
   .hero-art .dotg{animation:none}}
 @media(max-width:980px){.hero-art{display:none}}
 
@@ -365,6 +368,50 @@ h1.display .w{display:inline-block;opacity:0;transform:translateY(.35em);
 .product>div{position:relative;z-index:1}
 #hadher .product{overflow:hidden}#hadher .product .ptext,#hadher .product .pin{position:relative;z-index:2}#hadher .product .ptext{grid-column:1}#hadher .product .pin{grid-column:2}.ptext{background:rgba(13,18,30,.38);-webkit-backdrop-filter:blur(11px);backdrop-filter:blur(11px);border:0;border-radius:20px;padding:30px 34px;box-shadow:0 0 48px 30px rgba(13,18,30,.28)}.hd-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;z-index:0;pointer-events:none}#hadher .product .frieze{position:absolute;left:0;right:0;bottom:0;z-index:1;height:322px;overflow:hidden;pointer-events:none;direction:ltr}.marq-track{display:flex;direction:ltr;align-items:flex-end;gap:24px;width:max-content;height:100%;animation:marquee 40s linear infinite;will-change:transform}@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}.lm{position:relative;flex:0 0 auto}.lm img{display:block;height:100%;width:auto}.lm .dot{position:absolute;top:-11px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:#D9A93F;opacity:.9}.lm .dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.3px solid #D9A93F;opacity:0;animation:lmping 2.8s ease-out infinite}@keyframes lmping{0%{transform:scale(.5);opacity:.7}70%{opacity:0}100%{transform:scale(2.4);opacity:0}}@media(max-width:760px){#hadher .product{padding-bottom:262px}.lm.l1{height:104px!important}.lm.l2{height:120px!important}.lm.l3{height:170px!important}.lm.l4{height:120px!important}.lm.l5{height:152px!important}.lm.l6{height:178px!important}.lm.l7{height:150px!important}.lm.l8{height:200px!important}.lm.l9{height:188px!important}.ptext{backdrop-filter:none;-webkit-backdrop-filter:none;background:none;border:0;padding:0}#hadher .product .frieze{height:248px}.marq-track{gap:14px;animation-duration:26s}}#hadher .product .stars{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}.stars svg{width:100%;height:100%;display:block}.stars-g{animation:stardrift 24s ease-in-out infinite}.stars circle{opacity:var(--o);animation-name:twinkle;animation-timing-function:ease-in-out;animation-iteration-count:infinite}@keyframes twinkle{0%,100%{opacity:calc(var(--o)*.25)}50%{opacity:var(--o)}}@keyframes stardrift{0%,100%{transform:translateX(0)}50%{transform:translateX(-46px)}}.stars-g2{animation:stardrift2 16s ease-in-out infinite}@keyframes stardrift2{0%,100%{transform:translateX(0)}50%{transform:translateX(56px)}}@media (prefers-reduced-motion:reduce){.stars circle{animation:none}.stars-g,.stars-g2{animation:none}}.ground{position:absolute;left:0;right:0;bottom:0;height:70px;z-index:0;pointer-events:none;background:linear-gradient(to top,rgba(184,151,101,.16),rgba(184,151,101,.04) 40%,transparent)}.ground::after{content:"";position:absolute;left:4%;right:4%;bottom:0;height:1.6px;background:linear-gradient(90deg,transparent,rgba(200,162,75,.85),rgba(217,169,63,.95),rgba(200,162,75,.85),transparent)}.marq-track{position:relative;z-index:1}.hd-bg{opacity:1}@media (prefers-reduced-motion:reduce){.marq-track{animation:none}}.hd-pen{display:none}.lm .dot{opacity:1}}
 @media(max-width:760px){.hd-base{width:96%;opacity:.7}}
+
+/* ===== شبكة هندسية حيّة في شريط القناعة (يمين) ===== */
+.band-mesh{position:absolute;top:0;bottom:0;right:0;width:min(60%,680px);z-index:0;pointer-events:none;
+  overflow:hidden;opacity:.95;
+  -webkit-mask-image:linear-gradient(to left,#000 52%,transparent 100%);
+  mask-image:linear-gradient(to left,#000 52%,transparent 100%)}
+.band-mesh svg{width:100%;height:100%;display:block}
+.hm-lattice{transform-origin:center;animation:hmDrift 44s ease-in-out infinite}
+@keyframes hmDrift{0%,100%{transform:translate(0,0)}50%{transform:translate(-28px,-20px)}}
+.hm-edge{stroke:var(--brass);stroke-width:1;fill:none;opacity:.3;
+  stroke-linecap:round;stroke-dasharray:5 13;animation:hmFlow 7s linear infinite}
+@keyframes hmFlow{to{stroke-dashoffset:-144}}
+.hm-node{fill:var(--saffron);animation:hmTwinkle 4.6s ease-in-out infinite}
+.hm-node:hover{}
+@keyframes hmTwinkle{0%,100%{opacity:.45}50%{opacity:1}}
+.hm-halo{fill:none;stroke:var(--saffron);stroke-width:1.1;
+  transform-box:fill-box;transform-origin:center;animation:hmPing 3.4s ease-out infinite}
+@keyframes hmPing{0%{transform:scale(.45);opacity:.6}70%{opacity:0}100%{transform:scale(2.7);opacity:0}}
+@media (prefers-reduced-motion:reduce){
+  .hm-lattice,.hm-edge,.hm-node,.hm-halo{animation:none}
+  .hm-edge{stroke-dasharray:none;opacity:.22}
+  .hm-node{opacity:.85}.hm-halo{opacity:0}}
+@media(max-width:760px){.band-mesh{width:78%;opacity:.7}}
+
+/* ===== تحسينات الجوال (إضافة) ===== */
+/* البرغر يتحوّل إلى X عند الفتح */
+.burger span{transform-origin:center}
+.burger.open span:nth-child(1){top:10px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:10px;transform:rotate(-45deg)}
+/* قفل تمرير الخلفية أثناء فتح القائمة */
+body.menu-open{overflow:hidden}
+/* هواتف صغيرة: هوامش أوسع للقراءة + بطاقات أقل حشواً جانبياً */
+@media(max-width:480px){
+  .wrap{padding:0 20px}
+  h1.display{font-size:clamp(30px,8.4vw,46px)}
+  .band .q{font-size:clamp(22px,6.6vw,42px)}
+  section.block{padding:74px 0}
+  .product{padding:48px 24px}
+  #hadher .product{padding:48px 24px 248px}
+  .contact{padding:60px 26px}
+  .btn,.ghost{font-size:15px}
+  .cta-row{gap:16px;margin-top:42px}
+}
 </style>
 </head>
 <body>
@@ -436,6 +483,49 @@ h1.display .w{display:inline-block;opacity:0;transform:translateY(.35em);
 </header>
 
 <div class="band">
+  <div class="band-mesh" aria-hidden="true">
+<svg viewBox="0 0 1000 560" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+<defs><pattern id="hmGrid" width="86" height="86" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="86" height="86" fill="none"/><path d="M43 6 L80 43 L43 80 L6 43 Z" fill="none" stroke="var(--brass)" stroke-width="0.7" opacity="0.22"/><circle cx="43" cy="43" r="1.1" fill="var(--brass)" opacity="0.22"/></pattern></defs>
+<g class="hm-lattice"><rect x="-120" y="-120" width="1240" height="800" fill="url(#hmGrid)"/></g>
+<g class="hm-net">
+<line class="hm-edge" x1="520" y1="120" x2="620" y2="250" style="animation-delay:-4.62s"/>
+<line class="hm-edge" x1="520" y1="120" x2="700" y2="160" style="animation-delay:-4.83s"/>
+<line class="hm-edge" x1="620" y1="250" x2="560" y2="400" style="animation-delay:-5.04s"/>
+<line class="hm-edge" x1="620" y1="250" x2="700" y2="160" style="animation-delay:-5.25s"/>
+<line class="hm-edge" x1="560" y1="400" x2="470" y2="470" style="animation-delay:-5.46s"/>
+<line class="hm-edge" x1="560" y1="400" x2="640" y2="500" style="animation-delay:-5.67s"/>
+<line class="hm-edge" x1="700" y1="160" x2="780" y2="300" style="animation-delay:-5.88s"/>
+<line class="hm-edge" x1="700" y1="160" x2="860" y2="120" style="animation-delay:-6.09s"/>
+<line class="hm-edge" x1="780" y1="300" x2="720" y2="440" style="animation-delay:-6.30s"/>
+<line class="hm-edge" x1="780" y1="300" x2="860" y2="120" style="animation-delay:-6.51s"/>
+<line class="hm-edge" x1="780" y1="300" x2="910" y2="260" style="animation-delay:-6.72s"/>
+<line class="hm-edge" x1="780" y1="300" x2="840" y2="400" style="animation-delay:-6.93s"/>
+<line class="hm-edge" x1="780" y1="300" x2="900" y2="470" style="animation-delay:-7.14s"/>
+<line class="hm-edge" x1="720" y1="440" x2="840" y2="400" style="animation-delay:-7.35s"/>
+<line class="hm-edge" x1="720" y1="440" x2="640" y2="500" style="animation-delay:-7.56s"/>
+<line class="hm-edge" x1="720" y1="440" x2="900" y2="470" style="animation-delay:-7.77s"/>
+<line class="hm-edge" x1="860" y1="120" x2="910" y2="260" style="animation-delay:-7.98s"/>
+<line class="hm-edge" x1="910" y1="260" x2="840" y2="400" style="animation-delay:-8.19s"/>
+<line class="hm-edge" x1="840" y1="400" x2="900" y2="470" style="animation-delay:-8.40s"/>
+<line class="hm-edge" x1="470" y1="470" x2="640" y2="500" style="animation-delay:-8.61s"/>
+<circle class="hm-node" cx="520" cy="120" r="3.4" style="animation-delay:-3.24s"/>
+<circle class="hm-halo" cx="620" cy="250" r="7" style="animation-delay:-1.80s"/>
+<circle class="hm-node" cx="620" cy="250" r="2.6" style="animation-delay:-3.51s"/>
+<circle class="hm-node" cx="560" cy="400" r="2.6" style="animation-delay:-3.78s"/>
+<circle class="hm-node" cx="700" cy="160" r="2.6" style="animation-delay:-4.05s"/>
+<circle class="hm-halo" cx="780" cy="300" r="7" style="animation-delay:-3.00s"/>
+<circle class="hm-node" cx="780" cy="300" r="3.4" style="animation-delay:-4.32s"/>
+<circle class="hm-node" cx="720" cy="440" r="2.6" style="animation-delay:-4.59s"/>
+<circle class="hm-node" cx="860" cy="120" r="2.6" style="animation-delay:-4.86s"/>
+<circle class="hm-node" cx="910" cy="260" r="2.6" style="animation-delay:-5.13s"/>
+<circle class="hm-node" cx="840" cy="400" r="3.4" style="animation-delay:-5.40s"/>
+<circle class="hm-halo" cx="470" cy="470" r="7" style="animation-delay:-1.60s"/>
+<circle class="hm-node" cx="470" cy="470" r="2.6" style="animation-delay:-5.67s"/>
+<circle class="hm-node" cx="640" cy="500" r="2.6" style="animation-delay:-5.94s"/>
+<circle class="hm-node" cx="900" cy="470" r="2.6" style="animation-delay:-6.21s"/>
+</g>
+</svg>
+  </div>
   <svg class="orn orn-band orn-spin" viewBox="0 0 400 400" aria-hidden="true"><use href="#siOrn"/></svg>
   <span class="pen-line" aria-hidden="true"><i></i><b></b></span>
   <div class="wrap">
@@ -569,8 +659,15 @@ addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>10),{passi
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const burger=document.querySelector('.burger'),links=document.querySelector('.links');
-if(burger)burger.addEventListener('click',()=>links.classList.toggle('open'));
-document.querySelectorAll('.links a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+function setMenu(open){
+  links.classList.toggle('open',open);
+  if(burger){burger.classList.toggle('open',open);burger.setAttribute('aria-expanded',open);}
+  document.body.classList.toggle('menu-open',open);
+}
+if(burger){burger.setAttribute('aria-expanded','false');
+  burger.addEventListener('click',()=>setMenu(!links.classList.contains('open')));}
+document.querySelectorAll('.links a').forEach(a=>a.addEventListener('click',()=>setMenu(false)));
+addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false);});
 ;
 
 function __lines(el){
