@@ -109,11 +109,15 @@
 
   /* ========== HERO ========== */
   .hero{min-height:100svh;display:flex;align-items:center;text-align:center;position:relative;overflow:hidden;padding:120px 0 90px}
-  .hero-bg{position:absolute;inset:0;z-index:0;background:
-    radial-gradient(60% 50% at 50% 18%,rgba(255,26,108,.20),transparent 70%),
-    radial-gradient(45% 40% at 84% 88%,rgba(255,210,63,.12),transparent 70%),
-    radial-gradient(40% 35% at 12% 70%,rgba(255,26,108,.10),transparent 70%),
-    linear-gradient(180deg,#08080a,#0c0b0f 55%,#08080a)}
+  .hero-photo{position:absolute;inset:0;z-index:0;background:url('images/g1-signature.jpg') center/cover no-repeat;
+    animation:heroKB 30s ease-in-out infinite alternate;will-change:transform}
+  @keyframes heroKB{0%{transform:scale(1.06)}100%{transform:scale(1.2) translate(-2%,-1.5%)}}
+  @media(prefers-reduced-motion:reduce){.hero-photo{animation:none}}
+  .hero-bg{position:absolute;inset:0;z-index:1;background:
+    radial-gradient(60% 50% at 50% 18%,rgba(255,26,108,.22),transparent 70%),
+    radial-gradient(45% 40% at 84% 88%,rgba(255,210,63,.16),transparent 70%),
+    radial-gradient(40% 35% at 12% 70%,rgba(255,26,108,.12),transparent 70%),
+    linear-gradient(180deg,rgba(8,8,10,.74),rgba(12,11,15,.82) 50%,rgba(8,8,10,.95))}
   .hero-bg::after{content:"";position:absolute;inset:0;opacity:.5;
     background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"><circle cx="1.5" cy="1.5" r="1" fill="%23ffffff" fill-opacity="0.05"/></svg>')}
   .hero-watermark{position:absolute;inset:0;z-index:0;display:grid;place-items:center;pointer-events:none}
@@ -253,6 +257,18 @@
   .g-item .lbl small{display:block;font-family:var(--b);font-weight:500;font-size:.7rem;color:var(--gold)}
   .g-item:hover{transform:scale(1.025);border-color:var(--line-2)}
   .g-item:hover .ph{color:var(--pink-200)}
+  /* ---- real photos + Ken Burns motion ---- */
+  .g-item .g-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center;
+    will-change:transform;animation:kenburns 22s ease-in-out infinite alternate}
+  .g-item.has-img::before{opacity:.18}
+  .g-item:nth-child(2) .g-photo{animation-duration:26s;animation-delay:-4s}
+  .g-item:nth-child(3) .g-photo{animation-duration:24s;animation-delay:-9s}
+  .g-item:nth-child(4) .g-photo{animation-duration:28s;animation-delay:-6s}
+  .g-item:nth-child(5) .g-photo{animation-duration:25s;animation-delay:-12s}
+  .g-item:nth-child(6) .g-photo{animation-duration:27s;animation-delay:-3s}
+  .g-item:hover .g-photo{animation-play-state:paused;transform:scale(1.14);transition:transform 1.4s var(--ease)}
+  @keyframes kenburns{0%{transform:scale(1) translate(0,0)}100%{transform:scale(1.12) translate(-1.5%,-1.5%)}}
+  @media(prefers-reduced-motion:reduce){.g-item .g-photo{animation:none}}
   .g1{background:radial-gradient(circle at 40% 35%,#3a1622,#14131a)}
   .g2{background:radial-gradient(circle at 40% 35%,#2c2510,#14131a)}
   .g3{background:radial-gradient(circle at 40% 35%,#16242e,#14131a)}
@@ -427,6 +443,7 @@
 
 <!-- HERO -->
 <section class="hero" id="home">
+  <div class="hero-photo"></div>
   <div class="hero-bg"></div>
   <div class="hero-watermark"><b>1000</b></div>
   <div class="container hero-inner">
@@ -731,16 +748,16 @@
 
   // ===== Gallery =====
   const GAL=[
-    {c:'g1',cls:'big',t:'مضغوط ألف 1000',s:'الطبق المميز'},
-    {c:'g2',t:'دجاج مضغوط',s:'CHICKEN'},
-    {c:'g3',t:'حاشي',s:'MEAT'},
+    {c:'g1',cls:'big',t:'مضغوط ألف 1000',s:'الطبق المميز',img:'images/g1-signature.jpg'},
+    {c:'g2',t:'دجاج مضغوط',s:'CHICKEN',img:'images/g2-chicken.jpg'},
+    {c:'g3',t:'حاشي',s:'MEAT',img:'images/g3-meat.jpg'},
     {c:'g4',t:'حمام',s:'PIGEON'},
-    {c:'g5',t:'سلطات طازجة',s:'SIDES'},
+    {c:'g5',t:'سلطات طازجة',s:'SIDES',img:'images/g5-salads.jpg'},
     {c:'g6',t:'داخل المطعم',s:'INTERIOR'}
   ];
   const camSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>';
   document.getElementById('gallery-grid').innerHTML=GAL.map(g=>
-    `<figure class="g-item ${g.c} ${g.cls||''}"><span class="ph">${camSvg}</span><figcaption class="lbl">${g.t}<small>${g.s}</small></figcaption></figure>`
+    `<figure class="g-item ${g.c} ${g.cls||''}${g.img?' has-img':''}">${g.img?`<div class="g-photo" style="background-image:url('${g.img}')"></div>`:`<span class="ph">${camSvg}</span>`}<figcaption class="lbl">${g.t}<small>${g.s}</small></figcaption></figure>`
   ).join('');
 
   // ===== Header scroll =====
