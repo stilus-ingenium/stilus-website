@@ -48,6 +48,8 @@
 "logo":"https://stilus-ingenium.com/assets/apple-touch-icon.png",
 "image":"https://stilus-ingenium.com/assets/og.png",
 "email":"dev@stilus-ingenium.com",
+"telephone":"+966501279177",
+"contactPoint":{"@type":"ContactPoint","telephone":"+966501279177","email":"dev@stilus-ingenium.com","contactType":"customer service","areaServed":"SA","availableLanguage":["ar","en"]},
 "description":"بيت خبرة سعودي في المدينة المنورة يصمّم ويبني الأنظمة والمنصّات وتطبيقات الجوال للجهات الجادّة في تقنيتها — حيث تلتقي الحِرفة بالشيفرة.",
 "slogan":"حيث تلتقي الحِرفة بالشيفرة",
 "address":{"@type":"PostalAddress","addressLocality":"المدينة المنورة","addressRegion":"منطقة المدينة المنورة","addressCountry":"SA"},
@@ -187,6 +189,11 @@ section.block{padding:144px 0}
   font-size:clamp(17px,2.2vw,26px);color:var(--saffron);text-decoration:none;
   border-bottom:1px solid var(--brass);padding-bottom:6px;transition:opacity .2s}
 .contact .em:hover{opacity:.8}
+.contact .ways{display:flex;gap:30px;justify-content:center;align-items:center;flex-wrap:wrap;margin-top:28px}
+.contact .way{display:inline-flex;align-items:center;gap:9px;color:var(--parchment);text-decoration:none;font-size:15.5px;font-weight:500;opacity:.82;transition:opacity .2s,color .2s}
+.contact .way:hover{opacity:1;color:var(--saffron)}
+.contact .way svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.contact .way .num{font-family:var(--latin);direction:ltr;unicode-bidi:isolate}
 /* footer */
 footer{padding:64px 0 46px}
 .f-row{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
@@ -195,6 +202,11 @@ footer{padding:64px 0 46px}
 .f-brand span{font-family:var(--latin);direction:ltr;font-size:10.5px;letter-spacing:.3em;
   text-transform:uppercase;color:var(--muted)}
 .f-legal{font-size:12.5px;color:var(--muted);text-align:center;margin-top:30px;line-height:2.05}.f-legal span{display:block;unicode-bidi:isolate}.f-legal .cprt{margin-top:13px}.f-legal .en-l{margin-top:3px}
+.f-contact{margin-top:22px;display:flex;gap:15px;justify-content:center;align-items:center;flex-wrap:wrap;font-size:13.5px}
+.f-contact a{color:var(--charcoal);text-decoration:none;transition:color .2s;font-weight:500}
+.f-contact a:hover{color:var(--saffron)}
+.f-contact .num{font-family:var(--latin);direction:ltr;unicode-bidi:isolate}
+.f-contact .sep{color:var(--brass);opacity:.6}
 
 /* ===== الفن الحي: خيوط الحبر والنقطة المتنفسة ===== */
 .hero{position:relative}
@@ -631,6 +643,16 @@ body.menu-open{overflow:hidden}
       <span class="spark s1"></span><span class="spark s2"></span><span class="spark s3"></span>
       <h2 data-bal>مشروعك القادم يستحق قلماً يُتقن الصنعة ويحترم التفاصيل</h2>
       <a class="em" href="mailto:dev@stilus-ingenium.com">dev@stilus-ingenium.com</a>
+      <div class="ways">
+        <a class="way" href="https://wa.me/966501279177" target="_blank" rel="noopener" aria-label="تواصل عبر واتساب">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          <span>واتساب</span>
+        </a>
+        <a class="way" href="tel:+966501279177" aria-label="اتصال هاتفي">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.36 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.34 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <span class="num">+966 50 127 9177</span>
+        </a>
+      </div>
       </div>
   </div>
 </section>
@@ -644,6 +666,13 @@ body.menu-open{overflow:hidden}
       </div>
     </div>
     <div class="hr" style="margin-top:34px"></div>
+    <div class="f-contact">
+      <a href="tel:+966501279177" class="num" aria-label="اتصال هاتفي">+966 50 127 9177</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <a href="https://wa.me/966501279177" target="_blank" rel="noopener">واتساب</a>
+      <span class="sep" aria-hidden="true">·</span>
+      <a href="mailto:dev@stilus-ingenium.com">dev@stilus-ingenium.com</a>
+    </div>
     <div class="f-legal">
       <span>شركة القلم الاصطناعي للتقنيات — سجل تجاري ٧٠٥٤٥٢٧٣٩٠</span>
       <span>المدينة المنورة، المملكة العربية السعودية</span>
@@ -796,5 +825,47 @@ window.addEventListener('resize', function(){clearTimeout(window.__bt); window._
 
 </script>
 <script>(function(){var c=document.querySelector("#hadher .product");if(!c)return;if(matchMedia("(prefers-reduced-motion: reduce)").matches)return;c.classList.add("hd-armed");var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){c.classList.add("hd-draw");io.disconnect();}})},{threshold:0.3});io.observe(c);})();</script>
+<!-- ═══ Atelier — لمسات حديثة (ظهور عند التمرير + عمق)؛ طبقة فوق الأصل، progressive-enhancement تحترم reduced-motion ═══ -->
+<style>
+@media (prefers-reduced-motion: no-preference){
+  body.rvl .rv{opacity:0;transform:translateY(28px);will-change:opacity,transform}
+  body.rvl .rv.in{opacity:1;transform:none;
+    transition:opacity 1.05s cubic-bezier(.16,1,.3,1),transform 1.05s cubic-bezier(.16,1,.3,1)}
+  body.rvl .rv.d1.in{transition-delay:.07s}
+  body.rvl .rv.d2.in{transition-delay:.14s}
+  body.rvl .rv.d3.in{transition-delay:.21s}
+  /* عمق ناعم على بطاقات الخدمات والمقاربة */
+  .svc .cell{transition:background .3s,transform .55s cubic-bezier(.16,1,.3,1),box-shadow .55s cubic-bezier(.16,1,.3,1)}
+  .svc .cell:hover{transform:translateY(-4px);box-shadow:0 26px 50px -30px rgba(10,10,10,.35),inset 0 0 0 1px rgba(200,162,75,.18)}
+  .appr .it{transition:transform .5s cubic-bezier(.16,1,.3,1)}
+  .appr .it:hover{transform:translateY(-3px)}
+  /* صقل الأزرار: لمعة ذهبية خفيفة عند المرور */
+  .btn{position:relative;overflow:hidden}
+  .btn::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(250,247,242,.16),transparent 70%);
+    transform:translateX(-120%);transition:transform .7s cubic-bezier(.16,1,.3,1)}
+  .btn:hover::after{transform:translateX(120%)}
+  /* الروابط في الفقرات: تأكيد ذهبي ألطف */
+  .facts div{transition:background .3s}
+  .facts div:hover{background:rgba(200,162,75,.04)}
+}
+</style>
+<script>
+(function(){
+  if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!('IntersectionObserver' in window)) return;
+  document.body.classList.add('rvl');
+  var sel=['.sec-head','.svc .cell','.appr .it','.about .lead','.facts',
+           '.facts>div','.product','.contact','.band .q','.hero .cta-row','.hero .tag-en'];
+  var els=[];
+  sel.forEach(function(s){document.querySelectorAll(s).forEach(function(e){e.classList.add('rv');els.push(e);});});
+  document.querySelectorAll('.svc .cell').forEach(function(e,i){e.classList.add('d'+((i%3)+1));});
+  document.querySelectorAll('.appr .it').forEach(function(e,i){e.classList.add('d'+((i%3)+1));});
+  document.querySelectorAll('.facts>div').forEach(function(e,i){e.classList.add('d'+((i%3)+1));});
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+  },{threshold:.14,rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e);});
+})();
+</script>
 </body>
 </html>
