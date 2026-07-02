@@ -473,7 +473,6 @@
     .rev-grid{grid-template-columns:1fr}
     .about-grid,.contact-grid{grid-template-columns:1fr}
     .emblem{width:min(420px,86vw);margin-inline:auto;order:-1}
-    .pin{display:none}
     .g-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:150px}
     .nav-links{position:fixed;top:0;bottom:0;inset-inline-end:0;width:min(84%,330px);
       background:var(--bg-3);flex-direction:column;align-items:center;justify-content:flex-start;gap:14px;
@@ -497,7 +496,8 @@
     .rev-badge{flex-direction:column;text-align:center;gap:14px;padding:22px 26px}
     .rev-badge .meta{border-inline-start:none;border-top:1px solid var(--line);padding:14px 0 0}
     .mbar{display:flex}
-    .wa-float{bottom:84px;width:52px;height:52px}
+    .wa-float{bottom:82px;width:46px;height:46px}
+    .wa-float svg{width:26px;height:26px}
     .wa-float .tip{display:none}
     .cart-bar{bottom:86px;inset-inline-end:14px;max-width:calc(100vw - 96px);font-size:.88rem;gap:8px}
     .cart-bar-x{width:32px;height:32px}
@@ -506,19 +506,28 @@
     .dish-foot .qty-ctrl button{width:36px;height:36px}
     .cart-panel{border-radius:22px 22px 0 0;max-height:92svh}
     .otype label{padding:12px 8px;font-size:.86rem}
-    .emblem .emblem-logo{width:66px;height:66px;padding:9px}
+    .emblem{width:min(330px,82vw);background:none;border:none;box-shadow:none;overflow:visible}
+    .emblem .ring{width:100%}
+    .emblem .emblem-photo{width:88%}
+    .emblem .emblem-logo{width:62px;height:62px;padding:8px;bottom:1%;inset-inline-end:3%}
+    .pin{padding:6px 10px;font-size:.7rem;border-radius:10px;gap:5px}
+    .pin svg{width:14px;height:14px}
+    .pin small{font-size:.56rem}
+    .pin-a{top:0;inset-inline-end:0}
+    .pin-b{bottom:0;inset-inline-start:0}
     .menu-tabs{top:52px;margin-inline:-18px;padding-inline:18px}
     .mtab{padding:8px 16px;font-size:.86rem}
     .cat{scroll-margin-top:112px}
     body{padding-bottom:74px}
     .topbar{font-size:.72rem;padding:7px 12px;line-height:1.5}
     .hdr-inner{padding:11px 0}
-    .logo b{font-size:1.08rem} .logo small{font-size:.6rem}
-    .logo .mark{width:44px;height:44px}
-    .ctrl{width:38px;height:38px}
-    .hero{padding:92px 0 60px}
-    .hero-emblem{width:108px;margin-bottom:14px}
-    .hero-badge{font-size:.78rem;padding:7px 13px}
+    .logo b{font-size:1.02rem} .logo small{font-size:.56rem}
+    .logo .mark{width:40px;height:40px}
+    .ctrl{width:36px;height:36px}
+    .burger{width:40px;height:40px}
+    .hero{padding:88px 0 56px}
+    .hero-emblem{width:92px;margin-bottom:12px}
+    .hero-badge{font-size:.74rem;padding:6px 12px}
     .hero h1{font-size:clamp(2.3rem,13vw,3.2rem)}
     .hero h1 .en{font-size:.72rem;letter-spacing:.36em;margin-top:9px}
     .tagline{font-size:.88rem;gap:6px;margin-top:14px}
