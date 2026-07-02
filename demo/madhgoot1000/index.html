@@ -16,6 +16,21 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="images/g1-signature.jpg" fetchpriority="high">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Restaurant",
+  "name":"مضغوط ألف 1000",
+  "alternateName":"Madghout 1000",
+  "servesCuisine":["Saudi","Mandi","Madghout"],
+  "telephone":"+966557367886",
+  "priceRange":"20-40 SAR",
+  "image":"images/g1-signature.jpg",
+  "address":{"@type":"PostalAddress","streetAddress":"شارع ينبع، ظهرة لبن","addressLocality":"الرياض","postalCode":"13784","addressCountry":"SA"},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.4","reviewCount":"212"},
+  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"11:30","closes":"01:30"}]
+}
+</script>
 <style>
   :root{
     --pink:#ff1a6c; --pink-600:#e0145e; --pink-200:#ff86b0; --pink-glow:rgba(255,26,108,.45);
@@ -432,6 +447,11 @@
     background:var(--wa);color:#fff;font-family:var(--h);font-weight:800;font-size:1.05rem;display:flex;align-items:center;justify-content:center;gap:10px;transition:.25s var(--ease)}
   .wa-send:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(37,211,102,.4)}
   .wa-send svg{width:20px;height:20px;fill:#fff}
+  .toast{position:fixed;bottom:100px;left:50%;transform:translate(-50%,12px);z-index:400;max-width:calc(100% - 40px);
+    background:var(--surface-2);color:var(--ink);border:1px solid var(--line-2);padding:13px 24px;border-radius:14px;
+    font-family:var(--h);font-weight:700;font-size:.92rem;text-align:center;box-shadow:var(--sh);
+    opacity:0;visibility:hidden;transition:.35s var(--ease)}
+  .toast.show{opacity:1;visibility:visible;transform:translate(-50%,0)}
   section{scroll-margin-top:74px}
   a,button{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
   .menu-tabs{position:sticky;top:60px;z-index:120;display:flex;gap:8px;overflow-x:auto;padding:20px 4px 14px;
@@ -691,7 +711,7 @@
       <div class="rev reveal"><span class="qm">”</span>
         <div class="rev-head"><div class="avatar" style="background:linear-gradient(135deg,#ff1a6c,#e0145e)">ش</div><div><b>Shukur Mahmud</b><small data-i18n="rev.1w">قبل 5 أشهر</small></div></div>
         <div class="stars">★★★★★</div>
-        <p data-i18n="rev.1p">مطعم مضغوط أكلهم لذيذ مرة، والشيف محمد عبدالله محترم وأخلاقه عالية. المطعم نظيف مرة وأنصح بتجربته 👍</p>
+        <p data-i18n="rev.1p">مطعم مضغوط أكلهم لذيذ مرة، والشيف محمد عبدالله محترم وأخلاقه عالية. المطعم نظيف مرة وأنصح بتجربته.</p>
       </div>
       <div class="rev reveal"><span class="qm">”</span>
         <div class="rev-head"><div class="avatar" style="background:linear-gradient(135deg,#ffd23f,#e3b400);color:#1a1206">H</div><div><b>Hamada Mossad</b><small data-i18n="rev.2w">مرشد محلي · قبل 3 أسابيع</small></div></div>
@@ -701,7 +721,7 @@
       <div class="rev reveal"><span class="qm">”</span>
         <div class="rev-head"><div class="avatar" style="background:linear-gradient(135deg,#ff1a6c,#e0145e)">M</div><div><b>Muneef Al Shaibani</b><small data-i18n="rev.3w">قبل 9 أشهر</small></div></div>
         <div class="stars">★★★★★</div>
-        <p data-i18n="rev.3p">صراحةً مميّزين جداً بالنظافة وجودة الأكل وحُسن التعامل.. أنصح فيه جداً 😎👌 الطعام 5/5.</p>
+        <p data-i18n="rev.3p">صراحةً مميّزين جداً بالنظافة وجودة الأكل وحُسن التعامل.. أنصح فيه جداً — الطعام 5/5.</p>
       </div>
     </div>
   </div>
@@ -728,7 +748,7 @@
     <div class="contact-grid">
       <div class="info-card reveal">
         <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><b data-i18n="con.addrT">العنوان</b><span data-i18n="con.addr">شارع ينبع، ظهرة لبن، الرياض 13784</span></div></div>
-        <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><b data-i18n="con.phoneT">الهاتف</b><a href="tel:0557367886" dir="ltr">055 736 7886</a></div></div>
+        <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><b data-i18n="con.phoneT">الهاتف</b><a href="tel:0557367886" dir="ltr">055 736 7886</a> <span data-i18n="con.br1">· فرع لبن</span><br><a href="tel:0558411676" dir="ltr">055 841 1676</a> <span data-i18n="con.br2">· فرع الخليج</span></div></div>
         <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div style="flex:1"><b data-i18n="con.hoursT">ساعات العمل</b>
           <table class="hours-tbl">
             <tr><td data-i18n="con.days1">السبت – الخميس</td><td>11:30 AM – 1:30 AM</td></tr>
@@ -828,6 +848,8 @@
   </button>
 </div>
 
+<div class="toast" id="toast" role="status"></div>
+
 <script>
   // ===== Menu data (bilingual) =====
   const MENU={
@@ -870,7 +892,7 @@
     {c:'g3',tar:'حاشي',ten:'Camel Meat',s:'MEAT',img:'images/g3-meat.jpg'},
     {c:'g4',tar:'حمام',ten:'Pigeon',s:'PIGEON'},
     {c:'g5',tar:'سلطات طازجة',ten:'Fresh Salads',s:'SIDES',img:'images/g5-salads.jpg'},
-    {c:'g6',tar:'داخل المطعم',ten:'Interior',s:'INTERIOR'}
+    {c:'g6',tar:'تغليفنا الخاص',ten:'Our Packaging',s:'PACKAGING',img:'images/g6-packaging.jpg'}
   ];
   const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
   const camSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>';
@@ -997,9 +1019,16 @@
     out.push(ar?'_أُرسل الطلب من صفحة المطعم_':'_Sent from the restaurant page_');
     return out.join('\n');
   }
+  let toastT;
+  function showToast(m){
+    const t=$id('toast'); t.textContent=m; t.classList.add('show');
+    clearTimeout(toastT); toastT=setTimeout(()=>t.classList.remove('show'),3800);
+  }
   $id('waSend').addEventListener('click',()=>{
     if(cartCount()===0)return;
     window.open(`https://wa.me/${WA_NUM}?text=${encodeURIComponent(buildWaMsg())}`,'_blank','noopener');
+    toggleCart(false);
+    showToast(curLang()==='ar'?'تم فتح واتساب — أكمل إرسال الطلب من هناك':'WhatsApp opened — complete sending your order there');
   });
 
   // ===== Header scroll, mobile nav, reveal =====
@@ -1036,12 +1065,12 @@
     'feat.kicker':`Why Us`,'feat.title':`An experience <span class="g">worth</span> the visit`,'feat.lead':`Everything you need to enjoy your meal with peace of mind.`,
     'feat.1t':`100% Halal`,'feat.1d':`Fully trusted slaughter & prep`,'feat.2t':`Fast Delivery`,'feat.2d':`Standard & contactless to your door`,'feat.3t':`Family Friendly`,'feat.3d':`Family vibes and a comfy spot for kids`,'feat.4t':`Open Late`,'feat.4d':`Every day until 1:30 AM`,'feat.5t':`Free Parking`,'feat.5d':`Private and street parking`,'feat.6t':`Flexible Payment`,'feat.6d':`Mada, credit cards, and NFC`,
     'rev.kicker':`Customer Reviews`,'rev.title':`What they <span class="p">said</span>`,'rev.meta':`Verified rating on<br>Google Maps · 212+ reviews`,
-    'rev.1w':`5 months ago`,'rev.1p':`Amazing madghout — really delicious. Chef Mohammed Abdullah is respectful with great manners. Very clean place, highly recommend 👍`,
+    'rev.1w':`5 months ago`,'rev.1p':`Amazing madghout — really delicious. Chef Mohammed Abdullah is respectful with great manners. Very clean place, highly recommend.`,
     'rev.2w':`Local guide · 3 weeks ago`,'rev.2p':`The best and cleanest restaurant in all of Laban. Mashallah — service, quality and taste beyond compare. Strongly recommend.`,
-    'rev.3w':`9 months ago`,'rev.3p':`Honestly very distinguished in cleanliness, food quality and great service. Highly recommend 😎👌 Food 5/5.`,
+    'rev.3w':`9 months ago`,'rev.3p':`Honestly very distinguished in cleanliness, food quality and great service. Highly recommend — food 5/5.`,
     'gal.kicker':`Gallery`,'gal.title':`Shots from <span class="g">our place</span>`,'gal.lead':`Our dishes and the restaurant vibe — these spaces are ready for your real photos.`,
     'con.kicker':`Visit & Contact`,'con.title':`Location <span class="p">& hours</span>`,'con.lead':`We'd love to host you — or order delivery and it will arrive fast.`,
-    'con.addrT':`Address`,'con.addr':`Yanbu St, Dhahrat Laban, Riyadh 13784`,'con.phoneT':`Phone`,'con.hoursT':`Working hours`,'con.days1':`Sat – Thu`,'con.days2':`Friday`,'con.open':`Open now`,'con.priceT':`Average price`,'con.price':`20 – 40 SAR per person`,'con.waOrder':`Order delivery`,'con.callUs':`Call us`,
+    'con.addrT':`Address`,'con.addr':`Yanbu St, Dhahrat Laban, Riyadh 13784`,'con.phoneT':`Phone`,'con.hoursT':`Working hours`,'con.days1':`Sat – Thu`,'con.days2':`Friday`,'con.open':`Open now`,'con.priceT':`Average price`,'con.price':`20 – 40 SAR per person`,'con.waOrder':`Order delivery`,'con.callUs':`Call us`,'con.br1':`· Laban branch`,'con.br2':`· Gulf branch`,
     'foot.about':`Your first stop for authentic madghout in Dhahrat Laban, Riyadh. Quality, cleanliness, and an unforgettable taste.`,'foot.links':`Quick links`,'foot.contact':`Contact us`,'foot.addr':`Yanbu St, Dhahrat Laban`,'foot.hours':`Daily 11:30 AM – 1:30 AM`,'foot.map':`View on map`,'foot.copy':`© 2026 <span>Madghout Alf 1000</span> Restaurant · All rights reserved · Demo page`,
     'wa.tip':`Order via WhatsApp`,'mbar.call':`Call`,'mbar.order':`Order delivery`,
     'cart.view':`View order`,'cart.title':`Your order`,'cart.total':`Total`,
