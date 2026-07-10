@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<!--
+| =====================================================================
+|  سيورا (Siora) — صفحة الهبوط · لغة تصميم Liquid Glass
+|  Stilus Ingenium · بلا إيموجي · ثنائي اللغة (ar/en · RTL/LTR) · فاتح/داكن · متجاوب
+|  الروح: «فاترينة جوهرجي مصنوعة من الماء».
+| =====================================================================
+-->
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='16' fill='none' stroke='%230F3D44' stroke-width='3' stroke-linecap='round' stroke-dasharray='78 22' transform='rotate(58 24 24)'/%3E%3Ccircle cx='24' cy='8.4' r='3.1' fill='%23C6A55C'/%3E%3C/svg%3E">
+<title>سيورا — Siora</title>
+<meta name="description" content="سيورا — متجر ساعات وإكسسوارات وهدايا. قطعٌ تُنتقى بهدوء.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pearl:#F5F3EE;--pearl-2:#EFEBE2;--water:#DCE9E7;--seaglass:#7FB5AC;
+  --petrol:#0F3D44;--petrol-2:#13525C;--gold:#C6A55C;--gold-deep:#A5813B;
+  --champagne:#F0E6D2;--ink:#1A1D1D;--muted:#5C6A68;
+  --glass:rgba(255,255,255,.55);--glass-2:rgba(255,255,255,.38);
+  --glass-brd:rgba(255,255,255,.65);--glass-brd-2:rgba(255,255,255,.4);--hair:rgba(15,61,68,.12);
+  --blur:22px;--blur-lg:30px;--r-sm:14px;--r-md:22px;--r-lg:32px;--r-xl:44px;
+  --shadow:0 24px 60px -30px rgba(15,61,68,.55);--shadow-soft:0 14px 40px -24px rgba(15,61,68,.4);
+  --e:cubic-bezier(.22,1,.36,1);--wrap:1140px;
+}
+[data-theme="dark"]{
+  --pearl:#0B1618;--pearl-2:#0E2124;--water:#0E262A;--seaglass:#3d6f68;
+  --petrol:#bfe3dd;--petrol-2:#8fc4bc;--gold:#D8B96A;--gold-deep:#c7a559;
+  --champagne:#1b2a24;--ink:#ECEAE4;--muted:#9fb0ad;
+  --glass:rgba(255,255,255,.07);--glass-2:rgba(255,255,255,.04);
+  --glass-brd:rgba(255,255,255,.14);--glass-brd-2:rgba(255,255,255,.08);--hair:rgba(255,255,255,.1);
+  --shadow:0 28px 64px -28px rgba(0,0,0,.75);--shadow-soft:0 16px 40px -24px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal',sans-serif;color:var(--ink);background:var(--pearl);overflow-x:hidden;
+  -webkit-tap-highlight-color:transparent;transition:background .6s ease,color .4s ease;line-height:1.6}
+body[data-font="en"]{font-family:'Plus Jakarta Sans',sans-serif}
+button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none}
+a{color:inherit;text-decoration:none}
+.num{font-family:'Plus Jakarta Sans',sans-serif;font-feature-settings:"tnum"}
+.wrap{width:min(var(--wrap),100% - 44px);margin-inline:auto}
+
+/* الخلفية السائلة */
+#liquid{position:fixed;inset:0;z-index:-2;background:radial-gradient(130% 130% at 50% -10%,var(--pearl-2),var(--pearl) 55%)}
+#liquid span{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5;mix-blend-mode:multiply}
+[data-theme="dark"] #liquid span{mix-blend-mode:screen;opacity:.4}
+#liquid .b1{width:58vmax;height:58vmax;left:-14vmax;top:-12vmax;background:radial-gradient(circle,var(--water),transparent 65%);animation:d1 28s ease-in-out infinite}
+#liquid .b2{width:50vmax;height:50vmax;right:-12vmax;top:8vmax;background:radial-gradient(circle,var(--seaglass),transparent 62%);opacity:.3;animation:d2 34s ease-in-out infinite}
+#liquid .b3{width:42vmax;height:42vmax;left:24vmax;bottom:-16vmax;background:radial-gradient(circle,var(--champagne),transparent 60%);opacity:.46;animation:d3 40s ease-in-out infinite}
+@keyframes d1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(6vmax,4vmax) scale(1.08)}}
+@keyframes d2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-5vmax,6vmax) scale(1.1)}}
+@keyframes d3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(3vmax,-5vmax) scale(1.06)}}
+
+.glass{background:var(--glass);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--glass-brd);box-shadow:var(--shadow-soft)}
+.glass-2{background:var(--glass-2);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--glass-brd-2)}
+
+/* ===== الشريط العلوي ===== */
+header{position:sticky;top:0;z-index:40;padding-top:14px}
+.bar{display:flex;align-items:center;gap:18px;padding:11px 16px;border-radius:999px}
+.brand{display:flex;align-items:center;gap:10px;margin-inline-end:auto}
+.brand .mark{width:34px;height:34px}
+.brand .word{font-weight:700;font-size:20px;letter-spacing:.02em}
+.navlinks{display:flex;gap:24px;font-size:13.5px;font-weight:500}
+.navlinks a{color:var(--muted);transition:.3s;position:relative}
+.navlinks a:hover{color:var(--ink)}
+.tools{display:flex;align-items:center;gap:8px}
+.icobtn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--glass-brd-2);background:var(--glass-2);transition:.3s var(--e)}
+.icobtn:hover{transform:translateY(-2px)}
+.icobtn svg{width:18px;height:18px}
+.pill{padding:0 16px;height:38px;border-radius:999px;font-size:12.5px;font-weight:700;letter-spacing:.03em;display:inline-flex;align-items:center}
+.pill.solid{background:var(--petrol);color:var(--pearl)}
+[data-theme="dark"] .pill.solid{color:#08201f}
+.pill.solid:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft)}
+@media(max-width:820px){.navlinks{display:none}}
+
+/* ===== البطل ===== */
+.hero{position:relative;padding:70px 0 40px;display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center}
+.kick{font-size:12px;font-weight:700;letter-spacing:.2em;color:var(--gold-deep);text-transform:uppercase}
+.hero h1{font-size:clamp(34px,5vw,58px);line-height:1.18;font-weight:700;margin:16px 0 14px;letter-spacing:-.01em}
+.hero p{color:var(--muted);font-size:clamp(15px,1.6vw,18px);max-width:44ch;line-height:1.75}
+.hero .actions{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.btn{padding:14px 26px;border-radius:999px;font-weight:700;font-size:14px;display:inline-flex;align-items:center;gap:9px;transition:.35s var(--e)}
+.btn svg{width:17px;height:17px}
+.btn-solid{background:var(--petrol);color:var(--pearl)}
+[data-theme="dark"] .btn-solid{color:#08201f}
+.btn-solid:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+.btn-ghost{border:1px solid var(--glass-brd);background:var(--glass-2)}
+.btn-ghost:hover{transform:translateY(-3px)}
+.hero-stage{position:relative;height:420px;display:grid;place-items:center}
+.hero-stage .disc{position:absolute;width:340px;height:340px;border-radius:50%;background:var(--glass);backdrop-filter:blur(var(--blur-lg));border:1px solid var(--glass-brd);box-shadow:var(--shadow)}
+.hero-stage .halo{position:absolute;width:390px;height:390px;animation:spin 60s linear infinite}
+[data-theme="dark"] .hero-stage .halo{opacity:.6}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hero-stage .lead{position:relative;width:230px;height:230px;filter:drop-shadow(0 26px 26px rgba(15,61,68,.28));animation:floaty 7s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.hero-stage .mini{position:absolute;width:78px;height:78px;padding:14px;border-radius:22px;filter:drop-shadow(0 12px 14px rgba(15,61,68,.2));animation:floaty 6s ease-in-out infinite}
+.hero-stage .m1{top:20px;inset-inline-start:6px;animation-delay:.6s}
+.hero-stage .m2{bottom:26px;inset-inline-end:0;animation-delay:1.2s}
+@media(max-width:820px){.hero{grid-template-columns:1fr;padding:44px 0 20px}.hero-stage{height:320px;order:-1}.hero-stage .disc{width:260px;height:260px}.hero-stage .halo{width:300px;height:300px}.hero-stage .lead{width:180px;height:180px}}
+
+/* ===== شريط الفلسفة ===== */
+.values{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0 10px}
+.value{padding:22px;border-radius:var(--r-md);display:flex;gap:14px;align-items:flex-start}
+.value .ic{width:30px;height:30px;color:var(--gold-deep);flex:none}
+.value b{font-size:15px;font-weight:700;display:block;margin-bottom:4px}
+.value p{color:var(--muted);font-size:13px;line-height:1.65}
+@media(max-width:820px){.values{grid-template-columns:1fr}}
+
+/* ===== أقسام ===== */
+section.blk{padding:60px 0}
+.sec-head{text-align:center;max-width:60ch;margin:0 auto 36px}
+.sec-head .kick{display:block;margin-bottom:10px}
+.sec-head h2{font-size:clamp(26px,3.4vw,40px);font-weight:700;line-height:1.25;letter-spacing:-.01em}
+.sec-head p{color:var(--muted);margin-top:12px;font-size:15px}
+
+/* المجموعات الثلاث */
+.collections{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.coll{position:relative;border-radius:var(--r-lg);overflow:hidden;padding:26px;min-height:280px;display:flex;flex-direction:column;transition:.5s var(--e)}
+.coll:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+.coll .cstage{flex:1;display:grid;place-items:center;position:relative}
+.coll .cstage svg{width:132px;height:132px;filter:drop-shadow(0 18px 18px rgba(15,61,68,.2));transition:.5s var(--e)}
+.coll:hover .cstage svg{transform:scale(1.07) rotate(-3deg)}
+.coll .clabel{margin-top:auto}
+.coll .clabel small{font-size:11px;letter-spacing:.16em;color:var(--gold-deep);font-weight:700;text-transform:uppercase}
+.coll .clabel b{display:block;font-size:20px;font-weight:700;margin:6px 0 4px}
+.coll .cdesc{font-size:12.5px;color:var(--muted);margin:0 0 10px;line-height:1.5}
+.coll .clabel .go{font-size:13px;font-weight:700;color:var(--petrol);display:inline-flex;align-items:center;gap:6px}
+[data-theme="dark"] .coll .clabel .go{color:var(--petrol-2)}
+.coll .clabel .go svg{width:15px;height:15px;transition:.3s}
+.coll:hover .clabel .go svg{transform:translateX(-4px)}
+[dir=ltr] .coll:hover .clabel .go svg{transform:translateX(4px)}
+@media(max-width:820px){.collections{grid-template-columns:1fr}.coll{min-height:220px}}
+
+/* طقس الإهداء */
+.gift-blk{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center}
+.gift-txt h2{font-size:clamp(26px,3.2vw,38px);font-weight:700;line-height:1.25;margin-bottom:16px;letter-spacing:-.01em}
+.gift-txt p{color:var(--muted);font-size:15px;line-height:1.8;margin-bottom:14px}
+.gift-list{list-style:none;margin-top:18px;display:grid;gap:12px}
+.gift-list li{display:flex;gap:12px;align-items:center;font-size:14px;font-weight:500}
+.gift-list .ic{width:22px;height:22px;color:var(--gold-deep);flex:none}
+.gift-card{position:relative;border-radius:var(--r-lg);padding:26px;min-height:340px;overflow:hidden}
+.gift-card .ribbon{position:absolute;inset:12px;border-radius:calc(var(--r-lg) - 8px);border:1.5px solid color-mix(in srgb,var(--gold) 70%,transparent);box-shadow:inset 0 0 30px -12px var(--gold);pointer-events:none}
+.gift-card .note{margin-top:14px;padding:18px;border-radius:16px;background:var(--glass-2);border:1px dashed color-mix(in srgb,var(--gold) 55%,transparent);font-size:14px;line-height:1.8;color:var(--muted)}
+.gift-card .prod{display:grid;place-items:center;height:150px}
+.gift-card .prod svg{width:110px;height:110px;filter:drop-shadow(0 16px 16px rgba(15,61,68,.2))}
+.gift-card .pricehide{display:flex;align-items:center;justify-content:space-between;margin-top:12px;font-size:13px;color:var(--muted)}
+.gift-card .pricehide .blurred{filter:blur(6px);user-select:none}
+@media(max-width:820px){.gift-blk{grid-template-columns:1fr;gap:26px}}
+
+/* توقيع القفل */
+.clasp-blk{text-align:center}
+.clasp-vis{width:220px;height:220px;margin:0 auto 10px;position:relative}
+.clasp-vis svg{width:100%;height:100%;transform:rotate(-90deg)}
+.clasp-vis .ring{fill:none;stroke:var(--hair);stroke-width:4}
+.clasp-vis .arc{fill:none;stroke:var(--gold);stroke-width:4;stroke-linecap:round;stroke-dasharray:596;stroke-dashoffset:596;transition:stroke-dashoffset 1.6s var(--e)}
+.clasp-vis.on .arc{stroke-dashoffset:0}
+.clasp-vis .dot{fill:var(--gold)}
+.clasp-vis .center{position:absolute;inset:0;display:grid;place-items:center}
+.clasp-vis .center svg{width:64px;height:64px;transform:none}
+
+/* نشرة */
+.news{border-radius:var(--r-xl);padding:48px;text-align:center;position:relative;overflow:hidden}
+.news h2{font-size:clamp(24px,3vw,34px);font-weight:700;margin-bottom:10px}
+.news p{color:var(--muted);margin-bottom:24px}
+.news .form{display:flex;gap:10px;max-width:460px;margin-inline:auto}
+.news input{flex:1;padding:14px 18px;border-radius:999px;border:1px solid var(--glass-brd);background:var(--glass-2);color:var(--ink);font-family:inherit;font-size:14px;outline:none}
+.news input::placeholder{color:var(--muted)}
+@media(max-width:560px){.news{padding:34px 22px}.news .form{flex-direction:column}}
+
+/* فوتر */
+footer{padding:50px 0 34px;margin-top:20px;border-top:1px solid var(--hair)}
+.foot{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+.foot .brand .word{font-size:18px}
+.foot .flinks{display:flex;gap:22px;font-size:13px;color:var(--muted);flex-wrap:wrap}
+.foot .flinks a:hover{color:var(--ink)}
+.endorse{font-size:12px;color:var(--muted);opacity:.7;margin-top:18px;text-align:center}
+
+/* كشف عند التمرير */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--e),transform .7s var(--e)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.15s!important}.reveal{opacity:1;transform:none}#liquid span{animation:none}}
+</style>
+</head>
+<body data-font="ar">
+<div id="liquid"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+
+<!-- مكتبة SVG -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E7CE8E"/><stop offset="1" stop-color="#A5813B"/></linearGradient>
+  <linearGradient id="gPetrol" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#13525C"/><stop offset="1" stop-color="#0B2E34"/></linearGradient>
+  <linearGradient id="gSea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A9D2CB"/><stop offset="1" stop-color="#6BA79E"/></linearGradient>
+  <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#DCE9E7" stop-opacity=".5"/></linearGradient>
+  <symbol id="logo" viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" fill="none" stroke="url(#gPetrol)" stroke-width="3" stroke-linecap="round" stroke-dasharray="78 22" transform="rotate(58 24 24)"/><circle cx="24" cy="8.4" r="3.1" fill="url(#gGold)"/><circle cx="35.2" cy="14" r="2.5" fill="url(#gGold)"/></symbol>
+  <symbol id="pWatch" viewBox="0 0 120 120"><rect x="49" y="8" width="22" height="30" rx="7" fill="url(#gGold)" opacity=".92"/><rect x="49" y="82" width="22" height="30" rx="7" fill="url(#gGold)" opacity=".92"/><circle cx="60" cy="60" r="34" fill="url(#gGlass)" stroke="url(#gGold)" stroke-width="3"/><circle cx="60" cy="60" r="27" fill="url(#gPetrol)"/><g stroke="#E7CE8E" stroke-width="2" stroke-linecap="round"><line x1="60" y1="38" x2="60" y2="43"/><line x1="82" y1="60" x2="77" y2="60"/><line x1="60" y1="82" x2="60" y2="77"/><line x1="38" y1="60" x2="43" y2="60"/></g><line x1="60" y1="60" x2="60" y2="45" stroke="#F0E6D2" stroke-width="2.6" stroke-linecap="round"/><line x1="60" y1="60" x2="72" y2="60" stroke="#F0E6D2" stroke-width="2.6" stroke-linecap="round"/><circle cx="60" cy="60" r="2.6" fill="#E7CE8E"/><rect x="92" y="56" width="6" height="8" rx="2" fill="url(#gGold)"/></symbol>
+  <symbol id="pBracelet" viewBox="0 0 120 120"><ellipse cx="60" cy="64" rx="38" ry="30" fill="none" stroke="url(#gGold)" stroke-width="9" stroke-linecap="round" stroke-dasharray="150 40" transform="rotate(-24 60 64)"/><circle cx="30" cy="44" r="6" fill="url(#gGold)"/><circle cx="45" cy="34" r="4.5" fill="#E7CE8E"/><circle cx="60" cy="31" r="3.6" fill="url(#gSea)"/></symbol>
+  <symbol id="pRing" viewBox="0 0 120 120"><ellipse cx="60" cy="74" rx="30" ry="26" fill="none" stroke="url(#gGold)" stroke-width="9"/><path d="M60 48 l-12 -14 h24 z" fill="url(#gSea)" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="M48 34 l12 8 l12 -8" fill="none" stroke="#fff" stroke-width="1.3" opacity=".8"/></symbol>
+  <symbol id="pGift" viewBox="0 0 120 120"><rect x="26" y="50" width="68" height="54" rx="8" fill="url(#gGlass)" stroke="url(#gGold)" stroke-width="3"/><rect x="20" y="38" width="80" height="18" rx="7" fill="url(#gPetrol)"/><line x1="60" y1="38" x2="60" y2="104" stroke="url(#gGold)" stroke-width="4"/><path d="M60 38 q-14 -20 -22 -6 q-2 8 22 6z" fill="url(#gGold)" opacity=".92"/><path d="M60 38 q14 -20 22 -6 q2 8 -22 6z" fill="#E7CE8E" opacity=".92"/></symbol>
+</defs></svg>
+
+<header>
+  <div class="wrap"><div class="bar glass">
+    <a class="brand" href="index.html"><svg class="mark"><use href="#logo"/></svg><span class="word" data-t="brand">سيورا</span></a>
+    <nav class="navlinks">
+      <a href="#collections" data-t="nCollections">المجموعات</a>
+      <a href="#gifting" data-t="nGifting">الإهداء</a>
+      <a href="#clasp" data-t="nClasp">القفل</a>
+      <a href="#news" data-t="nContact">النشرة</a>
+    </nav>
+    <div class="tools">
+      <button class="icobtn" onclick="toggleTheme()" aria-label="theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+      <button class="icobtn" style="width:auto;padding:0 13px;font-weight:700;font-size:12px" onclick="toggleLang()"><span id="langLabel">EN</span></button>
+      <a href="siora_store.html" class="pill solid" data-t="shop">تسوّق</a>
+    </div>
+  </div></div>
+</header>
+
+<span id="top"></span>
+<main class="wrap">
+
+  <!-- البطل -->
+  <section class="hero">
+    <div class="reveal in">
+      <span class="kick" data-t="heroKick">فاترينة مصنوعة من الماء</span>
+      <h1 data-t="heroTitle">قطعٌ تُرفع إلى الضوء، واحدةً واحدة.</h1>
+      <p data-t="heroSub">ساعات وإكسسوارات وهدايا، تُختار وتُغلَّف بهدوء. لا عدّادات، لا ضجيج — فقط ما يستحق أن يُقتنى ويُهدى.</p>
+      <div class="actions">
+        <a href="siora_store.html" class="btn btn-solid"><span data-t="ctaShop">ادخل المتجر</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#gifting" class="btn btn-ghost"><span data-t="ctaGift">اكتشف الإهداء</span></a>
+      </div>
+    </div>
+    <div class="hero-stage reveal in">
+      <svg class="halo" viewBox="0 0 120 120"><circle cx="60" cy="60" r="54" fill="none" stroke="url(#gGold)" stroke-width="1" stroke-dasharray="2 7" opacity=".7"/></svg>
+      <div class="disc"></div>
+      <div class="mini m1 glass-2"><svg viewBox="0 0 120 120"><use href="#pWatch"/></svg></div>
+      <svg class="lead"><use href="#pBracelet"/></svg>
+      <div class="mini m2 glass-2"><svg viewBox="0 0 120 120"><use href="#pRing"/></svg></div>
+    </div>
+  </section>
+
+  <!-- الفلسفة -->
+  <div class="values">
+    <div class="value glass-2 reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.5 5.5L20 9l-4 4 1 6-5-3-5 3 1-6-4-4 5.5-.5z"/></svg><div><b data-t="v1t">انتقاء لا تكديس</b><p data-t="v1p">تشكيلة محدودة تُختار بعناية — كل قطعة تستحق مكانها.</p></div></div>
+    <div class="value glass-2 reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7S9 3 7.5 4.5 9 7 12 7zM12 7s3-4 4.5-2.5S15 7 12 7z"/></svg><div><b data-t="v2t">إهداءٌ بلا سعر ظاهر</b><p data-t="v2p">نغلّف بهدوء، ونُخفي الفاتورة، ونطبع رسالتك كما كتبتها.</p></div></div>
+    <div class="value glass-2 reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg><div><b data-t="v3t">قفلة سيورا</b><p data-t="v3p">كل طلب يُختم كما تُغلق قفلة السِوار — تفصيلٌ صغير يُطمئن.</p></div></div>
+  </div>
+
+  <!-- المجموعات -->
+  <section class="blk" id="collections">
+    <div class="sec-head reveal"><span class="kick" data-t="collKick">ثلاث إضاءات</span><h2 data-t="collTitle">فاترينة واحدة، ثلاث حالات</h2><p data-t="collSub">لكل عائلة نحوها الخاص في العرض — لكن باللغة نفسها.</p></div>
+    <div class="collections">
+      <a href="siora_store.html" class="coll glass reveal"><div class="cstage"><svg><use href="#pWatch"/></svg></div><div class="clabel"><small data-t="cWatchK">دقّة</small><b data-t="cWatch">الساعات</b><p class="cdesc" data-t="cWatchD">قطعٌ تُقاس بالهدوء</p><span class="go"><span data-t="explore">استكشف</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></div></a>
+      <a href="siora_store.html" class="coll glass reveal"><div class="cstage"><svg><use href="#pBracelet"/></svg></div><div class="clabel"><small data-t="cAccK">لَمس</small><b data-t="cAcc">الإكسسوارات</b><p class="cdesc" data-t="cAccD">تفاصيل تُلبس كل يوم</p><span class="go"><span data-t="explore">استكشف</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></div></a>
+      <a href="siora_store.html" class="coll glass reveal"><div class="cstage"><svg><use href="#pGift"/></svg></div><div class="clabel"><small data-t="cGiftK">دفء</small><b data-t="cGift">الهدايا</b><p class="cdesc" data-t="cGiftD">مجموعات جاهزة للإهداء</p><span class="go"><span data-t="explore">استكشف</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 6l-6 6 6 6"/></svg></span></div></a>
+    </div>
+  </section>
+
+  <!-- الإهداء -->
+  <section class="blk" id="gifting">
+    <div class="gift-blk">
+      <div class="gift-txt reveal">
+        <span class="kick" data-t="giftKick">طقس الإهداء</span>
+        <h2 data-t="giftTitle">الهدية تبدأ قبل أن تُفتح.</h2>
+        <p data-t="giftP1">حين تختار «هذه هدية»، يتغيّر كل شيء بهدوء: يُصنفَر ملخّص الطلب، ويُخفى السعر عن المُهدى إليه، ويُرسَم شريطٌ ذهبيّ رفيع حول العلبة.</p>
+        <ul class="gift-list">
+          <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13"/></svg><span data-t="gl1">تغليف يستحق الانتظار</span></li>
+          <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 6h20v12H2zM2 10h20"/><path d="M6 14h4" opacity=".5"/></svg><span data-t="gl2">لا سعر على قسيمة الهدية</span></li>
+          <li><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"/></svg><span data-t="gl3">رسالتك تُطبع كما كتبتها</span></li>
+        </ul>
+      </div>
+      <div class="gift-card glass reveal">
+        <div class="ribbon"></div>
+        <div class="prod"><svg><use href="#pGift"/></svg></div>
+        <div class="pricehide"><span data-t="giftFor">إلى: نورة</span><span class="blurred num">690 SAR</span></div>
+        <div class="note" data-t="giftNote">«كل عام وأنتِ أجمل من الوقت نفسه.»</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- القفل -->
+  <section class="blk clasp-blk" id="clasp">
+    <div class="sec-head reveal"><span class="kick" data-t="claspKick">التوقيع</span><h2 data-t="claspTitle">تنتهي الطلبية بقفلة.</h2><p data-t="claspSub">كما يبدأ لبس السِوار بإغلاق قفلته، يُختَم كل طلبٍ في سيورا بالقوس نفسه ينغلق حول رقمك. تفصيلٌ لا يملكه أحد سوانا.</p></div>
+    <div class="clasp-vis reveal" id="claspVis">
+      <svg viewBox="0 0 200 200"><circle class="ring" cx="100" cy="100" r="95"/><circle class="arc" cx="100" cy="100" r="95"/><circle class="dot" cx="100" cy="5" r="6"/></svg>
+      <div class="center"><svg viewBox="0 0 48 48"><use href="#logo"/></svg></div>
+    </div>
+  </section>
+
+  <!-- النشرة -->
+  <section class="blk" id="news">
+    <div class="news glass reveal">
+      <h2 data-t="newsTitle">بريدك، بهدوء.</h2>
+      <p data-t="newsSub">نراسلك حين يستحق الأمر فقط — وصولُ قطعة، أو مناسبة تقترب. لا إزعاج.</p>
+      <form class="form" onsubmit="return subscribe(event)">
+        <input type="email" required id="subEmail" placeholder="بريدك الإلكتروني" data-ph="subPh">
+        <button class="btn btn-solid" type="submit"><span data-t="subBtn">اشترك</span></button>
+      </form>
+      <p id="subMsg" style="margin-top:12px;min-height:18px;color:var(--gold-deep);font-weight:700"></p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="brand" href="index.html"><svg class="mark"><use href="#logo"/></svg><span class="word" data-t="brand">سيورا</span></a>
+      <div class="flinks">
+        <a href="#collections" data-t="nCollections">المجموعات</a>
+        <a href="#gifting" data-t="nGifting">الإهداء</a>
+        <a href="siora_store.html" data-t="shop">تسوّق</a>
+        <a href="#" data-t="fPrivacy">الخصوصية</a>
+        <a href="#" data-t="fTerms">الشروط</a>
+      </div>
+    </div>
+    <p class="endorse" data-t="endorse">سيورا — من إنتاج استوديو Stilus Ingenium.</p>
+  </div>
+</footer>
+
+<script>
+const T={
+ ar:{brand:'سيورا',nCollections:'المجموعات',nGifting:'الإهداء',nClasp:'القفل',nContact:'النشرة',shop:'تسوّق',
+   heroKick:'فاترينة مصنوعة من الماء',heroTitle:'قطعٌ تُرفع إلى الضوء، واحدةً واحدة.',
+   heroSub:'ساعات وإكسسوارات وهدايا، تُختار وتُغلَّف بهدوء. لا عدّادات، لا ضجيج — فقط ما يستحق أن يُقتنى ويُهدى.',
+   ctaShop:'ادخل المتجر',ctaGift:'اكتشف الإهداء',
+   v1t:'انتقاء لا تكديس',v1p:'تشكيلة محدودة تُختار بعناية — كل قطعة تستحق مكانها.',
+   v2t:'إهداءٌ بلا سعر ظاهر',v2p:'نغلّف بهدوء، ونُخفي الفاتورة، ونطبع رسالتك كما كتبتها.',
+   v3t:'قفلة سيورا',v3p:'كل طلب يُختم كما تُغلق قفلة السِوار — تفصيلٌ صغير يُطمئن.',
+   collKick:'ثلاث إضاءات',collTitle:'فاترينة واحدة، ثلاث حالات',collSub:'لكل عائلة نحوها الخاص في العرض — لكن باللغة نفسها.',
+   cWatchK:'دقّة',cWatch:'الساعات',cAccK:'لَمس',cAcc:'الإكسسوارات',cGiftK:'دفء',cGift:'الهدايا',explore:'استكشف',cWatchD:'قطعٌ تُقاس بالهدوء',cAccD:'تفاصيل تُلبس كل يوم',cGiftD:'مجموعات جاهزة للإهداء',
+   giftKick:'طقس الإهداء',giftTitle:'الهدية تبدأ قبل أن تُفتح.',
+   giftP1:'حين تختار «هذه هدية»، يتغيّر كل شيء بهدوء: يُصنفَر ملخّص الطلب، ويُخفى السعر عن المُهدى إليه، ويُرسَم شريطٌ ذهبيّ رفيع حول العلبة.',
+   gl1:'تغليف يستحق الانتظار',gl2:'لا سعر على قسيمة الهدية',gl3:'رسالتك تُطبع كما كتبتها',
+   giftFor:'إلى: نورة',giftNote:'«كل عام وأنتِ أجمل من الوقت نفسه.»',
+   claspKick:'التوقيع',claspTitle:'تنتهي الطلبية بقفلة.',
+   claspSub:'كما يبدأ لبس السِوار بإغلاق قفلته، يُختَم كل طلبٍ في سيورا بالقوس نفسه ينغلق حول رقمك. تفصيلٌ لا يملكه أحد سوانا.',
+   newsTitle:'بريدك، بهدوء.',newsSub:'نراسلك حين يستحق الأمر فقط — وصولُ قطعة، أو مناسبة تقترب. لا إزعاج.',subBtn:'اشترك',subPh:'بريدك الإلكتروني',subOk:'تمّ — أهلاً بك في سيورا.',
+   fPrivacy:'الخصوصية',fTerms:'الشروط',endorse:'سيورا — من إنتاج استوديو Stilus Ingenium.'},
+ en:{brand:'SIORA',nCollections:'Collections',nGifting:'Gifting',nClasp:'The Clasp',nContact:'Newsletter',shop:'Shop',
+   heroKick:'A vitrine made of water',heroTitle:'Pieces lifted to the light, one at a time.',
+   heroSub:'Watches, accessories and gifts — chosen and wrapped quietly. No countdowns, no noise. Only what is worth keeping and giving.',
+   ctaShop:'Enter the store',ctaGift:'Discover gifting',
+   v1t:'Curated, not piled',v1p:'A limited selection, carefully chosen — every piece earns its place.',
+   v2t:'Gifting without a price',v2p:'We wrap quietly, hide the invoice, and print your note as you wrote it.',
+   v3t:'The Siora clasp',v3p:'Every order is sealed the way a bracelet clasp closes — a small detail that reassures.',
+   collKick:'Three lightings',collTitle:'One vitrine, three moods',collSub:'Each family has its own way of being shown — in the same language.',
+   cWatchK:'Precision',cWatch:'Watches',cAccK:'Touch',cAcc:'Accessories',cGiftK:'Warmth',cGift:'Gifts',explore:'Explore',cWatchD:'Timepieces measured in calm',cAccD:'Details worn every day',cGiftD:'Sets ready to gift',
+   giftKick:'The gifting ritual',giftTitle:'The gift begins before it opens.',
+   giftP1:'When you choose “This is a gift”, everything shifts quietly: the summary frosts over, the price is hidden from the recipient, and a fine gold ribbon is drawn around the box.',
+   gl1:'Wrapping worth the wait',gl2:'No price on the gift slip',gl3:'Your note printed as written',
+   giftFor:'To: Noura',giftNote:'“Every year, lovelier than time itself.”',
+   claspKick:'The signature',claspTitle:'The order ends with a clasp.',
+   claspSub:'As wearing a bracelet begins by closing its clasp, every Siora order is sealed by that same arc closing around your number. A detail no one else has.',
+   newsTitle:'Your inbox, calmly.',newsSub:'We write only when it matters — a piece arriving, an occasion nearing. No noise.',subBtn:'Subscribe',subPh:'Your email address',subOk:'Done — welcome to Siora.',
+   fPrivacy:'Privacy',fTerms:'Terms',endorse:'Siora — a Stilus Ingenium studio production.'}
+};
+let lang='ar';
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+function applyLang(){
+  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.body.dataset.font=lang;
+  $('#langLabel').textContent=lang==='ar'?'EN':'ع';
+  $$('[data-t]').forEach(el=>{const k=el.dataset.t;if(T[lang][k]!=null)el.textContent=T[lang][k];});
+  $$('[data-ph]').forEach(el=>{const k=el.dataset.ph;if(T[lang][k]!=null)el.placeholder=T[lang][k];});
+}
+function toggleLang(){lang=lang==='ar'?'en':'ar';applyLang();}
+function toggleTheme(){
+  const d=document.documentElement.dataset.theme==='dark';
+  document.documentElement.dataset.theme=d?'light':'dark';
+  $('#themeIcon').innerHTML=d?'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>':'<path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/>';
+}
+function subscribe(e){e.preventDefault();$('#subMsg').textContent=T[lang].subOk;$('#subEmail').value='';return false;}
+// كشف عند التمرير + إغلاق القفل
+const io=new IntersectionObserver((ents)=>{ents.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');
+  if(en.target.id==='claspVis')$('#claspVis').classList.add('on');}})},{threshold:.2});
+$$('.reveal').forEach(el=>io.observe(el));
+applyLang();
+</script>
+</body>
+</html>

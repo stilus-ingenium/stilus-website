@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!-- سيورا (Siora) — معرض الأنماط · تبديل حيّ للألوان والأسلوب · بلا إيموجي · ثنائي اللغة -->
+<html lang="ar" dir="rtl" data-dark="0">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='16' fill='none' stroke='%230F3D44' stroke-width='3' stroke-linecap='round' stroke-dasharray='78 22' transform='rotate(58 24 24)'/%3E%3Ccircle cx='24' cy='8.4' r='3.1' fill='%23C6A55C'/%3E%3C/svg%3E">
+<title>سيورا — معرض الأنماط</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;700&family=Great+Vibes&family=Gulzar&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F5F3EE;--bg2:#EFEBE2;--ink:#1A1D1D;--muted:#5C6A68;--primary:#0F3D44;--onp:#F5F3EE;--gold:#C6A55C;--goldd:#A5813B;--acc2:#7FB5AC;
+--surf:rgba(255,255,255,.55);--surfbrd:rgba(255,255,255,.65);--hair:rgba(15,40,44,.12);--blur:22px;--radius:28px;--liq:.5}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Tajawal',sans-serif;color:var(--ink);background:var(--bg);min-height:100vh;transition:background .6s,color .4s;padding-bottom:40px}
+body[data-font="en"]{font-family:'Plus Jakarta Sans',sans-serif}
+button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.num{font-family:'Plus Jakarta Sans',sans-serif;font-feature-settings:"tnum"}
+#liquid{position:fixed;inset:0;z-index:-2;background:radial-gradient(120% 120% at 50% -10%,var(--bg2),var(--bg) 55%)}
+#liquid span{position:absolute;border-radius:50%;filter:blur(60px);opacity:var(--liq);mix-blend-mode:multiply;transition:opacity .5s}
+[data-dark="1"] #liquid span{mix-blend-mode:screen}
+#liquid .b1{width:52vmax;height:52vmax;left:-12vmax;top:-10vmax;background:radial-gradient(circle,var(--acc2),transparent 65%);animation:d1 26s ease-in-out infinite}
+#liquid .b2{width:44vmax;height:44vmax;right:-10vmax;top:20vmax;background:radial-gradient(circle,var(--gold),transparent 62%);opacity:calc(var(--liq) * .6);animation:d2 32s ease-in-out infinite}
+@keyframes d1{0%,100%{transform:translate(0,0)}50%{transform:translate(5vmax,4vmax)}}
+@keyframes d2{0%,100%{transform:translate(0,0)}50%{transform:translate(-4vmax,5vmax)}}
+.glass{background:var(--surf);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--surfbrd);box-shadow:0 14px 40px -24px rgba(15,40,44,.4)}
+.wrap{width:min(1080px,100% - 36px);margin:0 auto}
+/* شريط الأدوات */
+.toolbar{position:sticky;top:0;z-index:20;margin-top:14px;border-radius:22px;padding:12px 14px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.tb-title{font-weight:700;font-size:14px;margin-inline-end:auto;display:flex;align-items:center;gap:9px}
+.tb-title .mark{width:28px;height:28px}
+.swatches{display:flex;gap:8px;flex-wrap:wrap}
+.sw{width:34px;height:34px;border-radius:50%;position:relative;border:2px solid transparent;transition:.25s;overflow:hidden}
+.sw:hover{transform:translateY(-2px)}
+.sw.on{border-color:var(--gold)}
+.sw i{position:absolute;inset:0}
+.sw i.a{clip-path:polygon(0 0,100% 0,0 100%)}
+.sw i.b{clip-path:polygon(100% 0,100% 100%,0 100%)}
+.seg{display:flex;background:var(--surf);border:1px solid var(--surfbrd);border-radius:999px;padding:3px}
+.seg button{padding:7px 14px;border-radius:999px;font-size:12px;font-weight:700;color:var(--muted)}
+.seg button.on{background:var(--primary);color:var(--onp)}
+.mini{width:34px;height:34px;border-radius:50%;background:var(--surf);border:1px solid var(--surfbrd);display:grid;place-items:center;font-weight:700;font-size:12px}
+.tname{font-size:12px;color:var(--muted);font-weight:700;width:100%;text-align:center;margin-top:2px}
+/* عناصر العرض */
+.section-label{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--goldd);text-transform:uppercase;margin:26px 4px 10px}
+.header{display:flex;align-items:center;gap:10px;padding:12px 16px;border-radius:20px;margin-top:14px}
+.header .mark{width:32px;height:32px}.header .word{font-weight:700;font-size:18px}
+.header .sp{margin-inline-start:auto;display:flex;gap:8px}
+.pillbtn{padding:0 14px;height:36px;border-radius:999px;font-weight:700;font-size:12px;display:inline-flex;align-items:center;background:var(--surf);border:1px solid var(--surfbrd)}
+.hero{position:relative;margin-top:14px;padding:26px;border-radius:var(--radius);overflow:hidden}
+.hero .kick{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--goldd);text-transform:uppercase}
+.hero h1{font-size:26px;font-weight:700;line-height:1.35;margin:10px 0 8px;max-width:18ch}
+.hero p{color:var(--muted);font-size:14px;max-width:40ch;line-height:1.7}
+.hero .acts{margin-top:18px;display:flex;gap:10px;flex-wrap:wrap}
+.btn{padding:12px 22px;border-radius:999px;font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:8px}
+.btn.solid{background:var(--primary);color:var(--onp)}
+.btn.ghost{background:var(--surf);border:1px solid var(--surfbrd)}
+.btn svg{width:16px;height:16px}
+.hero .piece{position:absolute;inset-inline-end:14px;bottom:6px;width:120px;height:120px;opacity:.95}
+@media(max-width:620px){.hero .piece{opacity:.4}}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.tile{padding:18px 10px;border-radius:20px;text-align:center}
+.tile .ic{width:30px;height:30px;margin:0 auto 8px;color:var(--primary)}
+.tile b{font-size:13px;font-weight:700}
+.tile small{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px}
+.card{border-radius:20px;padding:12px;background:linear-gradient(160deg,var(--surf),transparent);border:1px solid var(--surfbrd)}
+.card .st{height:110px;display:grid;place-items:center}
+.card .st svg{width:92px;height:92px;filter:drop-shadow(0 12px 14px rgba(15,40,44,.2))}
+.plinth{border-radius:14px;padding:9px 11px;background:var(--surf);border:1px solid var(--surfbrd);backdrop-filter:blur(var(--blur))}
+.plinth .nm{font-size:12.5px;font-weight:700}
+.plinth .row{display:flex;align-items:center;justify-content:space-between;margin-top:4px}
+.plinth .pr{font-size:12.5px;font-weight:700;color:var(--primary)}
+.plinth .add{width:26px;height:26px;border-radius:50%;background:var(--primary);color:var(--onp);display:grid;place-items:center}
+.plinth .add svg{width:14px;height:14px}
+.chips{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}
+.chip{padding:10px 14px;border-radius:999px;border:1px solid var(--surfbrd);background:var(--surf);font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:7px}
+.chip.on{background:var(--primary);color:var(--onp);border-color:transparent}
+.chip svg{width:16px;height:16px}
+.giftcard{margin-top:14px;border-radius:20px;padding:20px;position:relative;overflow:hidden;background:linear-gradient(135deg,var(--gold),var(--goldd));color:#2a2210;min-height:120px}
+[data-dark="1"] .giftcard{color:#1a1508}
+.giftcard .clasp{position:absolute;top:12px;inset-inline-end:14px;width:26px;height:26px;opacity:.5}
+.giftcard .to{font-size:12px;font-weight:700;opacity:.85}
+.giftcard .msg{font-size:16px;font-weight:700;margin-top:8px;line-height:1.6}
+.giftcard .to,.giftcard .from{font-family:'Great Vibes','Gulzar',cursive;font-weight:400;font-size:23px;line-height:1.75;opacity:.92}.giftcard .from{margin-top:12px;text-align:end}
+.foot{margin-top:26px;text-align:center;color:var(--muted);font-size:12px;opacity:.8}
+@media(max-width:620px){.tiles{grid-template-columns:1fr}.cards{grid-template-columns:1fr 1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.15s!important}}
+</style>
+</head>
+<body data-font="ar">
+<div id="liquid"><span class="b1"></span><span class="b2"></span></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E7CE8E"/><stop offset="1" stop-color="#A5813B"/></linearGradient>
+<linearGradient id="gPetrol" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#13525C"/><stop offset="1" stop-color="#0B2E34"/></linearGradient>
+<linearGradient id="gSea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A9D2CB"/><stop offset="1" stop-color="#6BA79E"/></linearGradient>
+<linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#DCE9E7" stop-opacity=".5"/></linearGradient>
+<symbol id="logo" viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" fill="none" stroke="url(#gPetrol)" stroke-width="3" stroke-linecap="round" stroke-dasharray="78 22" transform="rotate(58 24 24)"/><circle cx="24" cy="8.4" r="3.1" fill="url(#gGold)"/><circle cx="35.2" cy="14" r="2.5" fill="url(#gGold)"/></symbol>
+<symbol id="pWatch" viewBox="0 0 120 120"><rect x="49" y="8" width="22" height="30" rx="7" fill="url(#gGold)" opacity=".92"/><rect x="49" y="82" width="22" height="30" rx="7" fill="url(#gGold)" opacity=".92"/><circle cx="60" cy="60" r="34" fill="url(#gGlass)" stroke="url(#gGold)" stroke-width="3"/><circle cx="60" cy="60" r="27" fill="url(#gPetrol)"/><line x1="60" y1="60" x2="60" y2="45" stroke="#F0E6D2" stroke-width="2.6" stroke-linecap="round"/><line x1="60" y1="60" x2="72" y2="60" stroke="#F0E6D2" stroke-width="2.6" stroke-linecap="round"/><circle cx="60" cy="60" r="2.6" fill="#E7CE8E"/></symbol>
+<symbol id="pBracelet" viewBox="0 0 120 120"><ellipse cx="60" cy="64" rx="38" ry="30" fill="none" stroke="url(#gGold)" stroke-width="9" stroke-linecap="round" stroke-dasharray="150 40" transform="rotate(-24 60 64)"/><circle cx="30" cy="44" r="6" fill="url(#gGold)"/><circle cx="45" cy="34" r="4.5" fill="#E7CE8E"/></symbol>
+<symbol id="pGift" viewBox="0 0 120 120"><rect x="26" y="50" width="68" height="54" rx="8" fill="url(#gGlass)" stroke="url(#gGold)" stroke-width="3"/><rect x="20" y="38" width="80" height="18" rx="7" fill="url(#gPetrol)"/><line x1="60" y1="38" x2="60" y2="104" stroke="url(#gGold)" stroke-width="4"/></symbol>
+</defs></svg>
+
+<div class="wrap">
+  <!-- شريط أدوات الأنماط -->
+  <div class="toolbar glass">
+    <span class="tb-title"><svg class="mark"><use href="#logo"/></svg><span data-ar="جرّب الألوان والأسلوب" data-en="Try colours & style">جرّب الألوان والأسلوب</span></span>
+    <div class="swatches" id="swatches"></div>
+    <div class="seg"><button id="mGlass" class="on" onclick="setMode('glass')" data-ar="زجاجي" data-en="Glass">زجاجي</button><button id="mMatte" onclick="setMode('matte')" data-ar="مطفأ" data-en="Matte">مطفأ</button></div>
+    <button class="mini" onclick="toggleLang()"><span id="langLabel">EN</span></button>
+  </div>
+  <div class="tname" id="themeName"></div>
+
+  <!-- معاينة عناصر سيورا -->
+  <div class="header glass">
+    <svg class="mark"><use href="#logo"/></svg><span class="word" data-ar="سيورا" data-en="SIORA">سيورا</span>
+    <span class="sp"><span class="pillbtn" data-ar="تسوّق" data-en="Shop">تسوّق</span></span>
+  </div>
+
+  <section class="hero glass">
+    <span class="kick" data-ar="مختارات تُنتقى بهدوء" data-en="A quietly chosen selection">مختارات تُنتقى بهدوء</span>
+    <h1 data-ar="قطعٌ تُرفع إلى الضوء، واحدةً واحدة." data-en="Pieces lifted to the light, one at a time.">قطعٌ تُرفع إلى الضوء، واحدةً واحدة.</h1>
+    <p data-ar="ساعات وإكسسوارات وهدايا، تُعرض كما يعرضها جوهرجيّ حَذِر." data-en="Watches, accessories and gifts, shown as a careful jeweller would.">ساعات وإكسسوارات وهدايا، تُعرض كما يعرضها جوهرجيّ حَذِر.</p>
+    <div class="acts">
+      <button class="btn solid"><span data-ar="تصفّح التشكيلة" data-en="Explore">تصفّح التشكيلة</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      <button class="btn ghost"><span data-ar="مرشد الهدايا" data-en="Gift concierge">مرشد الهدايا</span></button>
+    </div>
+    <svg class="piece"><use href="#pBracelet"/></svg>
+  </section>
+
+  <div class="section-label" data-ar="الإضاءات الثلاث" data-en="Three lightings">الإضاءات الثلاث</div>
+  <div class="tiles">
+    <div class="tile glass"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/><path d="M12 9v3l2 1M9 6l.5-3h5L15 6M9 18l.5 3h5l.5-3"/></svg><b data-ar="الساعات" data-en="Watches">الساعات</b><small data-ar="دقّة" data-en="Precision">دقّة</small></div>
+    <div class="tile glass"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l3 5-3 3-3-3zM12 11v10M7 21h10"/></svg><b data-ar="الإكسسوارات" data-en="Accessories">الإكسسوارات</b><small data-ar="لَمس" data-en="Touch">لَمس</small></div>
+    <div class="tile glass"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7S9 3 7.5 4.5 9 7 12 7zM12 7s3-4 4.5-2.5S15 7 12 7z"/></svg><b data-ar="الهدايا" data-en="Gifts">الهدايا</b><small data-ar="دفء" data-en="Warmth">دفء</small></div>
+  </div>
+
+  <div class="cards">
+    <div class="card"><div class="st"><svg><use href="#pWatch"/></svg></div><div class="plinth"><div class="nm" data-ar="ساعة أوريج" data-en="Aurige Watch">ساعة أوريج</div><div class="row"><span class="pr"><span class="num">1,290</span></span><span class="add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div></div></div>
+    <div class="card"><div class="st"><svg><use href="#pBracelet"/></svg></div><div class="plinth"><div class="nm" data-ar="سِوار لمعة" data-en="Lumen Bangle">سِوار لمعة</div><div class="row"><span class="pr"><span class="num">780</span></span><span class="add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></span></div></div></div>
+  </div>
+
+  <div class="section-label" data-ar="مُرشِد الهدايا" data-en="Gift concierge">مُرشِد الهدايا</div>
+  <div class="chips">
+    <span class="chip on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z"/></svg><span data-ar="شريك/ة" data-en="Partner">شريك/ة</span></span>
+    <span class="chip"><span data-ar="أم" data-en="Mother">أم</span></span>
+    <span class="chip"><span data-ar="صديق/ة" data-en="Friend">صديق/ة</span></span>
+    <span class="chip"><span data-ar="أخرى…" data-en="Other…">أخرى…</span></span>
+  </div>
+
+  <div class="giftcard">
+    <svg class="clasp" viewBox="0 0 48 48"><use href="#logo"/></svg>
+    <div class="to" data-ar="إلى: نورة" data-en="To: Noura">إلى: نورة</div>
+    <div class="msg" data-ar="كل عام وأنتِ أجمل من الوقت نفسه." data-en="Every year, lovelier than time itself.">كل عام وأنتِ أجمل من الوقت نفسه.</div>
+    <div class="from" data-ar="من: محمد" data-en="From: Mohammed">من: محمد</div>
+  </div>
+
+  <div class="foot" data-ar="نفس المشروع — لوحات وألوان وأسلوب مختلف. بدّل من الأعلى." data-en="Same project — different palettes and style. Switch from the top.">نفس المشروع — لوحات وألوان وأسلوب مختلف. بدّل من الأعلى.</div>
+</div>
+
+<script>
+var THEMES=[
+ {ar:"بترولي وشمبانيا",en:"Petrol & Champagne",dark:false,bg:'#F5F3EE',bg2:'#EAE6DB',ink:'#1A1D1D',muted:'#5C6A68',primary:'#0F3D44',onp:'#F5F3EE',gold:'#C6A55C',goldd:'#A5813B',acc2:'#7FB5AC'},
+ {ar:"عاجي وزمرّدي",en:"Ivory & Emerald",dark:false,bg:'#F4F2EA',bg2:'#E9E6D8',ink:'#17231D',muted:'#5F6F64',primary:'#114634',onp:'#F4F2EA',gold:'#C9A25A',goldd:'#9C7A3C',acc2:'#8FB6A2'},
+ {ar:"نبيذي وذهب وردي",en:"Bordeaux & Rose-gold",dark:false,bg:'#F7F0EE',bg2:'#EFE2DE',ink:'#281619',muted:'#876A6C',primary:'#6E2233',onp:'#FBF4F2',gold:'#C08A6E',goldd:'#A06B50',acc2:'#D6AEA6'},
+ {ar:"ليل وبلاتين",en:"Midnight & Platinum",dark:false,bg:'#EFF1F5',bg2:'#E2E6EE',ink:'#161B24',muted:'#66708A',primary:'#1E2A44',onp:'#F5F7FA',gold:'#9AA3B4',goldd:'#7C879B',acc2:'#8AA0C0'},
+ {ar:"موكا وكريمة",en:"Mocha & Cream",dark:false,bg:'#F3EDE4',bg2:'#E8DFD1',ink:'#271F18',muted:'#7C6A5A',primary:'#47342A',onp:'#F6F0E8',gold:'#B98A54',goldd:'#93683B',acc2:'#C9B79C'},
+ {ar:"برقوقي وشمبانيا",en:"Plum & Champagne",dark:false,bg:'#F5F0F3',bg2:'#EBE2E8',ink:'#221A20',muted:'#7C6A76',primary:'#46243F',onp:'#F8F3F6',gold:'#C6A55C',goldd:'#A2813F',acc2:'#B79BB0'},
+ {ar:"غابة ونحاس أصفر",en:"Forest & Brass",dark:false,bg:'#F1F1E8',bg2:'#E6E7DA',ink:'#1C241B',muted:'#5F6B58',primary:'#24382A',onp:'#F3F3EA',gold:'#B08D57',goldd:'#8E6F3F',acc2:'#93A487'},
+ {ar:"إردوازي ونحاسي",en:"Slate & Copper",dark:false,bg:'#EEF1F2',bg2:'#E1E7E9',ink:'#1C2427',muted:'#64727A',primary:'#2B3A42',onp:'#F2F5F6',gold:'#C67B53',goldd:'#A25E3C',acc2:'#9FB2B8'},
+ {ar:"وردي ولؤلؤي",en:"Blush & Pearl",dark:false,bg:'#F8F0EE',bg2:'#F0E2DE',ink:'#34292A',muted:'#93797A',primary:'#9C5F63',onp:'#FCF5F3',gold:'#CB9A78',goldd:'#A9704F',acc2:'#E0C2B8'},
+ {ar:"أونيكس وذهب",en:"Onyx & Gold",dark:true,bg:'#0C0F10',bg2:'#12181A',ink:'#ECEAE4',muted:'#9AA6A4',primary:'#D8B96A',onp:'#0C0F10',gold:'#E0C57E',goldd:'#C7A559',acc2:'#6E8C86'},
+ {ar:"ليل وفضّة",en:"Midnight & Silver",dark:true,bg:'#0E1420',bg2:'#131C2C',ink:'#E6EAF2',muted:'#93A0B5',primary:'#C7CDD8',onp:'#0E1420',gold:'#C7CDD8',goldd:'#9AA3B4',acc2:'#5B7BA6'},
+ {ar:"زمرّد الليل",en:"Emerald Night",dark:true,bg:'#0A1512',bg2:'#0E201A',ink:'#E8EEE9',muted:'#8FA79B',primary:'#E0C57E',onp:'#0A1512',gold:'#E0C57E',goldd:'#C7A559',acc2:'#3E7A5E'}
+];
+var cur=0,mode='glass',lang='ar';
+function setVar(k,v){document.documentElement.style.setProperty(k,v);}
+function applyMode(){var t=THEMES[cur];
+ if(mode==='glass'){setVar('--blur','22px');setVar('--surf',t.dark?'rgba(255,255,255,.07)':'rgba(255,255,255,.55)');setVar('--surfbrd',t.dark?'rgba(255,255,255,.14)':'rgba(255,255,255,.65)');setVar('--liq',t.dark?'.42':'.5');}
+ else{setVar('--blur','0px');setVar('--surf',t.dark?'rgba(255,255,255,.10)':'rgba(255,255,255,.94)');setVar('--surfbrd',t.dark?'rgba(255,255,255,.16)':'rgba(15,40,44,.10)');setVar('--liq',t.dark?'.2':'.12');}
+ document.getElementById('mGlass').classList.toggle('on',mode==='glass');
+ document.getElementById('mMatte').classList.toggle('on',mode==='matte');
+}
+function applyTheme(i){cur=i;var t=THEMES[i];
+ setVar('--bg',t.bg);setVar('--bg2',t.bg2);setVar('--ink',t.ink);setVar('--muted',t.muted);
+ setVar('--primary',t.primary);setVar('--onp',t.onp);setVar('--gold',t.gold);setVar('--goldd',t.goldd);setVar('--acc2',t.acc2);
+ setVar('--hair',t.dark?'rgba(255,255,255,.12)':'rgba(15,40,44,.12)');
+ document.documentElement.setAttribute('data-dark',t.dark?'1':'0');
+ applyMode();
+ var sws=document.querySelectorAll('.sw');for(var k=0;k<sws.length;k++){sws[k].classList.toggle('on',k===i);}
+ document.getElementById('themeName').textContent=(lang==='ar')?t.ar:t.en;
+}
+function setMode(m){mode=m;applyMode();}
+function buildSwatches(){
+ var box=document.getElementById('swatches');var html='';
+ for(var i=0;i<THEMES.length;i++){var t=THEMES[i];
+  html+='<button class="sw" title="'+t.en+'" onclick="applyTheme('+i+')"><i class="a" style="background:'+t.primary+'"></i><i class="b" style="background:'+t.gold+'"></i></button>';
+ }
+ box.innerHTML=html;
+}
+function applyLang(){
+ document.documentElement.lang=lang;document.documentElement.dir=(lang==='ar')?'rtl':'ltr';document.body.setAttribute('data-font',lang);
+ document.getElementById('langLabel').textContent=(lang==='ar')?'EN':'ع';
+ var els=document.querySelectorAll('[data-ar]');
+ for(var i=0;i<els.length;i++){els[i].textContent=(lang==='ar')?els[i].getAttribute('data-ar'):els[i].getAttribute('data-en');}
+ document.getElementById('themeName').textContent=(lang==='ar')?THEMES[cur].ar:THEMES[cur].en;
+}
+function toggleLang(){lang=(lang==='ar')?'en':'ar';applyLang();}
+buildSwatches();applyTheme(0);applyLang();
+</script>
+</body>
+</html>

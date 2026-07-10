@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<!--
+| =====================================================================
+|  سيورا (Siora) — بروتوتايب المتجر · لغة تصميم Liquid Glass
+|  Stilus Ingenium · بلا إيموجي · ثنائي اللغة (ar/en · RTL/LTR) · فاتح/داكن
+|  مُرشِد الهدايا: علاقات شاملة + «أخرى» نصية + ملخّص مرئي + اسم المُهدى إليه
+|  + معاينة حيّة لبطاقة الإهداء + قوالب رسائل + تغليف + ختم القفل.
+| =====================================================================
+-->
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Ccircle cx='24' cy='24' r='16' fill='none' stroke='%230F3D44' stroke-width='3' stroke-linecap='round' stroke-dasharray='78 22' transform='rotate(58 24 24)'/%3E%3Ccircle cx='24' cy='8.4' r='3.1' fill='%23C6A55C'/%3E%3C/svg%3E">
+<title>سيورا — Siora</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;500;700&family=Great+Vibes&family=Gulzar&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pearl:#F5F3EE;--pearl-2:#EFEBE2;--water:#DCE9E7;--seaglass:#7FB5AC;
+  --petrol:#0F3D44;--petrol-2:#13525C;--gold:#C6A55C;--gold-deep:#A5813B;
+  --champagne:#F0E6D2;--ink:#1A1D1D;--muted:#5C6A68;
+  --glass:rgba(255,255,255,.55);--glass-2:rgba(255,255,255,.38);
+  --glass-brd:rgba(255,255,255,.65);--glass-brd-2:rgba(255,255,255,.4);--hair:rgba(15,61,68,.12);
+  --blur:22px;--blur-lg:30px;--r-sm:14px;--r-md:20px;--r-lg:30px;--r-xl:40px;
+  --shadow:0 18px 40px -22px rgba(15,61,68,.45);--shadow-soft:0 10px 30px -18px rgba(15,61,68,.4);
+  --e-settle:cubic-bezier(.22,1,.36,1);--page:min(440px,100vw);--accent:var(--petrol);
+}
+[data-theme="dark"]{
+  --pearl:#0B1618;--pearl-2:#0E2124;--water:#0E262A;--seaglass:#3d6f68;
+  --petrol:#bfe3dd;--petrol-2:#8fc4bc;--gold:#D8B96A;--gold-deep:#c7a559;
+  --champagne:#1b2a24;--ink:#ECEAE4;--muted:#9fb0ad;
+  --glass:rgba(255,255,255,.07);--glass-2:rgba(255,255,255,.04);
+  --glass-brd:rgba(255,255,255,.14);--glass-brd-2:rgba(255,255,255,.08);--hair:rgba(255,255,255,.1);
+  --shadow:0 20px 44px -20px rgba(0,0,0,.7);--shadow-soft:0 12px 30px -18px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:'Tajawal',sans-serif;color:var(--ink);background:var(--pearl);-webkit-tap-highlight-color:transparent;overflow-x:hidden;transition:background .6s,color .4s}
+body[data-font="en"]{font-family:'Plus Jakarta Sans',sans-serif}
+button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none}
+.num{font-family:'Plus Jakarta Sans',sans-serif;font-feature-settings:"tnum"}
+
+#liquid{position:fixed;inset:0;z-index:-2;background:radial-gradient(120% 120% at 50% -10%,var(--pearl-2),var(--pearl) 55%)}
+#liquid span{position:absolute;border-radius:50%;filter:blur(60px);opacity:.55;mix-blend-mode:multiply}
+[data-theme="dark"] #liquid span{mix-blend-mode:screen;opacity:.4}
+#liquid .b1{width:60vmax;height:60vmax;left:-15vmax;top:-10vmax;background:radial-gradient(circle,var(--water),transparent 65%);animation:drift1 26s ease-in-out infinite}
+#liquid .b2{width:52vmax;height:52vmax;right:-14vmax;top:12vmax;background:radial-gradient(circle,var(--seaglass),transparent 62%);opacity:.32;animation:drift2 32s ease-in-out infinite}
+#liquid .b3{width:40vmax;height:40vmax;left:20vmax;bottom:-14vmax;background:radial-gradient(circle,var(--champagne),transparent 60%);opacity:.5;animation:drift3 38s ease-in-out infinite}
+@keyframes drift1{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(6vmax,4vmax) scale(1.08)}}
+@keyframes drift2{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-5vmax,6vmax) scale(1.1)}}
+@keyframes drift3{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(3vmax,-5vmax) scale(1.06)}}
+
+#app{position:relative;width:var(--page);margin:0 auto;min-height:100vh;padding:0 18px 118px}
+.glass{background:var(--glass);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--glass-brd);box-shadow:var(--shadow-soft)}
+.glass-2{background:var(--glass-2);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--glass-brd-2)}
+
+header{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;padding:12px 14px;margin:12px -4px 6px;border-radius:var(--r-md)}
+.brand{display:flex;align-items:center;gap:9px;margin-inline-end:auto}
+.brand .mark{width:34px;height:34px;flex:none}
+.brand .word{font-weight:700;font-size:19px;letter-spacing:.02em;line-height:1}
+.hbtn{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--glass-brd-2);background:var(--glass-2);transition:.3s var(--e-settle)}
+.hbtn:hover{transform:translateY(-2px)}.hbtn svg{width:19px;height:19px}
+.langtog{width:auto;padding:0 13px;font-weight:700;font-size:12px;letter-spacing:.04em}
+
+.hero{position:relative;margin-top:8px;padding:22px;border-radius:var(--r-lg);overflow:hidden}
+.hero .kicker{font-size:11px;font-weight:700;letter-spacing:.18em;color:var(--gold-deep);text-transform:uppercase}
+.hero h1{font-size:25px;line-height:1.35;font-weight:700;margin:10px 0 6px;max-width:15ch}
+.hero p{color:var(--muted);font-size:13.5px;line-height:1.7;max-width:30ch}
+.hero .acts{margin-top:16px;display:flex;gap:9px;flex-wrap:wrap}
+.hero .cta{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;font-weight:700;font-size:13px;transition:.35s var(--e-settle)}
+.hero .cta.solid{background:var(--petrol);color:#F5F3EE}
+[data-theme="dark"] .hero .cta.solid{color:#08201f}
+.hero .cta.ghost{border:1px solid var(--glass-brd);background:var(--glass-2)}
+.hero .cta:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+.hero .cta svg{width:16px;height:16px}
+.hero .stage{position:absolute;inset-inline-end:8px;bottom:-6px;width:150px;height:150px;display:grid;place-items:center;pointer-events:none}
+.hero .stage .halo{position:absolute;width:120px;height:120px}
+.hero .stage .piece{width:104px;height:104px;animation:floaty 6s ease-in-out infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@media(max-width:380px){.hero .stage{opacity:.45}}
+
+.concierge-card{margin-top:16px;padding:16px;border-radius:var(--r-md);display:flex;align-items:center;gap:14px;position:relative;overflow:hidden;width:100%;text-align:start}
+.concierge-card .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:linear-gradient(140deg,var(--seaglass),var(--petrol));color:#fff;flex:none}
+.concierge-card .ic svg{width:24px;height:24px}
+.concierge-card .tx{flex:1}.concierge-card .tx b{font-size:14.5px;font-weight:700;display:block}
+.concierge-card .tx small{color:var(--muted);font-size:12px}
+.concierge-card .arw{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--glass-2);border:1px solid var(--glass-brd-2)}
+.concierge-card .arw svg{width:16px;height:16px}
+[dir=ltr] .concierge-card .arw svg{transform:scaleX(-1)}
+
+.lightings{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.light{padding:14px 8px;border-radius:var(--r-md);text-align:center;transition:.4s var(--e-settle);position:relative;overflow:hidden}
+.light:hover,.light.on{transform:translateY(-3px)}
+.light.on{border-color:color-mix(in srgb,var(--gold) 55%,transparent)}
+.light .ic{width:30px;height:30px;margin:0 auto 8px;color:var(--accent)}
+.light b{display:block;font-size:12.5px;font-weight:700}
+.light.on::after{content:"";position:absolute;inset-inline:22% 22%;bottom:8px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+
+.sec-h{display:flex;align-items:baseline;justify-content:space-between;margin:24px 4px 12px}
+.sec-h h2{font-size:16px;font-weight:700}.sec-h span{font-size:11.5px;color:var(--muted)}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{position:relative;border-radius:var(--r-md);padding:12px;overflow:hidden;isolation:isolate;background:linear-gradient(160deg,var(--glass-2),transparent);border:1px solid var(--glass-brd-2);transition:transform .5s var(--e-settle),box-shadow .5s var(--e-settle)}
+.card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+.card .stage{position:relative;height:120px;display:grid;place-items:center;margin:6px 0 4px}
+.card .stage .prod{width:98px;height:98px;transition:transform .55s var(--e-settle);filter:drop-shadow(0 12px 14px rgba(15,61,68,.22))}
+.card:hover .stage .prod{transform:rotate(-3deg) scale(1.06)}
+.card .stage .shadow{position:absolute;bottom:8px;width:64px;height:9px;border-radius:50%;background:rgba(15,61,68,.18);filter:blur(5px);transition:.55s var(--e-settle)}
+.card:hover .stage .shadow{width:54px;opacity:.7}
+.card .sweep{position:absolute;inset:0;z-index:2;pointer-events:none;overflow:hidden;border-radius:inherit}
+.card .sweep::before{content:"";position:absolute;top:-30%;bottom:-30%;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);opacity:0}
+.card:hover .sweep::before{animation:sweep .7s ease-in-out}
+@keyframes sweep{0%{left:-60%;opacity:0}30%{opacity:1}100%{left:130%;opacity:0}}
+.plinth{position:relative;z-index:3;border-radius:14px;padding:9px 11px;margin-top:2px;background:var(--glass);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--glass-brd-2);transition:.5s var(--e-settle)}
+.card:hover .plinth{transform:translateY(-4px)}
+.plinth .nm{font-size:12.5px;font-weight:700;line-height:1.3}
+.plinth .row{display:flex;align-items:center;justify-content:space-between;margin-top:3px}
+.plinth .pr{font-size:12.5px;font-weight:700;color:var(--accent)}
+.plinth .pr .cur{font-size:10px;color:var(--muted);font-weight:500;margin-inline-start:2px}
+.plinth .add{width:26px;height:26px;border-radius:50%;display:grid;place-items:center;background:var(--accent);color:var(--pearl)}
+[data-theme="dark"] .plinth .add{color:#08201f}.plinth .add svg{width:15px;height:15px}
+.tag{position:absolute;top:12px;inset-inline-start:12px;z-index:3;font-size:9.5px;font-weight:700;letter-spacing:.06em;padding:4px 9px;border-radius:999px;color:var(--accent);background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-brd-2)}
+
+nav{position:fixed;inset-inline:0;bottom:0;z-index:40;width:var(--page);margin:0 auto;display:flex;justify-content:space-around;padding:10px 14px calc(10px + env(safe-area-inset-bottom));border-radius:var(--r-lg) var(--r-lg) 0 0}
+nav button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:4px 10px;color:var(--muted);position:relative;transition:.3s}
+nav button svg{width:22px;height:22px}nav button span{font-size:9.5px;font-weight:700}
+nav button.on{color:var(--accent)}
+nav .badge{position:absolute;top:-2px;inset-inline-end:4px;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:var(--gold);color:#1a1400;font-size:10px;font-weight:700;display:none;place-items:center}
+nav .badge.show{display:grid}
+
+.scrim{position:fixed;inset:0;z-index:50;background:rgba(10,25,27,.42);backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center}
+.scrim.show{display:flex}
+.sheet{width:var(--page);max-height:92vh;overflow-y:auto;border-radius:var(--r-xl) var(--r-xl) 0 0;background:var(--glass);backdrop-filter:blur(var(--blur-lg));-webkit-backdrop-filter:blur(var(--blur-lg));border:1px solid var(--glass-brd);border-bottom:0;box-shadow:0 -20px 50px -20px rgba(15,61,68,.5);transform:translateY(100%);transition:transform .5s var(--e-settle);position:relative}
+.scrim.show .sheet{transform:translateY(0)}
+.sheet .grip{width:42px;height:5px;border-radius:5px;background:var(--hair);margin:10px auto 4px}
+.sheet .close{position:absolute;top:14px;inset-inline-end:14px;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--glass-2);border:1px solid var(--glass-brd-2)}
+.sheet .close svg{width:17px;height:17px}
+.sheet .ribbon{position:absolute;inset:6px;border-radius:calc(var(--r-xl) - 4px) calc(var(--r-xl) - 4px) 0 0;pointer-events:none;border:1.5px solid transparent;transition:.6s ease}
+.sheet.gift .ribbon{border-color:color-mix(in srgb,var(--gold) 75%,transparent);box-shadow:inset 0 0 24px -10px var(--gold)}
+.pd-stage{height:210px;display:grid;place-items:center;margin:6px 0 2px;position:relative}
+.pd-stage .prod{width:168px;height:168px;filter:drop-shadow(0 20px 22px rgba(15,61,68,.24));animation:floaty 7s ease-in-out infinite}
+.pd-wrap{padding:0 22px 24px}
+.pd-kick{font-size:11px;font-weight:700;letter-spacing:.14em;color:var(--gold-deep);text-transform:uppercase}
+.pd-title{font-size:22px;font-weight:700;margin:6px 0 4px}
+.pd-desc{color:var(--muted);font-size:13.5px;line-height:1.75;margin:10px 0 16px}
+.pd-price{display:inline-flex;align-items:baseline;gap:4px;padding:8px 15px;border-radius:999px;background:var(--glass-2);border:1px solid var(--glass-brd-2);font-weight:700;font-size:16px;color:var(--accent)}
+.pd-price .cur{font-size:11px;color:var(--muted);font-weight:500}
+.gift-toggle{display:flex;align-items:center;gap:12px;padding:14px;border-radius:var(--r-md);margin:6px 0 4px}
+.gift-toggle .ic{width:22px;height:22px;color:var(--gold-deep);flex:none}
+.gift-toggle .tx{flex:1}.gift-toggle .tx b{font-size:13.5px;font-weight:700}
+.gift-toggle .tx small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px}
+.switch{width:46px;height:27px;border-radius:999px;background:var(--hair);position:relative;flex:none;transition:.35s var(--e-settle)}
+.switch::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:21px;height:21px;border-radius:50%;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.25);transition:.35s var(--e-settle)}
+.switch.on{background:var(--gold)}.switch.on::after{inset-inline-start:22px}
+.gift-panel{max-height:0;overflow:hidden;transition:max-height .5s var(--e-settle),opacity .4s ease;opacity:0}
+.gift-panel.open{max-height:220px;opacity:1;margin-top:10px}
+.gift-panel textarea{width:100%;border-radius:14px;border:1px solid var(--hair);background:var(--glass-2);padding:12px;font-family:inherit;font-size:13px;color:var(--ink);resize:none;min-height:66px;outline:none}
+.gift-preview{margin-top:10px;padding:14px 16px;border-radius:14px;border:1px dashed color-mix(in srgb,var(--gold) 60%,transparent);font-size:13px;line-height:1.7;color:var(--muted);min-height:20px}
+.pd-add{width:100%;margin-top:18px;padding:15px;border-radius:999px;background:var(--accent);color:var(--pearl);font-weight:700;font-size:14.5px;display:flex;align-items:center;justify-content:center;gap:9px;transition:.35s var(--e-settle)}
+[data-theme="dark"] .pd-add{color:#08201f}
+.pd-add:hover{transform:translateY(-2px);box-shadow:var(--shadow)}.pd-add svg{width:18px;height:18px}
+
+#ripple{position:fixed;z-index:60;border-radius:50%;pointer-events:none;border:2px solid color-mix(in srgb,var(--seaglass) 70%,transparent);opacity:0}
+#ripple.go{animation:ripple .9s ease-out}
+@keyframes ripple{0%{width:12px;height:12px;opacity:.8}100%{width:150vmax;height:150vmax;opacity:0}}
+
+.cart-item{display:flex;align-items:center;gap:12px;padding:11px;border-radius:var(--r-md);margin-bottom:10px}
+.cart-item .th{width:56px;height:56px;border-radius:13px;display:grid;place-items:center;background:var(--glass-2);flex:none}
+.cart-item .th svg{width:40px;height:40px}
+.cart-item .nm{font-size:13px;font-weight:700}.cart-item .pr{font-size:12px;color:var(--accent);font-weight:700;margin-top:2px}
+.cart-item .gmeta{font-size:10.5px;color:var(--gold-deep);margin-top:3px;display:flex;align-items:center;gap:4px}
+.cart-item .gmeta svg{width:12px;height:12px}
+.cart-item .rm{margin-inline-start:auto;color:var(--muted);width:30px;height:30px;display:grid;place-items:center}.cart-item .rm svg{width:17px;height:17px}
+.summary{margin-top:8px;padding:16px;border-radius:var(--r-md)}
+.summary .line{display:flex;justify-content:space-between;font-size:13px;margin-bottom:8px;color:var(--muted)}
+.summary .line.tot{color:var(--ink);font-weight:700;font-size:15px;margin-top:10px;padding-top:12px;border-top:1px solid var(--hair)}
+
+.empty{text-align:center;padding:54px 24px;border-radius:var(--r-lg);border:1px solid var(--glass-brd-2);background:linear-gradient(180deg,rgba(220,233,231,.25),transparent)}
+[data-theme="dark"] .empty{background:linear-gradient(180deg,rgba(60,111,104,.14),transparent)}
+.empty .ic{width:46px;height:46px;color:var(--seaglass);margin:0 auto 14px}
+.empty p{color:var(--muted);font-size:14px;line-height:1.7;max-width:26ch;margin:0 auto 18px}
+.empty .cta{display:inline-block;padding:11px 22px;border-radius:999px;background:var(--glass);border:1px solid var(--glass-brd);font-weight:700;font-size:13px}
+
+/* ============================ مُرشِد الهدايا ============================ */
+.gc-head{margin:14px 4px 4px}
+.gc-head .kick{font-size:11px;font-weight:700;letter-spacing:.16em;color:var(--gold-deep);text-transform:uppercase}
+.gc-head h2{font-size:20px;font-weight:700;margin-top:4px}
+.gc-progress{display:flex;align-items:center;gap:10px;margin:12px 4px 10px}
+.gc-progress .arc{width:34px;height:34px;flex:none}
+.gc-progress .arc svg{width:34px;height:34px;transform:rotate(-90deg)}
+.gc-progress .arc .r1{fill:none;stroke:var(--hair);stroke-width:3}
+.gc-progress .arc .r2{fill:none;stroke:var(--gold);stroke-width:3;stroke-linecap:round;stroke-dasharray:88;transition:stroke-dashoffset .6s var(--e-settle)}
+.gc-progress .lbl{font-size:12px;color:var(--muted);font-weight:500}
+.gc-progress .lbl b{color:var(--ink);font-weight:700}
+/* ملخّص الاختيارات المرئي */
+.gc-chips{display:flex;flex-wrap:wrap;gap:7px;margin:0 2px 14px}
+.gc-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border-radius:999px;font-size:11.5px;font-weight:700;background:var(--glass);border:1px solid var(--glass-brd-2);color:var(--ink);transition:.3s}
+.gc-chip:hover{border-color:color-mix(in srgb,var(--gold) 60%,transparent)}
+.gc-chip svg{width:13px;height:13px;color:var(--gold-deep)}
+.gc-chip .k{color:var(--muted);font-weight:500}
+.gc-step{border-radius:var(--r-lg);padding:20px}
+.gc-q{font-size:17px;font-weight:700;margin-bottom:4px}
+.gc-hint{font-size:12.5px;color:var(--muted);margin-bottom:16px}
+/* خيارات مرنة (chips قابلة للّف) */
+.gc-choices{display:flex;flex-wrap:wrap;gap:9px}
+.gc-choice{padding:11px 14px;border-radius:999px;border:1px solid var(--glass-brd-2);background:var(--glass-2);display:inline-flex;align-items:center;gap:8px;transition:.3s var(--e-settle);font-size:13px;font-weight:700}
+.gc-choice:hover{transform:translateY(-2px);border-color:color-mix(in srgb,var(--gold) 55%,transparent)}
+.gc-choice.on{background:var(--accent);color:var(--pearl);border-color:transparent}
+[data-theme="dark"] .gc-choice.on{color:#08201f}
+.gc-choice .ic{width:17px;height:17px;flex:none;opacity:.85}
+/* خانة «أخرى» النصية */
+.gc-other{margin-top:14px;animation:settle .4s var(--e-settle) both}
+.gc-field label{display:block;font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px}
+.gc-input{width:100%;border-radius:14px;border:1px solid var(--hair);background:var(--glass-2);padding:12px 14px;font-family:inherit;font-size:14px;color:var(--ink);outline:none;transition:.3s}
+.gc-input:focus{border-color:color-mix(in srgb,var(--gold) 60%,transparent)}
+.gc-nav{display:flex;justify-content:space-between;margin-top:18px;gap:10px}
+.gc-back{padding:12px 18px;border-radius:999px;border:1px solid var(--glass-brd-2);background:var(--glass-2);font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:7px}
+.gc-back svg{width:15px;height:15px}
+[dir=ltr] .gc-back svg{transform:scaleX(-1)}
+.gc-next{padding:12px 22px;border-radius:999px;background:var(--accent);color:var(--pearl);font-weight:700;font-size:13px;display:inline-flex;align-items:center;gap:8px}
+[data-theme="dark"] .gc-next{color:#08201f}
+.gc-next svg{width:15px;height:15px}[dir=ltr] .gc-next svg{transform:scaleX(-1)}
+/* اقتراحات */
+.gc-sugg{position:relative;border-radius:var(--r-md);padding:12px;display:flex;gap:12px;align-items:center;margin-bottom:11px;transition:.4s var(--e-settle);border:1px solid var(--glass-brd-2)}
+.gc-sugg:hover{transform:translateY(-2px);box-shadow:var(--shadow-soft)}
+.gc-sugg.best{border-color:color-mix(in srgb,var(--gold) 60%,transparent)}
+.gc-sugg .best-tag{position:absolute;top:-8px;inset-inline-start:14px;font-size:9.5px;font-weight:700;letter-spacing:.05em;padding:3px 9px;border-radius:999px;background:var(--gold);color:#1a1400}
+.gc-sugg .th{width:66px;height:66px;border-radius:16px;display:grid;place-items:center;background:var(--glass-2);flex:none}
+.gc-sugg .th svg{width:50px;height:50px}
+.gc-sugg .nm{font-size:14px;font-weight:700}
+.gc-sugg .why{font-size:11.5px;color:var(--muted);margin-top:3px;line-height:1.5}
+.gc-sugg .pr{font-size:12.5px;font-weight:700;color:var(--accent);margin-top:4px}
+.gc-sugg .pick{margin-inline-start:auto;width:34px;height:34px;border-radius:50%;background:var(--accent);color:var(--pearl);display:grid;place-items:center;flex:none}
+[data-theme="dark"] .gc-sugg .pick{color:#08201f}.gc-sugg .pick svg{width:17px;height:17px}
+[dir=ltr] .gc-sugg .pick svg{transform:scaleX(-1)}
+/* تغليف */
+.wraps{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.wrap-opt{border-radius:var(--r-md);overflow:hidden;border:1px solid var(--glass-brd-2);background:var(--glass-2);text-align:start;transition:.35s var(--e-settle)}
+.wrap-opt:hover{transform:translateY(-2px)}
+.wrap-opt.on{border-color:var(--gold);box-shadow:0 0 0 1px var(--gold)}
+.wrap-swatch{height:60px;position:relative}
+.wrap-swatch .seal{position:absolute;inset:0;margin:auto;width:26px;height:26px;opacity:.85}
+.wrap-opt .wl{padding:9px 11px}.wrap-opt .wl b{font-size:12.5px;font-weight:700;display:block}
+.wrap-opt .wl small{font-size:10.5px;color:var(--muted)}
+.sw-pearl{background:linear-gradient(135deg,#F7F4EE,#E7DFCE)}
+.sw-petrol{background:linear-gradient(135deg,#13525C,#0B2E34)}
+.sw-champagne{background:linear-gradient(135deg,#F3E7CC,#E4C98D)}
+.sw-clasp{background:linear-gradient(135deg,#EEEAE0,#DCD3C0);position:relative}
+.sw-clasp::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 30%,var(--gold) 0 2px,transparent 3px),radial-gradient(circle at 60% 70%,var(--gold) 0 2px,transparent 3px),radial-gradient(circle at 85% 25%,var(--gold) 0 2px,transparent 3px);opacity:.5}
+.seal-row{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--r-md);margin-top:12px}
+.seal-row .ic{width:22px;height:22px;color:var(--gold-deep);flex:none}
+.seal-row .tx{flex:1;font-size:13px;font-weight:700}
+.seal-row .tx small{display:block;color:var(--muted);font-weight:500;font-size:11px;margin-top:2px}
+/* الرسالة + المعاينة الحيّة */
+.tones{display:flex;gap:8px;margin-bottom:12px}
+.tone{flex:1;padding:10px;border-radius:14px;border:1px solid var(--glass-brd-2);background:var(--glass-2);font-size:12.5px;font-weight:700;transition:.3s}
+.tone.on{background:var(--accent);color:var(--pearl);border-color:transparent}
+[data-theme="dark"] .tone.on{color:#08201f}
+.tmpl{padding:11px 13px;border-radius:14px;border:1px solid var(--glass-brd-2);background:var(--glass-2);font-size:12.5px;line-height:1.55;margin-bottom:8px;transition:.3s var(--e-settle);text-align:start;width:100%;color:var(--muted)}
+.tmpl:hover{transform:translateY(-2px)}
+.tmpl.on{border-color:var(--gold);color:var(--ink)}
+.gc-preview-card{border-radius:18px;padding:18px;margin:8px 0 4px;position:relative;overflow:hidden;min-height:120px;border:1px solid var(--glass-brd-2);box-shadow:var(--shadow-soft)}
+.gc-preview-card.pv-pearl{background:linear-gradient(135deg,#F7F4EE,#EADFC9);color:#3a3320}
+.gc-preview-card.pv-petrol{background:linear-gradient(135deg,#13525C,#0B2E34);color:#EAF4F1}
+.gc-preview-card.pv-champagne{background:linear-gradient(135deg,#F3E7CC,#E4C98D);color:#4a3a15}
+.gc-preview-card.pv-clasp{background:linear-gradient(135deg,#EEEAE0,#DBD2BE);color:#3a3320}
+.gc-preview-card .pc-clasp{position:absolute;top:12px;inset-inline-end:14px;width:26px;height:26px;opacity:.55}
+.gc-preview-card .pc-to{font-family:'Great Vibes','Gulzar',cursive;font-weight:400;font-size:23px;line-height:1.75;opacity:.9;margin-bottom:2px}
+.gc-preview-card .pc-msg{font-size:15px;font-weight:700;line-height:1.65;min-height:24px}
+.gc-preview-card .pc-from{font-family:'Great Vibes','Gulzar',cursive;font-weight:400;font-size:23px;line-height:1.75;opacity:.95;margin-top:10px;text-align:end}
+.sig{font-family:'Great Vibes','Gulzar',cursive;font-weight:400;font-size:22px;line-height:1.6}
+.gc-mini-label{font-size:11px;font-weight:700;color:var(--muted);margin:12px 2px 6px;letter-spacing:.04em}
+/* ملخّص الهدية النهائي */
+.gc-done{text-align:center;padding:8px 4px}
+.gc-done .seal-vis{width:120px;height:120px;margin:6px auto 12px;position:relative}
+.gc-done .seal-vis svg{width:100%;height:100%;transform:rotate(-90deg)}
+.gc-done .seal-vis .r1{fill:none;stroke:var(--hair);stroke-width:4}
+.gc-done .seal-vis .r2{fill:none;stroke:var(--gold);stroke-width:4;stroke-linecap:round;stroke-dasharray:339;stroke-dashoffset:339;transition:stroke-dashoffset 1s var(--e-settle)}
+.gc-done .seal-vis.closed .r2{stroke-dashoffset:0}
+.gc-done .seal-vis .c{position:absolute;inset:0;display:grid;place-items:center}
+.gc-done .seal-vis .c svg{width:42px;height:42px;transform:none}
+.gc-summary{border-radius:var(--r-md);padding:14px;margin:12px 0;text-align:start;display:flex;gap:12px;align-items:center}
+.gc-summary .th{width:60px;height:60px;border-radius:14px;display:grid;place-items:center;background:var(--glass-2);flex:none}
+.gc-summary .th svg{width:44px;height:44px}
+.gc-summary .nm{font-size:13.5px;font-weight:700}
+.gc-summary .meta{font-size:11px;color:var(--muted);margin-top:3px;line-height:1.6}
+
+.success{text-align:center;padding:40px 24px}
+.clasp-wrap{width:170px;height:170px;margin:8px auto 20px;position:relative}
+.clasp-wrap svg{width:100%;height:100%;transform:rotate(-90deg)}
+.clasp-wrap .ring{fill:none;stroke:var(--hair);stroke-width:5}
+.clasp-wrap .arc{fill:none;stroke:var(--gold);stroke-width:5;stroke-linecap:round;stroke-dasharray:339;stroke-dashoffset:339;transition:stroke-dashoffset 1.1s var(--e-settle)}
+.clasp-wrap.closed .arc{stroke-dashoffset:0}
+.clasp-wrap .no{position:absolute;inset:0;display:grid;place-items:center}
+.clasp-wrap .no small{display:block;font-size:10px;letter-spacing:.14em;color:var(--muted);font-weight:700;text-transform:uppercase}
+.clasp-wrap .no b{font-size:22px;font-weight:700}
+.success h2{font-size:22px;font-weight:700;margin-bottom:8px}
+.success p{color:var(--muted);font-size:14px;line-height:1.7;max-width:30ch;margin:0 auto 22px}
+
+.view{animation:settle .55s var(--e-settle) both}
+@keyframes settle{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.15s!important}#liquid span{animation:none}}
+</style>
+</head>
+<body data-font="ar">
+<div id="liquid"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+<div id="ripple"></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <linearGradient id="gGold" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E7CE8E"/><stop offset="1" stop-color="#A5813B"/></linearGradient>
+  <linearGradient id="gPetrol" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#13525C"/><stop offset="1" stop-color="#0B2E34"/></linearGradient>
+  <linearGradient id="gSea" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A9D2CB"/><stop offset="1" stop-color="#6BA79E"/></linearGradient>
+  <linearGradient id="gGlass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="1" stop-color="#DCE9E7" stop-opacity=".5"/></linearGradient>
+  <symbol id="logo" viewBox="0 0 48 48"><circle cx="24" cy="24" r="16" fill="none" stroke="url(#gPetrol)" stroke-width="3" stroke-linecap="round" stroke-dasharray="78 22" transform="rotate(58 24 24)"/><circle cx="24" cy="8.4" r="3.1" fill="url(#gGold)"/><circle cx="35.2" cy="14" r="2.5" fill="url(#gGold)"/></symbol>
+  <symbol id="pWatch" viewBox="0 0 120 120"><rect x="49" y="8" width="22" height="30" rx="7" fill="url(#gGold)" opacity=".92"/><rect x="49" y="82" width="22" height="30" rx="7" fill="url(#gGold)" opacity=".92"/><circle cx="60" cy="60" r="34" fill="url(#gGlass)" stroke="url(#gGold)" stroke-width="3"/><circle cx="60" cy="60" r="27" fill="url(#gPetrol)"/><g stroke="#E7CE8E" stroke-width="2" stroke-linecap="round"><line x1="60" y1="38" x2="60" y2="43"/><line x1="82" y1="60" x2="77" y2="60"/><line x1="60" y1="82" x2="60" y2="77"/><line x1="38" y1="60" x2="43" y2="60"/></g><line x1="60" y1="60" x2="60" y2="45" stroke="#F0E6D2" stroke-width="2.6" stroke-linecap="round"/><line x1="60" y1="60" x2="72" y2="60" stroke="#F0E6D2" stroke-width="2.6" stroke-linecap="round"/><circle cx="60" cy="60" r="2.6" fill="#E7CE8E"/><rect x="92" y="56" width="6" height="8" rx="2" fill="url(#gGold)"/></symbol>
+  <symbol id="pBracelet" viewBox="0 0 120 120"><ellipse cx="60" cy="64" rx="38" ry="30" fill="none" stroke="url(#gGold)" stroke-width="9" stroke-linecap="round" stroke-dasharray="150 40" transform="rotate(-24 60 64)"/><circle cx="30" cy="44" r="6" fill="url(#gGold)"/><circle cx="45" cy="34" r="4.5" fill="#E7CE8E"/><circle cx="60" cy="31" r="3.6" fill="url(#gSea)"/></symbol>
+  <symbol id="pRing" viewBox="0 0 120 120"><ellipse cx="60" cy="74" rx="30" ry="26" fill="none" stroke="url(#gGold)" stroke-width="9"/><path d="M60 48 l-12 -14 h24 z" fill="url(#gSea)" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/><path d="M48 34 l12 8 l12 -8" fill="none" stroke="#fff" stroke-width="1.3" opacity=".8"/></symbol>
+  <symbol id="pGlasses" viewBox="0 0 120 120"><rect x="14" y="46" width="38" height="30" rx="12" fill="url(#gGlass)" stroke="url(#gPetrol)" stroke-width="3.4"/><rect x="68" y="46" width="38" height="30" rx="12" fill="url(#gGlass)" stroke="url(#gPetrol)" stroke-width="3.4"/><path d="M52 56 q8 -6 16 0" fill="none" stroke="url(#gGold)" stroke-width="3.4" stroke-linecap="round"/><path d="M14 54 l-7 -5 M106 54 l7 -5" stroke="url(#gPetrol)" stroke-width="3.4" stroke-linecap="round"/></symbol>
+  <symbol id="pPerfume" viewBox="0 0 120 120"><rect x="52" y="14" width="16" height="14" rx="2" fill="url(#gGold)"/><rect x="56" y="26" width="8" height="10" fill="url(#gPetrol)"/><rect x="38" y="36" width="44" height="66" rx="16" fill="url(#gGlass)" stroke="url(#gPetrol)" stroke-width="3"/><rect x="46" y="60" width="28" height="34" rx="9" fill="url(#gSea)" opacity=".55"/><path d="M76 20 h12 M82 14 v12" stroke="url(#gGold)" stroke-width="2.4" stroke-linecap="round" opacity=".7"/></symbol>
+  <symbol id="pGift" viewBox="0 0 120 120"><rect x="26" y="50" width="68" height="54" rx="8" fill="url(#gGlass)" stroke="url(#gGold)" stroke-width="3"/><rect x="20" y="38" width="80" height="18" rx="7" fill="url(#gPetrol)"/><line x1="60" y1="38" x2="60" y2="104" stroke="url(#gGold)" stroke-width="4"/><path d="M60 38 q-14 -20 -22 -6 q-2 8 22 6z" fill="url(#gGold)" opacity=".92"/><path d="M60 38 q14 -20 22 -6 q2 8 -22 6z" fill="#E7CE8E" opacity=".92"/></symbol>
+  <symbol id="pNecklace" viewBox="0 0 120 120"><path d="M28 30 q32 46 64 0" fill="none" stroke="url(#gGold)" stroke-width="3.6" stroke-linecap="round" stroke-dasharray="2 5"/><path d="M60 66 l-9 12 l9 14 l9 -14 z" fill="url(#gSea)" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/><circle cx="60" cy="64" r="3.4" fill="url(#gGold)"/></symbol>
+</defs></svg>
+
+<div id="app">
+  <header class="glass">
+    <div class="brand" onclick="location.href='index.html'" style="cursor:pointer" title="عرض المشاريع · Demos"><svg class="mark"><use href="#logo"/></svg><span class="word" data-t="brand">سيورا</span></div>
+    <button class="hbtn" onclick="toggleTheme()" aria-label="theme"><svg id="themeIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button>
+    <button class="hbtn langtog" onclick="toggleLang()"><span id="langLabel">EN</span></button>
+  </header>
+
+  <!-- الرئيسية -->
+  <main id="view-home" class="view">
+    <section class="hero glass">
+      <span class="kicker" data-t="kicker">مختارات تُنتقى بهدوء</span>
+      <h1 data-t="heroTitle">قطعٌ تُرفع إلى الضوء، واحدةً واحدة.</h1>
+      <p data-t="heroSub">ساعات وإكسسوارات وهدايا، تُعرض كما يعرضها جوهرجيّ حَذِر — بلا ضجيج.</p>
+      <div class="acts">
+        <button class="cta solid" onclick="go('browse')"><span data-t="explore">تصفّح التشكيلة</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <button class="cta ghost" onclick="openConcierge()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8zM19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg><span data-t="conciergeBtn">مرشد الهدايا</span></button>
+      </div>
+      <div class="stage"><svg class="halo" viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" fill="none" stroke="url(#gGold)" stroke-width="1.5" stroke-dasharray="3 6" opacity=".5"/></svg><svg class="piece"><use href="#pBracelet"/></svg></div>
+    </section>
+
+    <button class="concierge-card glass-2" onclick="openConcierge()">
+      <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/><path d="M5 19h.01M19 20h.01"/></svg></span>
+      <span class="tx"><b data-t="ccT">محتار في هدية؟</b><small data-t="ccS">أسئلة هادئة، ونرشّح لك ما يليق — بأسمائهم وتغليفهم.</small></span>
+      <span class="arw"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></span>
+    </button>
+
+    <div class="lightings">
+      <button class="light glass-2 on" data-cat="all" onclick="setCat('all',this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg><b data-t="catAll">الكل</b></button>
+      <button class="light glass-2" data-cat="watches" onclick="setCat('watches',this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/><path d="M12 9v3l2 1M9 6l.5-3h5L15 6M9 18l.5 3h5l.5-3"/></svg><b data-t="catWatches">الساعات</b></button>
+      <button class="light glass-2" data-cat="gifts" onclick="setCat('gifts',this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7S9 3 7.5 4.5 9 7 12 7zM12 7s3-4 4.5-2.5S15 7 12 7z"/></svg><b data-t="catGifts">الهدايا</b></button>
+    </div>
+
+    <div class="sec-h"><h2 data-t="secNew">وصل حديثاً</h2><span id="gridCount"></span></div>
+    <div class="grid" id="grid"></div>
+  </main>
+
+  <!-- التصفّح -->
+  <main id="view-browse" class="view hidden">
+    <div class="sec-h" style="margin-top:16px"><h2 data-t="navBrowse">تصفّح</h2><span id="browseCount"></span></div>
+    <div class="glass-2" style="display:flex;align-items:center;gap:9px;padding:11px 15px;border-radius:999px;margin:0 0 12px"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="color:var(--muted);flex:none"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><input oninput="doSearch(this.value)" data-ph="searchPh" placeholder="ابحث في سيورا…" style="flex:1;border:0;background:none;outline:none;color:var(--ink);font-family:inherit;font-size:14px"></div>
+    <div class="lightings" style="margin-bottom:4px">
+      <button class="light glass-2 on" data-cat="all" onclick="setCat('all',this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h6v6h-6z"/></svg><b data-t="catAll">الكل</b></button>
+      <button class="light glass-2" data-cat="accessories" onclick="setCat('accessories',this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l3 5-3 3-3-3zM12 11v10M7 21h10"/></svg><b data-t="catAcc">إكسسوارات</b></button>
+      <button class="light glass-2" data-cat="watches" onclick="setCat('watches',this)"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="6"/><path d="M12 9v3l2 1M9 6l.5-3h5L15 6M9 18l.5 3h5l.5-3"/></svg><b data-t="catWatches">الساعات</b></button>
+    </div>
+    <div class="grid" id="grid2"></div>
+  </main>
+
+  <!-- مُرشِد الهدايا -->
+  <main id="view-gift" class="view hidden">
+    <div class="gc-head"><span class="kick" data-t="ccKick">مُرشِد الهدايا</span><h2 data-t="ccHead">دعنا نختار بهدوء</h2></div>
+    <div class="gc-progress">
+      <span class="arc"><svg viewBox="0 0 34 34"><circle class="r1" cx="17" cy="17" r="14"/><circle class="r2" id="gcArcEl" cx="17" cy="17" r="14" stroke-dashoffset="88"/></svg></span>
+      <span class="lbl"><b id="gcStepNo" class="num">1</b> / <span class="num">7</span> · <span id="gcStepName"></span></span>
+    </div>
+    <div class="gc-chips" id="gcChips"></div>
+    <div id="gcFlow"></div>
+  </main>
+
+  <!-- السلّة -->
+  <main id="view-cart" class="view hidden">
+    <div class="sec-h" style="margin-top:16px"><h2 data-t="cartTitle">السلّة</h2></div>
+    <div id="cartBody"></div>
+  </main>
+
+  <!-- الحساب -->
+  <main id="view-account" class="view hidden">
+    <div class="sec-h" style="margin-top:16px"><h2 data-t="navAccount">حسابي</h2></div>
+    <div class="glass-2" style="display:flex;align-items:center;gap:13px;padding:15px;border-radius:var(--r-md)"><span style="width:52px;height:52px;border-radius:50%;background:linear-gradient(140deg,var(--seaglass),var(--petrol));color:#fff;display:grid;place-items:center;font-weight:700;font-size:20px">ن</span><div style="flex:1"><div style="font-weight:700;font-size:15px" data-t="acctName">نورة العتيبي</div><div style="font-size:11.5px;color:var(--gold-deep);font-weight:700;margin-top:3px"><span data-t="clubName">نادي القفل</span> · <span data-t="tierGold">ذهبي</span></div></div></div>
+    <div class="glass-2" style="padding:15px;border-radius:var(--r-md);margin-top:12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:9px"><b style="font-size:13px" data-t="clubName">نادي القفل</b><span style="font-size:12px;color:var(--muted)"><span class="num">7</span> <span data-t="links">حلقات</span></span></div><div style="height:7px;border-radius:7px;background:var(--hair);overflow:hidden"><div style="height:100%;width:70%;border-radius:7px;background:linear-gradient(90deg,var(--seaglass),var(--gold))"></div></div></div>
+    <div class="sec-h" style="margin:20px 4px 10px"><h2 style="font-size:15px" data-t="myOrders">طلباتي</h2></div>
+    <div class="cart-item glass-2"><div class="th"><svg viewBox="0 0 120 120"><use href="#pWatch"/></svg></div><div style="flex:1"><div class="nm">SI-4821</div><div class="pr"><span class="num">1,290</span></div></div><span style="font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--seaglass) 22%,transparent);color:var(--petrol)" data-t="stFulfilled">مكتمل</span></div>
+    <div class="cart-item glass-2"><div class="th"><svg viewBox="0 0 120 120"><use href="#pGift"/></svg></div><div style="flex:1"><div class="nm">SI-4820</div><div class="pr"><span class="num">690</span></div></div><span style="font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--gold) 24%,transparent);color:var(--gold-deep)" data-t="stPreparing">قيد التجهيز</span></div>
+    <div class="cart-item glass-2"><div class="th"><svg viewBox="0 0 120 120"><use href="#pBracelet"/></svg></div><div style="flex:1"><div class="nm">SI-4788</div><div class="pr"><span class="num">780</span></div></div><span style="font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:999px;background:color-mix(in srgb,var(--seaglass) 22%,transparent);color:var(--petrol)" data-t="stFulfilled">مكتمل</span></div>
+  </main>
+</div>
+
+<nav class="glass">
+  <button data-nav="home" class="on" onclick="go('home')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8M5 10v10h5v-6h4v6h5V10"/></svg><span data-t="navHome">الرئيسية</span></button>
+  <button data-nav="browse" onclick="go('browse')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/></svg><span data-t="navBrowse">تصفّح</span></button>
+  <button data-nav="gift" onclick="openConcierge()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.2L18 9l-4.2 1.8L12 15l-1.8-4.2L6 9l4.2-1.8z"/></svg><span data-t="navGift">مُرشِد</span></button>
+  <button data-nav="cart" onclick="go('cart')"><span class="badge num" id="badge">0</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7zM9 8a3 3 0 0 1 6 0"/></svg><span data-t="navCart">السلّة</span></button>
+  <button data-nav="account" onclick="go('account')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4 4-6 8-6s8 2 8 6"/></svg><span data-t="navAccount">حسابي</span></button>
+</nav>
+
+<div class="scrim" id="pdScrim" onclick="if(event.target===this)closeSheet()">
+  <div class="sheet" id="pdSheet"><div class="ribbon"></div><div class="grip"></div>
+    <button class="close" onclick="closeSheet()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <div id="pdContent"></div>
+  </div>
+</div>
+
+<div class="scrim" id="okScrim" style="align-items:stretch">
+  <div class="sheet" id="okSheet" style="border-radius:0;max-height:100vh;transform:none;background:var(--glass)">
+    <div class="success view">
+      <div class="clasp-wrap" id="clasp"><svg viewBox="0 0 120 120"><circle class="ring" cx="60" cy="60" r="54"/><circle class="arc" cx="60" cy="60" r="54"/></svg><div class="no"><small data-t="orderNo">رقم الطلب</small><b class="num" id="okNo">SI-0000</b></div></div>
+      <h2 data-t="okTitle">تمّ بإحكام</h2>
+      <p data-t="okMsg">أُغلقت طلبيتك كما تُغلق قفلة السِوار. سنعتني بها بهدوء.</p>
+      <button class="cta" style="background:var(--petrol);color:var(--pearl);padding:13px 26px;border-radius:999px;font-weight:700" onclick="closeOk()"><span data-t="okCta">مواصلة التصفّح</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="scrim show" id="obScrim" style="align-items:center;z-index:70;background:rgba(10,25,27,.55)">
+  <div class="glass" style="width:min(360px,88vw);border-radius:var(--r-xl);padding:34px 26px;text-align:center;box-shadow:var(--shadow)">
+    <svg style="width:60px;height:60px;margin:0 auto 14px"><use href="#logo"/></svg>
+    <div style="font-weight:700;font-size:22px;margin-bottom:8px">سيورا · <span class="num" style="letter-spacing:.14em">SIORA</span></div>
+    <p style="color:var(--muted);font-size:13px;line-height:1.7;margin-bottom:22px">قطعٌ تُرفع إلى الضوء، واحدةً واحدة.<br>Pieces lifted to the light, one at a time.</p>
+    <div style="display:flex;gap:10px">
+      <button onclick="obStart('ar')" style="flex:1;padding:13px;border-radius:999px;background:var(--petrol);color:var(--pearl);font-weight:700;font-size:14px">ابدأ بالعربية</button>
+      <button onclick="obStart('en')" style="flex:1;padding:13px;border-radius:999px;border:1px solid var(--glass-brd);background:var(--glass-2);color:var(--ink);font-weight:700;font-size:14px">English</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const CUR={ar:'ر.س',en:'SAR'};
+const PRODUCTS=[
+ {id:1,cat:'watches',svg:'pWatch',price:1290,name:{ar:'ساعة أوريج',en:'Aurige Watch'},desc:{ar:'علبة فولاذية بميناء بترولي، وعقارب من ذهب الشمبانيا. تعمل — لأن سيورا لا تعرض ساعةً واقفة.',en:'Steel case, petrol dial, champagne-gold hands. Running — Siora never shows a stopped watch.'}},
+ {id:2,cat:'watches',svg:'pWatch',price:1640,name:{ar:'ساعة نوكتورن',en:'Nocturne Watch'},desc:{ar:'ميناء ليليّ عميق يلمع كالفاترينة بعد الغروب. للحظات التي تُقاس بالهدوء.',en:'A deep nocturne dial that glows like the vitrine after dusk. For moments measured in calm.'}},
+ {id:3,cat:'accessories',svg:'pBracelet',price:780,name:{ar:'سِوار لمعة',en:'Lumen Bangle'},desc:{ar:'قوسٌ من الذهب بقفلةٍ ناعمة — هو نفسه توقيع سيورا. يُلبس بنقرةٍ واحدة.',en:'A gold arc with a soft clasp — Siora’s own signature. Worn with a single click.'}},
+ {id:4,cat:'accessories',svg:'pRing',price:590,name:{ar:'خاتم مدّ',en:'Meed Ring'},desc:{ar:'حجرٌ بلون زجاج البحر يرتفع فوق حلقةٍ رفيعة. حضورٌ هادئ لا يصرخ.',en:'A sea-glass stone lifted over a fine band. A quiet presence that never shouts.'}},
+ {id:5,cat:'accessories',svg:'pGlasses',price:460,name:{ar:'نظّارة ظلال',en:'Shade Eyewear'},desc:{ar:'إطارٌ بترولي بجسر ذهبيّ رفيع. للضوء حين يكون كثيراً.',en:'A petrol frame with a fine gold bridge. For light, when there is too much of it.'}},
+ {id:6,cat:'gifts',svg:'pPerfume',price:520,name:{ar:'عطر رذاذ',en:'Rasas Eau de Parfum'},desc:{ar:'قارورةٌ زجاجية تحبس أثراً دافئاً. تُهدى بيدٍ واحدة.',en:'A glass flacon holding a warm trace. Given with one hand.'}},
+ {id:7,cat:'gifts',svg:'pGift',price:690,name:{ar:'علبة مُنتقاة',en:'Curated Gift Box'},desc:{ar:'مجموعةٌ تُنسّق على صينيةٍ واحدة، بشريطٍ ذهبيّ رفيع. الهدية قبل أن تُفتح.',en:'A set arranged on a single tray, tied with a fine gold ribbon. The gift, before it opens.'}},
+ {id:8,cat:'accessories',svg:'pNecklace',price:640,name:{ar:'قلادة خيط',en:'Thread Necklace'},desc:{ar:'خيطٌ رفيع يحمل قطرةً من زجاج البحر. يستقرّ عند الترقوة كماءٍ ساكن.',en:'A fine thread carrying a drop of sea-glass. It settles at the collar like still water.'}},
+];
+
+/* ============ أيقونات المُرشِد ============ */
+const IC={
+ heart:'M12 21s-7-4.6-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.4-7 10-7 10z',
+ user:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM5 21c0-4 3.5-6 7-6s7 2 7 6',
+ users:'M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM15.5 11a3 3 0 1 0 0-6M3 20c0-3 2.5-5 6-5s6 2 6 5M17 15c2.5 0 4 1.6 4 4',
+ briefcase:'M4 7h16v13H4zM9 7V4h6v3',
+ book:'M4 5a2 2 0 0 1 2-2h12v16H6a2 2 0 0 0-2 2zM8 3v14',
+ baby:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM9 8h.01M15 8h.01M9.5 10c.7.6 3.3.6 4 0M6 21c0-3 3-5 6-5s6 2 6 5',
+ moon:'M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z',
+ spark:'M12 3l1.6 4.4L18 9l-4.4 1.6L12 15l-1.6-4.4L6 9l4.4-1.6z',
+ edit:'M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z',
+ cake:'M12 3v3M8 6h8M5 11c0-1.7 1.3-3 3-3h8c1.7 0 3 1.3 3 3v3H5zM4 14h16v6H4z',
+ rings:'M8 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM16 15a4 4 0 1 0 0-8M12 3l2 3h-4z',
+ cap:'M12 4L2 9l10 5 10-5zM6 12v5c0 1.7 2.7 3 6 3s6-1.3 6-3v-5',
+ leaf:'M4 20c0-8 6-14 16-14 0 10-6 14-16 14zM4 20c4-6 8-8 12-9',
+ hands:'M6 12l4 4 4-8 4 6M4 20h16',eid:'M17 12a5 5 0 1 1-4-4.9A4 4 0 1 0 17 12zM19 6l.6 1.4L21 8l-1.4.6L19 10l-.6-1.4L17 8l1.4-.6z',
+ award:'M12 15a5 5 0 1 0 0-10 5 5 0 0 0 0 10zM9 14l-1 7 4-2 4 2-1-7'
+};
+
+/* ============ بيانات المُرشِد (علاقات شاملة + أخرى) ============ */
+const REL=[
+ {k:'partner',ic:'heart',ar:'شريك/ة',en:'Partner'},{k:'wife',ic:'heart',ar:'زوجة',en:'Wife'},{k:'husband',ic:'heart',ar:'زوج',en:'Husband'},
+ {k:'mother',ic:'user',ar:'أم',en:'Mother'},{k:'father',ic:'user',ar:'أب',en:'Father'},
+ {k:'sister',ic:'users',ar:'أخت',en:'Sister'},{k:'brother',ic:'users',ar:'أخ',en:'Brother'},
+ {k:'daughter',ic:'user',ar:'ابنة',en:'Daughter'},{k:'son',ic:'user',ar:'ابن',en:'Son'},
+ {k:'friend',ic:'users',ar:'صديق/ة',en:'Friend'},{k:'colleague',ic:'briefcase',ar:'زميل/ة',en:'Colleague'},
+ {k:'boss',ic:'briefcase',ar:'مدير/ة',en:'Boss'},{k:'teacher',ic:'book',ar:'معلّم/ة',en:'Teacher'},
+ {k:'newborn',ic:'baby',ar:'مولود جديد',en:'Newborn'},{k:'self',ic:'user',ar:'لنفسي',en:'For myself'},
+ {k:'other',ic:'edit',ar:'أخرى…',en:'Other…'}
+];
+const OCC=[
+ {k:'birthday',ic:'cake',ar:'عيد ميلاد',en:'Birthday',cat:''},{k:'anniversary',ic:'heart',ar:'ذكرى زواج',en:'Anniversary',cat:'accessories'},
+ {k:'wedding',ic:'rings',ar:'زواج',en:'Wedding',cat:'accessories'},{k:'graduation',ic:'cap',ar:'تخرّج',en:'Graduation',cat:'watches'},
+ {k:'promotion',ic:'award',ar:'ترقية ونجاح',en:'Promotion',cat:'watches'},{k:'newborn',ic:'baby',ar:'مولود',en:'New baby',cat:'gifts'},
+ {k:'recovery',ic:'leaf',ar:'تعافٍ',en:'Recovery',cat:'gifts'},{k:'sympathy',ic:'leaf',ar:'مواساة',en:'Sympathy',cat:'gifts'},
+ {k:'thanks',ic:'hands',ar:'شكر وتقدير',en:'Thanks',cat:'gifts'},{k:'eid',ic:'eid',ar:'عيد',en:'Eid',cat:''},
+ {k:'justbecause',ic:'spark',ar:'بلا مناسبة',en:'Just because',cat:''},{k:'other',ic:'edit',ar:'أخرى…',en:'Other…',cat:''}
+];
+const VIBE=[{k:'classic',ar:'كلاسيكي',en:'Classic',cat:'watches'},{k:'modern',ar:'عصري',en:'Modern',cat:'accessories'},
+ {k:'calm',ar:'هادئ',en:'Calm',cat:'gifts'},{k:'bold',ar:'جريء',en:'Bold',cat:'accessories'},
+ {k:'romantic',ar:'رومانسي',en:'Romantic',cat:'accessories'},{k:'luxe',ar:'فخم',en:'Luxurious',cat:'watches'}];
+const BUDGET=[{k:'b1',ar:'أقل من ٥٠٠',en:'Under 500',max:500},{k:'b2',ar:'٥٠٠ – ٩٠٠',en:'500 – 900',min:500,max:900},
+ {k:'b3',ar:'٩٠٠ – ١٥٠٠',en:'900 – 1500',min:900,max:1500},{k:'b4',ar:'أكثر من ١٥٠٠',en:'Above 1500',min:1500}];
+const WRAPS=[{k:'pearl',sw:'sw-pearl',pv:'pv-pearl',ar:'لؤلؤي',en:'Pearl',dar:'ورقٌ لؤلؤي مطفأ',den:'Matte pearl paper'},
+ {k:'petrol',sw:'sw-petrol',pv:'pv-petrol',ar:'بترولي مخملي',en:'Petrol velvet',dar:'علبة بملمس مخملي',den:'A velvet-touch box'},
+ {k:'champagne',sw:'sw-champagne',pv:'pv-champagne',ar:'شمباني ذهبي',en:'Champagne & gold',dar:'شريطٌ ذهبيّ رفيع',den:'A fine gold ribbon'},
+ {k:'clasp',sw:'sw-clasp',pv:'pv-clasp',ar:'نقش القفل',en:'Clasp motif',dar:'مطبوعٌ بنمط سيورا',den:'Printed with the Siora motif'}];
+const TONES=[{k:'warm',ar:'دافئ',en:'Warm'},{k:'formal',ar:'رسمي',en:'Formal'},{k:'playful',ar:'خفيف',en:'Playful'}];
+const TEMPLATES={
+ warm:{ar:['كل عام وأنت أجمل من الوقت نفسه.','أهديك هذه، لأنك تستحق ما هو جميل.','بمحبةٍ لا تنتهي، ولحظةٍ تليق بك.'],en:['Every year, lovelier than time itself.','For you — because you deserve something lovely.','With affection that doesn’t end.']},
+ formal:{ar:['مع خالص التقدير والتهنئة بهذه المناسبة.','تهانينا الصادقة، ودمتَ في تقدّم.','تقديراً لك، وتمنياتنا لك بالتوفيق.'],en:['With sincere appreciation and congratulations.','Our honest congratulations — onward and upward.','In appreciation, and with our best wishes.']},
+ playful:{ar:['شيءٌ صغير يليق بشخصٍ غير عادي.','لأنك تستاهل، وبدون مناسبة أصلاً.','افتحها الآن — لا تنتظر.'],en:['A little something for someone far from ordinary.','Because you deserve it — no occasion needed.','Open it now — don’t wait.']}
+};
+
+const T={
+ ar:{brand:'سيورا',kicker:'مختارات تُنتقى بهدوء',heroTitle:'قطعٌ تُرفع إلى الضوء، واحدةً واحدة.',heroSub:'ساعات وإكسسوارات وهدايا، تُعرض كما يعرضها جوهرجيّ حَذِر — بلا ضجيج.',explore:'تصفّح التشكيلة',conciergeBtn:'مرشد الهدايا',
+   ccT:'محتار في هدية؟',ccS:'أسئلة هادئة، ونرشّح لك ما يليق — بأسمائهم وتغليفهم.',
+   catAll:'الكل',catWatches:'الساعات',catGifts:'الهدايا',catAcc:'إكسسوارات',secNew:'وصل حديثاً',
+   navHome:'الرئيسية',navBrowse:'تصفّح',navGift:'مُرشِد',navCart:'السلّة',navAccount:'حسابي',
+   cartTitle:'السلّة',acctMsg:'سجّل الدخول لتتبّع طلباتك وتحفظ مختاراتك.',acctCta:'تسجيل الدخول',
+   giftT:'هذه هدية',giftH:'نغلّفها بهدوء، ونُخفي السعر عن المُهدى إليه.',giftPh:'اكتب رسالتك… ستُطبع كما هي.',giftPrev:'ستظهر رسالتك هنا.',add:'أضف إلى السلّة',
+   subtotal:'المجموع',shipping:'الشحن',free:'مجاني',total:'الإجمالي',checkout:'إتمام الطلب — إغلاق القفل',
+   emptyCart:'سلّتك ساكنةٌ كماءٍ هادئ.',emptyCta:'ابدأ التصفّح',
+   orderNo:'رقم الطلب',okTitle:'تمّ بإحكام',okMsg:'أُغلقت طلبيتك كما تُغلق قفلة السِوار. سنعتني بها بهدوء.',okCta:'مواصلة التصفّح',pieces:'قطعة',searchPh:'ابحث في سيورا…',acctName:'نورة العتيبي',clubName:'نادي القفل',tierGold:'ذهبي',links:'حلقات',myOrders:'طلباتي',stFulfilled:'مكتمل',stPreparing:'قيد التجهيز',stAwaiting:'بانتظار الدفع',
+   ccKick:'مُرشِد الهدايا',ccHead:'دعنا نختار بهدوء',
+   sRecipient:'لِمَن',sOccasion:'المناسبة',sVibe:'الطابع',sBudget:'الميزانية',sResult:'الترشيح',sWrap:'التغليف',sMsg:'الرسالة',sDone:'الختم',
+   qRecipient:'لِمَن هذه الهدية؟',hRecipient:'اختر علاقةً، أو اكتبها بنفسك في «أخرى».',
+   qOccasion:'ما المناسبة؟',hOccasion:'أو اخترْ «بلا مناسبة» — أجملها أحياناً.',
+   qVibe:'أي طابعٍ يناسبه؟',hVibe:'إحساسٌ عام يكفي.',
+   qBudget:'وأيّ مدى للميزانية؟',hBudget:'نرشّح ضمن راحتك، بلا ضغط.',
+   qResult:'اخترناها لك',hResult:'ترشيحٌ محدود — كما يفعل جوهرجيّ حَذِر.',
+   qWrap:'كيف نغلّفها؟',hWrap:'اختر الكسوة التي تليق باللحظة.',
+   qMsg:'أضف كلمة؟',hMsg:'اسم المُهدى إليه، ثم نبرة وقالب — وشاهد البطاقة تتكوّن.',
+   otherRel:'اكتب صلتك به',otherOcc:'اكتب المناسبة',
+   waxSeal:'ختم الشمع بقفلة سيورا',waxHint:'لمسةٌ أخيرة تُميّز العلبة.',
+   nameLbl:'اسم المُهدى إليه',namePh:'مثال: نورة',fromLbl:'من (اختياري)',fromPh:'اسمك',
+   pcTo:'إلى',pcFrom:'من',previewLbl:'معاينة البطاقة',
+   why:'تناسب %o بطابعٍ %v.',whyV:'تناسب طابعاً %v.',whyO:'تناسب %o.',whyB:'ضمن ميزانيتك.',bestMatch:'الأنسب',
+   next:'التالي',back:'رجوع',seal:'اختم بالقفل',
+   doneT:'هديتك جاهزة',doneS:'غلّفناها وختمناها. أضِفها إلى السلّة متى شئت.',toCart:'أضِف إلى السلّة',restart:'من جديد',
+   wrapLbl:'التغليف',aGift:'هدية مغلّفة',forWhom:'إلى'},
+ en:{brand:'SIORA',kicker:'A quietly chosen selection',heroTitle:'Pieces lifted to the light, one at a time.',heroSub:'Watches, accessories and gifts — shown the way a careful jeweller shows them. No noise.',explore:'Explore the collection',conciergeBtn:'Gift concierge',
+   ccT:'Unsure what to give?',ccS:'Calm questions, and we suggest what fits — with their name and wrapping.',
+   catAll:'All',catWatches:'Watches',catGifts:'Gifts',catAcc:'Accessories',secNew:'Newly arrived',
+   navHome:'Home',navBrowse:'Browse',navGift:'Concierge',navCart:'Cart',navAccount:'Account',
+   cartTitle:'Cart',acctMsg:'Sign in to track orders and keep your selections.',acctCta:'Sign in',
+   giftT:'This is a gift',giftH:'We wrap it quietly and hide the price from the recipient.',giftPh:'Write your note… it prints exactly as shown.',giftPrev:'Your note will appear here.',add:'Add to cart',
+   subtotal:'Subtotal',shipping:'Shipping',free:'Free',total:'Total',checkout:'Checkout — close the clasp',
+   emptyCart:'Your cart is still as calm water.',emptyCta:'Start browsing',
+   orderNo:'Order no.',okTitle:'Sealed',okMsg:'Your order closed the way a bracelet clasp does. We will tend to it, calmly.',okCta:'Continue browsing',pieces:'items',searchPh:'Search Siora…',acctName:'Noura Al-Otaibi',clubName:'Clasp Club',tierGold:'Gold',links:'links',myOrders:'My orders',stFulfilled:'Fulfilled',stPreparing:'Preparing',stAwaiting:'Awaiting payment',
+   ccKick:'Gift concierge',ccHead:'Let us choose, calmly',
+   sRecipient:'Who',sOccasion:'Occasion',sVibe:'Character',sBudget:'Budget',sResult:'Picks',sWrap:'Wrapping',sMsg:'Note',sDone:'Seal',
+   qRecipient:'Who is this gift for?',hRecipient:'Pick a relationship, or type your own under “Other”.',
+   qOccasion:'What is the occasion?',hOccasion:'Or pick “Just because” — often the loveliest.',
+   qVibe:'What character suits them?',hVibe:'A general feeling is enough.',
+   qBudget:'And a budget range?',hBudget:'We suggest within your comfort, no pressure.',
+   qResult:'Chosen for you',hResult:'A short list — as a careful jeweller would.',
+   qWrap:'How shall we wrap it?',hWrap:'Choose the dressing that suits the moment.',
+   qMsg:'Add a word?',hMsg:'Recipient’s name, then a tone and template — watch the card form.',
+   otherRel:'Describe your relationship',otherOcc:'Describe the occasion',
+   waxSeal:'Wax seal with the Siora clasp',waxHint:'A final touch that marks the box.',
+   nameLbl:'Recipient’s name',namePh:'e.g. Noura',fromLbl:'From (optional)',fromPh:'Your name',
+   pcTo:'To',pcFrom:'From',previewLbl:'Card preview',
+   why:'Suits a %v %o.',whyV:'Suits a %v character.',whyO:'Suits %o.',whyB:'Within your budget.',bestMatch:'Best match',
+   next:'Next',back:'Back',seal:'Seal with the clasp',
+   doneT:'Your gift is ready',doneS:'Wrapped and sealed. Add it to the cart whenever you like.',toCart:'Add to cart',restart:'Start over',
+   wrapLbl:'Wrapping',aGift:'Wrapped gift',forWhom:'To'}
+};
+
+let lang='ar',cat='all',q='',cart=[],current=null,isGift=false;
+const $=s=>document.querySelector(s),$$=s=>document.querySelectorAll(s);
+const money=n=>`<span class="num">${n.toLocaleString('en-US')}</span> <span class="cur">${CUR[lang]}</span>`;
+const L=o=>o[lang];
+const icon=(name,cls)=>`<svg class="${cls||''}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="${IC[name]}"/></svg>`;
+
+function applyLang(){
+  document.documentElement.lang=lang;document.documentElement.dir=lang==='ar'?'rtl':'ltr';document.body.dataset.font=lang;
+  $('#langLabel').textContent=lang==='ar'?'EN':'ع';
+  $$('[data-t]').forEach(el=>{const k=el.dataset.t;if(T[lang][k]!=null)el.textContent=T[lang][k];});
+  $$('[data-ph]').forEach(el=>{const k=el.dataset.ph;if(T[lang][k]!=null)el.placeholder=T[lang][k];});
+  renderGrid();if(current)openSheet(current.id);renderCart();
+  if(!$('#view-gift').classList.contains('hidden'))renderStep();
+}
+function toggleLang(){lang=lang==='ar'?'en':'ar';applyLang();}
+function toggleTheme(){const d=document.documentElement.dataset.theme==='dark';document.documentElement.dataset.theme=d?'light':'dark';
+  $('#themeIcon').innerHTML=d?'<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>':'<path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z"/>';}
+
+function go(v){
+  ['home','browse','gift','cart','account'].forEach(x=>$('#view-'+x).classList.toggle('hidden',x!==v));
+  $$('[data-nav]').forEach(b=>b.classList.toggle('on',b.dataset.nav===v));
+  if(v==='cart')renderCart();
+  const el=$('#view-'+v);el.classList.remove('view');void el.offsetWidth;el.classList.add('view');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function setCat(c,btn){cat=c;const box=btn.closest('.lightings');box.querySelectorAll('.light').forEach(b=>b.classList.remove('on'));btn.classList.add('on');
+  document.documentElement.style.setProperty('--accent',c==='gifts'?'var(--gold-deep)':c==='accessories'?'var(--seaglass)':'var(--petrol)');renderGrid();}
+const catLabel=c=>T[lang]['cat'+({watches:'Watches',gifts:'Gifts',accessories:'Acc'}[c])];
+function cardHTML(p){return `<article class="card" onclick="openSheet(${p.id})"><span class="tag">${catLabel(p.cat)}</span><div class="sweep"></div>
+  <div class="stage"><div class="shadow"></div><svg class="prod"><use href="#${p.svg}"/></svg></div>
+  <div class="plinth"><div class="nm">${L(p.name)}</div><div class="row"><span class="pr">${money(p.price)}</span>
+  <button class="add" onclick="event.stopPropagation();addToCart(${p.id},event)" aria-label="add"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div></div></article>`;}
+function norm(s){return (s||'').toLowerCase().replace(/[إأآا]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/[ًٌٍَُِّْ]/g,'').trim();}
+function doSearch(v){q=v;renderGrid();}
+function renderGrid(){const base=cat==='all'?PRODUCTS:PRODUCTS.filter(p=>p.cat===cat);
+  $('#grid').innerHTML=base.map(cardHTML).join('');
+  let bl=base;if(q){const nq=norm(q);bl=base.filter(p=>norm(p.name.ar).includes(nq)||norm(p.name.en).includes(nq));}
+  $('#grid2').innerHTML=bl.length?bl.map(cardHTML).join(''):'<p style="grid-column:1/-1;text-align:center;color:var(--muted);padding:30px 0">'+(lang==='ar'?'لا نتائج مطابقة':'No matches')+'</p>';
+  $('#gridCount').textContent=`${base.length} ${T[lang].pieces}`;$('#browseCount').textContent=`${bl.length} ${T[lang].pieces}`;}
+
+function openSheet(id){current=PRODUCTS.find(p=>p.id===id);isGift=false;const p=current;
+  $('#pdContent').innerHTML=`<div class="pd-stage"><svg class="prod"><use href="#${p.svg}"/></svg></div>
+    <div class="pd-wrap"><div class="pd-kick">${catLabel(p.cat)}</div><div class="pd-title">${L(p.name)}</div>
+    <div class="pd-price">${money(p.price)}</div><p class="pd-desc">${L(p.desc)}</p>
+    <div class="gift-toggle glass-2"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13M12 7S9 3 7.5 4.5 9 7 12 7zM12 7s3-4 4.5-2.5S15 7 12 7z"/></svg>
+      <div class="tx"><b>${T[lang].giftT}</b><small>${T[lang].giftH}</small></div><button class="switch" id="giftSwitch" onclick="toggleGift()"></button></div>
+    <div class="gift-panel" id="giftPanel"><textarea id="giftMsg" placeholder="${T[lang].giftPh}" oninput="previewGift()"></textarea><div class="gift-preview" id="giftPrev">${T[lang].giftPrev}</div></div>
+    <button class="pd-add" onclick="addToCart(${p.id},event,true)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7zM9 8a3 3 0 0 1 6 0"/></svg><span>${T[lang].add}</span></button></div>`;
+  $('#pdScrim').classList.add('show');}
+function closeSheet(){$('#pdScrim').classList.remove('show');$('#pdSheet').classList.remove('gift');current=null;}
+function toggleGift(){isGift=!isGift;$('#giftSwitch').classList.toggle('on',isGift);$('#giftPanel').classList.toggle('open',isGift);$('#pdSheet').classList.toggle('gift',isGift);}
+function previewGift(){$('#giftPrev').textContent=$('#giftMsg').value.trim()||T[lang].giftPrev;}
+
+function addToCart(id,e,fromSheet,giftMeta){cart.push({id,gift:giftMeta||null});const b=$('#badge');b.textContent=cart.length;b.classList.add('show');
+  b.animate([{transform:'scale(.4)'},{transform:'scale(1.2)'},{transform:'scale(1)'}],{duration:450,easing:'cubic-bezier(.22,1,.36,1)'});ripple(e);if(fromSheet)setTimeout(closeSheet,320);}
+function ripple(e){const r=$('#ripple'),x=(e&&e.clientX)||innerWidth/2,y=(e&&e.clientY)||innerHeight/2;r.style.left=x+'px';r.style.top=y+'px';r.classList.remove('go');void r.offsetWidth;r.classList.add('go');}
+function renderCart(){const body=$('#cartBody');if(!cart.length){body.innerHTML=`<div class="empty view"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7c6 3 10 3 16 0M4 7l1.5 12h13L20 7"/><path d="M9 11v4M15 11v4"/></svg><p>${T[lang].emptyCart}</p><button class="cta" onclick="go('browse')">${T[lang].emptyCta}</button></div>`;return;}
+  const items=cart.map((it,i)=>{const p=PRODUCTS.find(x=>x.id===it.id);const g=it.gift?`<div class="gmeta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16v9H4zM3 7h18v4H3zM12 7v13"/></svg>${T[lang].aGift}${it.gift.name?' · '+T[lang].forWhom+' '+it.gift.name:''}</div>`:'';
+    return `<div class="cart-item glass-2"><div class="th"><svg viewBox="0 0 120 120"><use href="#${p.svg}"/></svg></div><div><div class="nm">${L(p.name)}</div><div class="pr">${money(p.price)}</div>${g}</div><button class="rm" onclick="removeItem(${i})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 7h16M9 7V5h6v2M6 7l1 13h10l1-13"/></svg></button></div>`;}).join('');
+  const sub=cart.reduce((s,it)=>s+PRODUCTS.find(x=>x.id===it.id).price,0);
+  body.innerHTML=items+`<div class="summary glass"><div class="line"><span>${T[lang].subtotal}</span><span>${money(sub)}</span></div><div class="line"><span>${T[lang].shipping}</span><span>${T[lang].free}</span></div><div class="line tot"><span>${T[lang].total}</span><span>${money(sub)}</span></div>
+    <button class="pd-add" style="margin-top:14px" onclick="checkout()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" stroke-dasharray="42 14"/><circle cx="12" cy="3.2" r="1.6" fill="currentColor" stroke="none"/></svg><span>${T[lang].checkout}</span></button></div>`;}
+function removeItem(i){cart.splice(i,1);const b=$('#badge');b.textContent=cart.length;b.classList.toggle('show',cart.length>0);renderCart();}
+
+function checkout(){$('#okNo').textContent='SI-'+String(Math.floor(1000+Math.random()*9000));$('#okScrim').classList.add('show');
+  const c=$('#clasp');c.classList.remove('closed');void c.offsetWidth;setTimeout(()=>{c.classList.add('closed');if(navigator.vibrate)navigator.vibrate(18);},260);}
+function closeOk(){$('#okScrim').classList.remove('show');cart=[];const b=$('#badge');b.classList.remove('show');b.textContent='0';renderCart();go('home');}
+
+/* ============================ مُرشِد الهدايا ============================ */
+let gc={};
+const STEPS=['sRecipient','sOccasion','sVibe','sBudget','sResult','sWrap','sMsg','sDone'];
+const ARROW_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+const SEAL_ICON='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1 7 4-2 4 2-1-7"/></svg>';
+function openConcierge(){gc={step:0,rel:null,relOther:'',occ:null,occOther:'',vibe:null,budget:null,productId:null,wrap:'pearl',wax:false,tone:'warm',msg:'',name:'',from:''};go('gift');renderStep();}
+function gcPick(field,val){gc[field]=val;if(val!=='other')gc.step++;renderStep();}
+function gcNext(){gc.step++;renderStep();}
+function gcBack(){if(gc.step>0){gc.step--;renderStep();}}
+function gcJump(i){if(i<gc.step){gc.step=i;renderStep();}}
+function optLabel(arr,key,otherKey){if(!key)return '';if(key==='other')return gc[otherKey]||T[lang][arr==='rel'?'otherRel':'otherOcc'];const it=(arr==='rel'?REL:arr==='occ'?OCC:arr==='vibe'?VIBE:BUDGET).find(x=>x.k===key);return it?L(it):'';}
+
+function suggestions(){const b=BUDGET.find(x=>x.k===gc.budget)||{};
+  let pool=PRODUCTS.filter(p=>(b.min?p.price>=b.min:true)&&(b.max?p.price<=b.max:true));
+  if(!pool.length)pool=PRODUCTS.slice();
+  const oc=(OCC.find(o=>o.k===gc.occ)||{}).cat,vc=(VIBE.find(v=>v.k===gc.vibe)||{}).cat;
+  pool.forEach(p=>{p._s=0;if(oc&&p.cat===oc)p._s+=2;if(vc&&p.cat===vc)p._s+=1;});
+  return pool.sort((a,b)=>b._s-a._s).slice(0,3);}
+function whyText(p){const o=gc.occ&&gc.occ!=='other'?L(OCC.find(x=>x.k===gc.occ)):(gc.occOther||'');const v=gc.vibe?L(VIBE.find(x=>x.k===gc.vibe)):'';
+  if(o&&v)return T[lang].why.replace('%o',o).replace('%v',v);if(v)return T[lang].whyV.replace('%v',v);if(o)return T[lang].whyO.replace('%o',o);return T[lang].whyB;}
+
+function gcArc(){const off=88-(88*gc.step/(STEPS.length-1));$('#gcArcEl').setAttribute('stroke-dashoffset',off.toFixed(1));}
+function renderChips(){const box=$('#gcChips');const parts=[];
+  if(gc.rel)parts.push(`<button class="gc-chip" onclick="gcJump(0)"><span class="k">${T[lang].sRecipient}:</span> ${optLabel('rel',gc.rel,'relOther')}</button>`);
+  if(gc.occ)parts.push(`<button class="gc-chip" onclick="gcJump(1)"><span class="k">${T[lang].sOccasion}:</span> ${optLabel('occ',gc.occ,'occOther')}</button>`);
+  if(gc.vibe)parts.push(`<button class="gc-chip" onclick="gcJump(2)"><span class="k">${T[lang].sVibe}:</span> ${optLabel('vibe',gc.vibe)}</button>`);
+  if(gc.budget)parts.push(`<button class="gc-chip" onclick="gcJump(3)"><span class="k">${T[lang].sBudget}:</span> ${optLabel('bud',gc.budget)}</button>`);
+  box.innerHTML=parts.join('');}
+function choices(field,arr,otherKey){return `<div class="gc-choices">`+arr.map(o=>`<button class="gc-choice ${gc[field]===o.k?'on':''}" onclick="gcPick('${field}','${o.k}')">${o.ic?icon(o.ic,'ic'):''}<span>${L(o)}</span></button>`).join('')+`</div>`+
+  ((gc[field]==='other')?`<div class="gc-other gc-field"><label>${T[lang][field==='rel'?'otherRel':'otherOcc']}</label><input class="gc-input" value="${(gc[otherKey]||'').replace(/"/g,'&quot;')}" oninput="gc.${otherKey}=this.value" placeholder="${T[lang][field==='rel'?'otherRel':'otherOcc']}"><div class="gc-nav">${backHTML()}<button class="gc-next" onclick="gcNext()"><span>${T[lang].next}</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div></div>`:'');}
+function backHTML(){return `<button class="gc-back" onclick="gcBack()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>${T[lang].back}</button>`;}
+function navHTML(nextFn,nextLbl,icn){return `<div class="gc-nav">${gc.step>0?backHTML():'<span></span>'}<button class="gc-next" onclick="${nextFn}">${icn?icn:''}<span>${nextLbl}</span></button></div>`;}
+
+function previewCard(){const w=WRAPS.find(x=>x.k===gc.wrap)||WRAPS[0];
+  return `<div class="gc-mini-label">${T[lang].previewLbl}</div><div class="gc-preview-card ${w.pv}"><svg class="pc-clasp" viewBox="0 0 48 48"><use href="#logo"/></svg>
+    <div class="pc-to">${T[lang].pcTo}: <span id="pcTo">${gc.name||'—'}</span></div>
+    <div class="pc-msg" id="pcMsg">${gc.msg||T[lang].giftPrev}</div>
+    <div class="pc-from" id="pcFrom">${fromHTML()}</div></div>`;}
+function fromHTML(){return gc.from?(T[lang].pcFrom+': '+gc.from):'';}
+function updatePreview(){const to=$('#pcTo'),ms=$('#pcMsg'),fr=$('#pcFrom');if(to)to.textContent=gc.name||'—';if(ms)ms.textContent=gc.msg||T[lang].giftPrev;if(fr)fr.textContent=fromHTML();}
+function pickTmpl(m){gc.msg=m;const t=$('#gcMsgEdit');if(t)t.value=m;updatePreview();renderStep();}
+
+function renderStep(){
+  gcArc();renderChips();
+  const key=STEPS[gc.step];
+  $('#gcStepNo').textContent=Math.min(gc.step+1,STEPS.length);
+  $('#gcStepName').textContent=T[lang][key];
+  const f=$('#gcFlow');let h='';
+  if(key==='sRecipient')h=`<div class="gc-step glass"><div class="gc-q">${T[lang].qRecipient}</div><div class="gc-hint">${T[lang].hRecipient}</div>${choices('rel',REL,'relOther')}</div>`;
+  else if(key==='sOccasion')h=`<div class="gc-step glass"><div class="gc-q">${T[lang].qOccasion}</div><div class="gc-hint">${T[lang].hOccasion}</div>${choices('occ',OCC,'occOther')}${gc.occ!=='other'?`<div class="gc-nav">${backHTML()}<span></span></div>`:''}</div>`;
+  else if(key==='sVibe')h=`<div class="gc-step glass"><div class="gc-q">${T[lang].qVibe}</div><div class="gc-hint">${T[lang].hVibe}</div>${choices('vibe',VIBE)}<div class="gc-nav">${backHTML()}<span></span></div></div>`;
+  else if(key==='sBudget')h=`<div class="gc-step glass"><div class="gc-q">${T[lang].qBudget}</div><div class="gc-hint">${T[lang].hBudget}</div><div class="gc-choices">`+BUDGET.map(o=>`<button class="gc-choice ${gc.budget===o.k?'on':''}" onclick="gcPick('budget','${o.k}')"><span>${L(o)}</span></button>`).join('')+`</div><div class="gc-nav">${backHTML()}<span></span></div></div>`;
+  else if(key==='sResult'){const s=suggestions();
+    h=`<div class="gc-step glass"><div class="gc-q">${T[lang].qResult}</div><div class="gc-hint">${T[lang].hResult}</div>`+
+    s.map((p,i)=>`<div class="gc-sugg glass-2 ${i===0?'best':''}">${i===0?`<span class="best-tag">${T[lang].bestMatch}</span>`:''}<div class="th"><svg viewBox="0 0 120 120"><use href="#${p.svg}"/></svg></div><div><div class="nm">${L(p.name)}</div><div class="why">${whyText(p)}</div><div class="pr">${money(p.price)}</div></div><button class="pick" onclick="gc.productId=${p.id};gcNext()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></div>`).join('')+
+    `<div class="gc-nav">${backHTML()}<span></span></div></div>`;}
+  else if(key==='sWrap'){
+    h=`<div class="gc-step glass"><div class="gc-q">${T[lang].qWrap}</div><div class="gc-hint">${T[lang].hWrap}</div><div class="wraps">`+
+    WRAPS.map(w=>`<button class="wrap-opt ${gc.wrap===w.k?'on':''}" onclick="gc.wrap='${w.k}';renderStep()"><div class="wrap-swatch ${w.sw}">${w.k==='clasp'?'<svg class="seal" viewBox="0 0 48 48"><use href="#logo"/></svg>':''}</div><div class="wl"><b>${lang==='ar'?w.ar:w.en}</b><small>${lang==='ar'?w.dar:w.den}</small></div></button>`).join('')+`</div>
+    <div class="seal-row glass-2"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="6"/><path d="M9 14l-1 7 4-2 4 2-1-7"/></svg><div class="tx">${T[lang].waxSeal}<small>${T[lang].waxHint}</small></div><button class="switch ${gc.wax?'on':''}" onclick="gc.wax=!gc.wax;renderStep()"></button></div>
+    ${navHTML('gcNext()',T[lang].next,ARROW_ICON)}</div>`;}
+  else if(key==='sMsg'){
+    h=`<div class="gc-step glass"><div class="gc-q">${T[lang].qMsg}</div><div class="gc-hint">${T[lang].hMsg}</div>
+    <div class="gc-field" style="margin-bottom:10px"><label>${T[lang].nameLbl}</label><input class="gc-input" value="${(gc.name||'').replace(/"/g,'&quot;')}" placeholder="${T[lang].namePh}" oninput="gc.name=this.value;updatePreview()"></div>
+    <div class="tones">`+TONES.map(t=>`<button class="tone ${gc.tone===t.k?'on':''}" onclick="gc.tone='${t.k}';renderStep()">${L(t)}</button>`).join('')+`</div>`+
+    TEMPLATES[gc.tone][lang].map(m=>`<button class="tmpl ${gc.msg===m?'on':''}" onclick="pickTmpl(this.dataset.m)" data-m="${m.replace(/"/g,'&quot;')}">${m}</button>`).join('')+
+    `<textarea id="gcMsgEdit" class="gc-input" placeholder="${T[lang].giftPh}" oninput="gc.msg=this.value;updatePreview()" style="min-height:56px;resize:none;margin-bottom:10px">${gc.msg}</textarea>
+    <div class="gc-field" style="margin-bottom:6px"><label>${T[lang].fromLbl}</label><input class="gc-input" value="${(gc.from||'').replace(/"/g,'&quot;')}" placeholder="${T[lang].fromPh}" oninput="gc.from=this.value;updatePreview()"></div>
+    ${previewCard()}
+    ${navHTML('gcSeal()',T[lang].seal,SEAL_ICON)}</div>`;}
+  else if(key==='sDone'){const p=PRODUCTS.find(x=>x.id===gc.productId);const w=WRAPS.find(x=>x.k===gc.wrap);
+    h=`<div class="gc-step glass gc-done"><div class="seal-vis" id="sealVis"><svg viewBox="0 0 120 120"><circle class="r1" cx="60" cy="60" r="54"/><circle class="r2" cx="60" cy="60" r="54"/></svg><div class="c"><svg viewBox="0 0 48 48"><use href="#logo"/></svg></div></div>
+      <div class="gc-q">${T[lang].doneT}</div><div class="gc-hint">${T[lang].doneS}</div>
+      <div class="gc-summary glass-2"><div class="th"><svg viewBox="0 0 120 120"><use href="#${p.svg}"/></svg></div><div><div class="nm">${L(p.name)}</div>
+        <div class="meta">${gc.name?T[lang].forWhom+' '+gc.name+' · ':''}${T[lang].wrapLbl}: ${lang==='ar'?w.ar:w.en}${gc.wax?' · '+T[lang].waxSeal:''}</div>
+        ${gc.msg?`<div class="meta">“${gc.msg}”</div>`:''}</div><div style="margin-inline-start:auto" class="pr num">${money(p.price)}</div></div>
+      <button class="pd-add" onclick="gcAddToCart(event)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1 12H7zM9 8a3 3 0 0 1 6 0"/></svg><span>${T[lang].toCart}</span></button>
+      <button class="gc-back" style="margin:12px auto 0;display:inline-flex" onclick="openConcierge()">${T[lang].restart}</button></div>`;}
+  f.innerHTML=h;
+  const el=f.firstElementChild;if(el){el.classList.remove('view');void el.offsetWidth;el.classList.add('view');}
+  if(key==='sDone')setTimeout(()=>{const sv=$('#sealVis');if(sv)sv.classList.add('closed');if(navigator.vibrate)navigator.vibrate(16);},240);
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function gcSeal(){gc.step=STEPS.indexOf('sDone');renderStep();}
+function gcAddToCart(e){const w=WRAPS.find(x=>x.k===gc.wrap);addToCart(gc.productId,e,false,{wrap:lang==='ar'?w.ar:w.en,wax:gc.wax,msg:gc.msg,name:gc.name});go('cart');}
+
+function obStart(l){lang=l;applyLang();document.getElementById('obScrim').classList.remove('show');}
+applyLang();setTimeout(()=>document.body.classList.add('arrived'),60);
+</script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<!-- بسطة — دليل التاجر · كيف تنشئ متجرك وتبيع وتجدد · هوية بسطة · بلا إيموجي -->
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دليل التاجر — بسطة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nila:#1F3A5F; --aqeeq:#DE8344; --aqeeq-ink:#A85B1F; --rayhan:#2F8F6B;
+  --hibr:#16222E; --qishda:#F8F4EC; --danger:#B3453A;
+  --radius:24px; --shadow:0 18px 40px rgba(31,58,95,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal',system-ui,sans-serif;color:var(--hibr);line-height:1.85;padding:0 0 70px;
+  background:radial-gradient(1100px 700px at 90% -5%,rgba(222,131,68,.16),transparent 55%),
+    radial-gradient(1000px 800px at -10% 8%,rgba(47,143,107,.15),transparent 55%),
+    linear-gradient(160deg,#eaf1f8 0%,#f8f4ec 55%,#eef6f1 100%)}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.hero{text-align:center;padding:52px 20px 30px}
+.badge{display:inline-block;background:rgba(222,131,68,.14);color:var(--aqeeq-ink);font-weight:700;font-size:14px;padding:7px 18px;border-radius:999px;margin-bottom:18px}
+.hero svg.logo{width:66px;height:66px;margin:0 auto 8px;display:block}
+.hero h1{font-size:40px;font-weight:800;color:var(--nila);letter-spacing:-.5px}
+.hero p{font-size:17px;color:#4a5a68;max-width:60ch;margin:14px auto 0}
+.backlink{display:inline-flex;align-items:center;gap:7px;margin-top:20px;font-size:14px;font-weight:700;color:var(--nila);text-decoration:none;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);padding:9px 16px;border-radius:999px}
+.backlink svg{width:15px;height:15px}
+section{margin-top:26px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:0 4px}
+.sec-num{flex:none;width:42px;height:42px;border-radius:13px;background:var(--nila);color:#fff;font-weight:800;font-size:19px;display:grid;place-items:center;box-shadow:var(--shadow)}
+.sec-head h2{font-size:24px;color:var(--nila);font-weight:800;line-height:1.25}
+.card{background:rgba(255,255,255,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.85);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px}
+.lead{font-size:18px;color:#3a4a58;margin-bottom:14px}
+.lead b{color:var(--nila)}
+.steps{display:grid;gap:13px}
+.stp{background:#fff;border:1px solid #eee;border-radius:16px;padding:16px;display:flex;gap:15px;align-items:flex-start}
+.stp .n{flex:none;width:38px;height:38px;border-radius:12px;background:linear-gradient(140deg,var(--nila),var(--rayhan));color:#fff;font-weight:800;font-size:17px;display:grid;place-items:center}
+.stp h3{font-size:17px;color:var(--nila);margin-bottom:3px}
+.stp p{font-size:15.5px;color:#55636f}
+.points{display:grid;gap:12px}
+.point{display:flex;gap:14px;align-items:flex-start;background:#fff;border:1px solid #eee;border-radius:16px;padding:15px}
+.point .ic{flex:none;width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:rgba(47,143,107,.13);color:var(--rayhan)}
+.point .ic svg{width:24px;height:24px}
+.point h3{font-size:16.5px;font-weight:700;margin-bottom:2px}
+.point p{font-size:15px;color:#55636f}
+.renew{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.rn{background:#fff;border:1px solid #eee;border-radius:16px;padding:15px}
+.rn .n{width:30px;height:30px;border-radius:9px;background:var(--aqeeq);color:#fff;font-weight:800;display:grid;place-items:center;margin-bottom:9px}
+.rn h3{font-size:15.5px;color:var(--nila);margin-bottom:3px}
+.rn p{font-size:14px;color:#55636f}
+.tips{display:grid;gap:10px}
+.tip{display:flex;gap:11px;align-items:flex-start;font-size:15.5px;color:#44515d;background:#fff;border:1px solid #eee;border-radius:14px;padding:13px 15px}
+.tip svg{flex:none;width:20px;height:20px;color:var(--rayhan);margin-top:3px}
+.plans{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.plan{background:#fff;border:1px solid #eee;border-radius:16px;padding:16px;text-align:center}
+.plan.pop{border:2px solid var(--aqeeq)}
+.plan b{display:block;font-size:15px;color:var(--nila)}
+.plan .pr{font-size:22px;font-weight:800;color:var(--hibr);margin:6px 0 2px}
+.plan .pr small{font-size:12px;color:#8a97a2;font-weight:500}
+.plan span{font-size:13px;color:#55636f}
+details{background:#fff;border:1px solid #eee;border-radius:14px;padding:15px 17px;margin-bottom:10px;cursor:pointer}
+summary{font-weight:700;font-size:15.5px;color:var(--nila);list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";color:var(--aqeeq);font-size:22px;font-weight:400}
+details[open] summary::after{content:"\2212"}
+details p{margin-top:10px;font-size:15px;color:#55636f}
+.note{margin-top:14px;font-size:15px;color:#4a5a68;background:rgba(47,143,107,.09);border-inline-start:5px solid var(--rayhan);padding:14px 16px;border-radius:0 14px 14px 0}
+.note b{color:var(--rayhan)}
+.cta{margin-top:30px;text-align:center;background:linear-gradient(135deg,var(--nila),#245863 60%,var(--rayhan));color:#fff;border-radius:var(--radius);padding:34px 24px;box-shadow:var(--shadow)}
+.cta h2{font-size:24px;margin-bottom:8px}
+.cta p{opacity:.92;margin-bottom:18px}
+.cta a{display:inline-flex;align-items:center;gap:8px;background:var(--aqeeq);color:#fff;font-weight:700;text-decoration:none;padding:13px 24px;border-radius:999px;font-size:15px}
+.foot{text-align:center;color:#8a97a2;font-size:13.5px;margin-top:28px}
+@media(max-width:560px){.hero h1{font-size:32px}.renew,.plans{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="badge">دليل التاجر</span>
+    <svg class="logo" viewBox="0 0 96 96" fill="none" stroke="#1F3A5F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 40 a12.66 12.66 0 0 1 25.3 0 a12.66 12.66 0 0 1 25.4 0 a12.66 12.66 0 0 1 25.3 0"/>
+      <path d="M10 40 h76"/><path d="M48 40 v34"/><path d="M34 78 h28"/>
+      <circle cx="48" cy="70" r="3.4" fill="#DE8344" stroke="#DE8344"/>
+    </svg>
+    <h1>كيف تفرش بسطتك</h1>
+    <p>دليل بسيط للتاجر: كيف تنشئ متجرك، ترفع منتجاتك، تستقبل الطلبات، وتجدد اشتراكك — كله من جوالك، وبدون أي بطاقة بنكية.</p>
+    <a class="backlink" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>رجوع للفهرس</a>
+  </header>
+
+  <!-- 1. أنشئ متجرك -->
+  <section>
+    <div class="sec-head"><div class="sec-num">١</div><h2>ثلاث خطوات وتفتح بسطتك</h2></div>
+    <div class="card">
+      <p class="lead">من جوالك، وبدون أي خبرة تقنية:</p>
+      <div class="steps">
+        <div class="stp"><span class="n">١</span><div><h3>سجّل باسم متجرك</h3><p>اسم المتجر، رقم واتسابك، ولون يعجبك — ويصير عندك رابط جاهز: bastah.store/اسم-متجرك</p></div></div>
+        <div class="stp"><span class="n">٢</span><div><h3>ارفع منتجاتك</h3><p>لكل منتج: صورة، سعر، ووصف قصير. النظام يضغط الصور تلقائياً عشان تفتح بسرعة حتى على نت ضعيف.</p></div></div>
+        <div class="stp"><span class="n">٣</span><div><h3>شارك الرابط</h3><p>انشره في حالة الواتس وقروباتك. رابط واحد مرتّب بدل ما ترسل ٤٠ صورة لكل زبون.</p></div></div>
+      </div>
+      <div class="note">ما عندك وقت؟ خدمة <b>«نجهّز متجرك»</b>: أرسل لنا الصور والأسعار واتساب، ونسلّمك متجراً كامل جاهز للنشر.</div>
+    </div>
+  </section>
+
+  <!-- 2. كيف تجيك الطلبات -->
+  <section>
+    <div class="sec-head"><div class="sec-num">٢</div><h2>كيف تجيك الطلبات؟</h2></div>
+    <div class="card">
+      <div class="points">
+        <div class="point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg></span><div><h3>الزبون يطلب من متجرك</h3><p>يتصفح المنتجات، يضغط «اطلب عبر واتساب»، فتوصلك رسالة مرتبة فيها المنتجات والكمية والإجمالي.</p></div></div>
+        <div class="point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="2.5"/></svg></span><div><h3>تتفقون على الدفع والتسليم</h3><p>الدفع كما تعوّدتم: عند الاستلام، أو حوالة/محفظة بالاتفاق المباشر بينك وبين الزبون. بسطة ما تتدخل في الدفع.</p></div></div>
+        <div class="point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9M20 12h-9M20 17h-9M4 7h.01M4 12h.01M4 17h.01"/></svg></span><div><h3>سوق بسطة يجيب لك زباين زيادة</h3><p>متجرك يظهر في «سوق بسطة» مع باقي المتاجر — فيوصلك زباين من خارج دائرتك.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. التجديد -->
+  <section>
+    <div class="sec-head"><div class="sec-num">٣</div><h2>كيف تجدد اشتراكك؟</h2></div>
+    <div class="card">
+      <p class="lead">بدون أي بطاقة — نفس طريقة الحوالات اللي تعرفها:</p>
+      <div class="renew">
+        <div class="rn"><div class="n">١</div><h3>حوّل المبلغ</h3><p>من الكريمي أو جوالي أو ون كاش أو فلوسك، للحساب الظاهر في لوحتك.</p></div>
+        <div class="rn"><div class="n">٢</div><h3>ارفع الإيصال</h3><p>صورة الإيصال + رقم العملية من لوحة تحكمك — نصف دقيقة.</p></div>
+        <div class="rn"><div class="n">٣</div><h3>تحقق سريع</h3><p>فريق بسطة يطابق ويعتمد — عادةً أقل من ٤ ساعات وقت الدوام.</p></div>
+        <div class="rn"><div class="n">٤</div><h3>متجرك شغّال</h3><p>تفعيل فوري ورسالة تأكيد واتساب بتاريخ نهاية اشتراكك.</p></div>
+      </div>
+      <div class="note">نذكّرك قبل الانتهاء بثلاثة أيام. لو تأخّر التجديد، يتوقف المتجر مؤقتاً — لكن <b>منتجاتك وبياناتك محفوظة</b>، وترجع كما هي أول ما يوصل إيصالك.</div>
+    </div>
+  </section>
+
+  <!-- 4. نصائح -->
+  <section>
+    <div class="sec-head"><div class="sec-num">٤</div><h2>نصائح لمتجر ناجح</h2></div>
+    <div class="card">
+      <div class="tips">
+        <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>صوّر منتجاتك في إضاءة واضحة وخلفية بسيطة — الصورة الحلوة تبيع.</div>
+        <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>اكتب الأسعار واضحة وصادقة — الزبون يثق أكثر.</div>
+        <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>رد بسرعة على رسائل الواتس — أول ساعة أهم شي.</div>
+        <div class="tip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>انشر رابط متجرك في حالتك كل فترة، ومع كل منتج جديد.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. الباقات -->
+  <section>
+    <div class="sec-head"><div class="sec-num">٥</div><h2>الباقات باختصار</h2></div>
+    <div class="card">
+      <p class="lead">ابدأ <b>مجاناً ١٤ يوم</b>، وبعدها اختر اللي يناسبك (أسعار مناطق العملة القديمة):</p>
+      <div class="plans">
+        <div class="plan"><b>أساسية</b><div class="pr">3,000 <small>ر.ي/شهر</small></div><span>٥٠ منتج · دعم واتساب</span></div>
+        <div class="plan pop"><b>احترافية</b><div class="pr">6,000 <small>ر.ي/شهر</small></div><span>منتجات غير محدودة · كوبونات · إخفاء شعار بسطة</span></div>
+        <div class="plan"><b>تميّز</b><div class="pr">12,000 <small>ر.ي/شهر</small></div><span>دومين خاص · مراجعة شهرية</span></div>
+      </div>
+      <div class="note">مقيم بالخارج وتدير تجارتك في اليمن؟ فيه باقات بالريال السعودي (أساسية ١٩ · احترافية ٣٩ · تميّز ٧٥ شهرياً).</div>
+    </div>
+  </section>
+
+  <!-- 6. أسئلة -->
+  <section>
+    <div class="sec-head"><div class="sec-num">٦</div><h2>أسئلة تخطر على بالك</h2></div>
+    <div class="card">
+      <details><summary>هل يدفع زبوني أونلاين؟</summary><p>لا — الزبون يطلب من متجرك والطلب يوصلك واتساب، وتتفقون على الدفع والتسليم مثل عادتكم. بسطة ترتّب البيع، ما تغيّر عاداتكم.</p></details>
+      <details><summary>ما أعرف في التقنية — أقدر؟</summary><p>إذا تعرف ترسل صورة واتساب، تعرف تدير بسطة. ولو مشغول، خدمة «نجهّز متجرك» تسلّمك متجراً جاهزاً.</p></details>
+      <details><summary>نتي عندي ضعيف والكهرباء تنقطع</summary><p>المنصة مستضافة خارج اليمن وصفحاتها أخف من صورة واحدة. متجرك يشتغل ٢٤ ساعة حتى وأنت مفصول، والطلبات تنتظرك في الواتس.</p></details>
+      <details><summary>ليش أدفع والفيسبوك مجاني؟</summary><p>بسطة ما تغنيك عن الفيسبوك — تخليه يشتغل صح: رابط واحد مرتّب بدل ٤٠ صورة، والزبون يطلب بدون ما يسألك عن كل شي.</p></details>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>بسطتك محجوزة — باقي تفرشها</h2>
+    <p>جرّب ١٤ يوم مجاناً بكل المميزات. بدون بطاقة، بدون التزام.</p>
+    <a href="merchant.html">افتح لوحة التاجر<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+
+  <div class="foot">بسطة · دليل التاجر — افرش بسطتك على الإنترنت</div>
+</div>
+</body>
+</html>

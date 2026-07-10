@@ -1036,7 +1036,9 @@
   $id('waSend').addEventListener('click',()=>{
     if(cartCount()===0)return;
     window.open(`https://wa.me/${WA_NUM}?text=${encodeURIComponent(buildWaMsg())}`,'_blank','noopener');
-    toggleCart(false);
+    CART={}; saveCart();
+    $id('cName').value=''; $id('cNotes').value='';
+    syncDishes(); updateCartUI(); renderCart();
     showToast(curLang()==='ar'?'تم فتح واتساب — أكمل إرسال الطلب من هناك':'WhatsApp opened — complete sending your order there');
   });
 

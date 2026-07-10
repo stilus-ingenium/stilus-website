@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<!--
+| بسطة (Bastah) — لوحة التاجر (merchant) · النسخة التفاعلية
+| إطار جوال · Liquid Glass موحّد مع store · وضع داكن · بلا إيموجي
+| ثلاث شاشات: منتجاتي (إضافة/تعديل) · الطلبات · الاشتراك (رفع إيصال التجديد)
+-->
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>لوحة تاجر · بسطة — عطور نورا</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap');
+#bastah{
+  --bg:#F8F4EC; --bg-2:#EFE7D7;
+  --nila:#1F3A5F; --nila-2:#2A5077; --on-nila:#F8F4EC;
+  --aqeeq:#DE8344; --aqeeq-ink:#A85B1F; --rayhan:#2F8F6B; --danger:#B3453A;
+  --ink:#16222E; --muted:#5B6B77;
+  --glass:rgba(255,255,255,.55); --glass-2:rgba(255,255,255,.40);
+  --glass-brd:rgba(255,255,255,.68); --glass-brd-2:rgba(255,255,255,.45);
+  --hair:rgba(31,58,95,.13);
+  --blur:22px; --blur-lg:30px; --r-sm:13px; --r-md:20px; --r-lg:28px; --r-xl:38px;
+  --shadow:0 18px 40px -22px rgba(31,58,95,.5); --shadow-soft:0 10px 28px -18px rgba(31,58,95,.42);
+  --e:cubic-bezier(.22,1,.36,1);
+}
+#bastah[data-theme="dark"]{
+  --bg:#0B1622; --bg-2:#0F2033;
+  --nila:#9AC0EA; --nila-2:#7CA6D6; --on-nila:#0B1622;
+  --aqeeq:#EB9A5F; --aqeeq-ink:#EB9A5F; --rayhan:#5FB893; --danger:#E0736A;
+  --ink:#EAF0F6; --muted:#9DB0C1;
+  --glass:rgba(255,255,255,.07); --glass-2:rgba(255,255,255,.045);
+  --glass-brd:rgba(255,255,255,.15); --glass-brd-2:rgba(255,255,255,.09);
+  --hair:rgba(255,255,255,.1);
+  --shadow:0 20px 44px -20px rgba(0,0,0,.72); --shadow-soft:0 12px 30px -18px rgba(0,0,0,.6);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#E7E0D2;display:grid;place-items:center;min-height:100vh;padding:16px;font-family:'Tajawal',system-ui,sans-serif}
+body.dk{background:#070E17}
+#bastah{position:relative;width:min(430px,100%);height:min(880px,94vh);margin:0 auto;overflow:hidden;
+  border-radius:36px;background:var(--bg);color:var(--ink);
+  box-shadow:0 40px 90px -30px rgba(20,34,46,.6),0 0 0 1px rgba(0,0,0,.04);
+  -webkit-tap-highlight-color:transparent;font-size:15px;line-height:1.6}
+#bastah button{font-family:inherit;color:inherit;cursor:pointer;border:0;background:none}
+#bastah .num{font-family:'Plus Jakarta Sans',sans-serif;font-feature-settings:"tnum"}
+#bastah input{font-family:inherit}
+.liquid{position:absolute;inset:0;z-index:0;background:radial-gradient(130% 120% at 50% -10%,var(--bg-2),var(--bg) 58%)}
+.liquid span{position:absolute;border-radius:50%;filter:blur(58px);mix-blend-mode:multiply}
+#bastah[data-theme="dark"] .liquid span{mix-blend-mode:screen;opacity:.5}
+.b1{width:70%;height:38%;left:-16%;top:-6%;background:radial-gradient(circle,#9FC3D8,transparent 66%);opacity:.5}
+.b2{width:66%;height:36%;right:-18%;top:30%;background:radial-gradient(circle,#8FC9AE,transparent 64%);opacity:.32}
+.b3{width:60%;height:36%;left:14%;bottom:-12%;background:radial-gradient(circle,#F0C9A2,transparent 62%);opacity:.5}
+.screen{position:absolute;inset:0;z-index:1;overflow-y:auto;overflow-x:hidden;padding:0 15px 104px;scrollbar-width:none}
+.screen::-webkit-scrollbar{display:none}
+.glass{background:var(--glass);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--glass-brd);box-shadow:var(--shadow-soft)}
+.glass2{background:var(--glass-2);backdrop-filter:blur(var(--blur));-webkit-backdrop-filter:blur(var(--blur));border:1px solid var(--glass-brd-2)}
+
+/* رأس */
+.top{display:flex;align-items:center;gap:10px;padding:14px 4px 4px}
+.brand{display:flex;align-items:center;gap:9px;margin-inline-end:auto}
+.brand .mark{width:34px;height:34px;flex:none}
+.brand b{font-size:16px;font-weight:700;line-height:1}
+.brand small{display:block;color:var(--muted);font-size:11px;margin-top:2px}
+.hbtn{width:37px;height:37px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--glass-brd-2);background:var(--glass-2);transition:.3s var(--e)}
+.hbtn:active{transform:scale(.92)}.hbtn svg{width:18px;height:18px}
+
+/* بطاقة حالة المتجر */
+.status-c{margin-top:12px;border-radius:var(--r-lg);padding:16px 17px;position:relative;overflow:hidden;
+  background:linear-gradient(140deg,var(--nila),#245863 60%,var(--rayhan));color:#fff}
+.status-c::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 84% 12%,rgba(222,131,68,.42),transparent 55%)}
+.status-c .row{position:relative;display:flex;align-items:center;gap:10px}
+.status-c .live{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;background:rgba(255,255,255,.16);padding:4px 11px;border-radius:999px}
+.status-c .live .dot{width:8px;height:8px;border-radius:50%;background:#7BE0B0;box-shadow:0 0 0 0 rgba(123,224,176,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(123,224,176,.55)}70%{box-shadow:0 0 0 8px rgba(123,224,176,0)}100%{box-shadow:0 0 0 0 rgba(123,224,176,0)}}
+.status-c h2{position:relative;font-size:19px;margin:12px 0 3px}
+.status-c p{position:relative;font-size:12.5px;opacity:.9}
+.status-c .link{position:relative;display:inline-flex;align-items:center;gap:6px;margin-top:11px;font-size:12.5px;font-weight:700;background:rgba(255,255,255,.15);padding:8px 13px;border-radius:999px;color:#fff}
+.status-c .link svg{width:14px;height:14px}
+
+/* KPIs صغيرة */
+.mini-kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-top:12px}
+.mk{padding:12px 10px;border-radius:var(--r-md);text-align:center}
+.mk b{font-size:19px;font-weight:700;color:var(--nila);display:block;font-family:'Plus Jakarta Sans','Tajawal',sans-serif}
+#bastah[data-theme="dark"] .mk b{color:var(--nila)}
+.mk span{font-size:10.5px;color:var(--muted)}
+
+.sec{display:flex;align-items:center;justify-content:space-between;margin:22px 4px 12px}
+.sec h3{font-size:16px;font-weight:700}
+.addbtn{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;color:var(--on-nila);background:var(--nila);padding:8px 14px;border-radius:999px;transition:.25s var(--e)}
+.addbtn:active{transform:scale(.95)}.addbtn svg{width:15px;height:15px}
+
+/* منتج (صف) */
+.prod-row{display:flex;align-items:center;gap:12px;padding:11px;margin-bottom:10px;border-radius:var(--r-md)}
+.prod-row .th{width:50px;height:50px;border-radius:14px;display:grid;place-items:center;background:var(--glass-2);flex:none}
+.prod-row .th svg{width:34px;height:34px}
+.prod-row .inf{flex:1;min-width:0}
+.prod-row .inf b{font-size:13.5px;font-weight:700;display:block}
+.prod-row .inf .pr{font-size:12px;color:var(--nila);font-weight:700;margin-top:2px}
+#bastah[data-theme="dark"] .prod-row .inf .pr{color:var(--nila)}
+.prod-row .edit{width:34px;height:34px;border-radius:11px;display:grid;place-items:center;background:var(--glass-2);border:1px solid var(--glass-brd-2);flex:none}
+.prod-row .edit svg{width:16px;height:16px;color:var(--muted)}
+
+/* طلب (بطاقة) */
+.order{padding:13px 14px;margin-bottom:10px;border-radius:var(--r-md)}
+.order .oh{display:flex;align-items:center;gap:9px;margin-bottom:8px}
+.order .oh .av{width:34px;height:34px;border-radius:11px;background:linear-gradient(140deg,var(--rayhan),var(--nila));color:#fff;display:grid;place-items:center;font-weight:700;font-size:13px;flex:none}
+.order .oh b{font-size:13.5px}.order .oh small{display:block;color:var(--muted);font-size:11px}
+.order .st{margin-inline-start:auto;font-size:10.5px;font-weight:700;padding:4px 10px;border-radius:999px}
+.st.new{background:color-mix(in srgb,var(--aqeeq) 16%,transparent);color:var(--aqeeq-ink)}
+.st.done{background:color-mix(in srgb,var(--rayhan) 15%,transparent);color:var(--rayhan)}
+.st.prog{background:color-mix(in srgb,var(--nila) 12%,transparent);color:var(--nila)}
+.order .items{font-size:12.5px;color:var(--muted);line-height:1.7;padding-inline-start:2px}
+.order .foot{display:flex;align-items:center;justify-content:space-between;margin-top:9px;padding-top:9px;border-top:1px solid var(--hair)}
+.order .tot{font-weight:700;font-size:13.5px}.order .tot .cur{font-size:10px;color:var(--muted);font-weight:500}
+.order .wa{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:700;color:#fff;background:var(--rayhan);padding:7px 12px;border-radius:999px}
+.order .wa svg{width:13px;height:13px}
+
+/* الاشتراك */
+.plan-c{padding:18px;border-radius:var(--r-lg);margin-bottom:14px}
+.plan-c .pt{display:flex;align-items:center;justify-content:space-between}
+.plan-c .pt b{font-size:17px;color:var(--nila)}
+#bastah[data-theme="dark"] .plan-c .pt b{color:var(--nila)}
+.plan-c .badge{font-size:11px;font-weight:700;padding:4px 11px;border-radius:999px;background:color-mix(in srgb,var(--rayhan) 15%,transparent);color:var(--rayhan)}
+.bar{height:9px;border-radius:999px;background:var(--glass-2);margin:14px 0 7px;overflow:hidden}
+.bar i{display:block;height:100%;width:22%;border-radius:999px;background:linear-gradient(90deg,var(--aqeeq),var(--danger))}
+.plan-c .days{font-size:12.5px;color:var(--muted)}
+.plan-c .days b{color:var(--aqeeq-ink)}
+.renewbtn{width:100%;margin-top:14px;padding:14px;border-radius:999px;background:var(--nila);color:var(--on-nila);font-weight:700;font-size:14.5px;display:flex;align-items:center;justify-content:center;gap:8px;transition:.25s var(--e)}
+.renewbtn:active{transform:scale(.98)}.renewbtn svg{width:17px;height:17px}
+.hist{padding:15px 16px;border-radius:var(--r-md)}
+.hist h4{font-size:13.5px;margin-bottom:10px;color:var(--nila)}
+#bastah[data-theme="dark"] .hist h4{color:var(--nila)}
+.hrow{display:flex;align-items:center;gap:9px;font-size:12px;padding:8px 0;border-bottom:1px solid var(--hair)}
+.hrow:last-child{border:0}.hrow svg{width:15px;height:15px;color:var(--rayhan);flex:none}
+.hrow .t{margin-inline-start:auto;color:var(--muted);font-size:11px}
+
+/* التنقّل السفلي */
+nav{position:absolute;inset-inline:0;bottom:0;z-index:20;display:flex;justify-content:space-around;padding:9px 12px 13px;
+  background:var(--glass);backdrop-filter:blur(var(--blur-lg));-webkit-backdrop-filter:blur(var(--blur-lg));
+  border-top:1px solid var(--glass-brd);border-radius:var(--r-lg) var(--r-lg) 0 0}
+nav button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:3px 16px;color:var(--muted);position:relative;transition:.3s}
+nav button svg{width:22px;height:22px}nav button span{font-size:9.5px;font-weight:700}
+nav button.on{color:var(--nila)}
+#bastah[data-theme="dark"] nav button.on{color:var(--nila)}
+nav .badge{position:absolute;top:-3px;inset-inline-end:10px;min-width:16px;height:16px;padding:0 4px;border-radius:999px;background:var(--aqeeq);color:#fff;font-size:9.5px;font-weight:700;display:grid;place-items:center}
+
+/* أغطية */
+.scrim{position:absolute;inset:0;z-index:40;background:rgba(11,22,34,.46);backdrop-filter:blur(3px);display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:.3s}
+.scrim.show{opacity:1;pointer-events:auto}
+.sheet{width:100%;max-height:90%;overflow-y:auto;scrollbar-width:none;border-radius:var(--r-xl) var(--r-xl) 0 0;
+  background:var(--glass);backdrop-filter:blur(var(--blur-lg));-webkit-backdrop-filter:blur(var(--blur-lg));
+  border:1px solid var(--glass-brd);border-bottom:0;box-shadow:0 -20px 50px -20px rgba(31,58,95,.5);
+  transform:translateY(100%);transition:transform .45s var(--e);padding:0 18px 22px}
+.sheet::-webkit-scrollbar{display:none}
+.scrim.show .sheet{transform:translateY(0)}
+.grip{width:40px;height:5px;border-radius:5px;background:var(--hair);margin:10px auto 4px}
+.sheet h3{font-size:18px;font-weight:700;margin:6px 2px 4px}
+.sheet .sub{font-size:12.5px;color:var(--muted);margin-bottom:14px}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:12.5px;font-weight:700;margin-bottom:6px}
+.field input,.field select{width:100%;padding:12px 14px;border-radius:13px;border:1.5px solid var(--glass-brd-2);background:var(--glass-2);color:var(--ink);font-size:14px;outline:none}
+.field input:focus,.field select:focus{border-color:var(--nila)}
+.imgdrop{border:1.5px dashed var(--glass-brd-2);border-radius:14px;padding:20px;text-align:center;color:var(--muted);font-size:12.5px;background:var(--glass-2)}
+.imgdrop svg{width:30px;height:30px;opacity:.6;display:block;margin:0 auto 8px}
+.bigbtn{width:100%;margin-top:6px;padding:14px;border-radius:999px;background:var(--nila);color:var(--on-nila);font-weight:700;font-size:14.5px;display:flex;align-items:center;justify-content:center;gap:8px;transition:.25s var(--e)}
+.bigbtn:active{transform:scale(.98)}.bigbtn svg{width:17px;height:17px}
+.bigbtn.wa{background:var(--rayhan)}.bigbtn.ghost{background:var(--glass-2);color:var(--danger);border:1px solid color-mix(in srgb,var(--danger) 30%,transparent);margin-top:9px}
+.accts{display:grid;gap:9px;margin-bottom:14px}
+.acct{display:flex;align-items:center;gap:11px;padding:12px 13px;border-radius:14px;background:var(--glass-2);border:1px solid var(--glass-brd-2)}
+.acct .ic{width:38px;height:38px;border-radius:11px;background:color-mix(in srgb,var(--nila) 10%,transparent);display:grid;place-items:center;flex:none}
+.acct .ic svg{width:19px;height:19px;color:var(--nila)}
+#bastah[data-theme="dark"] .acct .ic svg{color:var(--nila)}
+.acct b{font-size:13px;display:block}.acct small{font-size:11px;color:var(--muted)}
+.acct .amt{margin-inline-start:auto;font-weight:700;font-size:13px;color:var(--nila)}
+#bastah[data-theme="dark"] .acct .amt{color:var(--nila)}
+.note{display:flex;gap:9px;align-items:flex-start;font-size:12px;color:var(--aqeeq-ink);background:color-mix(in srgb,var(--aqeeq) 12%,transparent);border:1px solid color-mix(in srgb,var(--aqeeq) 28%,transparent);padding:11px 13px;border-radius:13px;margin-bottom:6px}
+.note svg{width:16px;height:16px;flex:none;margin-top:2px}
+
+.toast{position:absolute;z-index:70;left:50%;bottom:90px;transform:translate(-50%,20px);background:var(--ink);color:var(--bg);font-size:12.5px;font-weight:700;padding:11px 18px;border-radius:999px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.35s var(--e);display:flex;align-items:center;gap:8px;max-width:88%}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.toast svg{width:16px;height:16px;color:var(--rayhan);flex:none}
+.view{animation:settle .45s var(--e) both}
+@keyframes settle{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.hidden{display:none!important}
+@media(prefers-reduced-motion:reduce){#bastah *{animation-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<div id="bastah" data-theme="light" dir="rtl">
+  <div class="liquid"><span class="b1"></span><span class="b2"></span><span class="b3"></span></div>
+
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+    <linearGradient id="gNila" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2A5077"/><stop offset="1" stop-color="#16304F"/></linearGradient>
+    <linearGradient id="gAqeeq" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EE9E5F"/><stop offset="1" stop-color="#D2732F"/></linearGradient>
+    <linearGradient id="gRay" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#54B187"/><stop offset="1" stop-color="#2F8F6B"/></linearGradient>
+    <linearGradient id="gGl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".92"/><stop offset="1" stop-color="#DCE9E7" stop-opacity=".5"/></linearGradient>
+    <symbol id="logo" viewBox="0 0 48 48">
+      <path d="M8 21 q4 -9 8 0 q4 -9 8 0 q4 -9 8 0 q4 -9 8 0" fill="none" stroke="url(#gNila)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M9 21 v3 M39 21 v3" stroke="url(#gNila)" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M12 30 h24" stroke="url(#gNila)" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M13 30 v9 M35 30 v9" stroke="url(#gNila)" stroke-width="2.4" stroke-linecap="round"/>
+      <circle cx="24" cy="26" r="2.6" fill="url(#gAqeeq)"/>
+    </symbol>
+    <symbol id="pOud" viewBox="0 0 120 120"><path d="M40 92 q-8 -22 6 -40 q10 -13 26 -18 q-4 16 -14 30 q-9 13 -18 28z" fill="url(#gNila)" opacity=".9"/><path d="M52 86 q-3 -18 10 -32 q8 -9 18 -12" fill="none" stroke="url(#gAqeeq)" stroke-width="2.4" stroke-linecap="round" opacity=".8"/><circle cx="74" cy="36" r="4" fill="url(#gAqeeq)"/></symbol>
+    <symbol id="pPerfume" viewBox="0 0 120 120"><rect x="52" y="13" width="16" height="13" rx="2" fill="url(#gAqeeq)"/><rect x="56" y="25" width="8" height="10" fill="url(#gNila)"/><rect x="38" y="35" width="44" height="68" rx="16" fill="url(#gGl)" stroke="url(#gNila)" stroke-width="3"/><rect x="46" y="60" width="28" height="36" rx="9" fill="url(#gRay)" opacity=".5"/></symbol>
+    <symbol id="pBakhoor" viewBox="0 0 120 120"><rect x="34" y="56" width="52" height="20" rx="7" fill="url(#gGl)" stroke="url(#gNila)" stroke-width="3"/><rect x="40" y="80" width="40" height="26" rx="6" fill="url(#gNila)"/><circle cx="46" cy="66" r="3" fill="url(#gRay)"/><circle cx="60" cy="66" r="3" fill="url(#gRay)"/><circle cx="74" cy="66" r="3" fill="url(#gRay)"/></symbol>
+    <symbol id="pOil" viewBox="0 0 120 120"><rect x="50" y="14" width="20" height="12" rx="3" fill="url(#gNila)"/><path d="M46 26 h28 v10 l-6 6 v50 a8 8 0 0 1 -16 0 v-50 l-6 -6z" fill="url(#gGl)" stroke="url(#gNila)" stroke-width="3" stroke-linejoin="round"/><rect x="54" y="66" width="16" height="30" rx="7" fill="url(#gAqeeq)" opacity=".7"/></symbol>
+  </defs></svg>
+
+  <div class="screen" id="screen"></div>
+
+  <nav class="view">
+    <button class="on" data-nav="products" onclick="go('products',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/></svg><span>منتجاتي</span></button>
+    <button data-nav="orders" onclick="go('orders',this)"><span class="badge" id="ordBadge">2</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg><span>الطلبات</span></button>
+    <button data-nav="subs" onclick="go('subs',this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h6"/></svg><span>الاشتراك</span></button>
+  </nav>
+
+  <!-- غطاء: إضافة/تعديل منتج -->
+  <div class="scrim" id="scrimProd">
+    <div class="sheet">
+      <div class="grip"></div>
+      <h3 id="prodTitle">أضف منتجاً</h3>
+      <p class="sub">ثلاث خطوات بسيطة، وينضاف لمتجرك مباشرة.</p>
+      <div class="field"><label>اسم المنتج</label><input id="fName" type="text" placeholder="مثال: دهن عود مبارك"></div>
+      <div class="field"><label>السعر (ر.ي)</label><input id="fPrice" type="number" inputmode="numeric" placeholder="مثال: 12000"></div>
+      <div class="field"><label>التصنيف</label>
+        <select id="fCat"><option>عطور</option><option>بخور وعود</option><option>هدايا</option></select>
+      </div>
+      <div class="field"><label>صورة المنتج</label>
+        <div class="imgdrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/></svg>اضغط لاختيار صورة من جوالك — تُضغط تلقائياً لتفتح بسرعة</div>
+      </div>
+      <button class="bigbtn" onclick="saveProd()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span id="saveLbl">احفظ وأضف للمتجر</span></button>
+      <button class="bigbtn ghost hidden" id="delBtn" onclick="delProd()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>احذف المنتج</button>
+    </div>
+  </div>
+
+  <!-- غطاء: تجديد الاشتراك -->
+  <div class="scrim" id="scrimRenew">
+    <div class="sheet">
+      <div class="grip"></div>
+      <h3>جدّد اشتراكك</h3>
+      <p class="sub">حوّل قيمة الباقة، ثم ارفع صورة الإيصال — ويتفعّل متجرك بعد التحقق.</p>
+      <div class="accts">
+        <div class="acct"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></span><div><b>الكريمي</b><small>باسم: بسطة — نجمة للتقنية</small></div><span class="amt num">6,000</span></div>
+        <div class="acct"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></span><div><b>جوالي</b><small dir="ltr">+967 77 000 0000</small></div><span class="amt num">6,000</span></div>
+        <div class="acct"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9v6"/></svg></span><div><b>ون كاش</b><small dir="ltr">+967 71 000 0000</small></div><span class="amt num">6,000</span></div>
+      </div>
+      <div class="field"><label>رقم عملية التحويل</label><input id="fTxn" type="text" placeholder="مثال: JW-88412307"></div>
+      <div class="field"><label>صورة الإيصال</label>
+        <div class="imgdrop"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M12 3v13M7 8l5-5 5 5"/></svg>اضغط لرفع صورة إيصال الحوالة</div>
+      </div>
+      <div class="note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span>التحقق بشري وسريع — عادةً أقل من ٤ ساعات وقت الدوام. يوصلك تأكيد واتساب أول ما يتفعّل.</span></div>
+      <button class="bigbtn wa" onclick="sendReceipt()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M12 3v13M7 8l5-5 5 5"/></svg>أرسل الإيصال</button>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span id="toastT"></span></div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var app=document.getElementById('bastah');
+  var products=[
+    {id:1,name:'دهن عود مبارك',price:12000,cat:'عطور',sym:'pOud'},
+    {id:2,name:'بخور كلمنتان',price:8000,cat:'بخور وعود',sym:'pBakhoor'},
+    {id:3,name:'عطر ريحانة',price:15000,cat:'عطور',sym:'pPerfume'},
+    {id:4,name:'زيت عود مركّز',price:18000,cat:'عطور',sym:'pOil'}
+  ];
+  var orders=[
+    {id:1,who:'زبونة — واتساب',init:'ز',items:'دهن عود مبارك ×1 · بخور كلمنتان ×1',total:20000,st:'new'},
+    {id:2,who:'أم أنس',init:'أ',items:'عطر ريحانة ×2',total:30000,st:'new'},
+    {id:3,who:'خالد الصبري',init:'خ',items:'زيت عود مركّز ×1',total:18000,st:'done'}
+  ];
+  var editing=null;
+  function fmt(n){return Number(n).toLocaleString('en-US');}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+
+  function viewProducts(){
+    var rows=products.map(function(p){
+      return '<div class="prod-row glass2"><div class="th"><svg><use href="#'+p.sym+'"/></svg></div>'+
+        '<div class="inf"><b>'+esc(p.name)+'</b><div class="pr num">'+fmt(p.price)+' ر.ي · '+esc(p.cat)+'</div></div>'+
+        '<button class="edit" onclick="editProd('+p.id+')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></button></div>';
+    }).join('');
+    return '<div class="top"><div class="brand"><svg class="mark"><use href="#logo"/></svg>'+
+      '<div><b>لوحة عطور نورا</b><small>bastah.store/noora</small></div></div>'+
+      '<button class="hbtn" onclick="toggleTheme()" aria-label="theme"><svg id="thI" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></div>'+
+      '<div class="status-c"><div class="row"><span class="live"><span class="dot"></span>متجرك نشط</span></div>'+
+        '<h2>حيّاك، نورا</h2><p>متجرك شغّال ٢٤ ساعة — طلباتك تجيك واتساب مباشرة.</p>'+
+        '<a class="link" href="store.html">شاهد متجري كما يراه الزبون<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>'+
+      '<div class="mini-kpis"><div class="mk glass2"><b class="num">'+products.length+'</b><span>منتج</span></div>'+
+        '<div class="mk glass2"><b class="num">2</b><span>طلب جديد</span></div>'+
+        '<div class="mk glass2"><b class="num">48</b><span>زيارة اليوم</span></div></div>'+
+      '<div class="sec"><h3>منتجاتي</h3><button class="addbtn" onclick="addProd()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>أضف منتج</button></div>'+
+      rows;
+  }
+  function viewOrders(){
+    var cards=orders.map(function(o){
+      var stTxt=o.st==='new'?'جديد':o.st==='done'?'تم التسليم':'قيد التنفيذ';
+      return '<div class="order glass2"><div class="oh"><span class="av">'+o.init+'</span>'+
+        '<div><b>'+esc(o.who)+'</b><small>اليوم · طلب واتساب</small></div>'+
+        '<span class="st '+o.st+'">'+stTxt+'</span></div>'+
+        '<div class="items">'+esc(o.items)+'</div>'+
+        '<div class="foot"><span class="tot num">'+fmt(o.total)+' <span class="cur">ر.ي</span></span>'+
+        '<button class="wa" onclick="toast(\'فُتح واتساب للرد على الزبون\')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg>ردّ على الزبون</button></div></div>';
+    }).join('');
+    return '<div class="top"><div class="brand"><svg class="mark"><use href="#logo"/></svg>'+
+      '<div><b>الطلبات</b><small>كل طلب يوصلك واتساب</small></div></div>'+
+      '<button class="hbtn" onclick="toggleTheme()" aria-label="theme"><svg id="thI" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></div>'+
+      '<div class="sec"><h3>طلبات اليوم</h3></div>'+cards;
+  }
+  function viewSubs(){
+    return '<div class="top"><div class="brand"><svg class="mark"><use href="#logo"/></svg>'+
+      '<div><b>اشتراكك</b><small>باقة احترافية</small></div></div>'+
+      '<button class="hbtn" onclick="toggleTheme()" aria-label="theme"><svg id="thI" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg></button></div>'+
+      '<div class="plan-c glass"><div class="pt"><b>باقة احترافية</b><span class="badge">فعّالة</span></div>'+
+        '<div class="bar"><i></i></div><div class="days">ينتهي بعد <b>يومين</b> — جدّد قبل لا يتوقف متجرك مؤقتاً.</div>'+
+        '<button class="renewbtn" onclick="openRenew()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2M12 3v13M7 8l5-5 5 5"/></svg>جدّد الآن بإيصال حوالة</button></div>'+
+      '<div class="hist glass2"><h4>آخر التجديدات</h4>'+
+        '<div class="hrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg><span>احترافية — شهر</span><span class="t">02 يونيو</span></div>'+
+        '<div class="hrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg><span>احترافية — شهر</span><span class="t">03 مايو</span></div>'+
+        '<div class="hrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg><span>بداية التجربة المجانية</span><span class="t">18 أبريل</span></div></div>';
+  }
+  var VIEWS={products:viewProducts,orders:viewOrders,subs:viewSubs};
+  window.go=function(name,el){
+    document.getElementById('screen').innerHTML=VIEWS[name]();
+    document.getElementById('screen').classList.remove('view');void document.getElementById('screen').offsetWidth;document.getElementById('screen').classList.add('view');
+    document.querySelectorAll('#bastah nav button').forEach(function(b){b.classList.toggle('on',b.getAttribute('data-nav')===name);});
+    document.getElementById('screen').scrollTo({top:0});
+  };
+
+  // إضافة/تعديل
+  window.addProd=function(){ editing=null; document.getElementById('prodTitle').textContent='أضف منتجاً';
+    document.getElementById('saveLbl').textContent='احفظ وأضف للمتجر'; document.getElementById('delBtn').classList.add('hidden');
+    document.getElementById('fName').value=''; document.getElementById('fPrice').value=''; document.getElementById('fCat').selectedIndex=0;
+    show('scrimProd'); };
+  window.editProd=function(id){ var p=products.find(function(x){return x.id===id;}); editing=id;
+    document.getElementById('prodTitle').textContent='تعديل المنتج'; document.getElementById('saveLbl').textContent='احفظ التعديل';
+    document.getElementById('delBtn').classList.remove('hidden');
+    document.getElementById('fName').value=p.name; document.getElementById('fPrice').value=p.price;
+    var sel=document.getElementById('fCat'); for(var i=0;i<sel.options.length;i++){if(sel.options[i].text===p.cat)sel.selectedIndex=i;}
+    show('scrimProd'); };
+  window.saveProd=function(){
+    var name=document.getElementById('fName').value.trim();
+    var price=parseInt(document.getElementById('fPrice').value,10);
+    var cat=document.getElementById('fCat').value;
+    if(!name||!price){ toast('اكتب اسم المنتج وسعره'); return; }
+    if(editing){ var p=products.find(function(x){return x.id===editing;}); p.name=name;p.price=price;p.cat=cat; toast('تم حفظ التعديل'); }
+    else { var syms=['pOud','pPerfume','pBakhoor','pOil']; products.push({id:Date.now(),name:name,price:price,cat:cat,sym:syms[products.length%syms.length]}); toast('أُضيف المنتج لمتجرك'); }
+    closeAll(); go('products');
+  };
+  window.delProd=function(){ if(editing){ products=products.filter(function(x){return x.id!==editing;}); toast('حُذف المنتج'); closeAll(); go('products'); } };
+
+  window.openRenew=function(){ show('scrimRenew'); };
+  window.sendReceipt=function(){ closeAll(); toast('وصل إيصالك — جاري التحقق، ويتفعّل قريباً'); };
+
+  function show(id){ document.getElementById(id).classList.add('show'); }
+  window.closeAll=function(){ document.querySelectorAll('#bastah .scrim').forEach(function(s){s.classList.remove('show');}); };
+  document.querySelectorAll('#bastah .scrim').forEach(function(s){ s.addEventListener('click',function(e){ if(e.target===s) closeAll(); }); });
+
+  var toT;
+  window.toast=function(msg){ var t=document.getElementById('toast'); document.getElementById('toastT').textContent=msg;
+    t.classList.add('show'); clearTimeout(toT); toT=setTimeout(function(){t.classList.remove('show');},2400); };
+  window.toggleTheme=function(){
+    var d=app.getAttribute('data-theme')==='dark'; app.setAttribute('data-theme',d?'light':'dark');
+    document.body.classList.toggle('dk',!d);
+    var el=document.getElementById('thI'); if(el) el.innerHTML=d
+      ? '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'
+      : '<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>';
+  };
+
+  go('products');
+})();
+</script>
+</body>
+</html>
