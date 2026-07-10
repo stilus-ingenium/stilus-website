@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<!-- بسطة — دليل جلب التجار (للمشغّلة) · من البيت ومن برّه · مبني على docs/06 · بلا إيموجي -->
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>كيف تجيبين التجار — بسطة</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --nila:#1F3A5F; --aqeeq:#DE8344; --aqeeq-ink:#A85B1F; --rayhan:#2F8F6B;
+  --hibr:#16222E; --qishda:#F8F4EC; --danger:#B3453A;
+  --radius:24px; --shadow:0 18px 40px rgba(31,58,95,.14);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Tajawal',system-ui,sans-serif;color:var(--hibr);line-height:1.85;padding:0 0 70px;
+  background:radial-gradient(1100px 700px at 90% -5%,rgba(222,131,68,.16),transparent 55%),
+    radial-gradient(1000px 800px at -10% 8%,rgba(47,143,107,.15),transparent 55%),
+    linear-gradient(160deg,#eaf1f8 0%,#f8f4ec 55%,#eef6f1 100%)}
+.wrap{max-width:820px;margin:0 auto;padding:0 18px}
+.hero{text-align:center;padding:52px 20px 30px}
+.badge{display:inline-block;background:rgba(222,131,68,.14);color:var(--aqeeq-ink);font-weight:700;font-size:14px;padding:7px 18px;border-radius:999px;margin-bottom:18px}
+.hero svg.logo{width:66px;height:66px;margin:0 auto 8px;display:block}
+.hero h1{font-size:40px;font-weight:800;color:var(--nila);letter-spacing:-.5px}
+.hero p{font-size:17px;color:#4a5a68;max-width:60ch;margin:14px auto 0}
+.backlink{display:inline-flex;align-items:center;gap:7px;margin-top:20px;font-size:14px;font-weight:700;color:var(--nila);text-decoration:none;background:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.8);padding:9px 16px;border-radius:999px}
+.backlink svg{width:15px;height:15px}
+section{margin-top:26px}
+.sec-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;padding:0 4px}
+.sec-num{flex:none;width:42px;height:42px;border-radius:13px;background:var(--nila);color:#fff;font-weight:800;font-size:19px;display:grid;place-items:center;box-shadow:var(--shadow)}
+.sec-head h2{font-size:23px;color:var(--nila);font-weight:800;line-height:1.25}
+.card{background:rgba(255,255,255,.72);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(255,255,255,.85);border-radius:var(--radius);box-shadow:var(--shadow);padding:24px 22px}
+.lead{font-size:18px;color:#3a4a58;margin-bottom:14px}
+.lead b{color:var(--nila)}
+.points{display:grid;gap:11px}
+.point{display:flex;gap:13px;align-items:flex-start;background:#fff;border:1px solid #eee;border-radius:16px;padding:14px 15px}
+.point .ic{flex:none;width:44px;height:44px;border-radius:12px;display:grid;place-items:center;background:rgba(31,58,95,.1);color:var(--nila)}
+.point .ic svg{width:23px;height:23px}
+.point h3{font-size:16.5px;font-weight:700;margin-bottom:2px}
+.point p{font-size:15px;color:#55636f}
+.point.g .ic{background:rgba(47,143,107,.13);color:var(--rayhan)}
+.point.o .ic{background:rgba(222,131,68,.15);color:var(--aqeeq)}
+.note{margin-top:16px;font-size:15.5px;color:#4a5a68;background:rgba(47,143,107,.09);border-inline-start:5px solid var(--rayhan);padding:14px 16px;border-radius:0 14px 14px 0}
+.note b{color:var(--rayhan)}
+.why{margin-top:16px;background:rgba(31,58,95,.06);border-radius:16px;padding:16px 18px;font-size:15.5px;color:#3a4a58}
+.why b{color:var(--nila)}
+/* سكربتات */
+.tpl{background:#fff;border:1px solid #eee;border-radius:16px;padding:15px 16px;margin-bottom:11px}
+.tpl .th{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:8px}
+.tpl .th b{font-size:14.5px;color:var(--nila);font-weight:800}
+.copy{display:inline-flex;align-items:center;gap:6px;font-family:inherit;font-size:12.5px;font-weight:700;color:var(--nila);background:rgba(31,58,95,.08);border:1px solid rgba(31,58,95,.16);border-radius:999px;padding:6px 13px;cursor:pointer;transition:.2s}
+.copy:hover{background:var(--nila);color:#fff}
+.copy svg{width:14px;height:14px}
+.tpl .msg{font-size:15px;color:#3f4d59;background:var(--qishda);border-radius:12px;padding:12px 14px;line-height:1.95}
+/* عرض */
+.offer{display:grid;gap:11px}
+.off{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1px solid #eee;border-radius:15px;padding:13px 15px;font-size:15.5px;color:#44515d}
+.off svg{flex:none;width:22px;height:22px;color:var(--rayhan);margin-top:2px}
+.off b{color:var(--nila)}
+/* اعتراضات */
+.obj{display:grid;gap:12px}
+.qa{background:#fff;border:1px solid #eee;border-radius:16px;padding:15px 16px}
+.qa .q{display:flex;gap:9px;align-items:flex-start;font-weight:800;color:var(--danger);font-size:15.5px;margin-bottom:6px}
+.qa .q svg{flex:none;width:19px;height:19px;margin-top:3px}
+.qa .a{display:flex;gap:9px;align-items:flex-start;font-size:15px;color:#44515d}
+.qa .a svg{flex:none;width:19px;height:19px;color:var(--rayhan);margin-top:3px}
+/* القاعدة */
+.golden{margin-top:4px;background:rgba(222,131,68,.12);border:1.5px dashed var(--aqeeq);border-radius:18px;padding:18px 20px;font-size:17px;font-weight:600;color:#8a4a17;display:flex;gap:13px;align-items:flex-start}
+.golden svg{flex:none;width:28px;height:28px;color:var(--aqeeq);margin-top:2px}
+.foot{text-align:center;color:#8a97a2;font-size:13.5px;margin-top:30px}
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(16px);background:var(--hibr);color:#fff;font-size:14px;font-weight:700;padding:12px 20px;border-radius:999px;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.3s;display:flex;gap:8px;align-items:center;z-index:50}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.toast svg{width:16px;height:16px;color:#7BE0B0}
+@media(max-width:560px){.hero h1{font-size:30px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <span class="badge">دليل عملي · للمشغّلة</span>
+    <svg class="logo" viewBox="0 0 96 96" fill="none" stroke="#1F3A5F" stroke-width="5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M10 40 a12.66 12.66 0 0 1 25.3 0 a12.66 12.66 0 0 1 25.4 0 a12.66 12.66 0 0 1 25.3 0"/>
+      <path d="M10 40 h76"/><path d="M48 40 v34"/><path d="M34 78 h28"/>
+      <circle cx="48" cy="70" r="3.4" fill="#DE8344" stroke="#DE8344"/>
+    </svg>
+    <h1>كيف تجيبين التجار</h1>
+    <p>مو لازم تدوّرين بعيد. أقرب ناس لك هم أول تجارك. هنا طريقتك خطوة بخطوة — من البيت، ومن برّه.</p>
+    <a class="backlink" href="index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg>رجوع للفهرس</a>
+  </header>
+
+  <!-- 1. ابدئي من دائرتك -->
+  <section>
+    <div class="sec-head"><div class="sec-num">١</div><h2>ابدئي من دائرتك — أضمن بداية</h2></div>
+    <div class="card">
+      <p class="lead">أول شي، اكتبي قائمة بأسماء ناس <b>تعرفينهم شخصياً ومتأكدة إنهم يبيعون شي فعلاً</b>. هؤلاء أول تجارك. مثل:</p>
+      <div class="points">
+        <div class="point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M38 35" /><path d="M12 21h40" /><circle cx="12" cy="7" r="0"/><path d="M4 8h16M4 12h10"/></svg></span><div><h3>قريبة أو جارة تبيع من البيت</h3><p>عطور، بخور، ملابس، مكياج — تبيع من حالات الواتس وقروبات النساء.</p></div></div>
+        <div class="point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1-5h14l1 5"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg></span><div><h3>محل صغير بالحارة أو السوق</h3><p>إكسسوارات، هدايا، ملابس أطفال، حلا — أي محل تعرفين صاحبه.</p></div></div>
+        <div class="point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6"/></svg></span><div><h3>صاحبة مشروع حلا أو مخبز بيتي</h3><p>كيك، معمول، حلويات مناسبات — تبيع بالطلب.</p></div></div>
+        <div class="point"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M11 18h2"/></svg></span><div><h3>شاب يبيع أونلاين</h3><p>إلكترونيات، جوالات مستعملة، بضاعة جملة — يبيع من الواتس.</p></div></div>
+      </div>
+      <div class="why"><b>ليش نبدأ من المعارف؟</b> لأنهم يثقون فيك بسرعة، يجربون بلا خوف، وأول قصة نجاح منهم تجرّ غيرهم. تاجر واحد تعرفينه أسهل من عشرة غرباء.</div>
+
+      <div class="tpl" style="margin-top:16px"><div class="th"><b>قائمة «أول ١٠ تجار» — املأيها</b><button class="copy" onclick="cp(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>نسخ</button></div>
+        <div class="msg">أول ١٠ تجار عندي:
+١) الاسم — وش يبيع — رقم الواتس
+٢) …
+٣) …
+(اكتبي كل واحد تعرفينه يبيع فعلاً، وابدئي بالأقرب لك)</div></div>
+    </div>
+  </section>
+
+  <!-- 2. من البيت -->
+  <section>
+    <div class="sec-head"><div class="sec-num">٢</div><h2>من البيت — بدون ما تطلعين</h2></div>
+    <div class="card">
+      <p class="lead">كل هذا من جوالك، وأنتِ في البيت:</p>
+      <div class="points">
+        <div class="point g"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.3 7.5L3 21l2-5.7A8.5 8.5 0 1 1 21 11.5z"/></svg></span><div><h3>كلّمي معارفك واتساب مباشرة</h3><p>وحدة وحدة، برسالة ودّية — مو إعلان. (السكربت تحت)</p></div></div>
+        <div class="point g"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" stroke-dasharray="3 3"/><circle cx="12" cy="12" r="4"/></svg></span><div><h3>انشري في حالات الواتس</h3><p>صورة متجر نموذجي أو سكرين «وصل طلب» — أقوى قناة يمنية.</p></div></div>
+        <div class="point g"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M14 8h-2a2 2 0 0 0-2 2v11"/><path d="M8 13h6"/></svg></span><div><h3>قروبات فيسبوك</h3><p>بيع وشراء إب واليمن، والقروبات النسائية — منشور قيمة مو إعلان.</p></div></div>
+        <div class="point g"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></svg></span><div><h3>خلّي التاجر يجيب تاجر</h3><p>كل تاجر يجيب تاجر = شهر مجاني للاثنين. أرخص تسويق وأصدقه.</p></div></div>
+      </div>
+
+      <div class="tpl" style="margin-top:16px"><div class="th"><b>رسالة لمعرفة (واتساب)</b><button class="copy" onclick="cp(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>نسخ</button></div>
+        <div class="msg">هلا [الاسم]، عندي لك شي يفيد بيعك. صار فيه موقع يمني اسمه بسطة يسوّي لك متجر باسمك — منتجاتك بصورها وأسعارها في رابط واحد، والطلبات تجيك واتساب مباشرة. أجهّز لك تجربة مجانية ١٤ يوم؟ بدون أي بطاقة ولا التزام.</div></div>
+
+      <div class="tpl"><div class="th"><b>منشور قروب (فيسبوك/نساء)</b><button class="copy" onclick="cp(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>نسخ</button></div>
+        <div class="msg">تبيعين من البيت (ملابس، عطور، بخور، حلا)؟ بدل ما تعيدين نفس الصور والأسعار لكل زبونة — خلّي كل شي في رابط واحد مرتّب، والطلب يجيك واتساب مباشرة. تجربة مجانية ١٤ يوم، بالريال اليمني وبدون بطاقة. كلّميني خاص.</div></div>
+
+      <div class="tpl"><div class="th"><b>حالة واتس</b><button class="copy" onclick="cp(this)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg>نسخ</button></div>
+        <div class="msg">متجرك جاهز في يوم — والطلبات توصلك واتساب. شوفوا مثال حي: [حطي رابط متجر نموذجي]. تبون مثله؟ كلّموني.</div></div>
+    </div>
+  </section>
+
+  <!-- 3. من برّه -->
+  <section>
+    <div class="sec-head"><div class="sec-num">٣</div><h2>من برّه — وجهاً لوجه</h2></div>
+    <div class="card">
+      <p class="lead">لو تقدرين تطلعين، الإقناع وجهاً لوجه أقوى شي — خاصةً للمحلات:</p>
+      <div class="points">
+        <div class="point o"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9l1-5h14l1 5"/><path d="M5 9v11h14V9"/></svg></span><div><h3>زوري محلات صغيرة تعرفينها</h3><p>وريهم المتجر النموذجي على جوالك: «شوف، متجرك بيصير كذا، والطلب يجيك واتس».</p></div></div>
+        <div class="point o"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span><div><h3>المناسبات والأسواق النسائية</h3><p>بائعات البيت أكثر ناس يحتاجونك — ويرتاحون لأنك أخت مثلهن.</p></div></div>
+        <div class="point o"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M8 4v5"/></svg></span><div><h3>خذي معك الرابط أو بطاقة صغيرة</h3><p>فيها رابط بسطة ورقمك — تعطينها لأي تاجر يهتم.</p></div></div>
+      </div>
+      <div class="note">نصيحة: ابدئي بالمحلات اللي أنتِ نفسك تشترين منها — <b>الوجه المعروف يفتح الباب</b>، والتاجر يسمع لك أكثر.</div>
+    </div>
+  </section>
+
+  <!-- 4. العرض -->
+  <section>
+    <div class="sec-head"><div class="sec-num">٤</div><h2>العرض اللي يقنعهم</h2></div>
+    <div class="card">
+      <div class="offer">
+        <div class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>جرّبوا مجاناً ١٤ يوم</b> — بلا بطاقة، بلا التزام.</span></div>
+        <div class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>نجهّز متجرك مجاناً</b> لأول التجار — أنتِ ترفعين لهم منتجاتهم وتنسّقين.</span></div>
+        <div class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>السعر يمني</b> — أرخص باقة تقريباً بثمن وجبتين، بالريال اليمني.</span></div>
+        <div class="off"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span><b>الدفع كما يعرفونه</b> — عند الاستلام، بدون أي بطاقة بنكية.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. اعتراضات -->
+  <section>
+    <div class="sec-head"><div class="sec-num">٥</div><h2>لو ترددوا — ردود جاهزة</h2></div>
+    <div class="card">
+      <div class="obj">
+        <div class="qa"><div class="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 17h.01M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .9-1 1.7"/></svg>«الفيسبوك مجاني، ليش أدفع؟»</div><div class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>بسطة ما تغنيك عن الفيسبوك — تخليه يشتغل صح: رابط واحد بدل ٤٠ صورة، والزبون يطلب بدون ما يسألك.</div></div>
+        <div class="qa"><div class="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 17h.01M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .9-1 1.7"/></svg>«ما أعرف في التقنية»</div><div class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>ولا يحتاج — خدمة «نجهّز متجرك»: أرسل لي الصور والأسعار واتساب، وأسلّمك متجر جاهز.</div></div>
+        <div class="qa"><div class="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 17h.01M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .9-1 1.7"/></svg>«أخاف أدفع ويطلع مو نافع»</div><div class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>جرّب مجاناً ١٤ يوم، والدفع بعدها شهر بشهر بإيصال حوالة عادي — ولا ريال مقدّم.</div></div>
+        <div class="qa"><div class="q"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 17h.01M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.8.4-1 .9-1 1.7"/></svg>«زبائني كلهم بالحارة»</div><div class="a"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>ممتاز — المتجر يوسّع دائرتك: كل مشاركة لرابطك في قروب توصل لمئات خارج حارتك.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. القاعدة -->
+  <section>
+    <div class="sec-head"><div class="sec-num">٦</div><h2>القاعدة الذهبية</h2></div>
+    <div class="golden">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.5 5 5.5.8-4 3.9 1 5.5L12 15.5 7 18.2l1-5.5-4-3.9 5.5-.8z"/></svg>
+      <div>ابدئي صغير: ٣ إلى ٥ تجار تعرفينهم → خلّيهم ينجحون → صوّري قصصهم وانشريها → القصص تجيب الباقي. تاجر واحد مبسوط أقوى من مئة إعلان.</div>
+    </div>
+  </section>
+
+  <div class="foot">بسطة · دليل جلب التجار — من البيت ومن برّه</div>
+</div>
+
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span>تم نسخ النص</span></div>
+
+<script>
+function cp(btn){
+  var msg=btn.closest('.tpl').querySelector('.msg').innerText;
+  var done=function(){var t=document.getElementById('toast');t.classList.add('show');setTimeout(function(){t.classList.remove('show');},1800);};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(msg).then(done).catch(fb);}else fb();
+  function fb(){var ta=document.createElement('textarea');ta.value=msg;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);done();}
+}
+</script>
+</body>
+</html>
