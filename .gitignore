@@ -10,3 +10,7 @@ Lavera-Project/
 .DS_Store
 Thumbs.db
 node_modules/
+
+# مواد مصدرية للديمو (أصول بدقة عالية) — لا تلزم الموقع
+demo/madhgoot1000/images/gmaps-original/
+demo/madhgoot1000/images/gm-menu-board*.jpg

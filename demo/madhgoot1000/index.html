@@ -5,10 +5,10 @@
 <meta name="robots" content="noindex, follow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>مضغوط ألف 1000 | MADGHOUT 1000 — الرياض</title>
-<meta name="description" content="مضغوط ألف 1000 — دجاج · لحم · حمام · حاشي · مضغوط. أشهر مضغوط في ظهرة لبن، الرياض. تقييم 4.4 على خرائط جوجل · توصيل وطلب أونلاين حتى 1:30 صباحاً.">
+<meta name="description" content="مضغوط ألف 1000 — دجاج · لحم · حمام · حاشي · مضغوط. فرعان في الرياض: ظهرة لبن وحي الخليج. توصيل وطلب أونلاين يومياً حتى 1:30 صباحاً.">
 <meta name="theme-color" content="#0a0a0c">
 <meta property="og:title" content="مضغوط ألف 1000 | MADGHOUT 1000">
-<meta property="og:description" content="أشهى المضغوط والمندي والحاشي في الرياض — جودة، نظافة، وطعم لا يُنسى.">
+<meta property="og:description" content="أشهى المضغوط والمندي والحاشي في الرياض — فرعان: ظهرة لبن وحي الخليج. جودة، نظافة، وطعم لا يُنسى.">
 <meta property="og:type" content="restaurant">
 <meta property="og:image" content="images/g1-signature.jpg">
 <link rel="icon" type="image/png" href="images/madghout-logo-sm.png">
@@ -17,19 +17,27 @@
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Tajawal:wght@400;500;700;800;900&family=Poppins:wght@500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="images/g1-signature.jpg" fetchpriority="high">
 <script type="application/ld+json">
-{
-  "@context":"https://schema.org",
-  "@type":"Restaurant",
-  "name":"مضغوط ألف 1000",
-  "alternateName":"Madghout 1000",
+[
+ {
+  "@context":"https://schema.org","@type":"Restaurant",
+  "name":"مضغوط ألف 1000 — فرع ظهرة لبن","alternateName":"Madghout 1000 · Dhahrat Laban",
   "servesCuisine":["Saudi","Mandi","Madghout"],
-  "telephone":"+966557367886",
-  "priceRange":"20-40 SAR",
-  "image":"images/g1-signature.jpg",
+  "telephone":"+966557367886","priceRange":"20-40 SAR","image":"images/g1-signature.jpg",
   "address":{"@type":"PostalAddress","streetAddress":"شارع ينبع، ظهرة لبن","addressLocality":"الرياض","postalCode":"13784","addressCountry":"SA"},
-  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.4","reviewCount":"212"},
+  "geo":{"@type":"GeoCoordinates","latitude":24.6364127,"longitude":46.5479343},
+  "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.3","reviewCount":"241"},
   "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"11:30","closes":"01:30"}]
-}
+ },
+ {
+  "@context":"https://schema.org","@type":"Restaurant",
+  "name":"مضغوط ألف 1000 — فرع الخليج","alternateName":"Madghout 1000 · Al-Khaleej",
+  "servesCuisine":["Saudi","Mandi","Madghout"],
+  "telephone":"+966558411676","priceRange":"20-40 SAR","image":"images/gm-storefront-day.jpg",
+  "address":{"@type":"PostalAddress","streetAddress":"شارع الأمير بندر بن عبدالعزيز، حي الخليج","addressLocality":"الرياض","postalCode":"13224","addressCountry":"SA"},
+  "geo":{"@type":"GeoCoordinates","latitude":24.7801072,"longitude":46.8269987},
+  "openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"11:30","closes":"01:30"}]
+ }
+]
 </script>
 <style>
   :root{
@@ -253,7 +261,14 @@
   .c-gold .ci{background:rgba(255,210,63,.16);color:var(--gold-600)}
   :root[data-theme="dark"] .c-gold .ci{color:var(--gold)}
   .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .dish{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:22px 22px 20px;
+  /* صورة الصنف — الأصل كما هو بإطار 4:3 موحّد، فتظهر كل الأطباق على نفس المستوى */
+  .dish-img{position:relative;margin:-20px -22px 16px;aspect-ratio:4/3;overflow:hidden;
+    border-radius:var(--r) var(--r) 0 0;background:#f0921a}
+  .dish-img i{position:absolute;inset:0;background-size:cover;background-position:center;
+    transition:transform .8s var(--ease)}
+  .dish:hover .dish-img i{transform:scale(1.05)}
+  @media(prefers-reduced-motion:reduce){.dish-img i{transition:none}}
+  .dish{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;
     transition:transform .3s var(--ease),border-color .3s,background .3s,box-shadow .3s;position:relative;overflow:hidden}
   .dish::before{content:"";position:absolute;top:0;inset-inline-end:0;width:0;height:3px;
     background:linear-gradient(90deg,var(--pink),var(--gold));transition:width .45s var(--ease)}
@@ -268,6 +283,10 @@
   .dish p{color:var(--muted);font-size:.9rem;margin-top:10px}
   .dish .star{color:var(--gold-600);font-size:.72rem;font-weight:700;
     background:rgba(255,210,63,.14);border:1px solid rgba(255,210,63,.3);padding:3px 11px;border-radius:20px;display:none;width:fit-content;margin-bottom:12px}
+  /* شارة "الأكثر طلباً" فوق الصورة */
+  .dish.has-img .star{position:absolute;top:14px;inset-inline-start:14px;z-index:3;margin:0;
+    background:rgba(10,10,12,.74);border-color:rgba(255,210,63,.55);color:var(--gold);
+    backdrop-filter:blur(6px)}
   :root[data-theme="dark"] .dish .star{color:var(--gold)}
   .dish.signature .star{display:inline-block}
   .menu-note{text-align:center;color:var(--faint);font-size:.88rem;margin-top:8px}
@@ -386,6 +405,16 @@
   .mbar .order{background:linear-gradient(135deg,var(--pink),var(--pink-600));color:#fff}
 
   /* ===== ORDER CART ===== */
+  /* اختيار الحجم داخل بطاقة الصنف (حبة / نص / ربع / جوز) */
+  .sizes{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}
+  .szb{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:30px;cursor:pointer;
+    font-family:var(--h);font-weight:700;font-size:.82rem;color:var(--muted);
+    background:var(--surface-2);border:1.5px solid var(--line);transition:.25s var(--ease)}
+  .szb b{font-family:'Poppins',sans-serif;font-weight:700;font-size:.9rem;color:var(--ink)}
+  .szb:hover{border-color:var(--line-2);color:var(--ink)}
+  .szb.on{border-color:var(--pink);color:var(--pink);background:rgba(255,26,108,.09)}
+  .szb.on b{color:var(--pink)}
+  .szb.has::after{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold)}
   .dish-foot{display:flex;align-items:center;justify-content:flex-end;margin-top:14px}
   .add-btn{display:inline-flex;align-items:center;gap:7px;background:rgba(255,26,108,.12);color:var(--pink);
     border:1.5px solid rgba(255,26,108,.35);padding:8px 18px;border-radius:30px;font-family:var(--h);
@@ -434,6 +463,33 @@
   :root[data-theme="dark"] .ci-row .pr2{color:var(--gold)}
   .cart-empty{text-align:center;color:var(--muted);padding:26px 0}
   .cart-total{display:flex;justify-content:space-between;align-items:center;padding:14px 0 4px;font-family:var(--h);font-weight:900;color:var(--ink);font-size:1.15rem}
+  .foot-col a small{color:var(--faint);font-size:.78rem}
+  /* تبويبات الفروع في قسم الموقع */
+  .branch-tabs{display:flex;gap:8px;margin-bottom:20px}
+  .btab{flex:1;padding:11px 10px;border-radius:14px;cursor:pointer;font-family:var(--h);font-weight:800;font-size:.92rem;
+    color:var(--muted);background:var(--surface-2);border:1.5px solid var(--line);transition:.28s var(--ease)}
+  .btab:hover{color:var(--ink);border-color:var(--line-2)}
+  .btab.on{color:#fff;background:linear-gradient(135deg,var(--pink),var(--pink-600));border-color:transparent;box-shadow:var(--sh-pink)}
+  /* اختيار الفرع — إلزامي قبل الإرسال */
+  .branch-pick{margin-top:14px;padding:13px;border-radius:16px;border:1.5px solid var(--line);background:var(--surface-2)}
+  .branch-pick>b{display:block;font-family:var(--h);font-weight:800;font-size:.92rem;color:var(--ink);margin-bottom:9px}
+  .branch-pick label{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:13px;cursor:pointer;
+    border:1.5px solid var(--line-2);background:var(--surface);transition:.25s var(--ease)}
+  .branch-pick label+label{margin-top:8px}
+  .branch-pick input{accent-color:var(--pink);width:18px;height:18px;flex-shrink:0}
+  .branch-pick label i{display:block;font-style:normal;font-family:var(--h);font-weight:800;font-size:.95rem;color:var(--ink)}
+  .branch-pick label small{display:block;font-size:.76rem;color:var(--muted);margin-top:2px}
+  .branch-pick label:has(input:checked){border-color:var(--pink);background:rgba(255,26,108,.08)}
+  .branch-pick label:has(input:checked) i{color:var(--pink)}
+  .branch-pick.need{border-color:var(--pink);animation:shake .5s var(--ease)}
+  @keyframes shake{0%,100%{transform:translateX(0)}20%{transform:translateX(-7px)}40%{transform:translateX(7px)}60%{transform:translateX(-4px)}80%{transform:translateX(4px)}}
+  @media(prefers-reduced-motion:reduce){.branch-pick.need{animation:none}}
+  /* أهداف اللمس على الجوال */
+  @media(max-width:640px){
+    .szb{padding:9px 14px;font-size:.86rem}
+    .mtab{padding:11px 20px}
+    .cart-clear{padding:9px 12px}
+  }
   .otype{display:flex;gap:10px;margin-top:10px}
   .otype label{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:11px;border-radius:14px;border:1.5px solid var(--line-2);
     cursor:pointer;font-family:var(--h);font-weight:700;color:var(--muted);transition:.25s;font-size:.92rem}
@@ -500,7 +556,7 @@
     .wa-float svg{width:26px;height:26px}
     .wa-float .tip{display:none}
     .cart-bar{bottom:86px;inset-inline-end:14px;max-width:calc(100vw - 96px);font-size:.88rem;gap:8px}
-    .cart-bar-x{width:32px;height:32px}
+    .cart-bar-x{width:36px;height:36px}
     .dish-foot .add-btn{width:100%;justify-content:center;padding:12px;font-size:.98rem}
     .dish-foot .qty-ctrl{width:100%;justify-content:space-between;padding:5px 10px}
     .dish-foot .qty-ctrl button{width:36px;height:36px}
@@ -523,7 +579,7 @@
     .hdr-inner{padding:11px 0}
     .logo b{font-size:1.02rem} .logo small{font-size:.56rem}
     .logo .mark{width:40px;height:40px}
-    .ctrl{width:36px;height:36px}
+    .ctrl{width:40px;height:40px}
     .burger{width:40px;height:40px}
     .hero{padding:88px 0 56px}
     .hero-emblem{width:92px;margin-bottom:12px}
@@ -557,7 +613,7 @@
 </head>
 <body>
 
-<div class="topbar"><span data-i18n="topbar">مفتوح يومياً 11:30 ص – 1:30 ص · توصيل وطلب أونلاين · ظهرة لبن، الرياض</span></div>
+<div class="topbar"><span data-i18n="topbar">مفتوح يومياً 11:30 ص – 1:30 ص · توصيل وطلب أونلاين · الرياض</span></div>
 
 <header id="header">
   <div class="container hdr-inner">
@@ -594,12 +650,12 @@
   <div class="hero-logo-wm"><img src="images/madghout-logo.png" alt=""></div>
   <div class="container hero-inner">
     <img class="hero-emblem reveal" src="images/madghout-logo.png" alt="شعار مضغوط ألف 1000">
-    <span class="hero-badge"><span class="stars">★★★★☆</span> <span data-i18n="hero.badge">4.4 على خرائط جوجل · أكثر من 212 تقييم</span></span>
+    <span class="hero-badge"><span class="stars">★★★★☆</span> <span data-i18n="hero.badge">4.3 على خرائط جوجل · أكثر من 241 تقييم</span></span>
     <h1><span data-i18n="hero.title">مضغوط ألف 1000</span><span class="en">MADGHOUT 1000</span></h1>
     <p class="tagline" data-i18n="hero.tags" data-i18n-html="1">دجاج <i>·</i> لحم <i>·</i> حمام <i>·</i> حاشي <i>·</i> هندي <i>·</i> مضغوط</p>
-    <p class="desc" data-i18n="hero.desc">طعم المضغوط الأصيل اللي تعوّدت عليه — رز مفلفل، لحوم طرية، وبهارات سعودية أصيلة. نظافة وجودة وكرم ضيافة في قلب ظهرة لبن.</p>
+    <p class="desc" data-i18n="hero.desc">طعم المضغوط الأصيل اللي تعوّدت عليه — رز مفلفل، لحوم طرية، وبهارات سعودية أصيلة. نظافة وجودة وكرم ضيافة في قلب الرياض.</p>
     <div class="hero-btns">
-      <a href="tel:0557367886" class="btn btn-pink">
+      <a href="#menu" class="btn btn-pink">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span data-i18n="hero.call">اطلب الآن</span>
       </a>
@@ -613,9 +669,9 @@
       </a>
     </div>
     <div class="hero-strip">
-      <div class="hs"><b>4.4★</b><span data-i18n="stat.rating">تقييم العملاء</span></div>
+      <div class="hs"><b>4.3★</b><span data-i18n="stat.rating">تقييم العملاء</span></div>
       <div class="div"></div>
-      <div class="hs"><b>+212</b><span data-i18n="stat.reviews">مراجعة موثّقة</span></div>
+      <div class="hs"><b>+241</b><span data-i18n="stat.reviews">مراجعة موثّقة</span></div>
       <div class="div"></div>
       <div class="hs"><b data-i18n="stat.hoursNum">14 ساعة</b><span data-i18n="stat.hours">يومياً حتى 1:30 ص</span></div>
       <div class="div"></div>
@@ -645,7 +701,7 @@
       <img class="emblem-logo" src="images/madghout-logo.png" alt="شعار مضغوط ألف 1000">
       <div class="pin pin-a">
         <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1L12 16.7 5.7 21l2.3-7.1-6-4.5h7.6z"/></svg>
-        4.4/5<small data-i18n="about.pinGoogle">تقييم جوجل</small>
+        4.3/5<small data-i18n="about.pinGoogle">تقييم جوجل</small>
       </div>
       <div class="pin pin-b">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg>
@@ -676,14 +732,22 @@
       <div class="cards" id="cat-pigeon"></div>
     </div>
     <div class="cat c-gold reveal">
-      <div class="cat-head"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0z"/><path d="M2 12h20M12 12v6a2 2 0 0 1-2 2"/></svg></div><h3 data-i18n="cat.sides">الإضافات والسلطات<small>SIDES &amp; SALADS</small></h3><div class="ln"></div></div>
-      <div class="cards" id="cat-sides"></div>
+      <div class="cat-head"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 18 0z"/><path d="M2 12h20M12 12v6a2 2 0 0 1-2 2"/></svg></div><h3 data-i18n="cat.edamat">قسم الإيدامات<small>STEWS</small></h3><div class="ln"></div></div>
+      <div class="cards" id="cat-edamat"></div>
+    </div>
+    <div class="cat c-pink reveal">
+      <div class="cat-head"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a8 8 0 0 0 8-8H4a8 8 0 0 0 8 8z"/><path d="M12 13c0-3 2-4 2-6a2 2 0 0 0-4 0c0 2 2 3 2 6z"/></svg></div><h3 data-i18n="cat.salads">السلطات<small>SALADS</small></h3><div class="ln"></div></div>
+      <div class="cards" id="cat-salads"></div>
+    </div>
+    <div class="cat c-gold reveal">
+      <div class="cat-head"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13h16l-1.4 6.3a2 2 0 0 1-2 1.7H7.4a2 2 0 0 1-2-1.7z"/><path d="M6 13a6 6 0 0 1 12 0"/><path d="M12 4v3M9 5.5v1.5M15 5.5v1.5"/></svg></div><h3 data-i18n="cat.sweets">قسم الحلا<small>SWEETS</small></h3><div class="ln"></div></div>
+      <div class="cards" id="cat-sweets"></div>
     </div>
     <div class="cat c-pink reveal">
       <div class="cat-head"><div class="ci"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h12l-1.2 16.2a2 2 0 0 1-2 1.8H9.2a2 2 0 0 1-2-1.8z"/><path d="M5 8h14"/></svg></div><h3 data-i18n="cat.drinks">المشروبات<small>DRINKS</small></h3><div class="ln"></div></div>
       <div class="cards" id="cat-drinks"></div>
     </div>
-    <p class="menu-note reveal" data-i18n="menu.note">* الأسعار بالريال السعودي للعرض التوضيحي · المتوسط 20–40 ر.س للفرد · القائمة قابلة للتعديل</p>
+    <p class="menu-note reveal" data-i18n="menu.note">* الأسعار بالريال السعودي كما في لوحة المنيو داخل الفرع · المتوسط 20–40 ر.س للفرد · قد تختلف أسعار بعض الأصناف بين فرع لبن وفرع الخليج</p>
   </div>
 </section>
 
@@ -713,8 +777,8 @@
     </div>
     <div class="rev-badge reveal">
       <div class="glyph"><svg viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.27-4.74 3.27-8.1z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84A11 11 0 0 0 12 23z"/><path fill="#FBBC05" d="M5.84 14.1a6.6 6.6 0 0 1 0-4.2V7.06H2.18a11 11 0 0 0 0 9.88z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/></svg></div>
-      <div><div class="num">4.4</div><div class="stars">★★★★☆</div></div>
-      <div class="meta" data-i18n="rev.meta" data-i18n-html="1">تقييم موثّق على<br>خرائط جوجل · +212 مراجعة</div>
+      <div><div class="num">4.3</div><div class="stars">★★★★☆</div></div>
+      <div class="meta" data-i18n="rev.meta" data-i18n-html="1">تقييم موثّق على<br>خرائط جوجل · +241 مراجعة</div>
     </div>
     <div class="rev-grid">
       <div class="rev reveal"><span class="qm">”</span>
@@ -756,8 +820,12 @@
     </div>
     <div class="contact-grid">
       <div class="info-card reveal">
-        <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><b data-i18n="con.addrT">العنوان</b><span data-i18n="con.addr">شارع ينبع، ظهرة لبن، الرياض 13784</span></div></div>
-        <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><b data-i18n="con.phoneT">الهاتف</b><a href="tel:0557367886" dir="ltr">055 736 7886</a> <span data-i18n="con.br1">· فرع لبن</span><br><a href="tel:0558411676" dir="ltr">055 841 1676</a> <span data-i18n="con.br2">· فرع الخليج</span></div></div>
+        <div class="branch-tabs" role="tablist" aria-label="الفروع">
+          <button class="btab on" data-branch="laban" role="tab" aria-selected="true"><span data-i18n="con.tabLaban">فرع ظهرة لبن</span></button>
+          <button class="btab" data-branch="gulf" role="tab" aria-selected="false"><span data-i18n="con.tabGulf">فرع الخليج</span></button>
+        </div>
+        <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div><b data-i18n="con.addrT">العنوان</b><span id="brAddr">شارع ينبع، ظهرة لبن، الرياض 13784</span></div></div>
+        <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><div><b data-i18n="con.phoneT">الهاتف</b><a id="brTel" href="tel:0557367886" dir="ltr">055 736 7886</a></div></div>
         <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div><div style="flex:1"><b data-i18n="con.hoursT">ساعات العمل</b>
           <table class="hours-tbl">
             <tr><td data-i18n="con.days1">السبت – الخميس</td><td>11:30 AM – 1:30 AM</td></tr>
@@ -767,15 +835,15 @@
         </div></div>
         <div class="info-row"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div><b data-i18n="con.priceT">متوسط السعر</b><span data-i18n="con.price">20 – 40 ر.س للفرد</span></div></div>
         <div class="contact-cta">
-          <a href="https://wa.me/966557367886?text=السلام عليكم، أبغى أطلب توصيل من مضغوط ألف 1000" target="_blank" rel="noopener" class="btn btn-pink">
+          <a id="brWa" href="https://wa.me/966557367886?text=السلام عليكم، أبغى أطلب توصيل من مضغوط ألف 1000 — فرع ظهرة لبن" target="_blank" rel="noopener" class="btn btn-pink">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg>
             <span data-i18n="con.waOrder">اطلب توصيل</span></a>
-          <a href="tel:0557367886" class="btn btn-ghost" data-i18n="con.callUs">اتصل بنا</a>
+          <a id="brCall" href="tel:0557367886" class="btn btn-ghost" data-i18n="con.callUs">اتصل بنا</a>
         </div>
       </div>
       <div class="map-box reveal">
-        <iframe title="موقع مضغوط ألف 1000 على الخريطة" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=%D9%85%D8%B6%D8%BA%D9%88%D8%B7%20%D8%A3%D9%84%D9%81%201000%20%D8%B8%D9%87%D8%B1%D8%A9%20%D9%84%D8%A8%D9%86%20%D8%A7%D9%84%D8%B1%D9%8A%D8%A7%D8%B6&output=embed"></iframe>
+        <iframe id="brMap" title="موقع مضغوط ألف 1000 على الخريطة" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=24.6364127,46.5479343&hl=ar&z=17&output=embed"></iframe>
       </div>
     </div>
   </div>
@@ -786,12 +854,9 @@
     <div class="foot-grid">
       <div class="foot-brand">
         <a href="#home" class="logo"><img class="mark" src="images/madghout-logo-sm.png" alt="شعار مضغوط ألف 1000" width="50" height="50"><span><b data-i18n="brand">مضغوط ألف</b><small>MADGHOUT 1000</small></span></a>
-        <p data-i18n="foot.about">وجهتك الأولى للمضغوط الأصيل في ظهرة لبن، الرياض. جودة، نظافة، وطعم لا يُنسى.</p>
+        <p data-i18n="foot.about">وجهتك الأولى للمضغوط الأصيل في الرياض. جودة، نظافة، وطعم لا يُنسى.</p>
         <div class="socials">
-          <a href="#" aria-label="انستقرام"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
-          <a href="#" aria-label="تيك توك"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 2c.4 2.5 2 4.2 4.5 4.5v3c-1.6.1-3.1-.4-4.5-1.2V15a6 6 0 1 1-6-6c.3 0 .7 0 1 .1v3.1A3 3 0 1 0 13 15V2z"/></svg></a>
-          <a href="#" aria-label="إكس"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.2 2H21l-6.5 7.4L22 22h-6l-4.7-6.1L5.9 22H3l7-8L2 2h6.2l4.2 5.6zm-2.1 18h1.7L7.9 3.8H6z"/></svg></a>
-          <a href="https://wa.me/966557367886" aria-label="واتساب"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg></a>
+          <a id="socWa" href="https://wa.me/966557367886" aria-label="واتساب"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg></a>
         </div>
       </div>
       <div class="foot-col">
@@ -804,24 +869,25 @@
       </div>
       <div class="foot-col">
         <h4 data-i18n="foot.contact">تواصل معنا</h4>
-        <a href="tel:0557367886"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <span dir="ltr">055 736 7886</span></a>
-        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <span data-i18n="foot.addr">شارع ينبع، ظهرة لبن</span></p>
+        <a href="tel:0557367886"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <span dir="ltr">055 736 7886</span> <small data-i18n="foot.br1">· لبن</small></a>
+        <a href="tel:0558411676"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <span dir="ltr">055 841 1676</span> <small data-i18n="foot.br2">· الخليج</small></a>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> <span data-i18n="foot.addr">الرياض — ظهرة لبن وحي الخليج</span></p>
         <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2" stroke-linecap="round"/></svg> <span data-i18n="foot.hours">يومياً 11:30 ص – 1:30 ص</span></p>
-        <a href="https://maps.google.com/?q=مضغوط+ألف+1000+الرياض" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><path d="M9 3v15M15 6v15"/></svg> <span data-i18n="foot.map">الموقع على الخريطة</span></a>
+        <a href="#contact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21"/><path d="M9 3v15M15 6v15"/></svg> <span data-i18n="foot.map">الموقع على الخريطة</span></a>
       </div>
     </div>
     <div class="copy" data-i18n="foot.copy" data-i18n-html="1">© 2026 مطعم <span>مضغوط ألف 1000</span> · جميع الحقوق محفوظة · صفحة عرض تجريبية</div>
   </div>
 </footer>
 
-<a href="https://wa.me/966557367886?text=السلام عليكم، أبغى أستفسر عن الطلب من مضغوط ألف 1000" target="_blank" rel="noopener" class="wa-float" aria-label="تواصل عبر واتساب">
+<a id="waFloat" href="https://wa.me/966557367886?text=السلام عليكم، أبغى أستفسر عن الطلب من مضغوط ألف 1000" target="_blank" rel="noopener" class="wa-float" aria-label="تواصل عبر واتساب">
   <svg viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.522 5.27l-.999 3.648 3.966-1.039zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.71.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
   <span class="tip" data-i18n="wa.tip">اطلب عبر واتساب</span>
 </a>
 
 <nav class="mbar" aria-label="إجراءات سريعة">
-  <a href="tel:0557367886" class="call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <span data-i18n="mbar.call">اتصل</span></a>
-  <a href="https://wa.me/966557367886?text=السلام عليكم، أبغى أطلب توصيل من مضغوط ألف 1000" target="_blank" rel="noopener" class="order"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg> <span data-i18n="mbar.order">اطلب توصيل</span></a>
+  <a id="mbCall" href="tel:0557367886" class="call"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg> <span data-i18n="mbar.call">اتصل</span></a>
+  <a id="mbOrder" href="https://wa.me/966557367886?text=السلام عليكم، أبغى أطلب توصيل من مضغوط ألف 1000" target="_blank" rel="noopener" class="order"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.817 11.817 0 018.413 3.488 11.824 11.824 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24z"/></svg> <span data-i18n="mbar.order">اطلب توصيل</span></a>
 </nav>
 
 <div class="cart-bar" id="cartBar" role="button" tabindex="0" aria-label="عرض الطلب">
@@ -845,6 +911,11 @@
   </div>
   <div class="cart-items" id="cartItems"></div>
   <div class="cart-total"><span data-i18n="cart.total">الإجمالي</span><span id="cartTotal">0 ر.س</span></div>
+  <div class="branch-pick" id="branchPick">
+    <b data-i18n="cart.branchT">اختر الفرع الأقرب لك</b>
+    <label><input type="radio" name="branch" value="laban"><span><i data-i18n="cart.brLabanT">فرع ظهرة لبن</i><small data-i18n="cart.brLabanA">شارع ينبع · 055 736 7886</small></span></label>
+    <label><input type="radio" name="branch" value="gulf"><span><i data-i18n="cart.brGulfT">فرع الخليج</i><small data-i18n="cart.brGulfA">الأمير بندر بن عبدالعزيز · 055 841 1676</small></span></label>
+  </div>
   <div class="otype">
     <label><input type="radio" name="otype" value="delivery" checked><span data-i18n="cart.delivery">توصيل</span></label>
     <label><input type="radio" name="otype" value="pickup"><span data-i18n="cart.pickup">استلام من المطعم</span></label>
@@ -861,52 +932,95 @@
 
 <script>
   // ===== Menu data (bilingual) =====
+  // الأسعار: لوحة المنيو داخل الفرع · الأوصاف والصور: الصفحة الرسمية للمطعم على هنقرستيشن
+  // sz = [مفتاح الحجم, السعر] — الحجم "one" يعني صنف بسعر واحد بلا اختيار
+  const SZ={full:['حبة','Whole'],half:['نص','Half'],quarter:['ربع','Quarter'],pair:['جوز','Pair'],one:['','']};
+  const IMG='images/dishes/';
+  const IMGX='.jpg';
   const MENU={
     chicken:[
-      {ar:'مضغوط ألف 1000',en:'Madhghout 1000',p:'42',dar:'طبقنا الأشهر — رز مضغوط مفلفل مع دجاج طري وبهارات خاصة',den:'Our signature — fluffy pressed rice with tender chicken & special spices',sig:true},
-      {ar:'مضغوط أبو دمعة',en:'Madhghout Abu Duma',p:'38',dar:'نكهة حارّة لذيذة لمحبي الطعم القوي',den:'A deliciously spicy kick for bold-flavor lovers'},
-      {ar:'سليق دجاج',en:'Saleeg Chicken',p:'30',dar:'سليق كريمي ناعم مع دجاج مسلوق طري',den:'Creamy, smooth saleeg with tender poached chicken'},
-      {ar:'مندي دجاج',en:'Mandi Chicken',p:'28',dar:'دجاج مندي مدخّن على الطريقة التقليدية',den:'Smoky mandi chicken, traditionally prepared'},
-      {ar:'مظبي دجاج',en:'Madhbi Chicken',p:'21',dar:'دجاج مشوي على الحجر بنكهة الفحم',den:'Stone-grilled chicken with a charcoal flavor'}
+      {ar:'مضغوط ألف 1000',en:'Madghout Alf 1000',im:'madghout1000-half',
+       dar:'دجاج طازج مع رز مزة ومعجون الطماطم والخلطة السرية',den:'Fresh chicken with mazza rice, tomato paste and our secret blend',sig:true,sz:[['full',42],['half',21]]},
+      {ar:'مضغوط أبو دمعة',en:'Madghout Abu Dam‘a',im:'abudamaa-half',
+       dar:'دجاج طازج مع رز أمريكي ومعجون الطماطم والخلطة السرية',den:'Fresh chicken with American rice, tomato paste and our secret blend',sz:[['full',42],['half',21]]},
+      {ar:'دجاج سليق',en:'Saleeg Chicken',im:'saleeg',
+       dar:'سليق كريمي ناعم مع دجاج مسلوق طري',den:'Creamy, smooth saleeg with tender poached chicken',sz:[['full',42],['half',21]]},
+      {ar:'دجاج مندي',en:'Mandi Chicken',im:'mandi-full',
+       dar:'دجاج الوطنية مندي في حفرة الحطب',den:'Wataniyah chicken, mandi-cooked in a wood-fired pit',sz:[['full',42],['half',21],['quarter',12]]},
+      {ar:'دجاج مظبي',en:'Madhbi Chicken',im:'madhbi',
+       dar:'دجاج الوطنية مشوي على الحجر',den:'Wataniyah chicken grilled on stone',sz:[['full',42],['half',21]]},
+      {ar:'مبكبكة دجاج',en:'Mabkbaka Chicken',im:'mabkbaka-chicken',
+       dar:'مكرونة مبكبكة بالصلصة مع الدجاج من تحضيرنا الخاص',den:'Our own mabkbaka pasta in sauce with chicken',sz:[['full',44],['half',22]]}
     ],
     meat:[
-      {ar:'مضغوط ألف 1000 حاشي',en:'Madhghout 1000 Hashawi',p:'68',dar:'لحم حاشي فاخر مع رز مضغوط غني بالنكهة',den:'Premium young camel meat with rich pressed rice',sig:true},
-      {ar:'مضغوط حاشي',en:'Madhghout Hashawi',p:'68',dar:'قطع حاشي طرية مع الرز المضغوط المميّز',den:'Tender camel cuts with our signature pressed rice'}
+      {ar:'مضغوط ألف 1000 حاشي',en:'Madghout Alf 1000 · Camel',im:'hashi-american',
+       dar:'لحم حاشي بلدي ذبح يومي مع الرز الأمريكي',den:'Local young camel, slaughtered daily, with American rice',sig:true,sz:[['one',68]]},
+      {ar:'مضغوط حاشي — رز مزة',en:'Madghout Camel · Mazza Rice',im:'hashi-mazza',
+       dar:'لحم حاشي بلدي ذبح يومي مع رز مزة',den:'Local young camel, slaughtered daily, with mazza rice',sz:[['one',68]]},
+      {ar:'مبكبكة لحم حاشي',en:'Mabkbaka Camel',im:'mabkbaka-meat',
+       dar:'لحم حاشي مطهو بطريقة مبتكرة وطعمه غني',den:'Camel meat cooked our way — rich and hearty',sz:[['one',68]]}
     ],
     pigeon:[
-      {ar:'مندي حمام — نص',en:'Mandi Pigeon · Half',p:'35',dar:'نصف حمام مندي مدخّن مع الرز',den:'Half smoky mandi pigeon with rice'},
-      {ar:'مندي حمام — كامل',en:'Mandi Pigeon · Whole',p:'68',dar:'حمامة كاملة مندي لوجبة دسمة',den:'A whole mandi pigeon for a hearty meal'},
-      {ar:'مضغوط حمام — نص',en:'Madhghout Pigeon · Half',p:'35',dar:'نصف حمام مضغوط بنكهة غنية',den:'Half pressed pigeon with rich flavor'},
-      {ar:'مضغوط حمام — كامل',en:'Madhghout Pigeon · Whole',p:'68',dar:'حمامة كاملة مضغوط — تجربة فاخرة',den:'A whole pressed pigeon — a premium experience'}
+      {ar:'حمام مندي',en:'Mandi Pigeon',im:'pigeon',
+       dar:'حمام مندي مدخّن في حفرة الحطب على الطريقة التقليدية',den:'Smoky pit-cooked mandi pigeon, traditionally prepared',sz:[['one',35],['pair',68]]},
+      {ar:'حمام مضغوط',en:'Madghout Pigeon',im:'pigeon',
+       dar:'حمام مضغوط بنكهة غنية مع الرز المفلفل',den:'Pressed pigeon with rich flavor and fluffy rice',sz:[['one',35],['pair',68]]}
     ],
-    sides:[
-      {ar:'خضار مشكّل',en:'Mixed Vegetables',p:'8',dar:'تشكيلة خضار مطهية طازجة',den:'A fresh medley of cooked vegetables'},
-      {ar:'سلطة حارة',en:'Spicy Salad',p:'4',dar:'سلطة حارة منعشة تفتح الشهية',den:'A refreshing spicy salad to whet the appetite'},
-      {ar:'سلطة قروية',en:'Village Salad',p:'4',dar:'خضار طازجة على الطريقة القروية',den:'Fresh vegetables, village style'},
-      {ar:'سلطة زبادي وخيار',en:'Cucumber-Yogurt',p:'4',dar:'زبادي بارد مع الخيار والنعناع',den:'Cool yogurt with cucumber and mint'},
-      {ar:'طحينة',en:'Tahini',p:'3',dar:'صلصة طحينة كريمية',den:'Creamy tahini sauce'}
+    edamat:[
+      {ar:'خضار مشكّل',en:'Mixed Vegetables',im:'veg-mixed',
+       dar:'خضار متنوّعة مخبوزة في الفرن مع البهارات',den:'Assorted vegetables oven-baked with spices',sz:[['one',8]]},
+      {ar:'بامية',en:'Okra',im:'okra',
+       dar:'بامية بالصلصة على الطريقة البيتية',den:'Home-style okra in tomato sauce',sz:[['one',8]]},
+      {ar:'مصقعة',en:'Musaqqa‘a',im:'musaqqaa',
+       dar:'باذنجان مع اللحم المبهّر وصوص الطماطم',den:'Eggplant with spiced meat and tomato sauce',sz:[['one',8]]}
+    ],
+    salads:[
+      {ar:'سلطة حارة — دقوس',en:'Spicy Daqqous',im:'salad-daqqous',
+       dar:'سلطة الطماطم مع الفلفل الحار',den:'Tomato salad with hot pepper',sz:[['one',3]]},
+      {ar:'سلطة بلدي',en:'Baladi Salad',im:'salad-baladi',
+       dar:'طماطم مع الخيار والخس',den:'Tomato, cucumber and lettuce',sz:[['one',3]]},
+      {ar:'سلطة خيار مع لبن',en:'Cucumber-Yogurt',im:'salad-cucumber-laban',
+       dar:'خيار طازج مع زبادي ناعم',den:'Fresh cucumber with smooth yogurt',sz:[['one',4]]},
+      {ar:'صوص الطحينية',en:'Tahini Sauce',im:'tahini',
+       dar:'صوص طحينة مع التوابل',den:'Tahini sauce with spices',sz:[['one',4]]}
+    ],
+    sweets:[
+      {ar:'كنافة بالقشطة',en:'Kunafa with Cream',im:'kunafa-qishta',
+       dar:'كنافة مع كريم غنية وطعمها لذيذ',den:'Kunafa with rich cream — warm and indulgent',sz:[['one',20]]}
     ],
     drinks:[
-      {ar:'حمضيات',en:'Citrus',p:'3',dar:'مشروب حمضيات منعش',den:'A refreshing citrus drink'},
-      {ar:'سفن أب',en:'7UP',p:'2',dar:'مشروب غازي بارد',den:'Chilled soft drink'},
-      {ar:'بيبسي',en:'Pepsi',p:'2',dar:'مشروب غازي بارد',den:'Chilled soft drink'},
-      {ar:'لبن',en:'Laban',p:'2',dar:'لبن سعودي بارد',den:'Cold Saudi laban'},
-      {ar:'زيادي',en:'Ziadi',p:'2',dar:'زبادي شراب منعش',den:'A refreshing drinkable yogurt'},
-      {ar:'ماء',en:'Water',p:'1',dar:'مياه معدنية',den:'Mineral water'}
+      {ar:'ميرندا حمضيات',en:'Mirinda Citrus',im:'citrus',
+       dar:'مشروب غازي منعش بنكهة الحمضيات',den:'Refreshing citrus soda',sz:[['one',3]]},
+      {ar:'سفن أب',en:'7UP',im:'sevenup',
+       dar:'مشروب سفن آب بنكهة الليمون',den:'7UP with its crisp lemon-lime taste',sz:[['one',3]]},
+      {ar:'بيبسي',en:'Pepsi',im:'pepsi',
+       dar:'مشروب غازي بنكهة فريدة ومنعشة',den:'Chilled Pepsi',sz:[['one',3]]},
+      {ar:'لبن القرية',en:'Laban Al-Qariah',im:'laban',
+       dar:'لبن طازج منعش',den:'Fresh, refreshing laban',sz:[['one',3]]},
+      {ar:'زبادي',en:'Yogurt',im:'yogurt',
+       dar:'زبادي طازج بارد',den:'Chilled fresh yogurt',sz:[['one',2]]},
+      {ar:'مياه',en:'Water',im:'water',
+       dar:'مياه معدنية نقية',den:'Pure mineral water',sz:[['one',1]]}
     ]
   };
   const GAL=[
-    {c:'g1',cls:'big',tar:'مضغوط ألف 1000',ten:'Madhghout 1000',s:'SIGNATURE',img:'images/g1-signature.jpg'},
-    {c:'g2',tar:'دجاج مضغوط',ten:'Pressed Chicken',s:'CHICKEN',img:'images/g2-chicken.jpg'},
-    {c:'g3',tar:'حاشي',ten:'Camel Meat',s:'MEAT',img:'images/g3-meat.jpg'},
-    {c:'g4',tar:'حمام',ten:'Pigeon',s:'PIGEON'},
-    {c:'g5',tar:'سلطات طازجة',ten:'Fresh Salads',s:'SIDES',img:'images/g5-salads.jpg'},
-    {c:'g6',tar:'تغليفنا الخاص',ten:'Our Packaging',s:'PACKAGING',img:'images/g6-packaging.jpg'}
-  ];
-  const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+    {c:'g1',tar:'دجاج مضغوط',ten:'Pressed Chicken',s:'CHICKEN',img:'images/g2-chicken.jpg'},
+    {c:'g2',tar:'حاشي',ten:'Camel Meat',s:'MEAT',img:'images/g3-meat.jpg'},
+    {c:'g3',tar:'سلطاتنا الطازجة',ten:'Fresh Salads',s:'SIDES',img:'images/g5-salads.jpg'},
+    {c:'g4',tar:'أطباقنا المميّزة',ten:'Our Specials',s:'MENU',img:'images/gm-banner.jpg'},
+    {c:'g5',tar:'واجهة فرع الخليج',ten:'Al-Khaleej Branch',s:'BRANCH',img:'images/gm-storefront-day.jpg'},
+    {c:'g6',tar:'فرع ظهرة لبن ليلاً',ten:'Laban Branch at Night',s:'BRANCH',img:'images/gm-storefront.jpg'},
+    {c:'g7',tar:'مجلس الجلوس',ten:'Floor Majlis',s:'INTERIOR',img:'images/gm-majlis.jpg'},
+    {c:'g8',tar:'تغليفنا الخاص',ten:'Our Packaging',s:'PACKAGING',img:'images/g6-packaging.jpg'}
+  ];  const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
   const camSvg='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>';
 
-  const TABS={chicken:['الدجاج','Chicken'],meat:['اللحم والحاشي','Meat & Camel'],pigeon:['الحمام','Pigeon'],sides:['السلطات','Sides & Salads'],drinks:['المشروبات','Drinks']};
+  const TABS={chicken:['الدجاج','Chicken'],meat:['اللحم والحاشي','Meat & Camel'],pigeon:['الحمام','Pigeon'],edamat:['الإيدامات','Stews'],salads:['السلطات','Salads'],sweets:['الحلا','Sweets'],drinks:['المشروبات','Drinks']};
+  // الحجم المختار لكل صنف (فهرس داخل m.sz)
+  const SEL={};
+  const szLabel=(k,lang)=>SZ[k]?SZ[k][lang==='ar'?0:1]:k;
+  const priceOf=id=>{const [k,i,s]=id.split(':');const m=MENU[k]&&MENU[k][+i];return m?m.sz[+s][1]:0;};
+
   function renderMenu(lang){
     const star = lang==='ar' ? '★ الأكثر طلباً' : '★ Best seller';
     const cur  = lang==='ar' ? 'ر.س' : 'SAR';
@@ -914,15 +1028,24 @@
     if(tabs)tabs.innerHTML=Object.keys(MENU).map((k,i)=>`<button class="mtab${i===0?' on':''}" data-tab="${k}">${TABS[k]?TABS[k][lang==='ar'?0:1]:k}</button>`).join('');
     Object.keys(MENU).forEach(k=>{
       const el=document.getElementById('cat-'+k); if(!el) return;
-      el.innerHTML=MENU[k].map((m,i)=>`<article class="dish${m.sig?' signature':''}" data-id="${k}:${i}">
+      el.innerHTML=MENU[k].map((m,i)=>{
+        const key=k+':'+i; const sel=SEL[key]||0;
+        const pic = m.im ? `<div class="dish-img"><i style="background-image:url('${IMG}${m.im}${IMGX}')"></i></div>` : '';
+        const sizes = m.sz.length>1
+          ? `<div class="sizes" role="group">${m.sz.map((s,si)=>`<button class="szb${si===sel?' on':''}" data-size="${key}:${si}">${esc(szLabel(s[0],lang))} <b>${s[1]}</b></button>`).join('')}</div>`
+          : '';
+        return `<article class="dish${m.sig?' signature':''}${m.im?' has-img':''}" data-id="${key}">
+        ${pic}
         <span class="star">${star}</span>
         <div class="dish-top"><div><h4>${esc(lang==='ar'?m.ar:m.en)}</h4><div class="en">${esc(lang==='ar'?m.en:m.ar)}</div></div>
-        <span class="pr">${esc(m.p)} <small>${cur}</small></span></div>
+        <span class="pr"><span class="prv">${m.sz[sel][1]}</span> <small>${cur}</small></span></div>
         <p>${esc(lang==='ar'?m.dar:m.den)}</p>
+        ${sizes}
         <div class="dish-foot">
-          <button class="add-btn" data-add="${k}:${i}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span>${lang==='ar'?'أضف للطلب':'Add to order'}</span></button>
-          <div class="qty-ctrl"><button data-plus="${k}:${i}" aria-label="زيادة">+</button><b>1</b><button data-minus="${k}:${i}" aria-label="إنقاص">−</button></div>
-        </div></article>`).join('');
+          <button class="add-btn" data-add="${key}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg><span>${lang==='ar'?'أضف للطلب':'Add to order'}</span></button>
+          <div class="qty-ctrl"><button data-plus="${key}" aria-label="زيادة">+</button><b>1</b><button data-minus="${key}" aria-label="إنقاص">−</button></div>
+        </div></article>`;
+      }).join('');
     });
     syncDishes();
   }
@@ -932,22 +1055,46 @@
     ).join('');
   }
 
+  // ===== الفروع =====
+  const BRANCHES={
+    laban:{ar:'فرع ظهرة لبن',en:'Dhahrat Laban branch',
+      addrAr:'شارع ينبع، ظهرة لبن، الرياض 13784',addrEn:'Yanbu St, Dhahrat Laban, Riyadh 13784',
+      tel:'0557367886',wa:'966557367886',
+      map:'https://www.google.com/maps?q=24.6364127,46.5479343&hl=ar&z=17&output=embed',
+      dir:'https://www.google.com/maps/place/%D9%85%D8%B6%D8%BA%D9%88%D8%B7+%D8%A3%D9%84%D9%81+1000/@24.6364127,46.5479343,17z'},
+    gulf:{ar:'فرع الخليج',en:'Al-Khaleej branch',
+      addrAr:'شارع الأمير بندر بن عبدالعزيز، حي الخليج، الرياض 13224',addrEn:'Prince Bandar bin Abdulaziz St, Al-Khaleej, Riyadh 13224',
+      tel:'0558411676',wa:'966558411676',
+      map:'https://www.google.com/maps?q=24.7801072,46.8269987&hl=ar&z=17&output=embed',
+      dir:'https://www.google.com/maps/place/%D9%85%D8%B6%D8%BA%D9%88%D8%B7+1000/@24.7801072,46.8269987,17z'}
+  };
+
   // ===== السلة والطلب عبر واتساب =====
-  const WA_NUM='966557367886';
   const $id=x=>document.getElementById(x);
   let CART={};
   try{CART=JSON.parse(localStorage.getItem('mg_cart')||'{}')}catch(e){}
   const curLang=()=>document.documentElement.lang||'ar';
   const itemOf=id=>{const [k,i]=id.split(':');return MENU[k]&&MENU[k][+i];};
+  const sizeOf=id=>{const [k,i,s]=id.split(':');const m=MENU[k]&&MENU[k][+i];return m&&m.sz[+s]?m.sz[+s][0]:'one';};
   const fmt=n=>curLang()==='ar'?`${n} ر.س`:`${n} SAR`;
+  const nameOf=(id,l)=>{const m=itemOf(id);if(!m)return '';const sk=sizeOf(id);
+    const lb=szLabel(sk,l); return (l==='ar'?m.ar:m.en)+(sk==='one'?'':' — '+lb);};
   function saveCart(){try{localStorage.setItem('mg_cart',JSON.stringify(CART))}catch(e){}}
   function cartCount(){return Object.values(CART).reduce((a,b)=>a+b,0)}
-  function cartTotal(){return Object.entries(CART).reduce((s,[id,q])=>{const m=itemOf(id);return m?s+(+m.p)*q:s},0)}
+  function cartTotal(){return Object.entries(CART).reduce((s,[id,q])=>s+priceOf(id)*q,0)}
   function setQty(id,q){if(q<=0)delete CART[id];else CART[id]=q;saveCart();syncDishes();updateCartUI();renderCart();}
   function syncDishes(){document.querySelectorAll('.dish[data-id]').forEach(d=>{
-    const id=d.getAttribute('data-id'),q=CART[id]||0;
-    d.classList.toggle('in-cart',q>0);
+    const key=d.getAttribute('data-id'),sel=SEL[key]||0;
+    const q=CART[key+':'+sel]||0;
+    const anyq=Object.keys(CART).some(id=>id.startsWith(key+':'));
+    d.classList.toggle('in-cart',anyq);
     const b=d.querySelector('.qty-ctrl b'); if(b)b.textContent=q||1;
+    d.querySelectorAll('.szb').forEach((s,si)=>{
+      s.classList.toggle('on',si===sel);
+      s.classList.toggle('has',(CART[key+':'+si]||0)>0);
+    });
+    const m=itemOf(key), pv=d.querySelector('.prv');
+    if(m&&pv)pv.textContent=m.sz[sel][1];
   });}
   function updateCartUI(){
     const c=cartCount();
@@ -961,11 +1108,11 @@
   function renderCart(){
     const l=curLang();
     const rows=Object.entries(CART).map(([id,q])=>{
-      const m=itemOf(id); if(!m)return '';
+      const m=itemOf(id); if(!m)return ''; const up=priceOf(id);
       return `<div class="ci-row">
         <div class="qty-ctrl"><button data-plus="${id}" aria-label="زيادة">+</button><b>${q}</b><button data-minus="${id}" aria-label="إنقاص">−</button></div>
-        <div class="nm"><b>${esc(l==='ar'?m.ar:m.en)}</b><small>${esc(m.p)} × ${q}</small></div>
-        <span class="pr2">${fmt(+m.p*q)}</span></div>`;
+        <div class="nm"><b>${esc(nameOf(id,l))}</b><small>${up} × ${q}</small></div>
+        <span class="pr2">${fmt(up*q)}</span></div>`;
     }).join('');
     $id('cartItems').innerHTML=rows||`<p class="cart-empty">${l==='ar'?'سلتك فارغة — أضف أصنافاً من القائمة':'Your order is empty — add dishes from the menu'}</p>`;
     $id('cartTotal').textContent=fmt(cartTotal());
@@ -982,14 +1129,19 @@
   $id('cartX').addEventListener('click',()=>toggleCart(false));
   $id('cartClear').addEventListener('click',()=>{CART={};saveCart();syncDishes();updateCartUI();renderCart();});
   $id('cartOv').addEventListener('click',()=>toggleCart(false));
+  // يحوّل معرّف البطاقة (k:i) إلى معرّف سلة (k:i:size) بالحجم المختار
+  const withSel=key=>key.split(':').length===3?key:key+':'+(SEL[key]||0);
   document.addEventListener('click',e=>{
+    const size=e.target.closest('[data-size]');
     const add=e.target.closest('[data-add]');
     const plus=e.target.closest('[data-plus]');
     const minus=e.target.closest('[data-minus]');
     const tab=e.target.closest('[data-tab]');
-    if(add)setQty(add.getAttribute('data-add'),1);
-    else if(plus){const id=plus.getAttribute('data-plus');setQty(id,(CART[id]||0)+1);}
-    else if(minus){const id=minus.getAttribute('data-minus');setQty(id,(CART[id]||0)-1);}
+    if(size){const v=size.getAttribute('data-size');const si=v.lastIndexOf(':');
+      SEL[v.slice(0,si)]=+v.slice(si+1);syncDishes();}
+    else if(add){const id=withSel(add.getAttribute('data-add'));setQty(id,(CART[id]||0)+1);}
+    else if(plus){const id=withSel(plus.getAttribute('data-plus'));setQty(id,(CART[id]||0)+1);}
+    else if(minus){const id=withSel(minus.getAttribute('data-minus'));setQty(id,(CART[id]||0)-1);}
     else if(tab){
       const sec=document.getElementById('cat-'+tab.getAttribute('data-tab'));
       if(sec)sec.closest('.cat').scrollIntoView({behavior:'smooth',block:'start'});
@@ -1005,19 +1157,21 @@
     });
   },{rootMargin:'-25% 0px -65% 0px'});
   document.querySelectorAll('.cat').forEach(c=>spyIO.observe(c));
-  function buildWaMsg(){
-    const ar=curLang()==='ar';
-    const line='━━━━━━━━━━━━━━━';
+  const pickedBranch=()=>{const r=document.querySelector('input[name="branch"]:checked');return r?r.value:null;};
+  function buildWaMsg(bk,tight){
+    const ar=curLang()==='ar', l=curLang(), b=BRANCHES[bk];
+    const line=tight?'—':'———————';
     const otype=document.querySelector('input[name="otype"]:checked').value;
     const name=$id('cName').value.trim(),notes=$id('cNotes').value.trim();
     const out=[];
     out.push(ar?'*طلب جديد — مضغوط ألف 1000*':'*New Order — Madghout 1000*');
+    out.push((ar?'*الفرع:* ':'*Branch:* ')+(ar?b.ar:b.en));
     out.push(line);
     let n=0;
     Object.entries(CART).forEach(([id,q])=>{
-      const m=itemOf(id); if(!m)return; n++;
-      out.push(`${n}. *${ar?m.ar:m.en}*`);
-      out.push(`    ${q} × ${m.p} = ${+m.p*q} ${ar?'ر.س':'SAR'}`);
+      const m=itemOf(id); if(!m)return; n++; const up=priceOf(id);
+      // سطر واحد لكل صنف: رابط wa.me يُقصّ في بعض التطبيقات إذا طال
+      out.push(tight ? `${n}) ${nameOf(id,l)} ×${q}` : `${n}) ${nameOf(id,l)} × ${q} = ${up*q}`);
     });
     out.push(line);
     out.push((ar?'*الإجمالي:* ':'*Total:* ')+fmt(cartTotal()));
@@ -1035,11 +1189,61 @@
   }
   $id('waSend').addEventListener('click',()=>{
     if(cartCount()===0)return;
-    window.open(`https://wa.me/${WA_NUM}?text=${encodeURIComponent(buildWaMsg())}`,'_blank','noopener');
+    const bk=pickedBranch();
+    if(!bk){                                   // الفرع إلزامي — لا يُرسل طلب لفرع خاطئ
+      const box=$id('branchPick');
+      box.classList.remove('need');void box.offsetWidth;box.classList.add('need');
+      box.scrollIntoView({behavior:'smooth',block:'center'});
+      showToast(curLang()==='ar'?'اختر الفرع أولاً — لبن أو الخليج':'Choose a branch first — Laban or Al-Khaleej');
+      return;
+    }
+    try{localStorage.setItem('mg_branch',bk)}catch(e){}
+    // بعض تطبيقات واتساب تقصّ الروابط الطويلة — تُضغط الرسالة عند تجاوز الحد
+    let txt=encodeURIComponent(buildWaMsg(bk));
+    if(txt.length>3400) txt=encodeURIComponent(buildWaMsg(bk,true));
+    window.open(`https://wa.me/${BRANCHES[bk].wa}?text=${txt}`,'_blank','noopener');
     CART={}; saveCart();
     $id('cName').value=''; $id('cNotes').value='';
     syncDishes(); updateCartUI(); renderCart();
     showToast(curLang()==='ar'?'تم فتح واتساب — أكمل إرسال الطلب من هناك':'WhatsApp opened — complete sending your order there');
+  });
+  document.addEventListener('change',e=>{
+    if(e.target.name==='branch'){
+      $id('branchPick').classList.remove('need');
+      try{localStorage.setItem('mg_branch',e.target.value)}catch(err){}
+    }
+  });
+
+  // ===== تبديل الفرع في قسم الموقع =====
+  function showBranch(bk){
+    const b=BRANCHES[bk]; if(!b)return;
+    const l=curLang();
+    document.querySelectorAll('.btab').forEach(t=>{
+      const on=t.getAttribute('data-branch')===bk;
+      t.classList.toggle('on',on); t.setAttribute('aria-selected',on);
+    });
+    $id('brAddr').textContent = l==='ar'?b.addrAr:b.addrEn;
+    const tel=$id('brTel');
+    tel.href='tel:'+b.tel;
+    tel.textContent=b.tel.replace(/^(\d{3})(\d{3})(\d{4})$/,'$1 $2 $3');
+    $id('brCall').href='tel:'+b.tel;
+    const msg=(l==='ar'?'السلام عليكم، أبغى أطلب توصيل من مضغوط ألف 1000 — ':'Hello, I would like a delivery order from Madghout Alf 1000 — ')+(l==='ar'?b.ar:b.en);
+    $id('brWa').href='https://wa.me/'+b.wa+'?text='+encodeURIComponent(msg);
+    $id('brMap').src=b.map;
+    // كل أزرار الاتصال العائمة تتبع الفرع المختار
+    const ask = (l==='ar'?'السلام عليكم، أبغى أستفسر عن الطلب من مضغوط ألف 1000 — ':'Hello, I have a question about ordering from Madghout Alf 1000 — ')+(l==='ar'?b.ar:b.en);
+    const ord = (l==='ar'?'السلام عليكم، أبغى أطلب توصيل من مضغوط ألف 1000 — ':'Hello, I would like a delivery order from Madghout Alf 1000 — ')+(l==='ar'?b.ar:b.en);
+    const wf=$id('waFloat'), mo=$id('mbOrder'), mc=$id('mbCall'), sw=$id('socWa');
+    if(wf){wf.href='https://wa.me/'+b.wa+'?text='+encodeURIComponent(ask);
+           wf.setAttribute('aria-label',(l==='ar'?'واتساب — ':'WhatsApp — ')+(l==='ar'?b.ar:b.en));}
+    if(mo)mo.href='https://wa.me/'+b.wa+'?text='+encodeURIComponent(ord);
+    if(mc)mc.href='tel:'+b.tel;
+    if(sw)sw.href='https://wa.me/'+b.wa;
+    CUR_BRANCH=bk;
+  }
+  let CUR_BRANCH='laban';
+  document.addEventListener('click',e=>{
+    const t=e.target.closest('.btab'); if(t)showBranch(t.getAttribute('data-branch'));
   });
 
   // ===== Header scroll, mobile nav, reveal =====
@@ -1056,13 +1260,13 @@
 
   // ===== i18n: English dictionary (Arabic captured from DOM) =====
   const DICT_EN={
-    'topbar':`Open daily 11:30 AM – 1:30 AM · Online order & delivery · Dhahrat Laban, Riyadh`,
+    'topbar':`Open daily 11:30 AM – 1:30 AM · Online order & delivery · Riyadh`,
     'brand':`Madghout Alf`,'brandSub':`MADGHOUT 1000 · Riyadh`,
     'nav.home':`Home`,'nav.about':`About`,'nav.menu':`Menu`,'nav.features':`Features`,'nav.reviews':`Reviews`,'nav.contact':`Location`,'nav.order':`Order Now`,
-    'hero.badge':`4.4 on Google Maps · 212+ reviews`,
+    'hero.badge':`4.3 on Google Maps · 241+ reviews`,
     'hero.title':`Madghout Alf 1000`,
     'hero.tags':`Chicken <i>·</i> Meat <i>·</i> Pigeon <i>·</i> Camel <i>·</i> Indian <i>·</i> Madghout`,
-    'hero.desc':`The authentic madghout taste you grew up on — fluffy rice, tender meats, and genuine Saudi spices. Cleanliness, quality and warm hospitality in the heart of Dhahrat Laban.`,
+    'hero.desc':`The authentic madghout taste you grew up on — fluffy rice, tender meats, and genuine Saudi spices. Cleanliness, quality and warm hospitality in the heart of Riyadh.`,
     'hero.call':`Order Now`,'hero.menu':`View Menu`,'hero.dir':`Directions`,
     'stat.rating':`Customer rating`,'stat.reviews':`Verified reviews`,'stat.hoursNum':`14 hrs`,'stat.hours':`Daily until 1:30 AM`,'stat.halalNum':`Halal ✓`,'stat.halal':`100% trusted`,
     'about.kicker':`About Us`,
@@ -1071,21 +1275,24 @@
     'about.p2':`Authentic Saudi recipes, fresh daily ingredients, and a clean kitchen run by the finest chefs. From <strong>chicken and camel to pigeon and mandi</strong> — every dish has its fans.`,
     'about.tag1':`Pressure cooked`,'about.tag2':`Fresh ingredients`,'about.tag3':`High hygiene`,'about.tag4':`Pro chefs`,
     'about.pinGoogle':`Google rating`,'about.pinOpen':`Open now`,'about.pinUntil':`Until 1:30 AM`,
-    'menu.kicker':`Our Menu`,'menu.title':`Our <span class="p">signature</span> dishes`,'menu.lead':`A wide variety for every taste — from premium madghout to mandi, pigeon, and fresh salads.`,'menu.note':`* Prices in SAR for demo · Avg 20–40 SAR per person · Menu is customizable`,
-    'cat.chicken':`Chicken<small>قسم الدجاج</small>`,'cat.meat':`Meat & Camel<small>اللحم والحاشي</small>`,'cat.pigeon':`Pigeon<small>الحمام</small>`,'cat.sides':`Sides & Salads<small>الإضافات</small>`,'cat.drinks':`Drinks<small>المشروبات</small>`,
+    'menu.kicker':`Our Menu`,'menu.title':`Our <span class="p">signature</span> dishes`,'menu.lead':`A wide variety for every taste — from premium madghout to mandi, pigeon, and fresh salads.`,'menu.note':`* Prices in SAR as printed on the in-store menu board · Avg 20–40 SAR per person · Some items differ between the Laban and Al-Khaleej branches`,
+    'cat.chicken':`Chicken<small>قسم الدجاج</small>`,'cat.meat':`Meat & Camel<small>اللحم والحاشي</small>`,'cat.pigeon':`Pigeon<small>الحمام</small>`,'cat.edamat':`Stews<small>الإيدامات</small>`,'cat.salads':`Salads<small>السلطات</small>`,'cat.sweets':`Sweets<small>قسم الحلا</small>`,'cat.drinks':`Drinks<small>المشروبات</small>`,
     'feat.kicker':`Why Us`,'feat.title':`An experience <span class="g">worth</span> the visit`,'feat.lead':`Everything you need to enjoy your meal with peace of mind.`,
     'feat.1t':`100% Halal`,'feat.1d':`Fully trusted slaughter & prep`,'feat.2t':`Fast Delivery`,'feat.2d':`Standard & contactless to your door`,'feat.3t':`Family Friendly`,'feat.3d':`Family vibes and a comfy spot for kids`,'feat.4t':`Open Late`,'feat.4d':`Every day until 1:30 AM`,'feat.5t':`Free Parking`,'feat.5d':`Private and street parking`,'feat.6t':`Flexible Payment`,'feat.6d':`Mada, credit cards, and NFC`,
-    'rev.kicker':`Customer Reviews`,'rev.title':`What they <span class="p">said</span>`,'rev.meta':`Verified rating on<br>Google Maps · 212+ reviews`,
+    'rev.kicker':`Customer Reviews`,'rev.title':`What they <span class="p">said</span>`,'rev.meta':`Verified rating on<br>Google Maps · 241+ reviews`,
     'rev.1w':`5 months ago`,'rev.1p':`Amazing madghout — really delicious. Chef Mohammed Abdullah is respectful with great manners. Very clean place, highly recommend.`,
     'rev.2w':`Local guide · 3 weeks ago`,'rev.2p':`The best and cleanest restaurant in all of Laban. Mashallah — service, quality and taste beyond compare. Strongly recommend.`,
     'rev.3w':`9 months ago`,'rev.3p':`Honestly very distinguished in cleanliness, food quality and great service. Highly recommend — food 5/5.`,
     'gal.kicker':`Gallery`,'gal.title':`Shots from <span class="g">our place</span>`,'gal.lead':`Our dishes and the restaurant vibe — these spaces are ready for your real photos.`,
     'con.kicker':`Visit & Contact`,'con.title':`Location <span class="p">& hours</span>`,'con.lead':`We'd love to host you — or order delivery and it will arrive fast.`,
-    'con.addrT':`Address`,'con.addr':`Yanbu St, Dhahrat Laban, Riyadh 13784`,'con.phoneT':`Phone`,'con.hoursT':`Working hours`,'con.days1':`Sat – Thu`,'con.days2':`Friday`,'con.open':`Open now`,'con.priceT':`Average price`,'con.price':`20 – 40 SAR per person`,'con.waOrder':`Order delivery`,'con.callUs':`Call us`,'con.br1':`· Laban branch`,'con.br2':`· Gulf branch`,
-    'foot.about':`Your first stop for authentic madghout in Dhahrat Laban, Riyadh. Quality, cleanliness, and an unforgettable taste.`,'foot.links':`Quick links`,'foot.contact':`Contact us`,'foot.addr':`Yanbu St, Dhahrat Laban`,'foot.hours':`Daily 11:30 AM – 1:30 AM`,'foot.map':`View on map`,'foot.copy':`© 2026 <span>Madghout Alf 1000</span> Restaurant · All rights reserved · Demo page`,
+    'con.addrT':`Address`,'con.addr':`Yanbu St, Dhahrat Laban, Riyadh 13784`,'con.phoneT':`Phone`,'con.hoursT':`Working hours`,'con.days1':`Sat – Thu`,'con.days2':`Friday`,'con.open':`Open now`,'con.priceT':`Average price`,'con.price':`20 – 40 SAR per person`,'con.waOrder':`Order delivery`,'con.callUs':`Call us`,'con.tabLaban':`Dhahrat Laban branch`,'con.tabGulf':`Al-Khaleej branch`,
+    'foot.about':`Your first stop for authentic madghout in Riyadh. Quality, cleanliness, and an unforgettable taste.`,'foot.links':`Quick links`,'foot.contact':`Contact us`,'foot.br1':`· Laban`,'foot.br2':`· Al-Khaleej`,'foot.addr':`Riyadh — Dhahrat Laban & Al-Khaleej`,'foot.hours':`Daily 11:30 AM – 1:30 AM`,'foot.map':`View on map`,'foot.copy':`© 2026 <span>Madghout Alf 1000</span> Restaurant · All rights reserved · Demo page`,
     'wa.tip':`Order via WhatsApp`,'mbar.call':`Call`,'mbar.order':`Order delivery`,
     'cart.view':`View order`,'cart.title':`Your order`,'cart.total':`Total`,
-    'cart.delivery':`Delivery`,'cart.pickup':`Pickup`,'cart.send':`Send order via WhatsApp`,'cart.clear':`Clear cart`
+    'cart.delivery':`Delivery`,'cart.pickup':`Pickup`,'cart.send':`Send order via WhatsApp`,'cart.clear':`Clear cart`,
+    'cart.branchT':`Choose the branch nearest to you`,
+    'cart.brLabanT':`Dhahrat Laban branch`,'cart.brLabanA':`Yanbu St · 055 736 7886`,
+    'cart.brGulfT':`Al-Khaleej branch`,'cart.brGulfA':`Prince Bandar bin Abdulaziz St · 055 841 1676`
   };
   // capture Arabic defaults from current DOM
   const DICT={ar:{},en:DICT_EN};
@@ -1111,7 +1318,7 @@
     renderMenu(l); renderGallery(l); observeReveals();
     $id('cName').placeholder=(l==='ar')?'الاسم (اختياري)':'Name (optional)';
     $id('cNotes').placeholder=(l==='ar')?'ملاحظات إضافية (اختياري)':'Extra notes (optional)';
-    updateCartUI(); renderCart();
+    updateCartUI(); renderCart(); showBranch(CUR_BRANCH);
     try{localStorage.setItem('mg_lang',l);}catch(e){}
   }
   langBtn.addEventListener('click',()=>applyLang(root.lang==='ar'?'en':'ar'));
