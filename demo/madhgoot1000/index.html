@@ -4,13 +4,29 @@
 <meta charset="UTF-8">
 <meta name="robots" content="noindex, follow">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>مضغوط ألف 1000 | MADGHOUT 1000 — الرياض</title>
+<title>مضغوط ألف 1000 — مضغوط ومندي وحاشي وحمام | ظهرة لبن وحي الخليج، الرياض</title>
 <meta name="description" content="مضغوط ألف 1000 — دجاج · لحم · حمام · حاشي · مضغوط. فرعان في الرياض: ظهرة لبن وحي الخليج. توصيل وطلب أونلاين يومياً حتى 1:30 صباحاً.">
 <meta name="theme-color" content="#0a0a0c">
 <meta property="og:title" content="مضغوط ألف 1000 | MADGHOUT 1000">
 <meta property="og:description" content="أشهى المضغوط والمندي والحاشي في الرياض — فرعان: ظهرة لبن وحي الخليج. جودة، نظافة، وطعم لا يُنسى.">
 <meta property="og:type" content="restaurant">
-<meta property="og:image" content="images/g1-signature.jpg">
+<meta property="og:image" content="https://stilus-ingenium.com/demo/madhgoot1000/images/g1-signature.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="800">
+<meta property="og:image:alt" content="طبق مضغوط ألف 1000 — رز مفلفل ودجاج طري">
+<meta property="og:url" content="https://stilus-ingenium.com/demo/madhgoot1000/">
+<meta property="og:site_name" content="مضغوط ألف 1000">
+<meta property="og:locale" content="ar_SA">
+<meta property="og:locale:alternate" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="مضغوط ألف 1000 — الرياض">
+<meta name="twitter:description" content="مضغوط ومندي ومظبي وحاشي وحمام. فرعان في الرياض: ظهرة لبن وحي الخليج. اطلب من جوالك.">
+<meta name="twitter:image" content="https://stilus-ingenium.com/demo/madhgoot1000/images/g1-signature.jpg">
+<meta name="geo.region" content="SA-01">
+<meta name="geo.placename" content="الرياض">
+<meta name="geo.position" content="24.6364127;46.5479343">
+<meta name="ICBM" content="24.6364127, 46.5479343">
+<link rel="canonical" href="https://stilus-ingenium.com/demo/madhgoot1000/">
 <link rel="icon" type="image/png" href="images/madghout-logo-sm.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -264,10 +280,10 @@
   /* صورة الصنف — الأصل كما هو بإطار 4:3 موحّد، فتظهر كل الأطباق على نفس المستوى */
   .dish-img{position:relative;margin:-20px -22px 16px;aspect-ratio:4/3;overflow:hidden;
     border-radius:var(--r) var(--r) 0 0;background:#f0921a}
-  .dish-img i{position:absolute;inset:0;background-size:cover;background-position:center;
+  .dish-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
     transition:transform .8s var(--ease)}
-  .dish:hover .dish-img i{transform:scale(1.05)}
-  @media(prefers-reduced-motion:reduce){.dish-img i{transition:none}}
+  .dish:hover .dish-img img{transform:scale(1.05)}
+  @media(prefers-reduced-motion:reduce){.dish-img img{transition:none}}
   .dish{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px 22px;
     transition:transform .3s var(--ease),border-color .3s,background .3s,box-shadow .3s;position:relative;overflow:hidden}
   .dish::before{content:"";position:absolute;top:0;inset-inline-end:0;width:0;height:3px;
@@ -336,7 +352,7 @@
   .g-item .lbl{position:absolute;z-index:3;bottom:12px;inset-inline-end:14px;font-family:var(--h);font-weight:800;font-size:.95rem;color:#fff;text-shadow:0 2px 10px #000;text-align:end}
   .g-item .lbl small{display:block;font-family:'Poppins',sans-serif;font-weight:500;font-size:.7rem;color:var(--gold-300)}
   .g-item:hover{transform:scale(1.025);border-color:var(--line-2)}
-  .g-item .g-photo{position:absolute;inset:0;z-index:1;background-size:cover;background-position:center;will-change:transform;animation:kenburns 22s ease-in-out infinite alternate}
+  .g-item .g-photo{position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:cover;will-change:transform;animation:kenburns 22s ease-in-out infinite alternate}
   .g-item:nth-child(2) .g-photo{animation-duration:26s;animation-delay:-4s}
   .g-item:nth-child(3) .g-photo{animation-duration:24s;animation-delay:-9s}
   .g-item:nth-child(5) .g-photo{animation-duration:25s;animation-delay:-12s}
@@ -1030,7 +1046,8 @@
       const el=document.getElementById('cat-'+k); if(!el) return;
       el.innerHTML=MENU[k].map((m,i)=>{
         const key=k+':'+i; const sel=SEL[key]||0;
-        const pic = m.im ? `<div class="dish-img"><i style="background-image:url('${IMG}${m.im}${IMGX}')"></i></div>` : '';
+        const alt = esc((lang==='ar'?m.ar:m.en)+' — '+(lang==='ar'?m.dar:m.den));
+        const pic = m.im ? `<div class="dish-img"><img src="${IMG}${m.im}${IMGX}" alt="${alt}" width="900" height="675" loading="lazy" decoding="async"></div>` : '';
         const sizes = m.sz.length>1
           ? `<div class="sizes" role="group">${m.sz.map((s,si)=>`<button class="szb${si===sel?' on':''}" data-size="${key}:${si}">${esc(szLabel(s[0],lang))} <b>${s[1]}</b></button>`).join('')}</div>`
           : '';
@@ -1051,7 +1068,7 @@
   }
   function renderGallery(lang){
     document.getElementById('gallery-grid').innerHTML=GAL.map(g=>
-      `<figure class="g-item ${g.c} ${g.cls||''}${g.img?' has-img':''}">${g.img?`<div class="g-photo" style="background-image:url('${g.img}')"></div>`:`<span class="ph">${camSvg}</span>`}<figcaption class="lbl">${esc(lang==='ar'?g.tar:g.ten)}<small>${g.s}</small></figcaption></figure>`
+      `<figure class="g-item ${g.c} ${g.cls||''}${g.img?' has-img':''}">${g.img?`<img class="g-photo" src="${g.img}" alt="${esc((lang==='ar'?g.tar:g.ten)+(lang==='ar'?' — مضغوط ألف 1000، الرياض':' — Madghout Alf 1000, Riyadh'))}" loading="lazy" decoding="async">`:`<span class="ph">${camSvg}</span>`}<figcaption class="lbl">${esc(lang==='ar'?g.tar:g.ten)}<small>${g.s}</small></figcaption></figure>`
     ).join('');
   }
 
@@ -1322,6 +1339,55 @@
     try{localStorage.setItem('mg_lang',l);}catch(e){}
   }
   langBtn.addEventListener('click',()=>applyLang(root.lang==='ar'?'en':'ar'));
+
+  // ===== بيانات منظّمة تُبنى من القائمة نفسها =====
+  // قائمة الطعام والأسئلة الشائعة تُغذّي نتائج جوجل الغنية (أسعار الأصناف + الأسئلة)
+  function injectSchema(){
+    const U='https://stilus-ingenium.com/demo/madhgoot1000/';
+    const secName={chicken:'قسم الدجاج',meat:'قسم اللحم والحاشي',pigeon:'قسم الحمام',
+                   edamat:'قسم الإيدامات',salads:'السلطات',sweets:'قسم الحلا',drinks:'المشروبات'};
+    const sections=Object.keys(MENU).map(k=>({
+      '@type':'MenuSection', name:secName[k]||k,
+      hasMenuItem:MENU[k].map(m=>({
+        '@type':'MenuItem', name:m.ar,
+        description:m.dar,
+        image:m.im?U+'images/dishes/'+m.im+'.jpg':undefined,
+        offers:m.sz.map(z=>({
+          '@type':'Offer',
+          price:String(z[1]), priceCurrency:'SAR',
+          name:z[0]==='one'?undefined:SZ[z[0]][0],
+          availability:'https://schema.org/InStock'
+        }))
+      }))
+    }));
+    const faq={'@context':'https://schema.org','@type':'FAQPage',mainEntity:[
+      {q:'وين فروع مطعم مضغوط ألف 1000؟',
+       a:'لنا فرعان في الرياض: فرع ظهرة لبن على شارع ينبع، وفرع حي الخليج على شارع الأمير بندر بن عبدالعزيز.'},
+      {q:'ما هي أوقات العمل؟',
+       a:'يومياً من 11:30 صباحاً حتى 1:30 بعد منتصف الليل، طوال أيام الأسبوع.'},
+      {q:'هل يوجد توصيل؟',
+       a:'نعم، يوجد توصيل واستلام من المطعم. تختار طلبك من الصفحة وتحدد الفرع، فيصل الطلب إلى واتساب الفرع مباشرة.'},
+      {q:'كم سعر المضغوط؟',
+       a:'مضغوط ألف 1000 بالدجاج: حبة كاملة 42 ريال والنص 21 ريال. ومضغوط الحاشي 68 ريالاً. ومتوسط نصيب الفرد بين 20 و40 ريالاً.'},
+      {q:'هل عندكم حاشي؟',
+       a:'نعم. مضغوط ألف 1000 حاشي بالرز الأمريكي، ومضغوط حاشي برز مزة، ومبكبكة لحم حاشي — كلها 68 ريالاً.'},
+      {q:'هل عندكم حمام؟',
+       a:'نعم، حمام مندي وحمام مضغوط. الحبة 35 ريالاً والجوز 68 ريالاً.'}
+    ].map(x=>({'@type':'Question',name:x.q,acceptedAnswer:{'@type':'Answer',text:x.a}}))};
+    const menu={'@context':'https://schema.org','@type':'Menu',
+      name:'قائمة مضغوط ألف 1000', inLanguage:'ar', url:U+'#menu', hasMenuSection:sections};
+    const crumb={'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[
+      {'@type':'ListItem',position:1,name:'الرئيسية',item:U},
+      {'@type':'ListItem',position:2,name:'قائمة الطعام',item:U+'#menu'},
+      {'@type':'ListItem',position:3,name:'الفروع والموقع',item:U+'#contact'}]};
+    [menu,faq,crumb].forEach(o=>{
+      const t=document.createElement('script');
+      t.type='application/ld+json';
+      t.textContent=JSON.stringify(o,(k,v)=>v===undefined?undefined:v);
+      document.head.appendChild(t);
+    });
+  }
+  injectSchema();
 
   // init
   let savedTheme='dark',savedLang='ar';
