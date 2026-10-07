@@ -421,6 +421,7 @@ body.menu-open{overflow:hidden}
   section.block{padding:74px 0}
   .product{padding:48px 24px}
   #vision .product{padding:48px 24px 248px}
+  #vision .product .mini{display:grid;grid-template-columns:1fr;gap:12px;margin-top:26px}#vision .product .mini div{display:flex;align-items:baseline;gap:10px}#vision .product .mini b{display:inline;font-size:16px;white-space:nowrap}
   .contact{padding:60px 26px}
   .btn,.ghost{font-size:15px}
   .cta-row{gap:16px;margin-top:42px}
@@ -714,7 +715,7 @@ function __lines(el){
 }
 function __balance(){
   document.querySelectorAll('[data-bal]').forEach(function(el){
-    el.style.maxWidth=''; el.style.marginInline=''; el.style.width='';
+    el.style.maxWidth=''; el.style.marginInline=''; el.style.width=''; el.style.textAlign=''; el.style.textAlignLast='';
     var r0=el.getBoundingClientRect(), w0=r0.width, h0=r0.height;
     if(!el.querySelector('br')){
       var lo=w0*0.45, hi=w0;
@@ -724,7 +725,8 @@ function __balance(){
     }
     /* الرصّ: كل الأسطر تتساوى بتمديد المسافات (بما فيها الأخير) */
     var ws=__lines(el);
-    if(ws.length>1){
+    /* لا رصّ إن كان سطرٌ أقصر من ٨٠٪ من أطولها — التمديد يفتح فجوات (سطرٌ بكلمتين على الجوال) */
+    if(ws.length>1 && Math.min.apply(null,ws)>=Math.max.apply(null,ws)*0.8){
       var mx=Math.max.apply(null,ws);
       el.style.width=Math.ceil(mx+1)+'px';
       el.style.maxWidth=Math.ceil(mx+1)+'px';

@@ -381,6 +381,7 @@ h1.display .w{display:inline-block;opacity:0;transform:translateY(.35em);
 #vision .product{overflow:hidden}#vision .product .ptext,#vision .product .pin{position:relative;z-index:2}#vision .product .ptext{grid-column:1}#vision .product .pin{grid-column:2}.ptext{background:rgba(13,18,30,.38);-webkit-backdrop-filter:blur(11px);backdrop-filter:blur(11px);border:0;border-radius:20px;padding:30px 34px;box-shadow:0 0 48px 30px rgba(13,18,30,.28)}.pin img{box-shadow:0 22px 60px rgba(4,10,20,.55);border:1px solid rgba(217,169,63,.28)}
 .hd-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 42%;z-index:0;pointer-events:none}#vision .product .frieze{position:absolute;left:0;right:0;bottom:0;z-index:1;height:322px;overflow:hidden;pointer-events:none;direction:ltr}.marq-track{display:flex;direction:ltr;align-items:flex-end;gap:24px;width:max-content;height:100%;animation:marquee 40s linear infinite;will-change:transform}@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}.lm{position:relative;flex:0 0 auto}.lm img{display:block;height:100%;width:auto}.lm .dot{position:absolute;top:-11px;left:50%;transform:translateX(-50%);width:7px;height:7px;border-radius:50%;background:#D9A93F;opacity:.9}.lm .dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1.3px solid #D9A93F;opacity:0;animation:lmping 2.8s ease-out infinite}@keyframes lmping{0%{transform:scale(.5);opacity:.7}70%{opacity:0}100%{transform:scale(2.4);opacity:0}}@media(max-width:760px){#vision .product{padding-bottom:262px}.lm.l1{height:104px!important}.lm.l2{height:120px!important}.lm.l3{height:170px!important}.lm.l4{height:120px!important}.lm.l5{height:152px!important}.lm.l6{height:178px!important}.lm.l7{height:150px!important}.lm.l8{height:200px!important}.lm.l9{height:188px!important}.ptext{backdrop-filter:none;-webkit-backdrop-filter:none;background:none;border:0;padding:0}#vision .product .frieze{height:248px}.marq-track{gap:14px;animation-duration:26s}}#vision .product .stars{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}.stars svg{width:100%;height:100%;display:block}.stars-g{animation:stardrift 24s ease-in-out infinite}.stars circle{opacity:var(--o);animation-name:twinkle;animation-timing-function:ease-in-out;animation-iteration-count:infinite}@keyframes twinkle{0%,100%{opacity:calc(var(--o)*.25)}50%{opacity:var(--o)}}@keyframes stardrift{0%,100%{transform:translateX(0)}50%{transform:translateX(-46px)}}.stars-g2{animation:stardrift2 16s ease-in-out infinite}@keyframes stardrift2{0%,100%{transform:translateX(0)}50%{transform:translateX(56px)}}@media (prefers-reduced-motion:reduce){.stars circle{animation:none}.stars-g,.stars-g2{animation:none}}.ground{position:absolute;left:0;right:0;bottom:0;height:70px;z-index:0;pointer-events:none;background:linear-gradient(to top,rgba(184,151,101,.16),rgba(184,151,101,.04) 40%,transparent)}.ground::after{content:"";position:absolute;left:4%;right:4%;bottom:0;height:1.6px;background:linear-gradient(90deg,transparent,rgba(200,162,75,.85),rgba(217,169,63,.95),rgba(200,162,75,.85),transparent)}.marq-track{position:relative;z-index:1}.hd-bg{opacity:1}@media (prefers-reduced-motion:reduce){.marq-track{animation:none}}.hd-pen{display:none}.lm .dot{opacity:1}}
 @media(max-width:760px){.hd-base{width:96%;opacity:.7}}
+@media(max-width:480px){#vision .product .mini{display:grid;grid-template-columns:1fr;gap:12px;margin-top:26px}#vision .product .mini div{display:flex;align-items:baseline;gap:10px}#vision .product .mini b{display:inline;font-size:16px;white-space:nowrap}}
 </style>
 </head>
 <body>
@@ -594,7 +595,7 @@ function __lines(el){
 }
 function __balance(){
   document.querySelectorAll('[data-bal]').forEach(function(el){
-    el.style.maxWidth=''; el.style.marginInline=''; el.style.width='';
+    el.style.maxWidth=''; el.style.marginInline=''; el.style.width=''; el.style.textAlign=''; el.style.textAlignLast='';
     var r0=el.getBoundingClientRect(), w0=r0.width, h0=r0.height;
     if(!el.querySelector('br')){
       var lo=w0*0.45, hi=w0;
@@ -604,7 +605,8 @@ function __balance(){
     }
     /* الرصّ: كل الأسطر تتساوى بتمديد المسافات (بما فيها الأخير) */
     var ws=__lines(el);
-    if(ws.length>1){
+    /* لا رصّ إن كان سطرٌ أقصر من ٨٠٪ من أطولها — التمديد يفتح فجوات (سطرٌ بكلمتين على الجوال) */
+    if(ws.length>1 && Math.min.apply(null,ws)>=Math.max.apply(null,ws)*0.8){
       var mx=Math.max.apply(null,ws);
       el.style.width=Math.ceil(mx+1)+'px';
       el.style.maxWidth=Math.ceil(mx+1)+'px';
