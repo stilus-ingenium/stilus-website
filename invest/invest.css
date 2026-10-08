@@ -187,7 +187,25 @@ html[dir=rtl] .ltr-in::placeholder{text-align:right}
 .drop small{color:var(--muted);font-size:12.5px}
 .drop.has{border-style:solid;border-color:var(--ok);background:rgba(46,125,91,.06)}
 .drop input{display:none}
+/* قائمة الدول بالبحث (الـ select الأصلي مخفيّ، وهو مصدر القيمة) */
+.cbx{position:relative}
+.cbx.open{z-index:40}
+.f .cbx .cbx-in{padding-inline-end:44px;cursor:pointer}
+svg.cbx-chev{position:absolute;inset-inline-end:15px;top:50%;width:18px;height:18px;margin-top:-9px;pointer-events:none;color:var(--muted);transition:transform .2s}
+.cbx.open .cbx-chev{transform:rotate(180deg)}
+.cbx-list{position:absolute;z-index:30;inset-inline:0;top:calc(100% + 6px);max-height:272px;overflow:auto;margin:0;padding:6px;list-style:none;
+  background:#fff;border:1px solid rgba(10,10,10,.12);border-radius:16px;box-shadow:0 20px 44px rgba(60,48,20,.16)}
+.cbx-list li{padding:9px 12px;border-radius:10px;cursor:pointer;font-size:15px;line-height:1.5}
+.cbx-list li.act{background:#F4ECDB}
+.cbx-list li[aria-selected=true]{font-weight:700}
+.cbx-list li.none{color:var(--muted);cursor:default;font-size:14px}
 /* الإقرارات */
+.ackall{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;font:inherit;font-weight:700;font-size:14.5px;color:var(--ink);
+  background:rgba(255,255,255,.85);border:1px solid rgba(10,10,10,.2);border-radius:100px;padding:10px 20px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.ackall:hover{border-color:var(--ink)}
+.ackall .ic{width:18px;height:18px;opacity:.3;transition:opacity .2s}
+.ackall[aria-pressed=true]{background:var(--ink);color:var(--parchment);border-color:var(--ink)}
+.ackall[aria-pressed=true] .ic{opacity:1;color:var(--saffron)}
 .acks{display:grid;gap:12px}
 .ack{display:flex;gap:12px;align-items:flex-start;font-size:14.5px;line-height:1.6;cursor:pointer;
   padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.6);border:1px solid rgba(10,10,10,.08)}

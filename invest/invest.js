@@ -13,15 +13,16 @@
     turnstile: LOCAL ? '1x00000000000000000000AA' : '0x4AAAAAAFQVCRXO8ppptRE3',
     termsVersion: '2026-10-07',
     maxBytes: 10 * 1024 * 1024,
-    min: 500, max: 100000000
+    min: 500, max: 1000000000 // «١٠ ملايين فأكثر»: المليار حدٌّ تقنيّ فقط، ويطابق الخادم
   };
 
   var T = {
     ar: {
-      choose: 'اختر', next: 'التالي', send: 'أرسل الطلب', sending: 'جارٍ الإرسال', uploading: 'جارٍ رفع المستند',
+      choose: 'اختر', noMatch: 'لا نتيجة. جرّب اسماً آخر أو اختر «أخرى».', next: 'التالي', send: 'أرسل الطلب', sending: 'جارٍ الإرسال', uploading: 'جارٍ رفع المستند',
       tiers: { community: 'مجتمع القلم', angel: 'شريك ملائكي', strategic: 'شريك استراتيجي', institutional: 'مستثمر مؤسسي' },
       foreignMin: 'لغير مواطني دول الخليج الحدّ الأدنى مليون ريال، لأن دخول الشريك الأجنبي يتطلب تسجيلاً نظامياً برسوم سنوية تُحمَّل على حصته.',
       capMsg: 'الحد الأقصى لحصة المستثمر الواحد {p}٪، أي ما لا يزيد على {a} ريال في هذا المسار.',
+      agreeAll: 'أوافق على الكل', agreedAll: 'وافقت على الكل',
       tierLbl: 'الشريحة:', estLbl: 'حصتك التقديرية', of: 'من ', company: 'الشركة الأم',
       sectorNames: { arts: 'قطاع الفن والمناسبات', contracting: 'قطاع المقاولات والحوكمة الميدانية', hr: 'قطاع الموارد البشرية والحضور', retail: 'قطاع التجزئة والتجارة', lifestyle: 'قطاع نمط الحياة والعافية', enterprise: 'قطاع حلول البرمجيات للمنشآت' },
       instHint: 'شريحة المستثمر المؤسسي على مستوى الشركة الأم حصراً.',
@@ -41,15 +42,18 @@
         upload: 'وصلت بياناتك، لكن تعذّر رفع المستند. اضغط «أرسل الطلب» مرة أخرى لإعادة رفعه وحده.',
         expired: 'انتهت مهلة رفع المستند. حدّث الصفحة وأعد الإرسال.'
       },
+      other: 'أخرى',
+      // احتياط للمتصفحات القديمة بلا Intl.DisplayNames — وإلا فأسماء كل الدول تأتي من المتصفح بلغة الزائر
       countries: [['SA','السعودية'],['AE','الإمارات'],['KW','الكويت'],['QA','قطر'],['BH','البحرين'],['OM','عُمان'],
         ['YE','اليمن'],['EG','مصر'],['JO','الأردن'],['IQ','العراق'],['SD','السودان'],['MA','المغرب'],['TR','تركيا'],
         ['GB','المملكة المتحدة'],['US','الولايات المتحدة'],['OTHER','أخرى']]
     },
     en: {
-      choose: 'Select', next: 'Next', send: 'Submit', sending: 'Submitting', uploading: 'Uploading document',
+      choose: 'Select', noMatch: 'No match. Try another name or choose “Other”.', next: 'Next', send: 'Submit', sending: 'Submitting', uploading: 'Uploading document',
       tiers: { community: 'Stilus Community', angel: 'Angel partner', strategic: 'Strategic partner', institutional: 'Institutional investor' },
       foreignMin: 'For non-GCC nationals the minimum is SAR 1 million: a foreign partner requires a regulatory registration with annual fees charged to their share.',
       capMsg: 'The maximum stake for a single investor is {p}%, i.e. no more than SAR {a} on this track.',
+      agreeAll: 'I agree to all', agreedAll: 'All agreed',
       tierLbl: 'Tier:', estLbl: 'Your indicative stake', of: 'of ', company: 'the parent company',
       sectorNames: { arts: 'the arts & events sector', contracting: 'the contracting & field governance sector', hr: 'the HR & attendance sector', retail: 'the retail & commerce sector', lifestyle: 'the lifestyle & wellbeing sector', enterprise: 'the enterprise software sector' },
       instHint: 'The institutional tier is available at parent-company level only.',
@@ -69,6 +73,7 @@
         upload: 'Your details arrived, but the document upload failed. Press Submit again to retry the upload only.',
         expired: 'The upload window expired. Refresh the page and submit again.'
       },
+      other: 'Other',
       countries: [['SA','Saudi Arabia'],['AE','United Arab Emirates'],['KW','Kuwait'],['QA','Qatar'],['BH','Bahrain'],['OM','Oman'],
         ['YE','Yemen'],['EG','Egypt'],['JO','Jordan'],['IQ','Iraq'],['SD','Sudan'],['MA','Morocco'],['TR','Türkiye'],
         ['GB','United Kingdom'],['US','United States'],['OTHER','Other']]
@@ -95,11 +100,105 @@
   var form = $('#eoi');
   if (!form) return;
 
-  /* ---------- القوائم ---------- */
+  /* ---------- قائمتا الدول: كل دول العالم مع بحث ----------
+     الرموز نسخة مطابقة لـ COUNTRIES في invest-api/src/util.js (الاختبار يفرض التطابق).
+     الأسماء من المتصفح بلغة الزائر، والبحث بالعربية والإنجليزية والرمز معاً.
+     الـ select الأصلي يبقى مصدر القيمة (للنموذج والتحقق)، والحقل فوقه للبحث فقط. */
+  var CODES = 'AD AE AF AG AI AL AM AO AR AS AT AU AW AX AZ BA BB BD BE BF BG BH BI BJ BL BM BN BO BQ BR BS BT BW BY BZ CA CC CD CF CG CH CI CK CL CM CN CO CR CU CV CW CX CY CZ DE DJ DK DM DO DZ EC EE EG ER ES ET FI FJ FK FM FO FR GA GB GD GE GF GG GH GI GL GM GN GP GQ GR GT GU GW GY HK HN HR HT HU ID IE IM IN IO IQ IR IS IT JE JM JO JP KE KG KH KI KM KN KP KR KW KY KZ LA LB LC LI LK LR LS LT LU LV LY MA MC MD ME MF MG MH MK ML MM MN MO MP MQ MR MS MT MU MV MW MX MY MZ NA NC NE NF NG NI NL NO NP NR NU NZ OM PA PE PF PG PH PK PL PM PN PR PS PT PW PY QA RE RO RS RU RW SA SB SC SD SE SG SH SI SJ SK SL SM SN SO SR SS ST SV SX SY SZ TC TD TG TH TJ TK TL TM TN TO TR TT TV TW TZ UA UG US UY UZ VA VC VE VG VI VN VU WF WS YE YT ZA ZM ZW'.split(' ');
+  var GCC_FIRST = ['SA', 'AE', 'KW', 'QA', 'BH', 'OM'];
+  function regionNames(l) { try { return new Intl.DisplayNames([l], { type: 'region' }); } catch (e) { return null; } }
+  var DN = { ar: regionNames('ar'), en: regionNames('en') }, FALLBACK = {};
+  T.countries.forEach(function (c) { FALLBACK[c[0]] = c[1]; });
+  function cname(code, l) {
+    if (code === 'PS') return l === 'en' ? 'Palestine' : 'فلسطين';
+    var n = DN[l] && DN[l].of(code);
+    return n && n !== code ? n : (l === LANG && FALLBACK[code]) || code;
+  }
+  function norm(x) {
+    return String(x || '').toLowerCase().replace(/[\u064B-\u0652\u0640]/g, '')
+      .replace(/[أإآٱ]/g, 'ا').replace(/ى/g, 'ي').replace(/ة/g, 'ه').replace(/ؤ/g, 'و').replace(/ئ/g, 'ي')
+      .replace(/(^|\s)ال/g, '$1').replace(/\s+/g, ' ').trim();
+  }
+  var COUNTRY_LIST = (function () {
+    var all = CODES.map(function (c) {
+      var name = cname(c, LANG), other = cname(c, LANG === 'ar' ? 'en' : 'ar');
+      return { code: c, name: name, hay: norm(name) + '|' + norm(other) + '|' + c.toLowerCase() };
+    });
+    var top = GCC_FIRST.map(function (c) { return all.filter(function (x) { return x.code === c; })[0]; });
+    var rest = all.filter(function (x) { return GCC_FIRST.indexOf(x.code) < 0; })
+      .sort(function (a, b) { return a.name.localeCompare(b.name, LANG); });
+    return top.concat(rest, [{ code: 'OTHER', name: T.other, hay: norm(T.other) + '|other|اخري' }]);
+  })();
+  function esc(x) { return String(x).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+
   $$('select[data-countries]').forEach(function (sel) {
     sel.innerHTML = '<option value="">' + T.choose + '</option>' +
-      T.countries.map(function (c) { return '<option value="' + c[0] + '">' + c[1] + '</option>'; }).join('');
+      COUNTRY_LIST.map(function (c) { return '<option value="' + c.code + '">' + esc(c.name) + '</option>'; }).join('');
+    combo(sel);
   });
+
+  function combo(sel) {
+    var box = document.createElement('div'), inp = document.createElement('input'), list = document.createElement('ul');
+    box.className = 'cbx';
+    inp.type = 'text'; inp.id = sel.id + '_q'; inp.className = 'cbx-in'; inp.autocomplete = 'off'; inp.spellcheck = false;
+    inp.placeholder = T.choose;
+    inp.setAttribute('role', 'combobox'); inp.setAttribute('aria-autocomplete', 'list');
+    inp.setAttribute('aria-expanded', 'false'); inp.setAttribute('aria-controls', sel.id + '_list');
+    list.id = sel.id + '_list'; list.className = 'cbx-list'; list.setAttribute('role', 'listbox'); list.hidden = true;
+    box.innerHTML = '<svg class="ic cbx-chev" viewBox="0 0 24 24" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>';
+    box.insertBefore(inp, box.firstChild); box.appendChild(list);
+    sel.parentNode.insertBefore(box, sel); sel.hidden = true; sel.tabIndex = -1;
+    var lab = form.querySelector('label[for="' + sel.id + '"]'); if (lab) lab.htmlFor = inp.id;
+
+    var shown = [], act = -1;
+    function nameOf(code) { var c = COUNTRY_LIST.filter(function (x) { return x.code === code; })[0]; return c ? c.name : ''; }
+    function render(q) {
+      var n = norm(q);
+      shown = !n ? COUNTRY_LIST : COUNTRY_LIST.filter(function (c) { return c.hay.indexOf(n) > -1; })
+        .sort(function (a, b) { return (a.hay.indexOf(n) === 0 ? 0 : 1) - (b.hay.indexOf(n) === 0 ? 0 : 1); });
+      list.innerHTML = shown.length ? shown.map(function (c, i) {
+        return '<li role="option" id="' + sel.id + '_o' + i + '" data-i="' + i + '" aria-selected="' + (c.code === sel.value) + '">' + esc(c.name) + '</li>';
+      }).join('') : '<li class="none" aria-disabled="true">' + T.noMatch + '</li>';
+      var cur = -1; shown.forEach(function (c, i) { if (c.code === sel.value) cur = i; });
+      move(n ? 0 : cur, true);
+    }
+    function move(i, center) {
+      var lis = list.querySelectorAll('[role=option]');
+      if (act > -1 && lis[act]) lis[act].classList.remove('act');
+      act = shown.length ? Math.max(-1, Math.min(i, shown.length - 1)) : -1;
+      if (act > -1) {
+        lis[act].classList.add('act'); inp.setAttribute('aria-activedescendant', lis[act].id);
+        lis[act].scrollIntoView({ block: center ? 'center' : 'nearest' });
+      } else inp.removeAttribute('aria-activedescendant');
+    }
+    function open(q) { if (list.hidden) { list.hidden = false; box.classList.add('open'); inp.setAttribute('aria-expanded', 'true'); } render(q); }
+    function close() {
+      list.hidden = true; box.classList.remove('open'); inp.setAttribute('aria-expanded', 'false');
+      inp.removeAttribute('aria-activedescendant'); inp.value = nameOf(sel.value);
+    }
+    function pick(c) { sel.value = c.code; sel.dispatchEvent(new Event('change', { bubbles: true })); close(); }
+    inp.addEventListener('focus', function () { inp.select(); });
+    inp.addEventListener('click', function () { if (list.hidden) { inp.select(); open(''); } });
+    inp.addEventListener('input', function () { open(inp.value); });
+    inp.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (list.hidden) return open('');
+        move(act + (e.key === 'ArrowDown' ? 1 : -1));
+      } else if (e.key === 'Enter') {
+        if (!list.hidden) { e.preventDefault(); if (act > -1) pick(shown[act]); }
+      } else if (e.key === 'Escape') {
+        if (!list.hidden) { e.stopPropagation(); close(); }
+      } else if (e.key === 'Tab') {
+        if (!list.hidden && act > -1 && inp.value && inp.value !== nameOf(sel.value)) pick(shown[act]);
+        else if (!list.hidden) close();
+      }
+    });
+    list.addEventListener('mousedown', function (e) { e.preventDefault(); });
+    list.addEventListener('click', function (e) { var li = e.target.closest('[data-i]'); if (li) pick(shown[+li.dataset.i]); });
+    inp.addEventListener('blur', function () { if (!list.hidden) close(); });
+    sel.addEventListener('change', function () { if (list.hidden) inp.value = nameOf(sel.value); });
+  }
 
   /* ---------- المبلغ والشريحة ---------- */
   var DIG = { '٠':0,'١':1,'٢':2,'٣':3,'٤':4,'٥':5,'٦':6,'٧':7,'٨':8,'٩':9,'۰':0,'۱':1,'۲':2,'۳':3,'۴':4,'۵':5,'۶':6,'۷':7,'۸':8,'۹':9 };
@@ -194,6 +293,23 @@
   });
   form.addEventListener('input', function (e) { var f = e.target.closest('.f'); if (f) f.classList.remove('bad'); });
 
+  /* ---------- «أوافق على الكل»: ضغطة واحدة للإقرارات الخمسة، وضغطة ثانية تلغيها ---------- */
+  var ackAll = $('#ackall'), ackBoxes = $$('.acks input[type=checkbox]', form);
+  function syncAckAll() {
+    var all = ackBoxes.every(function (c) { return c.checked; });
+    ackAll.setAttribute('aria-pressed', String(all));
+    ackAll.querySelector('span').textContent = all ? T.agreedAll : T.agreeAll;
+    if (all) ackAll.closest('.f').classList.remove('bad');
+  }
+  if (ackAll) {
+    ackAll.addEventListener('click', function () {
+      var to = !ackBoxes.every(function (c) { return c.checked; });
+      ackBoxes.forEach(function (c) { c.checked = to; });
+      syncAckAll();
+    });
+    ackBoxes.forEach(function (c) { c.addEventListener('change', syncAckAll); });
+  }
+
   /* ---------- الملف ---------- */
   var fileIn = $('#proof'), drop = $('#drop'), dropt = $('#dropt'), dropDefault = dropt.textContent;
   var OK_TYPES = ['application/pdf', 'image/jpeg', 'image/png'];
@@ -234,7 +350,6 @@
     track: function () { return !!val('track'); },
     sectors: function () { return vals('sectors').length > 0; },
     horizon: function () { return !!val('horizon'); },
-    contribution: function () { return vals('contribution').length > 0; },
     source_of_funds: function () { return !!$('#source_of_funds').value; },
     proof_type: function () { return !!val('proof_type'); },
     proof: function () { return fileValid(fileIn.files[0]); },

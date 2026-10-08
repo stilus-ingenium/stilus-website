@@ -19,6 +19,7 @@
       loading: 'جارٍ التحميل', cur: 'ريال',
       err: { invalid_link: 'هذا الرابط غير صالح أو استُبدل برابط أحدث.', expired: 'انتهت صلاحية هذا الرابط.', already_signed: 'وقّعت هذه الاتفاقية من قبل. افتح غرفة بياناتك من الرابط الذي وصلك بالبريد.',
         stake_cap: 'المبلغ يتجاوز الحد الأقصى لحصة المستثمر الواحد في مسارك.',
+        round_full: 'المتاح في جولة مسارك الحالية أقل من هذا المبلغ. جرّب مبلغاً أقل، وإن لم يناسبك فسنشعرك بالجولة القادمة.',
         name_mismatch: 'الاسم المكتوب لا يطابق الاسم المسجّل في طلبك. اكتبه كما كتبته في الطلب.', invalid: 'البيانات غير مكتملة.', network: 'تعذّر الاتصال. أعد المحاولة.', server: 'حدث خطأ غير متوقع. أعد المحاولة بعد قليل.' },
       verifiedT: 'تأكّد طلبك', verifiedP: 'دخل طلبك المراجعة. يصلك القرار على بريدك خلال ١٥ يوماً، ولا يلزمك أي إجراء حتى ذلك الحين.',
       alreadyP: 'طلبك مؤكَّد من قبل، وهو في مسار المراجعة.',
@@ -42,6 +43,7 @@
       loading: 'Loading', cur: 'SAR',
       err: { invalid_link: 'This link is invalid or has been replaced by a newer one.', expired: 'This link has expired.', already_signed: 'You have already signed this agreement. Open your data room from the link in your email.',
         stake_cap: 'The amount exceeds the maximum single-investor stake on your track.',
+        round_full: 'What remains in the current round on your track is less than this amount. Try a lower amount; otherwise we will notify you of the next round.',
         name_mismatch: 'The typed name does not match the name on your request. Type it exactly as in your request.', invalid: 'Some details are missing.', network: 'Could not connect. Please try again.', server: 'Something unexpected happened. Please try again shortly.' },
       verifiedT: 'Your request is confirmed', verifiedP: 'Your request is now in review. The decision will reach your email within 15 days; nothing is needed from you until then.',
       alreadyP: 'Your request was already confirmed and is in review.',
@@ -169,7 +171,7 @@
       var rf = document.getElementById('rf');
       if (rf) {
         var ra = document.getElementById('ramt'), rk = document.getElementById('rack'), rb = document.getElementById('rbtn'), ral = document.getElementById('ralert');
-        var rs = function () { var a = num(ra.value); rb.disabled = !(rk.checked && a >= 500 && a <= (r.cap || 100000000)); };
+        var rs = function () { var a = num(ra.value); rb.disabled = !(rk.checked && a >= 500 && a <= (r.cap || 1000000000)); };
         ra.addEventListener('input', function () { var a = num(ra.value); ra.value = a ? fmt(a) : ''; rs(); });
         rk.addEventListener('change', rs);
         rf.addEventListener('submit', function (e) {
