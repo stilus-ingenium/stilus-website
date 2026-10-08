@@ -2,5 +2,8 @@ User-agent: *
 Allow: /
 Disallow: /p/
 Disallow: /t/
+Disallow: /invest/p/
+Disallow: /en/invest/p/
+Disallow: /invest-admin
 
 Sitemap: https://stilus-ingenium.com/sitemap.xml

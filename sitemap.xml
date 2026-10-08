@@ -19,4 +19,22 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://stilus-ingenium.com/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://stilus-ingenium.com/"/>
   </url>
+  <url>
+    <loc>https://stilus-ingenium.com/invest/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://stilus-ingenium.com/invest/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stilus-ingenium.com/en/invest/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stilus-ingenium.com/invest/"/>
+  </url>
+  <url>
+    <loc>https://stilus-ingenium.com/en/invest/</loc>
+    <lastmod>2026-10-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://stilus-ingenium.com/invest/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stilus-ingenium.com/en/invest/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stilus-ingenium.com/invest/"/>
+  </url>
 </urlset>
