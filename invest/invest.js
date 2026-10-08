@@ -11,7 +11,7 @@
     api: LOCAL ? 'http://127.0.0.1:8787/api/invest' : '/api/invest',
     // مفتاح Turnstile العلني (ليس سراً). محلياً: مفتاح الاختبار الرسمي من Cloudflare الذي ينجح دائماً.
     turnstile: LOCAL ? '1x00000000000000000000AA' : '0x4AAAAAAFQVCRXO8ppptRE3',
-    termsVersion: '2026-10-07',
+    termsVersion: '2026-10-08',
     maxBytes: 10 * 1024 * 1024,
     min: 500, max: 1000000000 // «١٠ ملايين فأكثر»: المليار حدٌّ تقنيّ فقط، ويطابق الخادم
   };
@@ -20,8 +20,8 @@
     ar: {
       choose: 'اختر', noMatch: 'لا نتيجة. جرّب اسماً آخر أو اختر «أخرى».', next: 'التالي', send: 'أرسل الطلب', sending: 'جارٍ الإرسال', uploading: 'جارٍ رفع المستند',
       tiers: { community: 'مجتمع القلم', angel: 'شريك ملائكي', strategic: 'شريك استراتيجي', institutional: 'مستثمر مؤسسي' },
-      foreignMin: 'لغير مواطني دول الخليج الحدّ الأدنى مليون ريال، لأن دخول الشريك الأجنبي يتطلب تسجيلاً نظامياً برسوم سنوية تُحمَّل على حصته.',
-      capMsg: 'الحد الأقصى لحصة المستثمر الواحد {p}٪، أي ما لا يزيد على {a} ريال في هذا المسار.',
+      foreignMin: 'لغير مواطني دول الخليج الحدّ الأدنى ٣٠٠ ألف ريال، لأن دخول الشريك الأجنبي يتطلب تسجيلاً نظامياً برسوم سنوية تُحمَّل على حصته.',
+      capMsg: 'عند الالتزام لا تتجاوز حصة المستثمر الواحد {p}٪، أي {a} ريال في هذا المسار. ولك إبداء اهتمامك بأي مبلغ.',
       agreeAll: 'أوافق على الكل', agreedAll: 'وافقت على الكل',
       tierLbl: 'الشريحة:', estLbl: 'حصتك التقديرية', of: 'من ', company: 'الشركة الأم',
       sectorNames: { arts: 'قطاع الفن والمناسبات', contracting: 'قطاع المقاولات والحوكمة الميدانية', hr: 'قطاع الموارد البشرية والحضور', retail: 'قطاع التجزئة والتجارة', lifestyle: 'قطاع نمط الحياة والعافية', enterprise: 'قطاع حلول البرمجيات للمنشآت' },
@@ -51,8 +51,8 @@
     en: {
       choose: 'Select', noMatch: 'No match. Try another name or choose “Other”.', next: 'Next', send: 'Submit', sending: 'Submitting', uploading: 'Uploading document',
       tiers: { community: 'Stilus Community', angel: 'Angel partner', strategic: 'Strategic partner', institutional: 'Institutional investor' },
-      foreignMin: 'For non-GCC nationals the minimum is SAR 1 million: a foreign partner requires a regulatory registration with annual fees charged to their share.',
-      capMsg: 'The maximum stake for a single investor is {p}%, i.e. no more than SAR {a} on this track.',
+      foreignMin: 'For non-GCC nationals the minimum is SAR 300,000: a foreign partner requires a regulatory registration with annual fees charged to their share.',
+      capMsg: 'At commitment a single investor holds at most {p}%, i.e. SAR {a} on this track. You may express interest at any amount.',
       agreeAll: 'I agree to all', agreedAll: 'All agreed',
       tierLbl: 'Tier:', estLbl: 'Your indicative stake', of: 'of ', company: 'the parent company',
       sectorNames: { arts: 'the arts & events sector', contracting: 'the contracting & field governance sector', hr: 'the HR & attendance sector', retail: 'the retail & commerce sector', lifestyle: 'the lifestyle & wellbeing sector', enterprise: 'the enterprise software sector' },
@@ -214,8 +214,9 @@
     return 'institutional';
   }
   var amountIn = $('#amount'), tierchip = $('#tierchip');
-  // غير الخليجي: حدّ أدنى مليون ريال (رسوم تسجيل وزارة الاستثمار السنوية تُحمَّل على حصته)
-  var GCC = ['SA', 'AE', 'KW', 'QA', 'BH', 'OM'], FOREIGN_MIN = 1000000;
+  // غير الخليجي: حدّ أدنى ٣٠٠ ألف ريال (قرار محمد ٨ أكتوبر، خُفّض من مليون ليتّسع له سقف الشركة الأم)
+  // ورسوم تسجيل وزارة الاستثمار السنوية تُحمَّل على حصته
+  var GCC = ['SA', 'AE', 'KW', 'QA', 'BH', 'OM'], FOREIGN_MIN = 300000;
   function isForeign() { var n = $('#nationality').value; return !!n && GCC.indexOf(n) < 0; }
   var amountErr = amountIn.closest('.f').querySelector('.err'), amountErrDefault = amountErr.textContent;
   function syncForeignHint() {
@@ -342,8 +343,7 @@
     amount: function () {
       var n = parseAmount(amountIn.value);
       if (tierOf(n) && isForeign() && n < FOREIGN_MIN) { amountErr.textContent = T.foreignMin; return false; }
-      var cap = currentCap();
-      if (tierOf(n) && cap !== null && n > cap) { amountErr.textContent = capText(cap); return false; }
+      // سقف المستثمر الواحد لا يمنع إبداء الاهتمام (قرار محمد ٨ أكتوبر): يُفرض عند «أنا مستعد» وحده
       amountErr.textContent = amountErrDefault;
       return !!tierOf(n);
     },
