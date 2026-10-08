@@ -21,6 +21,7 @@
       choose: 'اختر', next: 'التالي', send: 'أرسل الطلب', sending: 'جارٍ الإرسال', uploading: 'جارٍ رفع المستند',
       tiers: { community: 'مجتمع القلم', angel: 'شريك ملائكي', strategic: 'شريك استراتيجي', institutional: 'مستثمر مؤسسي' },
       foreignMin: 'لغير مواطني دول الخليج الحدّ الأدنى مليون ريال، لأن دخول الشريك الأجنبي يتطلب تسجيلاً نظامياً برسوم سنوية تُحمَّل على حصته.',
+      capMsg: 'الحد الأقصى لحصة المستثمر الواحد {p}٪، أي ما لا يزيد على {a} ريال في هذا المسار.',
       tierLbl: 'الشريحة:', estLbl: 'حصتك التقديرية', of: 'من ', company: 'الشركة الأم',
       sectorNames: { arts: 'قطاع الفن والمناسبات', contracting: 'قطاع المقاولات والحوكمة الميدانية', hr: 'قطاع الموارد البشرية والحضور', retail: 'قطاع التجزئة والتجارة', lifestyle: 'قطاع نمط الحياة والعافية', enterprise: 'قطاع حلول البرمجيات للمنشآت' },
       instHint: 'شريحة المستثمر المؤسسي على مستوى الشركة الأم حصراً.',
@@ -36,6 +37,7 @@
         duplicate: 'لدينا طلب قائم بهذا البريد. أكّده من الرسالة التي وصلتك، أو انتظر قرار المراجعة.',
         server: 'حدث خطأ غير متوقع. أعد المحاولة بعد قليل.',
         too_large: 'المستند أكبر من ١٠ ميغابايت.',
+        stake_cap: 'المبلغ يتجاوز الحد الأقصى لحصة المستثمر الواحد في هذا المسار. خفّض المبلغ وأعد الإرسال.',
         upload: 'وصلت بياناتك، لكن تعذّر رفع المستند. اضغط «أرسل الطلب» مرة أخرى لإعادة رفعه وحده.',
         expired: 'انتهت مهلة رفع المستند. حدّث الصفحة وأعد الإرسال.'
       },
@@ -47,6 +49,7 @@
       choose: 'Select', next: 'Next', send: 'Submit', sending: 'Submitting', uploading: 'Uploading document',
       tiers: { community: 'Stilus Community', angel: 'Angel partner', strategic: 'Strategic partner', institutional: 'Institutional investor' },
       foreignMin: 'For non-GCC nationals the minimum is SAR 1 million: a foreign partner requires a regulatory registration with annual fees charged to their share.',
+      capMsg: 'The maximum stake for a single investor is {p}%, i.e. no more than SAR {a} on this track.',
       tierLbl: 'Tier:', estLbl: 'Your indicative stake', of: 'of ', company: 'the parent company',
       sectorNames: { arts: 'the arts & events sector', contracting: 'the contracting & field governance sector', hr: 'the HR & attendance sector', retail: 'the retail & commerce sector', lifestyle: 'the lifestyle & wellbeing sector', enterprise: 'the enterprise software sector' },
       instHint: 'The institutional tier is available at parent-company level only.',
@@ -62,6 +65,7 @@
         duplicate: 'We already have an open request for this email. Confirm it from the message we sent, or await the review decision.',
         server: 'Something unexpected happened. Please try again shortly.',
         too_large: 'The document is larger than 10 MB.',
+        stake_cap: 'The amount exceeds the maximum single-investor stake for this track. Lower it and submit again.',
         upload: 'Your details arrived, but the document upload failed. Press Submit again to retry the upload only.',
         expired: 'The upload window expired. Refresh the page and submit again.'
       },
@@ -131,7 +135,21 @@
 
   /* ---------- الحاسبة اللحظية بجانب المبلغ ----------
      لا تظهر إلا للمسارات التي فعّل الملّاك ظهورها علناً من اللوحة. */
-  var VALS = [], liveBox = $('#livecalc'), liveNote = $('#livenote');
+  var VALS = [], MAXSTAKE = 15, liveBox = $('#livecalc'), liveNote = $('#livenote');
+  // سقف حصة المستثمر الواحد: أقصى مبلغ = أدنى تقييم × س ÷ (١ − س)، ومجموع سقوف القطاعات المختارة
+  function currentCap() {
+    var track = val('track'), secs = vals('sectors');
+    var want = track === 'sector' ? secs.map(function (x) { return 'sector:' + x; }) : ['company'];
+    if (!want.length) return null;
+    var p = MAXSTAKE / 100, total = 0;
+    for (var i = 0; i < want.length; i++) {
+      var v = VALS.filter(function (x) { return x.scope === want[i]; })[0];
+      if (!v) return null;
+      total += Math.floor(v.low * p / (1 - p));
+    }
+    return total;
+  }
+  function capText(cap) { return T.capMsg.replace('{p}', MAXSTAKE).replace('{a}', cap.toLocaleString('en-US')); }
   function pct(x) { return (x < 0.01 ? x.toFixed(4) : x < 1 ? x.toFixed(3) : x.toFixed(2)) + '%'; }
   function renderEstimate() {
     var n = parseAmount(amountIn.value), track = val('track'), secs = vals('sectors');
@@ -140,6 +158,8 @@
     var on = !!tierOf(n) && rows.length > 0;
     liveBox.hidden = liveNote.hidden = !on;
     if (!on) { liveBox.innerHTML = ''; return; }
+    var cap = currentCap();
+    if (cap !== null && n > cap) { liveBox.innerHTML = '<span class="calc-lbl">' + T.estLbl + '</span><div class="calc-row"><span>' + capText(cap) + '</span></div>'; return; }
     liveBox.innerHTML = '<span class="calc-lbl">' + T.estLbl + '</span>' + rows.map(function (v) {
       var lo = n / (v.high + n) * 100, hi = n / (v.low + n) * 100;
       var name = v.scope === 'company' ? T.company : T.sectorNames[v.scope.slice(7)];
@@ -147,7 +167,7 @@
     }).join('');
   }
   fetch(CFG.api + '/estimate').then(function (r) { return r.json(); }).then(function (r) {
-    if (r && r.ok && r.rows) { VALS = r.rows; renderEstimate(); }
+    if (r && r.ok && r.rows) { VALS = r.rows; MAXSTAKE = r.max_stake || 15; renderEstimate(); }
   }).catch(function () {});
   amountIn.addEventListener('input', onAmount);
 
@@ -206,6 +226,8 @@
     amount: function () {
       var n = parseAmount(amountIn.value);
       if (tierOf(n) && isForeign() && n < FOREIGN_MIN) { amountErr.textContent = T.foreignMin; return false; }
+      var cap = currentCap();
+      if (tierOf(n) && cap !== null && n > cap) { amountErr.textContent = capText(cap); return false; }
       amountErr.textContent = amountErrDefault;
       return !!tierOf(n);
     },
@@ -309,6 +331,7 @@
       .then(function (res) {
         if (res && res.ok) { pending = { ref: res.ref, upload: res.upload }; return uploadProof(); }
         showAlert(T.errors[res && res.error] || T.errors.server);
+        if (res && res.error === 'stake_cap') { go(1); amountIn.closest('.f').classList.add('bad'); amountErr.textContent = T.errors.stake_cap; }
         if (window.turnstile && tsId !== null) window.turnstile.reset(tsId);
         busy(false);
       });

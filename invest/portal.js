@@ -18,6 +18,7 @@
     ar: {
       loading: 'جارٍ التحميل', cur: 'ريال',
       err: { invalid_link: 'هذا الرابط غير صالح أو استُبدل برابط أحدث.', expired: 'انتهت صلاحية هذا الرابط.', already_signed: 'وقّعت هذه الاتفاقية من قبل. افتح غرفة بياناتك من الرابط الذي وصلك بالبريد.',
+        stake_cap: 'المبلغ يتجاوز الحد الأقصى لحصة المستثمر الواحد في مسارك.',
         name_mismatch: 'الاسم المكتوب لا يطابق الاسم المسجّل في طلبك. اكتبه كما كتبته في الطلب.', invalid: 'البيانات غير مكتملة.', network: 'تعذّر الاتصال. أعد المحاولة.', server: 'حدث خطأ غير متوقع. أعد المحاولة بعد قليل.' },
       verifiedT: 'تأكّد طلبك', verifiedP: 'دخل طلبك المراجعة. يصلك القرار على بريدك خلال ١٥ يوماً، ولا يلزمك أي إجراء حتى ذلك الحين.',
       alreadyP: 'طلبك مؤكَّد من قبل، وهو في مسار المراجعة.',
@@ -30,6 +31,7 @@
       calcNote: 'تقدير استرشادي غير ملزم. النسبة النهائية تحدّدها الاتفاقية النظامية وتقييم الجولة عند الإغلاق.',
       readyT: 'هل أنت مستعد للمضي؟', readyP: 'هذه الخطوة الوحيدة التي تنقل طلبك إلى المرحلة التالية: إعداد العقود النظامية. لا تضغطها إلا وأنت جادّ في المبلغ.',
       readyAmt: 'المبلغ الذي تؤكّده (ريال)', readyNote: 'ملاحظة (اختيارية)', readyAck: 'أؤكّد استعدادي للمضي بهذا المبلغ، وأفهم أن الخطوة التالية عقود نظامية، ولا يُدفع أي مبلغ قبل توقيعها.',
+      capNote: 'الحد الأقصى لحصة المستثمر الواحد {p}٪، أي ما لا يزيد على {a} ريال في مسارك.',
       readyBtn: 'أنا مستعد', readyDone: 'سُجّل استعدادك. الخطوة التالية تصلك على بريدك عند جاهزية العقود النظامية.', expires: 'صلاحية الغرفة حتى ',
       forget: 'سحب طلبي وحذف بياناتي', forgetQ: 'سيُسحب طلبك وتُحذف بياناتك ومستندك نهائياً. متأكد؟', forgotT: 'حُذفت بياناتك', forgotP: 'سُحب طلبك وحُذفت بياناتك كما طلبت.',
       ref: 'الرقم المرجعي', back: 'العودة إلى صفحة المستثمرين',
@@ -39,6 +41,7 @@
     en: {
       loading: 'Loading', cur: 'SAR',
       err: { invalid_link: 'This link is invalid or has been replaced by a newer one.', expired: 'This link has expired.', already_signed: 'You have already signed this agreement. Open your data room from the link in your email.',
+        stake_cap: 'The amount exceeds the maximum single-investor stake on your track.',
         name_mismatch: 'The typed name does not match the name on your request. Type it exactly as in your request.', invalid: 'Some details are missing.', network: 'Could not connect. Please try again.', server: 'Something unexpected happened. Please try again shortly.' },
       verifiedT: 'Your request is confirmed', verifiedP: 'Your request is now in review. The decision will reach your email within 15 days; nothing is needed from you until then.',
       alreadyP: 'Your request was already confirmed and is in review.',
@@ -51,6 +54,7 @@
       calcNote: 'Indicative and non-binding. The final stake is set by the legal agreement and the round valuation at closing.',
       readyT: 'Are you ready to proceed?', readyP: 'This is the only step that moves your request forward: preparing the legal agreements. Press it only if you are committed to the amount.',
       readyAmt: 'Amount you confirm (SAR)', readyNote: 'Note (optional)', readyAck: 'I confirm I am ready to proceed with this amount, and understand the next step is the legal agreements, with no payment before they are signed.',
+      capNote: 'The maximum single-investor stake is {p}%, i.e. no more than SAR {a} on your track.',
       readyBtn: 'I am ready', readyDone: 'Your readiness is recorded. The next step reaches your email when the legal agreements are prepared.', expires: 'Room valid until ',
       forget: 'Withdraw my request and delete my data', forgetQ: 'Your request will be withdrawn and your data and document permanently deleted. Are you sure?', forgotT: 'Your data was deleted', forgotP: 'Your request was withdrawn and your data deleted, as you asked.',
       ref: 'Reference', back: 'Back to the investors page',
@@ -138,6 +142,7 @@
         '<div id="cout" class="calc-out"></div><p class="hint">' + T.calcNote + '</p></div>' : '';
       var ready = r.ready ? '<div class="room-sec done"><h3>' + T.readyT + '</h3><p>' + T.readyDone + '</p></div>' :
         '<div class="room-sec"><h3>' + T.readyT + '</h3><p class="hint">' + T.readyP + '</p><form id="rf" class="grid" style="margin-top:14px" novalidate>' +
+        (r.cap ? '<p class="hint full">' + T.capNote.replace('{p}', r.pct).replace('{a}', fmt(r.cap)) + '</p>' : '') +
         '<div class="f"><label for="ramt">' + T.readyAmt + '</label><div class="amount"><input type="text" id="ramt" inputmode="numeric" value="' + fmt(r.amount) + '"><span class="cur">' + T.cur + '</span></div></div>' +
         '<div class="f full"><label for="rnote">' + T.readyNote + '</label><textarea id="rnote" maxlength="600"></textarea></div>' +
         '<label class="ack full"><input type="checkbox" id="rack"><span>' + T.readyAck + '</span></label>' +
@@ -164,7 +169,7 @@
       var rf = document.getElementById('rf');
       if (rf) {
         var ra = document.getElementById('ramt'), rk = document.getElementById('rack'), rb = document.getElementById('rbtn'), ral = document.getElementById('ralert');
-        var rs = function () { var a = num(ra.value); rb.disabled = !(rk.checked && a >= 500 && a <= 100000000); };
+        var rs = function () { var a = num(ra.value); rb.disabled = !(rk.checked && a >= 500 && a <= (r.cap || 100000000)); };
         ra.addEventListener('input', function () { var a = num(ra.value); ra.value = a ? fmt(a) : ''; rs(); });
         rk.addEventListener('change', rs);
         rf.addEventListener('submit', function (e) {
