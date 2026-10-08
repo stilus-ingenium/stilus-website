@@ -20,6 +20,7 @@
     ar: {
       choose: 'اختر', next: 'التالي', send: 'أرسل الطلب', sending: 'جارٍ الإرسال', uploading: 'جارٍ رفع المستند',
       tiers: { community: 'مجتمع القلم', angel: 'شريك ملائكي', strategic: 'شريك استراتيجي', institutional: 'مستثمر مؤسسي' },
+      foreignMin: 'لغير مواطني دول الخليج الحدّ الأدنى مليون ريال، لأن دخول الشريك الأجنبي يتطلب تسجيلاً نظامياً برسوم سنوية تُحمَّل على حصته.',
       tierLbl: 'الشريحة:', estLbl: 'حصتك التقديرية', of: 'من ', company: 'الشركة الأم',
       sectorNames: { arts: 'قطاع الفن والمناسبات', contracting: 'قطاع المقاولات والحوكمة الميدانية', hr: 'قطاع الموارد البشرية والحضور', retail: 'قطاع التجزئة والتجارة', lifestyle: 'قطاع نمط الحياة والعافية', enterprise: 'قطاع حلول البرمجيات للمنشآت' },
       instHint: 'شريحة المستثمر المؤسسي على مستوى الشركة الأم حصراً.',
@@ -45,6 +46,7 @@
     en: {
       choose: 'Select', next: 'Next', send: 'Submit', sending: 'Submitting', uploading: 'Uploading document',
       tiers: { community: 'Stilus Community', angel: 'Angel partner', strategic: 'Strategic partner', institutional: 'Institutional investor' },
+      foreignMin: 'For non-GCC nationals the minimum is SAR 1 million: a foreign partner requires a regulatory registration with annual fees charged to their share.',
       tierLbl: 'Tier:', estLbl: 'Your indicative stake', of: 'of ', company: 'the parent company',
       sectorNames: { arts: 'the arts & events sector', contracting: 'the contracting & field governance sector', hr: 'the HR & attendance sector', retail: 'the retail & commerce sector', lifestyle: 'the lifestyle & wellbeing sector', enterprise: 'the enterprise software sector' },
       instHint: 'The institutional tier is available at parent-company level only.',
@@ -109,6 +111,14 @@
     return 'institutional';
   }
   var amountIn = $('#amount'), tierchip = $('#tierchip');
+  // غير الخليجي: حدّ أدنى مليون ريال (رسوم تسجيل وزارة الاستثمار السنوية تُحمَّل على حصته)
+  var GCC = ['SA', 'AE', 'KW', 'QA', 'BH', 'OM'], FOREIGN_MIN = 1000000;
+  function isForeign() { var n = $('#nationality').value; return !!n && GCC.indexOf(n) < 0; }
+  var amountErr = amountIn.closest('.f').querySelector('.err'), amountErrDefault = amountErr.textContent;
+  function syncForeignHint() {
+    var h = $('#foreignhint'); if (!h) return;
+    h.textContent = isForeign() ? T.foreignMin : ''; h.hidden = !isForeign();
+  }
   function onAmount() {
     var n = parseAmount(amountIn.value);
     if (!isNaN(n)) amountIn.value = n.toLocaleString('en-US');
@@ -157,6 +167,7 @@
   function syncProofHint(tier) { $('#proofsub').dataset.extra = tier === 'community' ? T.communityProof : ''; }
   form.addEventListener('change', function (e) {
     if (e.target.name === 'investor_type') syncEntity();
+    if (e.target.name === 'nationality') syncForeignHint();
     if (e.target.name === 'track') syncTrack(tierOf(parseAmount(amountIn.value)));
     if (e.target.name === 'track' || e.target.name === 'sectors') renderEstimate();
     var f = e.target.closest('.f'); if (f) f.classList.remove('bad');
@@ -192,7 +203,12 @@
     nationality: function () { return !!$('#nationality').value; },
     residence: function () { return !!$('#residence').value; },
     qualified: function () { return !!val('qualified'); },
-    amount: function () { return !!tierOf(parseAmount(amountIn.value)); },
+    amount: function () {
+      var n = parseAmount(amountIn.value);
+      if (tierOf(n) && isForeign() && n < FOREIGN_MIN) { amountErr.textContent = T.foreignMin; return false; }
+      amountErr.textContent = amountErrDefault;
+      return !!tierOf(n);
+    },
     track: function () { return !!val('track'); },
     sectors: function () { return vals('sectors').length > 0; },
     horizon: function () { return !!val('horizon'); },
