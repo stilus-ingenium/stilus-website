@@ -1,6 +1,7 @@
 /* =====================================================================
    بوّابة المستثمر — كل ما بعد الإرسال يحدث هنا، بلا تواصل بشري:
-   ?a=verify  تأكيد البريد
+   ?a=verify  تأكيد البريد، ثم الرابط نفسه يعرض حالة الطلب في أي وقت
+   ?a=status  من فقد رسالته: يكتب بريده فيصله رابط جديد
    ?a=nda     قراءة اتفاقية عدم الإفصاح وتوقيعها
    ?a=room    غرفة البيانات + حاسبة النسبة التقديرية + «أنا مستعد»
    وفي كل وضع: سحب الطلب وحذف البيانات بضغطة.
@@ -21,7 +22,16 @@
         stake_cap: 'المبلغ يتجاوز الحد الأقصى لحصة المستثمر الواحد في مسارك.',
         round_full: 'المتاح في جولة مسارك الحالية أقل من هذا المبلغ. جرّب مبلغاً أقل، وإن لم يناسبك فسنشعرك بالجولة القادمة.',
         name_mismatch: 'الاسم المكتوب لا يطابق الاسم المسجّل في طلبك. اكتبه كما كتبته في الطلب.', invalid: 'البيانات غير مكتملة.', network: 'تعذّر الاتصال. أعد المحاولة.', server: 'حدث خطأ غير متوقع. أعد المحاولة بعد قليل.' },
-      verifiedT: 'تأكّد طلبك', verifiedP: 'دخل طلبك المراجعة. يصلك القرار على بريدك خلال ١٥ يوماً، ولا يلزمك أي إجراء حتى ذلك الحين.',
+      verifiedT: 'تأكّد طلبك', verifiedP: 'دخل طلبك المراجعة. يصلك القرار على بريدك خلال ٧ أيام، ولا يلزمك أي إجراء حتى ذلك الحين. واحتفظ برسالة التأكيد: زرّها نفسه يعرض حالة طلبك في أي وقت.',
+      statusT: 'حالة طلبك',
+      steps: ['أُرسل الطلب', 'تأكّد البريد', 'المراجعة والقرار', 'توقيع اتفاقية السرية', 'غرفة البيانات', 'إعلان الاستعداد'],
+      st: { pending: 'قيد المراجعة. يصلك القرار على بريدك قبل {d}.', late: 'تأخّر قرارنا عن موعده ({d})، ونعتذر عن ذلك. يصلك على بريدك قريباً.',
+        approved: 'قُبل طلبك مبدئياً. رابط توقيع اتفاقية السرية في بريدك، وصالح ١٤ يوماً.',
+        declined: 'اعتذرنا عن طلبك هذه المرة. بياناتك محفوظة لإشعارك بالجولات القادمة، ولك حذفها أدناه.',
+        nda_signed: 'وقّعت اتفاقية السرية، وغرفة بيانات مسارك مفتوحة لك من الرابط الذي وصلك بالبريد.',
+        ready: 'سُجّل استعدادك. الخطوة التالية تصلك على بريدك عند جاهزية العقود النظامية.' },
+      askT: 'تابع طلبك', askP: 'اكتب البريد الذي قدّمت به طلبك، ونرسل إليه رابطاً يعرض حالته.', askEmail: 'البريد الإلكتروني', askBtn: 'أرسل الرابط',
+      askDone: 'إن كان لهذا البريد طلبٌ لدينا فسيصله الرابط خلال دقائق. تحقّق من الرسائل غير المرغوبة أيضاً.', askBad: 'اكتب بريداً صحيحاً.',
       alreadyP: 'طلبك مؤكَّد من قبل، وهو في مسار المراجعة.',
       ndaT: 'اتفاقية عدم الإفصاح', ndaP: 'اقرأ النص كاملاً. التوقيع يكون بكتابة اسمك كما في طلبك وتأكيد الموافقة، ويُعدّ توقيعاً إلكترونياً ملزماً.',
       typeName: 'اكتب اسمك الكامل للتوقيع', agree: 'قرأت الاتفاقية وأوافق عليها، وأقرّ بأن كتابة اسمي هنا توقيع إلكتروني ملزم لي.', sign: 'توقيع الاتفاقية',
@@ -45,7 +55,16 @@
         stake_cap: 'The amount exceeds the maximum single-investor stake on your track.',
         round_full: 'What remains in the current round on your track is less than this amount. Try a lower amount; otherwise we will notify you of the next round.',
         name_mismatch: 'The typed name does not match the name on your request. Type it exactly as in your request.', invalid: 'Some details are missing.', network: 'Could not connect. Please try again.', server: 'Something unexpected happened. Please try again shortly.' },
-      verifiedT: 'Your request is confirmed', verifiedP: 'Your request is now in review. The decision will reach your email within 15 days; nothing is needed from you until then.',
+      verifiedT: 'Your request is confirmed', verifiedP: 'Your request is now in review. The decision will reach your email within 7 days; nothing is needed from you until then. Keep the confirmation email: its button shows the status of your request at any time.',
+      statusT: 'Your request status',
+      steps: ['Request submitted', 'Email confirmed', 'Review and decision', 'Confidentiality agreement signed', 'Data room', 'Readiness declared'],
+      st: { pending: 'In review. The decision reaches your email before {d}.', late: 'Our decision is past its date ({d}); we apologise. It will reach your email shortly.',
+        approved: 'Your request is initially accepted. The link to sign the confidentiality agreement is in your email, valid for 14 days.',
+        declined: 'We declined your request this time. Your details are kept to notify you of future rounds, and you may delete them below.',
+        nda_signed: 'You signed the confidentiality agreement; your track data room is open from the link in your email.',
+        ready: 'Your readiness is recorded. The next step reaches your email when the legal agreements are prepared.' },
+      askT: 'Track your request', askP: 'Type the email you applied with, and we will send it a link that shows the status of your request.', askEmail: 'Email', askBtn: 'Send the link',
+      askDone: 'If this email has a request with us, the link will arrive within minutes. Check your spam folder too.', askBad: 'Type a valid email.',
       alreadyP: 'Your request was already confirmed and is in review.',
       ndaT: 'Non-Disclosure Agreement', ndaP: 'Read the full text. You sign by typing your name exactly as in your request and confirming consent; this is a binding electronic signature.',
       typeName: 'Type your full name to sign', agree: 'I have read and agree to this Agreement, and acknowledge that typing my name here is my binding electronic signature.', sign: 'Sign the agreement',
@@ -93,6 +112,26 @@
     });
   }
 
+  function dt(ms) { return new Date(ms).toLocaleDateString(LANG === 'en' ? 'en-GB' : 'ar-SA-u-ca-gregory-nu-latn', { day: 'numeric', month: 'long', year: 'numeric' }); }
+
+  /* ---------- طلب رابط المتابعة (بلا رمز) ---------- */
+  if (A === 'status' && !TOK) {
+    show('<legend>' + T.askT + '</legend><p class="lg-sub">' + T.askP + '</p><form id="sf" class="grid" novalidate>' +
+      '<div class="f full"><label for="semail">' + T.askEmail + '</label><input type="email" id="semail" class="ltr-in" maxlength="160" autocomplete="email"></div>' +
+      '<div class="full"><div class="form-alert" id="salert"></div><button class="btn" id="sbtn">' + T.askBtn + '</button></div></form>' + backLink());
+    document.getElementById('sf').addEventListener('submit', function (e) {
+      e.preventDefault();
+      var em = document.getElementById('semail').value.trim(), al = document.getElementById('salert'), b = document.getElementById('sbtn');
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { al.textContent = T.askBad; al.classList.add('on'); return; }
+      b.disabled = true; al.classList.remove('on');
+      call('POST', '/status-link', { email: em }).then(function (r) {
+        if (r.ok) return msg(T.askT, T.askDone, true);
+        al.textContent = errOf(r.error); al.classList.add('on'); b.disabled = false;
+      });
+    });
+    return;
+  }
+
   if (!TOK || ['verify', 'nda', 'room'].indexOf(A) < 0) { msg(T.err.invalid_link, '', false); return; }
   show('<p style="text-align:center;color:var(--muted)">' + T.loading + '</p>');
 
@@ -100,9 +139,29 @@
   if (A === 'verify') {
     call('GET', '/verify?t=' + encodeURIComponent(TOK)).then(function (r) {
       if (!r.ok) return msg(errOf(r.error), '', false);
-      msg(T.verifiedT, (r.already ? T.alreadyP : T.verifiedP) + '<br><span class="ref">' + esc(r.ref) + '</span>', true);
+      // خادم قديم لا يرسل الحالة: الرسالة القديمة كما هي
+      if (!r.status) { msg(T.verifiedT, (r.already ? T.alreadyP : T.verifiedP) + '<br><span class="ref">' + esc(r.ref) + '</span>', true); }
+      else statusView(r);
       box.insertAdjacentHTML('beforeend', forgetBtn()); wireForget();
     });
+  }
+
+  /* ---------- عرض الحالة: خطّ زمني + سطر يقول ما التالي ---------- */
+  function statusView(r) {
+    var reached = { pending: 2, declined: 2, approved: 3, nda_signed: 5, ready: 6 }[r.status] || 1;
+    var times = [r.created_at, r.verified_at, r.decision_at, r.nda_signed_at, r.nda_signed_at, r.ready_at];
+    var late = r.status === 'pending' && r.due && Date.now() > r.due;
+    var line = r.status === 'pending' ? (late ? T.st.late : T.st.pending).replace('{d}', dt(r.due)) : (T.st[r.status] || '');
+    var items = T.steps.map(function (name, i) {
+      if (r.status === 'declined' && i > 2) return '';
+      var cls = i < reached ? 'done' : (i === reached ? 'now' : '');
+      var when = i < reached && times[i] ? '<small>' + dt(times[i]) + '</small>' : '';
+      return '<li class="' + cls + '">' + name + when + '</li>';
+    }).join('');
+    show('<legend>' + (r.already ? T.statusT : T.verifiedT) + '</legend>' +
+      (r.already ? '' : '<p class="lg-sub">' + T.verifiedP + '</p>') +
+      '<div class="room-meta"><div><span>' + T.ref + '</span><b class="lat">' + esc(r.ref) + '</b></div></div>' +
+      '<div class="st-box' + (late ? ' late' : '') + '">' + line + '</div><ol class="stl">' + items + '</ol>' + backLink());
   }
 
   /* ---------- اتفاقية عدم الإفصاح ---------- */

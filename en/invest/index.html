@@ -178,7 +178,10 @@
                 <label class="chip"><input type="radio" name="investor_type" value="individual"><span>Individual</span></label>
                 <label class="chip"><input type="radio" name="investor_type" value="company"><span>Company</span></label>
                 <label class="chip"><input type="radio" name="investor_type" value="establishment"><span>Sole establishment</span></label>
-                <label class="chip"><input type="radio" name="investor_type" value="fund"><span>Fund or family office</span></label>
+                <label class="chip"><input type="radio" name="investor_type" value="fund"><span>Investment fund</span></label>
+                <label class="chip"><input type="radio" name="investor_type" value="family_office"><span>Family office</span></label>
+                <label class="chip"><input type="radio" name="investor_type" value="syndicate"><span>Investor syndicate</span></label>
+                <label class="chip"><input type="radio" name="investor_type" value="corporate"><span>Corporate venture arm</span></label>
               </div>
               <div class="err">Choose an investor type.</div>
             </div>
@@ -216,6 +219,27 @@
               </div>
               <div class="hint">Examples: a person with net assets of at least SAR 5 million, or an entity licensed in the financial sector. This determines the legal route open to you.</div>
               <div class="err">Choose an answer.</div>
+            </div>
+            <div class="f full"><span class="lbl" style="margin-top:6px;color:var(--muted)">Your investing experience (optional)</span></div>
+            <div class="f">
+              <label for="investments_count">Previous investments in startups or private companies</label>
+              <select id="investments_count" name="investments_count">
+                <option value="">Select</option>
+                <option value="none">None</option>
+                <option value="1_5">1 to 5</option>
+                <option value="6_15">6 to 15</option>
+                <option value="gt15">More than 15</option>
+              </select>
+            </div>
+            <div class="f full">
+              <span class="lbl">Stages you prefer to invest in</span>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="stage_focus" value="idea"><span>Idea</span></label>
+                <label class="chip"><input type="checkbox" name="stage_focus" value="mvp"><span>Early product</span></label>
+                <label class="chip"><input type="checkbox" name="stage_focus" value="early_revenue"><span>Early revenue</span></label>
+                <label class="chip"><input type="checkbox" name="stage_focus" value="growth"><span>Growth</span></label>
+              </div>
+              <div class="hint">It does not decide acceptance on its own; it helps us show you the most suitable track.</div>
             </div>
           </div>
         </fieldset>
@@ -368,10 +392,11 @@
     </div>
     <ol class="proc rv">
       <li><h3>Confirmation</h3><p>An instant reference number, and a link to your email to confirm within 48 hours. Unconfirmed requests are deleted automatically.</p></li>
-      <li><h3>Review</h3><p>Within 15 days the request is reviewed and the proof of funds checked; the decision reaches your email.</p></li>
+      <li><h3>Review</h3><p>Within 7 days the request is reviewed and the proof of funds checked; the decision reaches your email.</p></li>
       <li><h3>Confidentiality</h3><p>On initial acceptance, you receive a link to sign the non-disclosure agreement electronically, on this platform.</p></li>
       <li><h3>Data room</h3><p>Your track's file opens as soon as you sign. When you are ready to proceed, you declare it from inside.</p></li>
     </ol>
+    <p class="track-link rv"><a class="note-link" href="p/?a=status">Already applied? Track your request</a></p>
 
     <div class="legal" id="privacy">
       <h3>Disclaimer</h3>

@@ -179,7 +179,10 @@
                 <label class="chip"><input type="radio" name="investor_type" value="individual"><span>فرد</span></label>
                 <label class="chip"><input type="radio" name="investor_type" value="company"><span>شركة</span></label>
                 <label class="chip"><input type="radio" name="investor_type" value="establishment"><span>مؤسسة</span></label>
-                <label class="chip"><input type="radio" name="investor_type" value="fund"><span>صندوق أو مكتب عائلي</span></label>
+                <label class="chip"><input type="radio" name="investor_type" value="fund"><span>صندوق استثماري</span></label>
+                <label class="chip"><input type="radio" name="investor_type" value="family_office"><span>مكتب عائلي</span></label>
+                <label class="chip"><input type="radio" name="investor_type" value="syndicate"><span>تحالف مستثمرين</span></label>
+                <label class="chip"><input type="radio" name="investor_type" value="corporate"><span>ذراع استثماري لشركة</span></label>
               </div>
               <div class="err">اختر صفة المستثمر.</div>
             </div>
@@ -217,6 +220,27 @@
               </div>
               <div class="hint">من أمثلة المؤهّل: من يملك صافي أصول لا يقل عن خمسة ملايين ريال، أو جهة مرخّصة في القطاع المالي. يحدّد هذا المسار النظامي المتاح لك.</div>
               <div class="err">اختر إجابة.</div>
+            </div>
+            <div class="f full"><span class="lbl" style="margin-top:6px;color:var(--muted)">خبرتك الاستثمارية (اختياري)</span></div>
+            <div class="f">
+              <label for="investments_count">عدد استثماراتك السابقة في شركات ناشئة أو خاصة</label>
+              <select id="investments_count" name="investments_count">
+                <option value="">اختر</option>
+                <option value="none">لا يوجد</option>
+                <option value="1_5">١ إلى ٥</option>
+                <option value="6_15">٦ إلى ١٥</option>
+                <option value="gt15">أكثر من ١٥</option>
+              </select>
+            </div>
+            <div class="f full">
+              <span class="lbl">المراحل التي تفضّل الاستثمار فيها</span>
+              <div class="chips">
+                <label class="chip"><input type="checkbox" name="stage_focus" value="idea"><span>فكرة</span></label>
+                <label class="chip"><input type="checkbox" name="stage_focus" value="mvp"><span>منتج أولي</span></label>
+                <label class="chip"><input type="checkbox" name="stage_focus" value="early_revenue"><span>إيراد مبكر</span></label>
+                <label class="chip"><input type="checkbox" name="stage_focus" value="growth"><span>نمو</span></label>
+              </div>
+              <div class="hint">لا يؤثر على قبولك وحده، ويساعدنا على عرض المسار الأنسب لك.</div>
             </div>
           </div>
         </fieldset>
@@ -372,10 +396,11 @@
     </div>
     <ol class="proc rv">
       <li><h3>التأكيد</h3><p>رقم مرجعي فوري، ورابط يصل بريدك لتأكيده خلال ٤٨ ساعة. الطلب غير المؤكَّد يُحذف تلقائياً.</p></li>
-      <li><h3>المراجعة</h3><p>خلال ١٥ يوماً يُدرس الطلب ويُتحقّق من إثبات الملاءة، ويصلك القرار بالبريد.</p></li>
+      <li><h3>المراجعة</h3><p>خلال ٧ أيام يُدرس الطلب ويُتحقّق من إثبات الملاءة، ويصلك القرار بالبريد.</p></li>
       <li><h3>السرية</h3><p>عند القبول المبدئي يصلك رابط توقيع اتفاقية عدم الإفصاح إلكترونياً، على هذه المنصة.</p></li>
       <li><h3>غرفة البيانات</h3><p>فور التوقيع يُفتح لك ملف مسارك. وحين تكون مستعداً للمضي، تُعلن ذلك من داخلها.</p></li>
     </ol>
+    <p class="track-link rv"><a class="note-link" href="p/?a=status">لديك طلب؟ تابع حالته</a></p>
 
     <div class="legal" id="privacy">
       <h3>إخلاء مسؤولية</h3>

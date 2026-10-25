@@ -199,6 +199,21 @@ svg.cbx-chev{position:absolute;inset-inline-end:15px;top:50%;width:18px;height:1
 .cbx-list li.act{background:#F4ECDB}
 .cbx-list li[aria-selected=true]{font-weight:700}
 .cbx-list li.none{color:var(--muted);cursor:default;font-size:14px}
+/* متابعة الطلب */
+.track-link{margin-top:22px}
+.stl{list-style:none;margin:22px 0 6px;padding:0;display:grid;gap:0}
+.stl li{position:relative;padding:0 30px 18px 0;color:var(--muted);font-size:15px}
+.stl li::before{content:"";position:absolute;inset-inline-start:0;top:6px;width:13px;height:13px;border-radius:50%;border:2px solid rgba(10,10,10,.2);background:#fff}
+.stl li::after{content:"";position:absolute;inset-inline-start:7px;top:22px;bottom:2px;width:1px;background:var(--line)}
+.stl li:last-child::after{display:none}
+.stl li.done{color:var(--ink)}
+.stl li.done::before{background:var(--ink);border-color:var(--ink)}
+.stl li.now{color:var(--ink);font-weight:700}
+.stl li.now::before{background:var(--saffron);border-color:var(--saffron);box-shadow:0 0 0 5px rgba(200,162,75,.18)}
+.stl li small{display:block;font-weight:500;color:var(--muted);font-size:13px}
+[dir=ltr] .stl li{padding:0 0 18px 30px}
+.st-box{border-radius:16px;padding:14px 16px;background:rgba(200,162,75,.12);margin-top:6px;font-size:15px}
+.st-box.late{background:rgba(179,55,47,.08);color:var(--err)}
 /* الإقرارات */
 .ackall{display:inline-flex;align-items:center;gap:10px;margin-bottom:14px;font:inherit;font-weight:700;font-size:14.5px;color:var(--ink);
   background:rgba(255,255,255,.85);border:1px solid rgba(10,10,10,.2);border-radius:100px;padding:10px 20px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
