@@ -9,7 +9,7 @@
 <link rel="alternate" hreflang="ar" href="https://stilus-ingenium.com/sukoon/">
 <link rel="alternate" hreflang="en" href="https://stilus-ingenium.com/sukoon/?lang=en">
 <meta name="theme-color" content="#F2F6F4">
-<meta name="color-scheme" content="light">
+<meta name="color-scheme" content="light dark">
 <meta name="apple-itunes-app" content="app-id=6828623058">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Stilus Ingenium">
@@ -25,6 +25,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"MobileApplication","name":"Sukoon — سُكون","operatingSystem":"iOS, Android","applicationCategory":"ProductivityApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Stilus Ingenium","url":"https://stilus-ingenium.com"},"url":"https://stilus-ingenium.com/sukoon/","downloadUrl":"https://stilus-ingenium.com/sukoon/get"}
 </script>
+<script>try{if(localStorage.getItem('sukoon-theme')==='dark')document.documentElement.dataset.theme='dark'}catch(e){}</script>
 <style>
 /* ─── الخطّان — مضمّنان ومقصوصان على حروف الصفحة (landing/build.py)، فلا يتغيّر الشكل بالجهاز ─── */
 @font-face{font-family:"Tajawal";src:url(assets/Tajawal-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
@@ -42,6 +43,17 @@
   --radius:28px; --max:1180px;
   color-scheme:light;
 }
+html[data-theme=dark]{
+  --mist:#0C1A1C; --surface:#15282B; --glass:rgba(255,255,255,.07); --edge:rgba(255,255,255,.14);
+  --sea:#49B7A8; --sea-deep:#2F8E84; --sea-tint:#1B3A38;
+  --ink:#EAF2F0; --ink-soft:#9DB1B4; --line:#23393B;
+  --shadow:0 24px 60px -24px rgba(0,0,0,.6), 0 2px 8px rgba(0,0,0,.3);
+  color-scheme:dark;
+}
+html[data-theme=dark] .liquid i{opacity:.18}
+html[data-theme=dark] footer .co img{filter:invert(1) hue-rotate(180deg)}
+html[data-theme=dark] .get .qr{background:#fff}
+body{transition:background-color .35s ease,color .35s ease}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 html,body{overflow-x:clip}
@@ -77,9 +89,14 @@ html[lang=en] .brand small{display:none}
 .nav .links{display:flex;gap:22px;margin-inline-start:auto;font-size:15px}
 .nav .links a{text-decoration:none;color:var(--ink-soft)}
 .nav .links a:hover{color:var(--ink)}
+.theme{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--ink);display:grid;place-items:center;cursor:pointer;flex:none}
+.theme .ico{width:19px;height:19px}
+.theme .sun{display:none}
+html[data-theme=dark] .theme .sun{display:block}
+html[data-theme=dark] .theme .moonic{display:none}
 .lang{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 14px;font:700 13px "Jakarta","Tajawal",sans-serif;cursor:pointer}
 .cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--mist);text-decoration:none;border-radius:999px;padding:10px 18px;font-weight:700;font-size:15px;white-space:nowrap}
-@media (max-width:860px){.nav .links{display:none}.nav .lang{margin-inline-start:auto}}
+@media (max-width:860px){.nav .links{display:none}.nav .theme{margin-inline-start:auto}}
 @media (max-width:440px){.nav .cta{display:none}.nav .bar{padding:8px 10px 8px 14px}}
 
 /* ─── البطل ─── */
@@ -256,6 +273,7 @@ footer nav a:hover{color:var(--ink)}
   <symbol id="i-in" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/></symbol>
   <symbol id="i-out" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></symbol>
   <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
   <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
   <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2"/><path d="M6 11v2"/><path d="M10 11v2"/></symbol>
   <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/><path d="m9 12 2 2 4-4"/></symbol>
@@ -284,6 +302,7 @@ footer nav a:hover{color:var(--ink)}
       <a href="#plus"><span data-l="ar">سُكون+</span><span data-l="en">Sukoon+</span></a>
       <a href="#faq"><span data-l="ar">أسئلة</span><span data-l="en">Questions</span></a>
     </nav>
+    <button class="theme" type="button" id="themeBtn" aria-label="Light or dark"><svg class="ico moonic"><use href="#i-moon"/></svg><svg class="ico sun"><use href="#i-sun"/></svg></button>
     <button class="lang" type="button" id="langBtn" aria-label="Language">English</button>
     <a class="cta" href="#get"><span data-l="ar">حمّل التطبيق</span><span data-l="en">Get the app</span></a>
   </div>
@@ -571,6 +590,18 @@ footer nav a:hover{color:var(--ink)}
   var q = new URLSearchParams(location.search).get('lang');
   setLang(q === 'en' || q === 'ar' ? q : saved || ((navigator.language || 'ar').indexOf('ar') === 0 ? 'ar' : 'en'));
   langBtn.addEventListener('click', function () { setLang(root.lang === 'ar' ? 'en' : 'ar'); });
+  // ─── فاتح / داكن: يبدأ فاتحاً، وما يختاره الزائر يُحفظ لزيارته القادمة ───
+  var themeBtn = document.getElementById('themeBtn');
+  var themeMeta = document.querySelector('meta[name=theme-color]');
+  function setTheme(t) {
+    if (t === 'dark') root.dataset.theme = 'dark'; else delete root.dataset.theme;
+    themeMeta.content = t === 'dark' ? '#0C1A1C' : '#F2F6F4';
+    themeBtn.setAttribute('aria-pressed', t === 'dark');
+    themeBtn.title = root.lang === 'ar' ? (t === 'dark' ? 'الوضع الفاتح' : 'الوضع الداكن') : (t === 'dark' ? 'Light mode' : 'Dark mode');
+    try { localStorage.setItem('sukoon-theme', t); } catch (e) {}
+  }
+  setTheme(root.dataset.theme === 'dark' ? 'dark' : 'light');
+  themeBtn.addEventListener('click', function () { setTheme(root.dataset.theme === 'dark' ? 'light' : 'dark'); });
   // القادم من الرابط الواحد (#get) يصل إلى زرّي المتجرين — بعد أن تستقرّ الخطوط والصور.
   if (location.hash.length > 1) {
     var target = document.getElementById(location.hash.slice(1));
