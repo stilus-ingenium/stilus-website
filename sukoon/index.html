@@ -1,0 +1,629 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>سُكون — تذكيرٌ يعرف أماكنك</title>
+<meta name="description" content="احفظ أماكنك مرّة، وسُكون يذكّرك كلّما وصلت أو غادرت — كل يوم، والتطبيق مغلق، بلا أن نتتبّع مسارك. على App Store وGoogle Play.">
+<link rel="canonical" href="https://stilus-ingenium.com/sukoon/">
+<link rel="alternate" hreflang="ar" href="https://stilus-ingenium.com/sukoon/">
+<link rel="alternate" hreflang="en" href="https://stilus-ingenium.com/sukoon/?lang=en">
+<meta name="theme-color" content="#F2F6F4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0C1A1C" media="(prefers-color-scheme: dark)">
+<meta name="apple-itunes-app" content="app-id=6828623058">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stilus Ingenium">
+<meta property="og:title" content="سُكون — تذكيرٌ يعرف أماكنك">
+<meta property="og:description" content="احفظ أماكنك مرّة، وسُكون يذكّرك كلّما وصلت أو غادرت.">
+<meta property="og:url" content="https://stilus-ingenium.com/sukoon/">
+<meta property="og:image" content="https://stilus-ingenium.com/sukoon/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1024 1024'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%2336A093'/%3E%3Cstop offset='1' stop-color='%231E6E66'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='1024' height='1024' rx='232' fill='url(%23b)'/%3E%3Cg transform='translate(330,300) scale(4.2)'%3E%3Cpath d='M66 38 C66 25 57 17 45 17 C31 17 21 29 21 43 C21 57 32 65 45 65 C55 65 62 59 62 50 C62 70 54 82 38 88' fill='none' stroke='%23fff' stroke-width='9.5' stroke-linecap='round'/%3E%3Ccircle cx='43' cy='40' r='6.2' fill='%23E9B872'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"MobileApplication","name":"Sukoon — سُكون","operatingSystem":"iOS, Android","applicationCategory":"ProductivityApplication","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Stilus Ingenium","url":"https://stilus-ingenium.com"},"url":"https://stilus-ingenium.com/sukoon/","downloadUrl":"https://stilus-ingenium.com/sukoon/get"}
+</script>
+<style>
+/* ─── الخطّان — مضمّنان ومقصوصان على حروف الصفحة (landing/build.py)، فلا يتغيّر الشكل بالجهاز ─── */
+@font-face{font-family:"Tajawal";src:url(assets/Tajawal-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Tajawal";src:url(assets/Tajawal-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Jakarta";src:url(assets/PlusJakartaSans-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Jakarta";src:url(assets/PlusJakartaSans-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+
+/* ─── الألوان من التطبيق نفسه (mobile/lib/core/theme/app_colors.dart) ─── */
+:root{
+  --mist:#F2F6F4; --surface:#FFFFFF; --glass:rgba(255,255,255,.62); --edge:rgba(255,255,255,.85);
+  --sea:#2F8E84; --sea-deep:#1E6E66; --sea-bright:#36A093; --sea-tint:#DCEDE9;
+  --amber:#E9B872; --amber-deep:#C8923F;
+  --ink:#16252B; --ink-soft:#5E7079; --line:#DCE8E5;
+  --shadow:0 24px 60px -24px rgba(22,60,58,.28), 0 2px 8px rgba(22,60,58,.06);
+  --radius:28px; --max:1180px;
+  color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --mist:#0C1A1C; --surface:#15282B; --glass:rgba(255,255,255,.07); --edge:rgba(255,255,255,.14);
+    --sea:#49B7A8; --sea-deep:#2F8E84; --sea-tint:#1B3A38;
+    --ink:#EAF2F0; --ink-soft:#9DB1B4; --line:#23393B;
+    --shadow:0 24px 60px -24px rgba(0,0,0,.6), 0 2px 8px rgba(0,0,0,.3);
+    color-scheme:dark;
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+html,body{overflow-x:clip}
+body{margin:0;background:var(--mist);color:var(--ink);font:400 17px/1.75 "Tajawal","Jakarta",system-ui,sans-serif}
+html[lang=en] body{font-family:"Jakarta","Tajawal",system-ui,sans-serif;line-height:1.65}
+html[lang=ar] [data-l=en], html[lang=en] [data-l=ar]{display:none !important}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+h1,h2,h3{margin:0;font-weight:700;line-height:1.2;letter-spacing:-.01em}
+p{margin:0}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+.ico{width:22px;height:22px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+/* ─── الخلفية السائلة: بقعٌ بحريّة وكهرمانية تتنفّس ببطء ─── */
+.liquid{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none}
+.liquid i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.55;animation:drift 26s ease-in-out infinite alternate}
+.liquid i:nth-child(1){width:52vw;height:52vw;background:#9fd8cf;top:-18vw;inset-inline-end:-10vw}
+.liquid i:nth-child(2){width:40vw;height:40vw;background:#f3d9ae;bottom:-14vw;inset-inline-start:-8vw;animation-duration:32s}
+.liquid i:nth-child(3){width:30vw;height:30vw;background:#bfe6df;top:40vh;inset-inline-start:30vw;animation-duration:38s;opacity:.35}
+@media (prefers-color-scheme:dark){.liquid i{opacity:.18}}
+@keyframes drift{to{transform:translate3d(4vw,6vh,0) scale(1.12)}}
+
+/* ─── الزجاج ─── */
+.glass{background:var(--glass);-webkit-backdrop-filter:blur(22px) saturate(1.3);backdrop-filter:blur(22px) saturate(1.3);border:1px solid var(--edge);box-shadow:var(--shadow);border-radius:var(--radius)}
+
+/* ─── الشريط العلوي ─── */
+.nav{position:sticky;top:12px;z-index:20;margin:12px auto 0;max-width:var(--max);padding:0 20px}
+.nav .bar{display:flex;align-items:center;gap:16px;padding:10px 12px 10px 16px;border-radius:999px}
+html[dir=rtl] .nav .bar{padding:10px 16px 10px 12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:20px}
+.brand svg{width:36px;height:36px;flex:none}
+html[lang=en] .brand small{display:none}
+.brand small{display:block;font:700 9px/1 "Jakarta",sans-serif;letter-spacing:.28em;color:var(--sea);margin-top:3px}
+.nav .links{display:flex;gap:22px;margin-inline-start:auto;font-size:15px}
+.nav .links a{text-decoration:none;color:var(--ink-soft)}
+.nav .links a:hover{color:var(--ink)}
+.lang{border:1px solid var(--line);background:transparent;color:var(--ink);border-radius:999px;padding:7px 14px;font:700 13px "Jakarta","Tajawal",sans-serif;cursor:pointer}
+.cta{display:inline-flex;align-items:center;gap:8px;background:var(--ink);color:var(--mist);text-decoration:none;border-radius:999px;padding:10px 18px;font-weight:700;font-size:15px;white-space:nowrap}
+@media (max-width:860px){.nav .links{display:none}.nav .lang{margin-inline-start:auto}}
+@media (max-width:440px){.nav .cta{display:none}.nav .bar{padding:8px 10px 8px 14px}}
+
+/* ─── البطل ─── */
+.hero{padding:72px 0 40px}
+.hero .grid{display:grid;grid-template-columns:1.05fr .95fr;gap:40px;align-items:center}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:999px;font-size:14px;color:var(--ink-soft)}
+.chip b{color:var(--ink)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--sea);box-shadow:0 0 0 4px color-mix(in srgb,var(--sea) 22%,transparent)}
+.hero h1{font-size:clamp(40px,6.4vw,76px);margin:22px 0 18px}
+.hero h1 em{font-style:normal;background:linear-gradient(180deg,var(--sea-bright),var(--sea-deep));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{font-size:clamp(17px,1.6vw,20px);color:var(--ink-soft);max-width:34em}
+.stores{display:flex;flex-wrap:wrap;gap:12px;margin:30px 0 22px}
+.store{display:inline-flex;align-items:center;gap:12px;min-width:196px;padding:12px 20px;border-radius:18px;background:var(--ink);color:var(--mist);text-decoration:none;transition:transform .2s ease}
+.store:hover{transform:translateY(-2px)}
+.store .ico{width:26px;height:26px}
+.store span{display:flex;flex-direction:column;line-height:1.15}
+.store small{font-size:12px;opacity:.75}
+.store strong{font:700 19px "Jakarta","Tajawal",sans-serif}
+.store.soon{background:transparent;color:var(--ink);border:1.5px dashed var(--line);cursor:default}
+.store.soon:hover{transform:none}
+.store.mine{outline:3px solid color-mix(in srgb,var(--sea) 45%,transparent);outline-offset:3px}
+.trust{display:flex;flex-wrap:wrap;gap:10px 22px;color:var(--ink-soft);font-size:14.5px;list-style:none;padding:0;margin:0}
+.trust li{display:flex;align-items:center;gap:8px}
+.trust .ico{width:18px;height:18px;color:var(--sea)}
+
+/* الهواتف */
+.stage{position:relative;height:640px}
+.ring{position:absolute;inset:50% auto auto 50%;width:520px;height:520px;margin:-260px 0 0 -260px;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--sea) 45%,transparent)}
+.ring::before,.ring::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid var(--sea);opacity:0;animation:ping 4.8s ease-out infinite}
+.ring::after{animation-delay:2.4s}
+@keyframes ping{0%{transform:scale(.55);opacity:.45}100%{transform:scale(1.08);opacity:0}}
+.phone{position:absolute;width:268px;aspect-ratio:1290/2796;border-radius:46px;padding:9px;background:linear-gradient(160deg,#2a3b40,#0e1a1d);box-shadow:0 40px 80px -30px rgba(10,40,38,.55),inset 0 0 0 1.5px rgba(255,255,255,.12)}
+.phone img{width:100%;height:100%;object-fit:cover;border-radius:38px;background:var(--mist)}
+.phone::after{content:"";position:absolute;top:19px;left:50%;width:78px;height:22px;margin-left:-39px;border-radius:999px;background:#05090a}
+.phone.front{inset-inline-start:calc(50% - 230px);top:34px;z-index:2;animation:float 9s ease-in-out infinite}
+.phone.back{inset-inline-start:calc(50% - 30px);top:96px;transform:rotate(6deg) scale(.9);opacity:.96;z-index:1}
+html[dir=rtl] .phone.back{transform:rotate(-6deg) scale(.9)}
+@keyframes float{50%{transform:translateY(-12px)}}
+.notif{position:absolute;z-index:3;inset-inline-start:calc(50% - 270px);top:350px;width:290px;padding:14px 16px;border-radius:22px;display:flex;gap:12px;align-items:flex-start;animation:pop 9s ease-in-out infinite}
+.notif .app{width:38px;height:38px;border-radius:11px;flex:none;background:linear-gradient(180deg,#36A093,#1E6E66);display:grid;place-items:center}
+.notif .app svg{width:24px;height:24px}
+.notif b{display:block;font-size:15px}
+.notif p{font-size:14px;color:var(--ink-soft);line-height:1.45}
+.notif small{font:400 12px "Jakarta",sans-serif;color:var(--ink-soft)}
+@keyframes pop{0%,8%{opacity:0;transform:translateY(14px) scale(.96)}14%,80%{opacity:1;transform:none}90%,100%{opacity:0;transform:translateY(-8px)}}
+@media (max-width:980px){
+  .hero{padding-top:40px}
+  .hero .grid{grid-template-columns:1fr}
+  .stage{height:560px;max-width:520px;margin:0 auto;width:100%}
+  .ring{width:420px;height:420px;margin:-210px 0 0 -210px}
+}
+@media (max-width:520px){
+  .stage{height:500px}
+  .phone{width:210px;border-radius:38px;padding:7px}
+  .phone img{border-radius:31px}
+  .phone.front{inset-inline-start:calc(50% - 178px)}
+  .phone.back{inset-inline-start:calc(50% - 22px);top:80px}
+  .notif{width:250px;top:300px;inset-inline-start:calc(50% - 170px)}
+  .ring{width:340px;height:340px;margin:-170px 0 0 -170px}
+}
+
+/* ─── الأقسام ─── */
+section{padding:96px 0;scroll-margin-top:84px}
+.eyebrow{font:700 13px "Jakarta","Tajawal",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--sea)}
+html[lang=ar] .eyebrow{letter-spacing:0;font-size:15px}
+.title{font-size:clamp(30px,4.2vw,48px);margin:10px 0 14px;max-width:18em}
+.sub{color:var(--ink-soft);max-width:38em;font-size:18px}
+
+/* المشكلة والجواب */
+.contrast{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px}
+.contrast .glass{padding:30px}
+.contrast h3{font-size:20px;margin:14px 0 8px}
+.contrast p{color:var(--ink-soft)}
+.contrast .them{background:transparent;box-shadow:none;border:1.5px dashed var(--line)}
+.contrast .them .ico{color:var(--ink-soft)}
+.contrast .us .ico{color:var(--sea)}
+@media (max-width:760px){.contrast{grid-template-columns:1fr}}
+
+/* العرض الحيّ: نقطةٌ تعبر حدود المكان فيصل التذكير */
+.demo{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-top:44px}
+.map{position:relative;aspect-ratio:1;border-radius:36px;overflow:hidden;padding:0}
+.map svg{width:100%;height:100%}
+.map .label{position:absolute;inset-inline-start:18px;top:16px;font-size:13px;color:var(--ink-soft)}
+.feed{display:flex;flex-direction:column;gap:14px}
+.card{padding:18px 20px;border-radius:22px;display:flex;gap:14px;align-items:flex-start;transition:transform .5s ease,opacity .5s ease,box-shadow .5s ease}
+.card .badge{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;background:var(--sea-tint);color:var(--sea);flex:none}
+.card h3{font-size:18px}
+.card p{color:var(--ink-soft);font-size:15.5px}
+.card q{display:block;quotes:none;margin-top:6px;color:var(--ink);font-weight:700;font-size:15.5px}
+.card.lit{transform:translateX(0) scale(1.02);box-shadow:0 30px 70px -28px color-mix(in srgb,var(--sea) 70%,transparent);border-color:color-mix(in srgb,var(--sea) 45%,transparent)}
+.card.lit .badge{background:var(--sea);color:#fff}
+@media (max-width:860px){.demo{grid-template-columns:1fr}.map{max-width:460px;width:100%;margin:0 auto}}
+
+/* الخطوات */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:40px;counter-reset:s}
+.steps .glass{padding:28px;position:relative}
+.steps .n{font:700 14px "Jakarta",sans-serif;color:var(--sea);width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:var(--sea-tint)}
+.steps h3{font-size:20px;margin:16px 0 8px}
+.steps p{color:var(--ink-soft);font-size:16px}
+@media (max-width:860px){.steps{grid-template-columns:1fr}}
+
+/* معرض الشاشات */
+.gallery{display:flex;gap:26px;overflow-x:auto;scroll-snap-type:x mandatory;padding:34px 20px 30px;margin:0 -20px;scrollbar-width:thin}
+.gallery figure{margin:0;flex:none;scroll-snap-align:center;text-align:center}
+.gallery .phone{position:relative;width:236px;inset:auto;top:auto;animation:none}
+.gallery figcaption{margin-top:14px;font-size:15px;color:var(--ink-soft)}
+
+/* الخصوصية */
+.pillars{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:40px}
+.pillars .glass{padding:24px}
+.pillars .ico{width:28px;height:28px;color:var(--sea)}
+.pillars h3{font-size:18px;margin:14px 0 6px}
+.pillars p{color:var(--ink-soft);font-size:15.5px}
+@media (max-width:980px){.pillars{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.pillars{grid-template-columns:1fr}}
+
+/* سُكون+ */
+.plus{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:40px}
+.plan{padding:32px}
+.plan h3{font-size:24px;display:flex;align-items:center;gap:10px}
+.plan .tag{font:700 12px "Jakarta","Tajawal",sans-serif;padding:4px 10px;border-radius:999px;background:var(--sea-tint);color:var(--sea)}
+.plan ul{list-style:none;padding:0;margin:18px 0 0;display:grid;gap:10px}
+.plan li{display:flex;gap:10px;align-items:flex-start;color:var(--ink-soft)}
+.plan li .ico{width:20px;height:20px;color:var(--sea);margin-top:4px}
+.plan.premium{background:linear-gradient(160deg,#173e3f,#0b1c1e);color:#EAF2F0;border-color:rgba(233,184,114,.35)}
+.plan.premium li{color:#BFD2D0}
+.plan.premium .tag{background:rgba(233,184,114,.16);color:var(--amber)}
+.plan.premium li .ico{color:var(--amber)}
+@media (max-width:760px){.plus{grid-template-columns:1fr}}
+
+/* الأسئلة */
+.faq{margin-top:34px;display:grid;gap:12px;max-width:860px}
+.faq details{border-radius:22px;padding:0}
+.faq summary{list-style:none;cursor:pointer;padding:20px 24px;font-weight:700;font-size:17.5px;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .ico{transition:transform .25s ease;color:var(--sea)}
+.faq details[open] summary .ico{transform:rotate(45deg)}
+.faq details p{padding:0 24px 22px;color:var(--ink-soft)}
+
+/* التحميل */
+.get{padding:60px 0 100px}
+.get .glass{padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center}
+.get h2{font-size:clamp(28px,4vw,44px)}
+.get .qr{background:#fff;border-radius:24px;padding:16px;text-align:center;color:#16252B}
+.get .qr img{width:100%;max-width:200px;margin:0 auto}
+.get .qr small{display:block;margin-top:8px;font-size:13px}
+.get .link{display:inline-flex;align-items:center;gap:8px;margin-top:14px;font:700 15px "Jakarta",sans-serif;color:var(--sea);text-decoration:none;direction:ltr}
+@media (max-width:760px){.get .glass{grid-template-columns:1fr}.get .qr{display:none}}
+
+/* التذييل */
+footer{padding:40px 0 60px;border-top:1px solid var(--line);color:var(--ink-soft);font-size:15px}
+footer .row{display:flex;flex-wrap:wrap;gap:18px 28px;align-items:center;justify-content:space-between}
+footer .co{display:flex;align-items:center;gap:12px;text-decoration:none}
+footer .co img{width:34px;height:34px}
+@media (prefers-color-scheme:dark){footer .co img{filter:invert(1) hue-rotate(180deg)}}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 20px}
+footer nav a{text-decoration:none}
+footer nav a:hover{color:var(--ink)}
+
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal{opacity:1;transform:none}
+}
+:focus-visible{outline:3px solid var(--sea);outline-offset:3px;border-radius:8px}
+</style>
+</head>
+<body>
+<div class="liquid" aria-hidden="true"><i></i><i></i><i></i></div>
+
+<!-- رموز خطّية موحّدة (أسلوب Lucide: stroke 2، حوافّ دائرية، currentColor) — لا إيموجي -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-in" viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="m10 17 5-5-5-5"/><path d="M15 12H3"/></symbol>
+  <symbol id="i-out" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 24 24"><rect x="2" y="7" width="16" height="10" rx="2"/><path d="M22 11v2"/><path d="M6 11v2"/><path d="M10 11v2"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1Z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-route" viewBox="0 0 24 24"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/><path d="M3 3l18 18"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+  <symbol id="i-lang" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M6 3.5v17a1 1 0 0 0 1.5.86l14-8.5a1 1 0 0 0 0-1.72l-14-8.5A1 1 0 0 0 6 3.5Z"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.13-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.13a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.13 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.13a.5.5 0 0 1-.96 0Z"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></symbol>
+  <symbol id="mark" viewBox="0 0 200 200"><g transform="translate(48,40) scale(1.05)"><path d="M66 38 C66 25 57 17 45 17 C31 17 21 29 21 43 C21 57 32 65 45 65 C55 65 62 59 62 50 C62 70 54 82 38 88" fill="none" stroke="currentColor" stroke-width="9.5" stroke-linecap="round"/><circle cx="43" cy="40" r="6.2" fill="#E9B872"/></g></symbol>
+</svg>
+
+<header class="nav">
+  <div class="bar glass">
+    <a class="brand" href="#top" aria-label="سُكون">
+      <svg viewBox="0 0 200 200" aria-hidden="true"><defs><linearGradient id="bt" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#36A093"/><stop offset="1" stop-color="#1E6E66"/></linearGradient></defs><g transform="translate(48,40) scale(1.05)"><path d="M66 38 C66 25 57 17 45 17 C31 17 21 29 21 43 C21 57 32 65 45 65 C55 65 62 59 62 50 C62 70 54 82 38 88" fill="none" stroke="url(#bt)" stroke-width="9.5" stroke-linecap="round"/><circle cx="43" cy="40" r="6.2" fill="#E9B872"/></g></svg>
+      <span><span data-l="ar">سُكون</span><span data-l="en">Sukoon</span><small>SUKOON</small></span>
+    </a>
+    <nav class="links">
+      <a href="#how"><span data-l="ar">كيف يعمل</span><span data-l="en">How it works</span></a>
+      <a href="#privacy"><span data-l="ar">الخصوصية</span><span data-l="en">Privacy</span></a>
+      <a href="#plus"><span data-l="ar">سُكون+</span><span data-l="en">Sukoon+</span></a>
+      <a href="#faq"><span data-l="ar">أسئلة</span><span data-l="en">Questions</span></a>
+    </nav>
+    <button class="lang" type="button" id="langBtn" aria-label="Language">English</button>
+    <a class="cta" href="#get"><span data-l="ar">حمّل التطبيق</span><span data-l="en">Get the app</span></a>
+  </div>
+</header>
+
+<main id="top">
+  <!-- ─── البطل ─── -->
+  <section class="hero">
+    <div class="wrap grid">
+      <div>
+        <span class="chip glass"><span class="dot"></span>
+          <span data-l="ar">متاح على <b>App Store</b> · و<b>Google Play</b> قريباً</span>
+          <span data-l="en">On the <b>App Store</b> · <b>Google Play</b> soon</span>
+        </span>
+        <h1>
+          <span data-l="ar">تذكيرٌ <em>يعرف أماكنك</em></span>
+          <span data-l="en">Reminders that <em>know your places</em></span>
+        </h1>
+        <p class="lede">
+          <span data-l="ar">تذكير الجوال بالموقع يُضبط لمهمّةٍ واحدة ثم ينتهي. سُكون يحفظ أماكنك مرّةً واحدة، ويذكّرك في كلّ مرّةٍ تصل أو تغادر — كل يوم، بلا أن تضبط شيئاً من جديد.</span>
+          <span data-l="en">Your phone's location reminder is set for one task, then it is gone. Sukoon remembers your places once and reminds you every time you arrive or leave — every day, without setting anything again.</span>
+        </p>
+        <div class="stores" data-stores></div>
+        <ul class="trust">
+          <li><svg class="ico"><use href="#i-check"/></svg><span data-l="ar">يعمل والتطبيق مغلق</span><span data-l="en">Works while the app is closed</span></li>
+          <li><svg class="ico"><use href="#i-check"/></svg><span data-l="ar">لا نتتبّع مسارك</span><span data-l="en">We never track your route</span></li>
+          <li><svg class="ico"><use href="#i-check"/></svg><span data-l="ar">عربيٌّ كامل، وإنجليزي</span><span data-l="en">Fully Arabic, and English</span></li>
+        </ul>
+      </div>
+      <div class="stage" aria-hidden="true">
+        <div class="ring"></div>
+        <div class="phone back"><img data-shot="02-place-reminders" alt="" width="1290" height="2796" fetchpriority="high"></div>
+        <div class="phone front"><img data-shot="01-places" alt="" width="1290" height="2796" fetchpriority="high"></div>
+        <div class="notif glass">
+          <div class="app"><svg viewBox="0 0 200 200" style="color:#fff"><use href="#mark"/></svg></div>
+          <div>
+            <small><span data-l="ar">سُكون · الآن</span><span data-l="en">Sukoon · now</span></small>
+            <b><span data-l="ar">وصلت البيت</span><span data-l="en">You're home</span></b>
+            <p><span data-l="ar">اترك ضغط اليوم عند الباب</span><span data-l="en">Leave today's stress at the door</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── الفرق ─── -->
+  <section id="why">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span data-l="ar">لماذا سُكون</span><span data-l="en">Why Sukoon</span></p>
+      <h2 class="title reveal"><span data-l="ar">جوالك يذكّرك مرّة. سُكون يذكّرك كلّ مرّة.</span><span data-l="en">Your phone reminds you once. Sukoon, every time.</span></h2>
+      <div class="contrast">
+        <div class="glass them reveal">
+          <svg class="ico"><use href="#i-x"/></svg>
+          <h3><span data-l="ar">تذكير الموقع المعتاد</span><span data-l="en">The usual location reminder</span></h3>
+          <p><span data-l="ar">تكتبه لمهمّة، يصلك مرّة، ثم يختفي. وغداً تبدأ من الصفر: المكان، والمسافة، والنصّ.</span><span data-l="en">You write it for one task, it fires once, then it's gone. Tomorrow you start again: the place, the distance, the words.</span></p>
+        </div>
+        <div class="glass us reveal">
+          <svg class="ico"><use href="#i-check"/></svg>
+          <h3><span data-l="ar">سُكون</span><span data-l="en">Sukoon</span></h3>
+          <p><span data-l="ar">البيت والعمل والنادي محفوظةٌ مرّة، ولكلّ مكانٍ تذكيراته. تصل أو تغادر فيصلك ما يخصّ تلك اللحظة — اليوم وغداً وبعده.</span><span data-l="en">Home, work and the gym are saved once, each with its own reminders. Arrive or leave and you get what belongs to that moment — today, tomorrow and after.</span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── العرض الحيّ ─── -->
+  <section id="how">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span data-l="ar">كيف يعمل</span><span data-l="en">How it works</span></p>
+      <h2 class="title reveal"><span data-l="ar">ثلاث لحظات، لكلٍّ تذكيرها</span><span data-l="en">Three moments, each with its reminder</span></h2>
+      <p class="sub reveal"><span data-l="ar">تحفظ المكان بنطاقه، وتكتب ما تريد أن تتذكّره، وتختار متى. والباقي على نظام جوالك: يراقب حدود المكان ويوقظ سُكون حين تعبرها.</span><span data-l="en">Save a place with its radius, write what you want to remember, choose when. Your phone's system does the rest: it watches the boundary and wakes Sukoon when you cross it.</span></p>
+      <div class="demo">
+        <div class="map glass reveal" aria-hidden="true">
+          <svg viewBox="0 0 400 400" id="mapSvg">
+            <defs>
+              <radialGradient id="zone" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#36A093" stop-opacity=".26"/><stop offset="1" stop-color="#36A093" stop-opacity=".06"/></radialGradient>
+            </defs>
+            <g stroke="currentColor" opacity=".10" stroke-width="10" fill="none" stroke-linecap="round" style="color:var(--ink)">
+              <path d="M-10 120 C80 110 160 150 410 130"/><path d="M-10 300 C120 290 240 330 410 300"/>
+              <path d="M110 -10 C120 120 90 260 120 410"/><path d="M300 -10 C280 140 320 260 290 410"/>
+            </g>
+            <circle cx="200" cy="205" r="92" fill="url(#zone)"/>
+            <circle cx="200" cy="205" r="92" fill="none" stroke="#2F8E84" stroke-width="2" stroke-dasharray="6 8" id="zoneEdge"/>
+            <g transform="translate(200 205)">
+              <circle r="22" fill="#fff" stroke="#2F8E84" stroke-width="2"/>
+              <path d="M-9 1 L0 -8 L9 1 M-6 -1 V9 H6 V-1" fill="none" stroke="#2F8E84" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+            </g>
+            <text x="200" y="250" text-anchor="middle" font-size="15" font-weight="700" fill="#1E6E66" id="placeName">البيت</text>
+            <path id="track" d="M40 360 C90 300 140 250 180 220 C230 180 260 150 300 110 C330 80 350 60 370 40" fill="none"/>
+            <circle r="16" fill="#E9B872" opacity=".25" id="youHalo"/>
+            <circle r="8" fill="#E9B872" stroke="#fff" stroke-width="3" id="you"/>
+          </svg>
+          <span class="label"><span data-l="ar">عرضٌ توضيحي</span><span data-l="en">Illustration</span></span>
+        </div>
+        <div class="feed">
+          <article class="card glass reveal" data-moment="enter">
+            <div class="badge"><svg class="ico"><use href="#i-in"/></svg></div>
+            <div><h3><span data-l="ar">حين تصل</span><span data-l="en">When you arrive</span></h3>
+              <p><span data-l="ar">يصلك وأنت عند الباب، لا قبله ولا بعد أن تنسى.</span><span data-l="en">It reaches you at the door — not before, not after you forget.</span></p>
+              <q><span data-l="ar">«اترك ضغط اليوم عند الباب»</span><span data-l="en">"Leave today's stress at the door"</span></q></div>
+          </article>
+          <article class="card glass reveal" data-moment="time">
+            <div class="badge"><svg class="ico"><use href="#i-clock"/></svg></div>
+            <div><h3><span data-l="ar">في وقتٍ وأنت هناك</span><span data-l="en">At a time while you're there</span></h3>
+              <p><span data-l="ar">لا يرنّ في التاسعة إن لم تكن في البيت.</span><span data-l="en">It won't ring at nine if you're not home.</span></p>
+              <q><span data-l="ar">«خذ دواءك» · 9:30 م</span><span data-l="en">"Take your medicine" · 9:30 PM</span></q></div>
+          </article>
+          <article class="card glass reveal" data-moment="exit">
+            <div class="badge"><svg class="ico"><use href="#i-out"/></svg></div>
+            <div><h3><span data-l="ar">حين تغادر</span><span data-l="en">When you leave</span></h3>
+              <p><span data-l="ar">قبل أن تبتعد، والمفاتيح ما زالت على الطاولة.</span><span data-l="en">Before you're far away, with the keys still on the table.</span></p>
+              <q><span data-l="ar">«المفاتيح، المحفظة، الجوال؟»</span><span data-l="en">"Keys, wallet, phone?"</span></q></div>
+          </article>
+        </div>
+      </div>
+
+      <div class="steps">
+        <div class="glass reveal"><span class="n">1</span><h3><span data-l="ar">احفظ مكانك</span><span data-l="en">Save a place</span></h3><p><span data-l="ar">من موقعك الحالي أو من الخريطة، وسمّه كما تسمّيه: البيت، العمل، بيت الأهل.</span><span data-l="en">From where you stand or on the map, named the way you name it: home, work, family.</span></p></div>
+        <div class="glass reveal"><span class="n">2</span><h3><span data-l="ar">اكتب ما تريد تذكّره</span><span data-l="en">Write what to remember</span></h3><p><span data-l="ar">بكلماتك، أو ابدأ من فكرةٍ جاهزة بصياغةٍ هادئة ومحفّزٍ مضبوط.</span><span data-l="en">In your words, or start from a ready idea with calm wording and the right moment set.</span></p></div>
+        <div class="glass reveal"><span class="n">3</span><h3><span data-l="ar">وانسَ الأمر</span><span data-l="en">Then forget about it</span></h3><p><span data-l="ar">لا تفتح التطبيق بعدها. سُكون يتذكّر عنك، كل يوم.</span><span data-l="en">No need to open the app again. Sukoon remembers for you, every day.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── الشاشات ─── -->
+  <section id="screens" style="padding-top:20px">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span data-l="ar">من داخل التطبيق</span><span data-l="en">Inside the app</span></p>
+      <h2 class="title reveal"><span data-l="ar">شاشةٌ واحدة لعملٍ واحد</span><span data-l="en">One screen for the one job</span></h2>
+      <div class="gallery" tabindex="0" aria-label="Screens">
+        <figure><div class="phone"><img data-shot="01-places" alt="" loading="lazy" width="1290" height="2796"></div><figcaption><span data-l="ar">أماكنك وتذكيراتها</span><span data-l="en">Your places and their reminders</span></figcaption></figure>
+        <figure><div class="phone"><img data-shot="02-place-reminders" alt="" loading="lazy" width="1290" height="2796"></div><figcaption><span data-l="ar">مكانٌ واحد بتفاصيله</span><span data-l="en">One place, in detail</span></figcaption></figure>
+        <figure><div class="phone"><img data-shot="03-add-reminder" alt="" loading="lazy" width="1290" height="2796"></div><figcaption><span data-l="ar">تذكيرٌ في ثوانٍ</span><span data-l="en">A reminder in seconds</span></figcaption></figure>
+        <figure><div class="phone"><img data-shot="04-templates" alt="" loading="lazy" width="1290" height="2796"></div><figcaption><span data-l="ar">أفكارٌ جاهزة</span><span data-l="en">Ready ideas</span></figcaption></figure>
+        <figure><div class="phone"><img data-shot="05-reminders-dark" alt="" loading="lazy" width="1290" height="2796"></div><figcaption><span data-l="ar">والوضع الداكن</span><span data-l="en">And dark mode</span></figcaption></figure>
+        <figure><div class="phone"><img data-shot="06-settings" alt="" loading="lazy" width="1290" height="2796"></div><figcaption><span data-l="ar">إعداداتٌ واضحة</span><span data-l="en">Clear settings</span></figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── الخصوصية ─── -->
+  <section id="privacy">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span data-l="ar">الخصوصية والبطارية</span><span data-l="en">Privacy and battery</span></p>
+      <h2 class="title reveal"><span data-l="ar">يعرف أماكنك، لا طريقك</span><span data-l="en">It knows your places, not your route</span></h2>
+      <div class="pillars">
+        <div class="glass reveal"><svg class="ico"><use href="#i-route"/></svg><h3><span data-l="ar">لا تتبّع</span><span data-l="en">No tracking</span></h3><p><span data-l="ar">الموقع يُقارن بأماكنك على جوالك. مسارك لا يُجمع ولا يُرفع، ولا يُستعمل لإعلان.</span><span data-l="en">Location is compared with your places on your phone. Your route is never collected, uploaded or used for ads.</span></p></div>
+        <div class="glass reveal"><svg class="ico"><use href="#i-battery"/></svg><h3><span data-l="ar">بلا استنزاف</span><span data-l="en">Battery spared</span></h3><p><span data-l="ar">حدود الأماكن يراقبها نظام جوالك نفسه، فلا يبقى سُكون يعمل في الخلفية.</span><span data-l="en">Your phone's own system watches the boundaries, so Sukoon isn't left running.</span></p></div>
+        <div class="glass reveal"><svg class="ico"><use href="#i-shield"/></svg><h3><span data-l="ar">لا إعلان بلا لمستك</span><span data-l="en">No ad without your tap</span></h3><p><span data-l="ar">لا لافتات ولا نوافذ مفاجئة. إعلانٌ واحد اختياري، حين تطلبه أنت مقابل مكانٍ إضافي.</span><span data-l="en">No banners, no pop-ups. One optional ad, only when you ask for it in return for an extra place.</span></p></div>
+        <div class="glass reveal"><svg class="ico"><use href="#i-trash"/></svg><h3><span data-l="ar">احذف كلّ شيء</span><span data-l="en">Delete everything</span></h3><p><span data-l="ar">حسابك وبياناتك كلها تُحذف من داخل التطبيق بلمسة، ولا نبيع بياناتك لأحد.</span><span data-l="en">Your account and all your data are deleted from inside the app, and we sell your data to no one.</span></p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── سُكون+ ─── -->
+  <section id="plus" style="padding-top:20px">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span data-l="ar">مجاني، ومعه خيار</span><span data-l="en">Free, with a choice</span></p>
+      <h2 class="title reveal"><span data-l="ar">ما يكفي يومك مجاناً</span><span data-l="en">What your day needs, free</span></h2>
+      <div class="plus">
+        <div class="glass plan reveal">
+          <h3><span data-l="ar">سُكون</span><span data-l="en">Sukoon</span> <span class="tag"><span data-l="ar">مجاني</span><span data-l="en">Free</span></span></h3>
+          <ul>
+            <li><svg class="ico"><use href="#i-check"/></svg><span data-l="ar">أماكنك اليومية، ولكلٍّ تذكيراته</span><span data-l="en">Your everyday places, each with its reminders</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span data-l="ar">الوصول والمغادرة والوقت وأنت هناك</span><span data-l="en">Arrive, leave, and a time while you're there</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span data-l="ar">أفكارٌ جاهزة لتبدأ</span><span data-l="en">Ready ideas to start with</span></li>
+            <li><svg class="ico"><use href="#i-check"/></svg><span data-l="ar">بلا إعلانٍ يظهر من تلقاء نفسه</span><span data-l="en">No ad that shows on its own</span></li>
+          </ul>
+        </div>
+        <div class="glass plan premium reveal">
+          <h3><span data-l="ar">سُكون+</span><span data-l="en">Sukoon+</span> <span class="tag"><span data-l="ar">اختياري</span><span data-l="en">Optional</span></span></h3>
+          <ul>
+            <li><svg class="ico"><use href="#i-sparkle"/></svg><span data-l="ar">أماكن أكثر، وتذكيراتٌ بلا حدّ</span><span data-l="en">More places, unlimited reminders</span></li>
+            <li><svg class="ico"><use href="#i-sparkle"/></svg><span data-l="ar">الأفكار المميّزة كلها</span><span data-l="en">All the premium ideas</span></li>
+            <li><svg class="ico"><use href="#i-sparkle"/></svg><span data-l="ar">شهري أو سنوي، وتلغيه متى شئت من المتجر</span><span data-l="en">Monthly or yearly, cancel any time in the store</span></li>
+            <li><svg class="ico"><use href="#i-sparkle"/></svg><span data-l="ar">أو أهدِه لمن تحب</span><span data-l="en">Or give it as a gift</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── أسئلة ─── -->
+  <section id="faq">
+    <div class="wrap">
+      <p class="eyebrow reveal"><span data-l="ar">أسئلة</span><span data-l="en">Questions</span></p>
+      <h2 class="title reveal"><span data-l="ar">ما يُسأل عنه قبل التحميل</span><span data-l="en">What people ask first</span></h2>
+      <div class="faq">
+        <details class="glass reveal"><summary><span data-l="ar">لماذا يطلب «السماح طوال الوقت» للموقع؟</span><span data-l="en">Why does it ask for location "all the time"?</span><svg class="ico"><use href="#i-plus"/></svg></summary>
+          <p><span data-l="ar">لأن التذكير يصلك والتطبيق مغلق — لا أحد يفتح تطبيق تذكيرات عند باب بيته. يشرح سُكون ذلك قبل نافذة النظام، ومن يرفض يبقى معه تطبيقٌ يعمل ويعرف ما ينقصه.</span><span data-l="en">Because the reminder reaches you while the app is closed — nobody opens a reminder app at their front door. Sukoon explains this before the system prompt, and if you decline the app still works and tells you what's missing.</span></p></details>
+        <details class="glass reveal"><summary><span data-l="ar">هل يستنزف البطارية؟</span><span data-l="en">Does it drain the battery?</span><svg class="ico"><use href="#i-plus"/></svg></summary>
+          <p><span data-l="ar">لا. سُكون لا يسأل عن موقعك كل دقيقة؛ نظام جوالك يراقب حدود أماكنك (geofencing) ويوقظه عند العبور وحده.</span><span data-l="en">No. Sukoon doesn't poll your location; your phone's system watches the boundaries of your places (geofencing) and wakes it only when you cross one.</span></p></details>
+        <details class="glass reveal"><summary><span data-l="ar">ماذا ترون من موقعي؟</span><span data-l="en">What do you see of my location?</span><svg class="ico"><use href="#i-plus"/></svg></summary>
+          <p><span data-l="ar">الأماكن التي تحفظها أنت فقط، لتعود إليك على أي جهاز. أمّا أين تذهب بينها فلا نعرفه ولا نخزّنه.</span><span data-l="en">Only the places you save yourself, so they come back on any device. Where you go between them we neither know nor store.</span></p></details>
+        <details class="glass reveal"><summary><span data-l="ar">هل هو مجاني؟</span><span data-l="en">Is it free?</span><svg class="ico"><use href="#i-plus"/></svg></summary>
+          <p><span data-l="ar">نعم، بما يكفي أماكن يومك. وسُكون+ اشتراكٌ اختياري لمن يريد أكثر، يُدار ويُلغى من App Store أو Google Play.</span><span data-l="en">Yes, enough for your everyday places. Sukoon+ is an optional subscription for those who want more, managed and cancelled in the App Store or Google Play.</span></p></details>
+        <details class="glass reveal"><summary><span data-l="ar">كيف أدخل؟</span><span data-l="en">How do I sign in?</span><svg class="ico"><use href="#i-plus"/></svg></summary>
+          <p><span data-l="ar">ببريدك: يصلك رمزٌ من ستة أرقام فتدخل، بلا كلمة مرور تحفظها. وأماكنك تعود إليك إن غيّرت جوالك.</span><span data-l="en">With your email: a six-digit code arrives and you're in, no password to remember. Your places come back if you change phones.</span></p></details>
+        <details class="glass reveal"><summary><span data-l="ar">كيف أحذف حسابي؟</span><span data-l="en">How do I delete my account?</span><svg class="ico"><use href="#i-plus"/></svg></summary>
+          <p><span data-l="ar">من داخل التطبيق: الإعدادات ← حذف الحساب. أو من <a href="https://sukoon-api.stilus-ingenium.com/account-deletion">صفحة الحذف</a> بلا تثبيت التطبيق.</span><span data-l="en">Inside the app: Settings → Delete account. Or from the <a href="https://sukoon-api.stilus-ingenium.com/account-deletion?lang=en">deletion page</a> without installing it.</span></p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── التحميل ─── -->
+  <section id="get" class="get">
+    <div class="wrap">
+      <div class="glass reveal">
+        <div>
+          <h2><span data-l="ar">احفظ مكانك الأول اليوم</span><span data-l="en">Save your first place today</span></h2>
+          <p class="sub" style="margin-top:10px"><span data-l="ar">رابطٌ واحد يكفي: الآيفون يفتح App Store، والأندرويد Google Play.</span><span data-l="en">One link is all it takes: an iPhone opens the App Store, Android opens Google Play.</span></p>
+          <div class="stores" data-stores></div>
+          <a class="link" href="https://stilus-ingenium.com/sukoon/get">stilus-ingenium.com/sukoon/get <svg class="ico" style="width:18px;height:18px"><use href="#i-arrow"/></svg></a>
+        </div>
+        <div class="qr">
+          <img src="assets/qr-get.svg" alt="QR" width="200" height="200" loading="lazy">
+          <small><span data-l="ar">وجّه كاميرا جوالك</span><span data-l="en">Point your phone's camera</span></small>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <a class="co" href="https://stilus-ingenium.com/">
+      <img src="/assets/stilus-mark.svg" alt="" width="34" height="34">
+      <span><span data-l="ar">سُكون من شركة القلم الاصطناعي للتقنيات · المدينة المنورة · س.ت 7054527390</span><span data-l="en">Sukoon is made by Stilus Ingenium · Madinah · CR 7054527390</span></span>
+    </a>
+    <nav>
+      <a data-legal href="https://sukoon-api.stilus-ingenium.com/privacy"><span data-l="ar">الخصوصية</span><span data-l="en">Privacy</span></a>
+      <a data-legal href="https://sukoon-api.stilus-ingenium.com/terms"><span data-l="ar">الشروط</span><span data-l="en">Terms</span></a>
+      <a data-legal href="https://sukoon-api.stilus-ingenium.com/support"><span data-l="ar">الدعم</span><span data-l="en">Support</span></a>
+      <a href="mailto:dev@stilus-ingenium.com">dev@stilus-ingenium.com</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // ─── المتجران — رابط Google Play يُفتح يوم النشر للعموم (والقيمة نفسها في get/index.html) ───
+  var APP_STORE = 'https://apps.apple.com/app/id6828623058';
+  var PLAY = 'https://play.google.com/store/apps/details?id=com.stilus.sukoon';
+  var PLAY_LIVE = false;
+
+  var ua = navigator.userAgent || '';
+  var ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var android = /Android/i.test(ua);
+  var root = document.documentElement;
+  var langBtn = document.getElementById('langBtn');
+
+  function stores(lang) {
+    var ar = lang === 'ar';
+    var apple = '<a class="store' + (ios ? ' mine' : '') + '" href="' + APP_STORE + '">' +
+      '<svg class="ico"><use href="#i-phone"/></svg><span><small>' + (ar ? 'حمّله من' : 'Download on the') + '</small><strong>App Store</strong></span></a>';
+    var play = PLAY_LIVE
+      ? '<a class="store' + (android ? ' mine' : '') + '" href="' + PLAY + '"><svg class="ico"><use href="#i-play"/></svg><span><small>' + (ar ? 'احصل عليه من' : 'Get it on') + '</small><strong>Google Play</strong></span></a>'
+      : '<span class="store soon' + (android ? ' mine' : '') + '" aria-disabled="true"><svg class="ico"><use href="#i-play"/></svg><span><small>' + (ar ? 'قريباً على' : 'Coming soon to') + '</small><strong>Google Play</strong></span></span>';
+    // صاحب الأندرويد يرى متجره أوّلاً.
+    return android ? play + apple : apple + play;
+  }
+
+  function setLang(lang) {
+    root.lang = lang;
+    root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+    langBtn.textContent = lang === 'ar' ? 'English' : 'العربية';
+    document.title = lang === 'ar' ? 'سُكون — تذكيرٌ يعرف أماكنك' : 'Sukoon — Reminders that know your places';
+    document.querySelectorAll('[data-stores]').forEach(function (el) { el.innerHTML = stores(lang); });
+    document.querySelectorAll('img[data-shot]').forEach(function (img) {
+      img.src = 'assets/shots/' + lang + '-' + img.dataset.shot + '.webp';
+      img.alt = '';
+    });
+    document.querySelectorAll('a[data-legal]').forEach(function (a) {
+      a.href = a.href.split('?')[0] + (lang === 'en' ? '?lang=en' : '');
+    });
+    var place = document.getElementById('placeName');
+    if (place) place.textContent = lang === 'ar' ? 'البيت' : 'Home';
+    try { localStorage.setItem('sukoon-lang', lang); } catch (e) {}
+  }
+
+  var saved = null;
+  try { saved = localStorage.getItem('sukoon-lang'); } catch (e) {}
+  var q = new URLSearchParams(location.search).get('lang');
+  setLang(q === 'en' || q === 'ar' ? q : saved || ((navigator.language || 'ar').indexOf('ar') === 0 ? 'ar' : 'en'));
+  langBtn.addEventListener('click', function () { setLang(root.lang === 'ar' ? 'en' : 'ar'); });
+  // القادم من الرابط الواحد (#get) يصل إلى زرّي المتجرين — بعد أن تستقرّ الخطوط والصور.
+  if (location.hash.length > 1) {
+    var target = document.getElementById(location.hash.slice(1));
+    if (target) addEventListener('load', function () { target.scrollIntoView(); });
+  }
+
+  // ─── الظهور عند التمرير ───
+  var io = 'IntersectionObserver' in window ? new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: .14 }) : null;
+  document.querySelectorAll('.reveal').forEach(function (el) { io ? io.observe(el) : el.classList.add('in'); });
+
+  // ─── العرض الحيّ: النقطة تمشي، وحين تعبر حدّ المكان تضيء البطاقة ───
+  var track = document.getElementById('track');
+  var you = document.getElementById('you'), halo = document.getElementById('youHalo');
+  var cards = {};
+  document.querySelectorAll('[data-moment]').forEach(function (c) { cards[c.dataset.moment] = c; });
+  if (!track || !you) return;
+  var len = track.getTotalLength(), C = { x: 200, y: 205 }, R = 92;
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function light(which) {
+    Object.keys(cards).forEach(function (k) { cards[k].classList.toggle('lit', k === which); });
+  }
+  function place(t) {
+    var p = track.getPointAtLength(t * len);
+    you.setAttribute('cx', p.x); you.setAttribute('cy', p.y);
+    halo.setAttribute('cx', p.x); halo.setAttribute('cy', p.y);
+    return Math.hypot(p.x - C.x, p.y - C.y) < R;
+  }
+  if (reduce) { place(.48); light('time'); return; }
+  var inside = false, start = null, DUR = 9000;
+  function tick(now) {
+    if (start === null) start = now;
+    var k = ((now - start) % DUR) / DUR;
+    // ذهابٌ وإياب: يدخل، يبقى قليلاً (الوقت وهو هناك)، ثم يخرج.
+    var t = k < .5 ? k * 2 : 2 - k * 2;
+    var eased = .5 - Math.cos(Math.PI * t) / 2;
+    var now_in = place(eased);
+    if (now_in !== inside) { inside = now_in; light(inside ? 'enter' : 'exit'); }
+    else if (inside && Math.abs(eased - .5) < .05) light('time');
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+</body>
+</html>

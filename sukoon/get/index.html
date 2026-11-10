@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>سُكون · حمّل التطبيق</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="الرابط الواحد لسُكون: الآيفون إلى App Store، والأندرويد إلى Google Play.">
+<link rel="canonical" href="https://stilus-ingenium.com/sukoon/">
+<meta name="theme-color" content="#F2F6F4">
+<script>
+// ─── الرابط الواحد — stilus-ingenium.com/sukoon/get ───────────────────────────
+// الآيفون ← App Store · الأندرويد ← Google Play · غيرهما ← صفحة سُكون (وفيها رمز QR).
+// PLAY_LIVE يصير true يوم يُنشر سُكون على Google Play للعموم (Production) — قبله يذهب
+// الأندرويد إلى الصفحة نفسها فيرى «قريباً على Google Play» بدل صفحة متجرٍ «غير موجود».
+(function () {
+  var APP_STORE = 'https://apps.apple.com/app/id6828623058';
+  var PLAY = 'https://play.google.com/store/apps/details?id=com.stilus.sukoon';
+  var PLAY_LIVE = false;
+  var PAGE = '/sukoon/';
+
+  var ua = navigator.userAgent || '';
+  // iPadOS يقدّم نفسه «Macintosh» — يُعرف باللمس.
+  var ios = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var android = /Android/i.test(ua);
+  var q = location.search.indexOf('lang=en') > -1 ? '?lang=en' : '';
+
+  var to = ios ? APP_STORE
+    : android ? (PLAY_LIVE ? PLAY : PAGE + (q ? q + '&' : '?') + 'from=android#get')
+    : PAGE + q + '#get';
+  location.replace(to);
+})();
+</script>
+<style>
+  :root { --mist:#F2F6F4; --ink:#16252B; --sea:#2F8E84; }
+  html, body { margin:0; background:var(--mist); color:var(--ink); }
+  body { min-height:100vh; display:grid; place-items:center; font-family:system-ui, sans-serif; text-align:center; padding:16px; }
+  a { color:var(--sea); font-weight:700; }
+  p { line-height:1.8; }
+</style>
+</head>
+<body>
+  <main>
+    <svg width="72" height="72" viewBox="0 0 200 200" aria-hidden="true">
+      <defs><linearGradient id="t" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#36A093"/><stop offset="1" stop-color="#1E6E66"/></linearGradient></defs>
+      <g transform="translate(48,40) scale(1.05)">
+        <path d="M66 38 C66 25 57 17 45 17 C31 17 21 29 21 43 C21 57 32 65 45 65 C55 65 62 59 62 50 C62 70 54 82 38 88" fill="none" stroke="url(#t)" stroke-width="9.5" stroke-linecap="round"/>
+        <circle cx="43" cy="40" r="6.2" fill="#E9B872"/>
+      </g>
+    </svg>
+    <p>نفتح لك المتجر…</p>
+    <p><a href="https://apps.apple.com/app/id6828623058">App Store</a> · <a href="/sukoon/">صفحة سُكون</a></p>
+  </main>
+</body>
+</html>

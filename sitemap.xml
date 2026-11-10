@@ -37,4 +37,13 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://stilus-ingenium.com/en/invest/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://stilus-ingenium.com/invest/"/>
   </url>
+  <url>
+    <loc>https://stilus-ingenium.com/sukoon/</loc>
+    <lastmod>2026-11-10</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ar" href="https://stilus-ingenium.com/sukoon/"/>
+    <xhtml:link rel="alternate" hreflang="en" href="https://stilus-ingenium.com/sukoon/?lang=en"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://stilus-ingenium.com/sukoon/"/>
+  </url>
 </urlset>
